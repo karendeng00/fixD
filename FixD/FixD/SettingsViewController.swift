@@ -1,5 +1,5 @@
 //
-//  AccountViewController.swift
+//  SettingsViewController.swift
 //  FixD
 //
 //  Created by Ann Bailey on 6/6/19.
@@ -8,12 +8,8 @@
 
 import UIKit
 
-class AccountViewController: UIViewController {
-    
-    @IBOutlet weak var myName: UILabel!
-    @IBOutlet weak var myPosition: UILabel!
-    @IBOutlet weak var myImage: UIImageView!
-    
+class SettingsViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
