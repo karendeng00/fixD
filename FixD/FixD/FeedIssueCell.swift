@@ -17,7 +17,11 @@ class FeedIssueCell: UITableViewCell {
     @IBOutlet weak var issueDescription: UILabel!
     @IBOutlet weak var issueLocation: UILabel!
     @IBOutlet weak var issueImage: UIImageView!
+    @IBOutlet weak var issueDate: UILabel!
     
+    @IBOutlet weak var starButton: UIImageView!
+    @IBOutlet weak var likeButton: UIImageView!
+    @IBOutlet weak var CommentButton: UIImageView!
     @IBOutlet weak var locationImage: UIImageView!
     
     override func awakeFromNib() {

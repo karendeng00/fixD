@@ -8,23 +8,15 @@
 
 import UIKit
 
-class FeedCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
-}
-
-
 class FeedViewController: UITableViewController {
+    
+    let myCellIndentifier = "IssueCell"
+    var myPosts:[IssueClass]?
+    //FIXME: delete 
+    func loadObjects() {
+        myPosts = [IssueClass(title: "Broken Window", description: "I broke my window playing       baseball", location: "Crowell Quad, apt DD111", date: "06/06/19", issueImage: "duke.png", userName: "Jimmy Jim Jim", userImage: "photo.jpg"),
+                   IssueClass(title: "Broken Printer", description: "Printer in the Link wont work", location: "The Link, Perkins", date: "05/08/19", issueImage: "duke.png", userName: "Johnny John John", userImage: "photo1.png")]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,30 +26,40 @@ class FeedViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        loadObjects()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 2
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
 
-        // Configure the cell...
-
+         //Configure the cell...
+        let obj = myPosts![indexPath.row]
+        
+        cell.issueName.text = obj.title
+        cell.issueLocation.text = obj.location
+        cell.issueDescription.text = obj.description
+        cell.issueDate.text = obj.date
+        cell.userName.text = obj.userName
+        cell.userImage.image = UIImage(named:obj.userImage)
+        
         return cell
     }
-    */
+    
 
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
