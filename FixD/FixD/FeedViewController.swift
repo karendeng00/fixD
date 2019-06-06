@@ -14,7 +14,7 @@ class FeedViewController: UITableViewController {
     var myPosts:[IssueClass]?
     //FIXME: delete 
     func loadObjects() {
-        myPosts = [IssueClass(title: "Broken Window", description: "I broke my window playing       baseball", location: "Crowell Quad, apt DD111", date: "06/06/19", issueImage: "duke.png", userName: "Jimmy Jim Jim", userImage: "photo.jpg"),
+        myPosts = [IssueClass(title: "Broken Window", description: "I broke my window playing baseball", location: "Crowell Quad, apt DD111", date: "06/06/19", issueImage: "duke.png", userName: "Jimmy Jim Jim", userImage: "photo.jpg"),
                    IssueClass(title: "Broken Printer", description: "Printer in the Link wont work", location: "The Link, Perkins", date: "05/08/19", issueImage: "duke.png", userName: "Johnny John John", userImage: "photo1.png")]
     }
     
@@ -40,6 +40,10 @@ class FeedViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 2
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 145
+    }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,10 +61,10 @@ class FeedViewController: UITableViewController {
         cell.userName.text = obj.userName
         cell.userImage.image = UIImage(named:obj.userImage)
         
-        cell.starButton.image = UIImage(named:obj.issueImage)
-        cell.likeButton.image = UIImage(named:obj.likeButton)
-        cell.commentButton.image = UIImage(named:obj.commentButton)
-        cell.locationImage.image = UIImage(named:obj.locationImage)
+        cell.starButton.image = UIImage(named:"star.png")
+        cell.likeButton.image = UIImage(named:"upvote.png")
+        cell.commentButton.image = UIImage(named:"comments.png")
+        cell.locationImage.image = UIImage(named:"locicon")
     
         return cell
     }
