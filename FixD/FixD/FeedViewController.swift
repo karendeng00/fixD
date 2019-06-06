@@ -14,8 +14,8 @@ class FeedViewController: UITableViewController {
     var myPosts:[IssueClass]?
     //FIXME: delete 
     func loadObjects() {
-        myPosts = [IssueClass(title: "Broken Window", description: "I broke my window playing baseball", location: "Crowell Quad, apt DD111", date: "06/06/19", issueImage: "duke.png", userName: "Jimmy Jim Jim", userImage: "photo.jpg"),
-                   IssueClass(title: "Broken Printer", description: "Printer in the Link wont work", location: "The Link, Perkins", date: "05/08/19", issueImage: "duke.png", userName: "Johnny John John", userImage: "photo1.png")]
+        myPosts = [IssueClass(title: "Broken Window in my Dorm", description: "I broke my window playing baseball", location: "Crowell Quad, apt DD111", date: "06/06/19", issueImage: "window", userName: "Jimmy Jim Jim", userImage: "photo.jpg"),
+                   IssueClass(title: "Broken Printer", description: "Printer in the Link wont work", location: "The Link, Perkins", date: "05/08/19", issueImage: "printer.jpg", userName: "Johnny John John", userImage: "photo1.png")]
     }
     
     override func viewDidLoad() {
