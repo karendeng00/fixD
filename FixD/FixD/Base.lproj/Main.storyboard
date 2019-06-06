@@ -33,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="119" id="Krf-dQ-DQx">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="119" id="Krf-dQ-DQx" customClass="FeedIssueCell" customModule="FixD" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="119"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Krf-dQ-DQx" id="fOH-Yv-g0W">
@@ -82,6 +82,15 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="issueDescription" destination="Oia-Ku-rL9" id="oTL-QN-ffy"/>
+                                    <outlet property="issueImage" destination="Wy3-n7-zjb" id="Dgs-OB-vc9"/>
+                                    <outlet property="issueLocation" destination="FIk-Yn-r9Z" id="U5o-zj-IyT"/>
+                                    <outlet property="issueName" destination="ft6-AR-VRI" id="Rl9-qx-avi"/>
+                                    <outlet property="locationImage" destination="D5Q-AW-2Sp" id="fL0-Ef-mYq"/>
+                                    <outlet property="userImage" destination="aaX-ut-3h2" id="pFS-Zs-x1W"/>
+                                    <outlet property="userName" destination="0YU-Vq-UAa" id="J8n-dm-GsO"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -92,7 +101,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2g-Tz-eln" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="898.55072463768124" y="118.52678571428571"/>
+            <point key="canvasLocation" x="1397" y="21"/>
         </scene>
     </scenes>
 </document>
