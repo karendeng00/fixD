@@ -49,16 +49,22 @@ class FeedViewController: UITableViewController {
         let obj = myPosts![indexPath.row]
         
         cell.issueName.text = obj.title
-        cell.issueLocation.text = obj.location
         cell.issueDescription.text = obj.description
+        cell.issueLocation.text = obj.location
         cell.issueDate.text = obj.date
+        cell.issueImage.image = UIImage(named:obj.issueImage)
+        
         cell.userName.text = obj.userName
         cell.userImage.image = UIImage(named:obj.userImage)
         
+        cell.starButton.image = UIImage(named:obj.issueImage)
+        cell.likeButton.image = UIImage(named:obj.likeButton)
+        cell.commentButton.image = UIImage(named:obj.commentButton)
+        cell.locationImage.image = UIImage(named:obj.locationImage)
+    
         return cell
     }
     
-
     
     /*
     // Override to support conditional editing of the table view.

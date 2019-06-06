@@ -112,7 +112,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="CommentButton" destination="8t5-ZZ-adp" id="jFz-n1-Idv"/>
+                                    <outlet property="commentButton" destination="8t5-ZZ-adp" id="9oc-Vk-1Lc"/>
                                     <outlet property="issueDate" destination="32i-mc-uhW" id="dUw-b0-dEj"/>
                                     <outlet property="issueDescription" destination="Oia-Ku-rL9" id="oTL-QN-ffy"/>
                                     <outlet property="issueImage" destination="Wy3-n7-zjb" id="Dgs-OB-vc9"/>

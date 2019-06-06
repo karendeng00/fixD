@@ -19,10 +19,10 @@ class IssueClass {
     let userName:String
     let userImage:String
     
-    let locationImage:String = ""
-    let favoriteButton:String = ""
-    let likeButton:String = ""
-    let commentButton:String = ""
+    let locationImage:String = "locicon.png"
+    let favoriteButton:String = "star.png"
+    let likeButton:String = "upvote.png"
+    let commentButton:String = "comments.png"
     
     init(title:String, description:String, location:String, date:String, issueImage:String, userName:String, userImage:String) {
         self.title = title
@@ -32,6 +32,8 @@ class IssueClass {
         self.issueImage = issueImage
         self.userName = userName
         self.userImage = userImage
+        
+        
     }
 }
 
