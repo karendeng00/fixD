@@ -9,6 +9,8 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController {
+    
+    let list = ["Invite Friends", "Notifications"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +31,12 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath)
-
-    
+        cell.textLabel?.text = list[indexPath.row]
 
         return cell
     }
