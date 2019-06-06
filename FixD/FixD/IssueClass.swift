@@ -32,8 +32,6 @@ class IssueClass {
         self.issueImage = issueImage
         self.userName = userName
         self.userImage = userImage
-        
-        
     }
 }
 
