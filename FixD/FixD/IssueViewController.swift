@@ -37,7 +37,7 @@ class IssueViewController: UIViewController {
     }
     
     @IBAction func submitButton(_ sender: Any) {
-        
+        IssueClass(title: issueTextField.text!, description: descriptionTextField.text!, location: "Bostock", date: "June 6", issueImage: "printer.png", userName: "Karen", userImage: "photo.jpg")
         
     }
 }
