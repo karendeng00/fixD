@@ -12,6 +12,7 @@
 		B4085C0D22A850A500A24525 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4085C0B22A850A500A24525 /* Main.storyboard */; };
 		B4085C0F22A850A500A24525 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4085C0E22A850A500A24525 /* Assets.xcassets */; };
 		B4085C1222A850A500A24525 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4085C1022A850A500A24525 /* LaunchScreen.storyboard */; };
+		F5F87D7922AAB587008DD7FE /* IssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F87D7822AAB587008DD7FE /* IssueViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		B4085C0E22A850A500A24525 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4085C1122A850A500A24525 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4085C1322A850A500A24525 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5F87D7822AAB587008DD7FE /* IssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				B4085C0722A850A400A24525 /* AppDelegate.swift */,
 				B4085C0922A850A500A24525 /* ViewController.swift */,
 				B4085C0B22A850A500A24525 /* Main.storyboard */,
+				F5F87D7822AAB587008DD7FE /* IssueViewController.swift */,
 				B4085C0E22A850A500A24525 /* Assets.xcassets */,
 				B4085C1022A850A500A24525 /* LaunchScreen.storyboard */,
 				B4085C1322A850A500A24525 /* Info.plist */,
@@ -135,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5F87D7922AAB587008DD7FE /* IssueViewController.swift in Sources */,
 				B4085C0A22A850A500A24525 /* ViewController.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
 			);
