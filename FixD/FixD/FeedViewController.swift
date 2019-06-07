@@ -11,9 +11,9 @@ import UIKit
 class FeedViewController: UITableViewController {
     
     let myCellIndentifier = "IssueCell"
-    var myPosts:[IssueClass]?
+    var myPosts:[IssueClass] = [IssueClass]()
     //FIXME: delete 
-    let Issues = IssueAPI()
+    //let Issues = IssueAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class FeedViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        myPosts = Issues.getIssues()
+        //myPosts = Issues.getIssues()
     }
 
     // MARK: - Table view data source
@@ -47,22 +47,25 @@ class FeedViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
 
          //Configure the cell...
-        let obj = myPosts![indexPath.row]
         
-        cell.issueName.text = obj.title
-        cell.issueDescription.text = obj.description
-        cell.issueLocation.text = obj.location
-        cell.issueDate.text = obj.date
-        cell.issueImage.image = UIImage(named:obj.issueImage)
-        
-        cell.userName.text = obj.userName
-        cell.userImage.image = UIImage(named:obj.userImage)
-        
-        cell.starButton.image = UIImage(named:"star.png")
-        cell.likeButton.image = UIImage(named:"upvote.png")
-        cell.commentButton.image = UIImage(named:"comments.png")
-        cell.locationImage.image = UIImage(named:"locicon")
+        if indexPath.row < myPosts.count {
+            let obj = myPosts[indexPath.row]
+            
+            cell.issueName.text = obj.title
+            cell.issueDescription.text = obj.description
+            cell.issueLocation.text = obj.location
+            cell.issueDate.text = obj.date
+            cell.issueImage.image = UIImage(named:obj.issueImage)
+            
+            cell.userName.text = obj.userName
+            cell.userImage.image = UIImage(named:obj.userImage)
+            
+            cell.starButton.image = UIImage(named:"star.png")
+            cell.likeButton.image = UIImage(named:"upvote.png")
+            cell.commentButton.image = UIImage(named:"comments.png")
+            cell.locationImage.image = UIImage(named:"locicon")
     
+        }
         return cell
     }
     
