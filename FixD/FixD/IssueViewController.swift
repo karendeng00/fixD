@@ -13,6 +13,7 @@ class IssueViewController: UIViewController {
     @IBOutlet weak var issueTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     
+    let Issues = IssueAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,8 @@ class IssueViewController: UIViewController {
     }
     
     @IBAction func submitButton(_ sender: Any) {
-        IssueClass(title: issueTextField.text!, description: descriptionTextField.text!, location: "Bostock", date: "June 6", issueImage: "printer.png", userName: "Karen", userImage: "photo.jpg")
+        var issueToAppend = IssueClass(title: issueTextField.text!, description: descriptionTextField.text!, location: "Bostock", date: "June 6", issueImage: "printer.png", userName: "Karen", userImage: "photo.jpg")
         
+        Issues.appendIssue(issue: issueToAppend)
     }
 }

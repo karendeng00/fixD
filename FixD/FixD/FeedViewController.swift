@@ -13,10 +13,7 @@ class FeedViewController: UITableViewController {
     let myCellIndentifier = "IssueCell"
     var myPosts:[IssueClass]?
     //FIXME: delete 
-    func loadObjects() {
-        myPosts = [IssueClass(title: "Broken Window in my Dorm", description: "I broke my window playing baseball", location: "Crowell Quad, apt DD111", date: "06/06/19", issueImage: "window", userName: "Jimmy Jim Jim", userImage: "photo.jpg"),
-                   IssueClass(title: "Broken Printer", description: "Printer in the Link wont work", location: "The Link, Perkins", date: "05/08/19", issueImage: "printer.jpg", userName: "Johnny John John", userImage: "photo1.png")]
-    }
+    let Issues = IssueAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +23,7 @@ class FeedViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        loadObjects()
+        myPosts = Issues.getIssues()
     }
 
     // MARK: - Table view data source
