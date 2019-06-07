@@ -10,7 +10,8 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
     
-    let list = ["Invite Friends", "Notifications"]
+    let list = ["Invite Friends", "Notifications", "Edit Profile", "Contact Us"]
+    let segueIdentifiers = ["A", "B", "C", "D"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +26,11 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 2
+        return list.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,6 +40,9 @@ class SettingsTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: segueIdentifiers[indexPath.row], sender: self)
+    }
 
     /*
     // Override to support conditional editing of the table view.
