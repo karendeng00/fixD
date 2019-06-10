@@ -13,7 +13,7 @@ class FeedViewController: UITableViewController {
     let myCellIndentifier = "IssueCell"
     var myPosts:[IssueClass]?
     //FIXME: delete 
-    let Issues = IssueAPI()
+    let Issues = IssueBuilder()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class FeedViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2
+        return myPosts!.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -55,8 +55,8 @@ class FeedViewController: UITableViewController {
         cell.issueDate.text = obj.date
         cell.issueImage.image = UIImage(named:obj.issueImage)
         
-        cell.userName.text = obj.userName
-        cell.userImage.image = UIImage(named:obj.userImage)
+        cell.userName.text = obj.myUser.userName
+        cell.userImage.image = UIImage(named:obj.myUser.userImage)
         
         cell.starButton.image = UIImage(named:"star.png")
         cell.likeButton.image = UIImage(named:"upvote.png")
