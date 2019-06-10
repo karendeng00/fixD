@@ -7,16 +7,22 @@
 //
 
 import UIKit
+import MapKit
 
 class MapFunctionsViewController: UIViewController {
+    
+    @IBOutlet weak var myMapView: MKMapView!
+    
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
-    
 
+    
+    
     /*
     // MARK: - Navigation
 
