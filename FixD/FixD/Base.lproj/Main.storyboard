@@ -239,14 +239,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qs1-uW-SI0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="704" y="757"/>
+            <point key="canvasLocation" x="1123" y="865"/>
         </scene>
         <!--Feed View Controller-->
         <scene sceneID="lHo-4n-bUJ">
             <objects>
                 <tableViewController id="JKy-it-l91" customClass="FeedViewController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="R5e-Nd-bzm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -672,21 +672,6 @@
             </objects>
             <point key="canvasLocation" x="3550.7246376811595" y="-1600.4464285714284"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="s45-6i-FQv">
-            <objects>
-                <viewController id="7Ne-py-ewh" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WFA-dA-TQc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="GQS-Im-RGi"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5LQ-Ns-3O0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-757" y="21"/>
-        </scene>
         <!--Account View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -771,7 +756,6 @@
         <!--Navigation Controller-->
         <scene sceneID="e3T-kR-EWA">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Kd-AI-ybK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="sbProfile" automaticallyAdjustsScrollViewInsets="NO" id="WNx-Vw-nkn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Wi1-ZO-jtv">
@@ -783,11 +767,12 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="tLO-66-OW2"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Kd-AI-ybK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1121.7391304347827" y="-1337.2767857142856"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8BZ-uP-v7D"/>
+        <segue reference="Ys2-pU-x6y"/>
     </inferredMetricsTieBreakers>
 </document>
