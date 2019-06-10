@@ -38,7 +38,7 @@ class IssueViewController: UIViewController {
     }
     
     @IBAction func submitButton(_ sender: Any) {
-        var issueToAppend = IssueClass(title: issueTextField.text!, description: descriptionTextField.text!, location: "Bostock", date: "June 6", issueImage: "printer.png", userName: "Karen", userImage: "photo.jpg")
+        var issueToAppend = IssueClass(title: issueTextField.text!, description: descriptionTextField.text!, location: "Bostock", date: "June 6", issueImage: "printer.png", user: UserProfile(name:"Karen", image: "photo.jpg"))
         
         Issues.appendIssue(issue: issueToAppend)
     }

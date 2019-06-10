@@ -55,8 +55,8 @@ class FeedViewController: UITableViewController {
         cell.issueDate.text = obj.date
         cell.issueImage.image = UIImage(named:obj.issueImage)
         
-        cell.userName.text = obj.userName
-        cell.userImage.image = UIImage(named:obj.userImage)
+        cell.userName.text = obj.myUser.userName
+        cell.userImage.image = UIImage(named:obj.myUser.userImage)
         
         cell.starButton.image = UIImage(named:"star.png")
         cell.likeButton.image = UIImage(named:"upvote.png")
