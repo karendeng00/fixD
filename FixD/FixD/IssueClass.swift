@@ -10,6 +10,8 @@ import Foundation
 
 class IssueClass {
     
+    let issueID:Int
+    
     let title:String
     let description:String
     let location:String
@@ -24,7 +26,13 @@ class IssueClass {
     let likeButton:String = "upvote.png"
     let commentButton:String = "comments.png"
     
+    var myFavorites = 0
+    var myUpVotes = 0
+    var myComments = 0
+    var myListOfComments: Array<String> = Array()
+    
     init(title:String, description:String, location:String, date:String, issueImage:String, userName:String, userImage:String) {
+        self.issueID = 0 //FIX this, make ID unique ID
         self.title = title
         self.location = location
         self.description = description
@@ -32,6 +40,35 @@ class IssueClass {
         self.issueImage = issueImage
         self.userName = userName
         self.userImage = userImage
+    }
+    
+    func addFavorite(){
+        myFavorites = myFavorites + 1
+    }
+    
+    func addUpVote(){
+        myUpVotes = myUpVotes + 1
+    }
+    
+    func addComment(comment:String){
+        myListOfComments.append(comment)
+        myComments = myComments + 1
+    }
+    
+    func getFavorites() -> Int {
+        return myFavorites
+    }
+    
+    func getUpVotes() -> Int {
+        return myUpVotes
+    }
+    
+    func getNumberOfComments() -> Int {
+        return myComments
+    }
+    
+    func getListOfComments() -> Array<String> {
+        return myListOfComments
     }
 }
 
