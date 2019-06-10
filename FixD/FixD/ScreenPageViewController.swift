@@ -15,7 +15,7 @@ class ScreenPageViewController: UIPageViewController, UIPageViewControllerDelega
     lazy var orderedViewControllers: [UIViewController] = {
         return [self.newVc(viewController: "sbFeed"),
                 self.newVc(viewController: "sbMap"),
-                self.newVc(viewController: "sbProfile")]
+                self.newVc(viewController: "sbProfNav")]
         //Add the profile here once its done!
     }()
 
