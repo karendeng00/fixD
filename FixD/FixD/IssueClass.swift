@@ -18,8 +18,7 @@ class IssueClass {
     let date:String
     let issueImage:String
     
-    let userName:String
-    let userImage:String
+    let myUser:UserProfile
     
     let locationImage:String = "locicon.png"
     let favoriteButton:String = "star.png"
@@ -31,15 +30,14 @@ class IssueClass {
     var myComments = 0
     var myListOfComments: Array<String> = Array()
     
-    init(title:String, description:String, location:String, date:String, issueImage:String, userName:String, userImage:String) {
+    init(title:String, description:String, location:String, date:String, issueImage:String, user:UserProfile) {
         self.issueID = 0 //FIX this, make ID unique ID
         self.title = title
         self.location = location
         self.description = description
         self.date = date
         self.issueImage = issueImage
-        self.userName = userName
-        self.userImage = userImage
+        self.myUser = user
     }
     
     func addFavorite(){

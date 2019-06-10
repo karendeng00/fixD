@@ -13,9 +13,9 @@ class IssueAPI {
     var myPosts:[IssueClass]
     
     init() {
-        let issue1 = IssueClass(title: "Broken Window in my Dorm", description: "I broke my window playing baseball", location: "Crowell Quad, apt DD111", date: "06/06/19", issueImage: "window", userName: "Jimmy Jim Jim", userImage: "photo.jpg")
+        let issue1 = IssueClass(title: "Broken Window in my Dorm", description: "I broke my window playing baseball", location: "Crowell Quad, apt DD111", date: "06/06/19", issueImage: "window", user: UserProfile(name:"Jimmy Jim Jim", image: "photo.jpg"))
         
-        let issue2 = IssueClass(title: "Broken Printer", description: "Printer in the Link wont work", location: "The Link, Perkins", date: "05/08/19", issueImage: "printer.jpg", userName: "Johnny John John", userImage: "photo1.png")
+        let issue2 = IssueClass(title: "Broken Printer", description: "Printer in the Link wont work", location: "The Link, Perkins", date: "05/08/19", issueImage: "printer.jpg", user: UserProfile(name: "Johnny John John", image: "photo1.png"))
     
         myPosts = [IssueClass]()
         myPosts.append(issue1)
