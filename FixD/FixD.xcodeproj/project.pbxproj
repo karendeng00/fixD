@@ -17,7 +17,7 @@
 		B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4086CE822A95A7400B48EFF /* IssueClass.swift */; };
 		B4B1DBF922AAE02A005EFFA9 /* ScreenPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */; };
 		B4ED4D3522AEB9C300E50272 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3422AEB9C300E50272 /* UserProfile.swift */; };
-		F538299A22AABD7B0035F7A8 /* IssueAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F538299922AABD7B0035F7A8 /* IssueAPI.swift */; };
+		F538299A22AABD7B0035F7A8 /* IssueBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F538299922AABD7B0035F7A8 /* IssueBuilder.swift */; };
 		F5F87D7922AAB587008DD7FE /* IssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F87D7822AAB587008DD7FE /* IssueViewController.swift */; };
 		FFB2C5A022A9680E00BC11ED /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB2C59F22A9680E00BC11ED /* AccountViewController.swift */; };
 		FFB2C5A222A968A300BC11ED /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB2C5A122A968A300BC11ED /* Account.swift */; };
@@ -38,7 +38,7 @@
 		B4086CE822A95A7400B48EFF /* IssueClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueClass.swift; sourceTree = "<group>"; };
 		B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPageViewController.swift; sourceTree = "<group>"; };
 		B4ED4D3422AEB9C300E50272 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
-		F538299922AABD7B0035F7A8 /* IssueAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAPI.swift; sourceTree = "<group>"; };
+		F538299922AABD7B0035F7A8 /* IssueBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueBuilder.swift; sourceTree = "<group>"; };
 		F5F87D7822AAB587008DD7FE /* IssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueViewController.swift; sourceTree = "<group>"; };
 		FFB2C59F22A9680E00BC11ED /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		FFB2C5A122A968A300BC11ED /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 				B4086CE622A9593E00B48EFF /* FeedIssueCell.swift */,
 				B4086CE822A95A7400B48EFF /* IssueClass.swift */,
 				B4ED4D3422AEB9C300E50272 /* UserProfile.swift */,
-				F538299922AABD7B0035F7A8 /* IssueAPI.swift */,
+				F538299922AABD7B0035F7A8 /* IssueBuilder.swift */,
 				B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */,
 			);
 			path = FixD;
@@ -169,7 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5F87D7922AAB587008DD7FE /* IssueViewController.swift in Sources */,
-				F538299A22AABD7B0035F7A8 /* IssueAPI.swift in Sources */,
+				F538299A22AABD7B0035F7A8 /* IssueBuilder.swift in Sources */,
 				B4ED4D3522AEB9C300E50272 /* UserProfile.swift in Sources */,
 				B4085C0A22A850A500A24525 /* ViewController.swift in Sources */,
 				B4086CE322A956EE00B48EFF /* FeedViewController.swift in Sources */,

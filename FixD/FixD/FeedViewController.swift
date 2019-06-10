@@ -13,7 +13,7 @@ class FeedViewController: UITableViewController {
     let myCellIndentifier = "IssueCell"
     var myPosts:[IssueClass]?
     //FIXME: delete 
-    let Issues = IssueAPI()
+    let Issues = IssueBuilder()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class FeedViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2
+        return myPosts!.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
