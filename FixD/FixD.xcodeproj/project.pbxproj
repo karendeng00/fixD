@@ -22,6 +22,12 @@
 		B4ED4D3D22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3C22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift */; };
 		B4ED4D3F22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3E22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift */; };
 		F538299A22AABD7B0035F7A8 /* IssueBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F538299922AABD7B0035F7A8 /* IssueBuilder.swift */; };
+		F51CCD2A22AED5D500DDFC62 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD2922AED5D500DDFC62 /* SideMenuViewController.swift */; };
+		F51CCD2C22AED5FA00DDFC62 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD2B22AED5FA00DDFC62 /* SideMenuTableViewController.swift */; };
+		F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */; };
+		F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
+		F53411D722AEB86200127AF2 /* IssueFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53411D622AEB86200127AF2 /* IssueFeedViewController.swift */; };
+		F538299A22AABD7B0035F7A8 /* IssueAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F538299922AABD7B0035F7A8 /* IssueAPI.swift */; };
 		F5F87D7922AAB587008DD7FE /* IssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F87D7822AAB587008DD7FE /* IssueViewController.swift */; };
 		FFB2C5A022A9680E00BC11ED /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB2C59F22A9680E00BC11ED /* AccountViewController.swift */; };
 		FFB2C5A222A968A300BC11ED /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB2C5A122A968A300BC11ED /* Account.swift */; };
@@ -47,6 +53,12 @@
 		B4ED4D3C22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFromCategoryTableViewController.swift; sourceTree = "<group>"; };
 		B4ED4D3E22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFromCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		F538299922AABD7B0035F7A8 /* IssueBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueBuilder.swift; sourceTree = "<group>"; };
+		F51CCD2922AED5D500DDFC62 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		F51CCD2B22AED5FA00DDFC62 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
+		F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
+		F53411D622AEB86200127AF2 /* IssueFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFeedViewController.swift; sourceTree = "<group>"; };
+		F538299922AABD7B0035F7A8 /* IssueAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAPI.swift; sourceTree = "<group>"; };
 		F5F87D7822AAB587008DD7FE /* IssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueViewController.swift; sourceTree = "<group>"; };
 		FFB2C59F22A9680E00BC11ED /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		FFB2C5A122A968A300BC11ED /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -85,8 +97,13 @@
 			isa = PBXGroup;
 			children = (
 				B4085C0722A850A400A24525 /* AppDelegate.swift */,
+				F51CCD2B22AED5FA00DDFC62 /* SideMenuTableViewController.swift */,
 				FFB2C59F22A9680E00BC11ED /* AccountViewController.swift */,
+				F53411D622AEB86200127AF2 /* IssueFeedViewController.swift */,
+				F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */,
+				F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */,
 				B4085C0922A850A500A24525 /* ViewController.swift */,
+				F51CCD2922AED5D500DDFC62 /* SideMenuViewController.swift */,
 				B4085C0B22A850A500A24525 /* Main.storyboard */,
 				F5F87D7822AAB587008DD7FE /* IssueViewController.swift */,
 				FFB2C5A522A9785500BC11ED /* SettingsTableViewCell.swift */,
@@ -186,16 +203,21 @@
 				B4085C0A22A850A500A24525 /* ViewController.swift in Sources */,
 				B4086CE322A956EE00B48EFF /* FeedViewController.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
+				F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */,
 				B4B1DBF922AAE02A005EFFA9 /* ScreenPageViewController.swift in Sources */,
 				B4ED4D3D22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift in Sources */,
 				B4086CE722A9593E00B48EFF /* FeedIssueCell.swift in Sources */,
 				B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */,
+				F51CCD2C22AED5FA00DDFC62 /* SideMenuTableViewController.swift in Sources */,
 				B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */,
+				F53411D722AEB86200127AF2 /* IssueFeedViewController.swift in Sources */,
 				FFB2C5A222A968A300BC11ED /* Account.swift in Sources */,
+				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
 				FFB2C5A822A97BB100BC11ED /* SettingsTableViewController.swift in Sources */,
 				FFB2C5A622A9785500BC11ED /* SettingsTableViewCell.swift in Sources */,
 				B4ED4D3F22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
+				F51CCD2A22AED5D500DDFC62 /* SideMenuViewController.swift in Sources */,
 				FFB2C5A022A9680E00BC11ED /* AccountViewController.swift in Sources */,
 				B4ED4D3922B003C900E50272 /* InviteFriendsViewController.swift in Sources */,
 			);
