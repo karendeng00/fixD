@@ -319,7 +319,7 @@
                                         <constraint firstItem="PYE-Ko-gJd" firstAttribute="top" secondItem="fOH-Yv-g0W" secondAttribute="top" constant="112" id="3n8-Vw-q9T"/>
                                         <constraint firstItem="32i-mc-uhW" firstAttribute="leading" secondItem="fOH-Yv-g0W" secondAttribute="leading" constant="330" id="5tv-Xk-s8n"/>
                                         <constraint firstAttribute="trailing" secondItem="ft6-AR-VRI" secondAttribute="trailing" constant="100" id="7Zz-bA-KiW"/>
-                                        <constraint firstItem="32i-mc-uhW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fOH-Yv-g0W" secondAttribute="leading" symbolic="YES" id="IF3-OQ-sv8"/>
+                                        <constraint firstItem="32i-mc-uhW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fOH-Yv-g0W" secondAttribute="leading" constant="20" symbolic="YES" id="IF3-OQ-sv8"/>
                                         <constraint firstAttribute="bottom" secondItem="FIk-Yn-r9Z" secondAttribute="bottom" constant="33.5" id="ILx-Dr-arg"/>
                                         <constraint firstItem="Oia-Ku-rL9" firstAttribute="leading" secondItem="ft6-AR-VRI" secondAttribute="leading" id="L2Q-Pi-rJQ"/>
                                         <constraint firstItem="RbC-rA-XxX" firstAttribute="top" secondItem="fOH-Yv-g0W" secondAttribute="top" constant="112" id="N3O-Kc-I23"/>
@@ -384,7 +384,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2g-Tz-eln" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1397" y="41"/>
+            <point key="canvasLocation" x="3850.7246376811595" y="-680.35714285714278"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="naq-p0-RSh">
@@ -531,7 +531,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZY-Oh-RoW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4681" y="-1429"/>
+            <point key="canvasLocation" x="5496" y="-1001"/>
         </scene>
         <!--Contact Us-->
         <scene sceneID="x3v-PF-ryX">
@@ -615,9 +615,97 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kmh-De-tLA">
-                                <rect key="frame" x="20" y="281" width="375" height="581"/>
+                                <rect key="frame" x="0.0" y="281" width="414" height="593"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountIssueCell" rowHeight="145" id="pxc-hd-2Ke" customClass="AccountIssueCell" customModule="FixD" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="145"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pxc-hd-2Ke" id="Bzb-Ph-3DC">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="144.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Duke Blue Devil" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBQ-KB-vzh">
+                                                    <rect key="frame" x="6" y="72" width="78" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VQR-gN-zJ4">
+                                                    <rect key="frame" x="31" y="112" width="27" height="27"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rv0-fd-F7f">
+                                                    <rect key="frame" x="352" y="112" width="27" height="27"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DYg-aV-YAC">
+                                                    <rect key="frame" x="189" y="112" width="27" height="27"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qkh-Ka-qhd">
+                                                    <rect key="frame" x="20" y="24" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="qkh-Ka-qhd" secondAttribute="height" multiplier="1:1" id="hTf-6Q-7BA"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WRl-Dw-QY9">
+                                                    <rect key="frame" x="330" y="27" width="71" height="79"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uwu-oh-R02">
+                                                    <rect key="frame" x="99" y="83" width="20" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Printer Missing Ink" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAt-Vg-Ku9">
+                                                    <rect key="frame" x="99" y="11" width="215" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Printer #3 doesn't have black ink. My name is Alejandro Meza and I am a sophomore and like to play soccer. I am a big fan off" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mC-fZ-z7f">
+                                                    <rect key="frame" x="99" y="27" width="193" height="54"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="William  R Perkins Library, Campus Drive, Durham, NC" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a29-EH-NTl">
+                                                    <rect key="frame" x="127" y="77" width="187" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="8"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="rv0-fd-F7f" secondAttribute="trailing" constant="35" id="2KM-Rv-eiI"/>
+                                                <constraint firstItem="VQR-gN-zJ4" firstAttribute="leading" secondItem="Bzb-Ph-3DC" secondAttribute="leading" constant="31" id="6yO-XI-tEY"/>
+                                                <constraint firstItem="VQR-gN-zJ4" firstAttribute="top" secondItem="hBQ-KB-vzh" secondAttribute="bottom" constant="22.5" id="Fl3-FO-V7H"/>
+                                                <constraint firstItem="DYg-aV-YAC" firstAttribute="leading" secondItem="VQR-gN-zJ4" secondAttribute="trailing" constant="131" id="JU4-K7-ztH"/>
+                                                <constraint firstItem="rv0-fd-F7f" firstAttribute="leading" secondItem="DYg-aV-YAC" secondAttribute="trailing" constant="136" id="L4E-rP-NDC"/>
+                                                <constraint firstAttribute="bottom" secondItem="DYg-aV-YAC" secondAttribute="bottom" constant="5.5" id="UQY-9U-86A"/>
+                                                <constraint firstItem="rv0-fd-F7f" firstAttribute="top" secondItem="Bzb-Ph-3DC" secondAttribute="top" constant="112" id="a0b-lC-M0P"/>
+                                                <constraint firstItem="DYg-aV-YAC" firstAttribute="leading" secondItem="VQR-gN-zJ4" secondAttribute="trailing" constant="131" id="bZD-eJ-GZK"/>
+                                                <constraint firstItem="rv0-fd-F7f" firstAttribute="leading" secondItem="DYg-aV-YAC" secondAttribute="trailing" constant="136" id="cxf-RG-hWo"/>
+                                                <constraint firstItem="DYg-aV-YAC" firstAttribute="top" secondItem="Bzb-Ph-3DC" secondAttribute="top" constant="112" id="k4m-Wx-kr2"/>
+                                                <constraint firstAttribute="bottom" secondItem="rv0-fd-F7f" secondAttribute="bottom" constant="5.5" id="u9a-iz-X3y"/>
+                                                <constraint firstAttribute="bottom" secondItem="VQR-gN-zJ4" secondAttribute="bottom" constant="5.5" id="yEc-bA-vS5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="accountCellComment" destination="rv0-fd-F7f" id="lQo-Db-XTf"/>
+                                            <outlet property="accountCellDescription" destination="3mC-fZ-z7f" id="51u-oY-k9G"/>
+                                            <outlet property="accountCellIssueImage" destination="WRl-Dw-QY9" id="ucC-Za-fna"/>
+                                            <outlet property="accountCellLocation" destination="a29-EH-NTl" id="VAb-bH-0kZ"/>
+                                            <outlet property="accountCellLocationPin" destination="uwu-oh-R02" id="5Rz-iN-OIs"/>
+                                            <outlet property="accountCellMyImage" destination="qkh-Ka-qhd" id="88t-F7-zWU"/>
+                                            <outlet property="accountCellMyName" destination="hBQ-KB-vzh" id="4eX-mv-mr5"/>
+                                            <outlet property="accountCellStar" destination="VQR-gN-zJ4" id="6XA-P8-ibq"/>
+                                            <outlet property="accountCellTitle" destination="OAt-Vg-Ku9" id="gvn-rG-of5"/>
+                                            <outlet property="accountCellUpVote" destination="DYg-aV-YAC" id="JJ7-gN-pmH"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Issues" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQE-dv-UQj">
                                 <rect key="frame" x="143" y="237" width="129" height="36"/>
@@ -651,6 +739,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="myAccountImage" destination="PsT-eB-Tvo" id="f9p-Rm-bgF"/>
+                        <outlet property="myAccountName" destination="Bc4-W4-bi0" id="IzN-3W-6a5"/>
+                        <outlet property="myAccountPosition" destination="tlz-TE-ub4" id="e0U-i2-0r2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -730,6 +823,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="P0g-xy-hg4"/>
+        <segue reference="pjc-LD-knJ"/>
     </inferredMetricsTieBreakers>
 </document>
