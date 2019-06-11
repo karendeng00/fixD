@@ -84,11 +84,14 @@
 		B4085C0622A850A400A24525 /* FixD */ = {
 			isa = PBXGroup;
 			children = (
-				F51CCD2F22AFFB1D00DDFC62 /* Home Menu */,
-				F51CCD2822AED5BE00DDFC62 /* Side Menu */,
 				B4085C0722A850A400A24525 /* AppDelegate.swift */,
+				F51CCD2B22AED5FA00DDFC62 /* SideMenuTableViewController.swift */,
 				FFB2C59F22A9680E00BC11ED /* AccountViewController.swift */,
+				F53411D622AEB86200127AF2 /* IssueFeedViewController.swift */,
+				F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */,
+				F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */,
 				B4085C0922A850A500A24525 /* ViewController.swift */,
+				F51CCD2922AED5D500DDFC62 /* SideMenuViewController.swift */,
 				B4085C0B22A850A500A24525 /* Main.storyboard */,
 				F5F87D7822AAB587008DD7FE /* IssueViewController.swift */,
 				FFB2C5A522A9785500BC11ED /* SettingsTableViewCell.swift */,
@@ -104,25 +107,6 @@
 				B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */,
 			);
 			path = FixD;
-			sourceTree = "<group>";
-		};
-		F51CCD2822AED5BE00DDFC62 /* Side Menu */ = {
-			isa = PBXGroup;
-			children = (
-				F51CCD2922AED5D500DDFC62 /* SideMenuViewController.swift */,
-				F53411D622AEB86200127AF2 /* IssueFeedViewController.swift */,
-				F51CCD2B22AED5FA00DDFC62 /* SideMenuTableViewController.swift */,
-			);
-			path = "Side Menu";
-			sourceTree = "<group>";
-		};
-		F51CCD2F22AFFB1D00DDFC62 /* Home Menu */ = {
-			isa = PBXGroup;
-			children = (
-				F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */,
-				F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */,
-			);
-			path = "Home Menu";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
