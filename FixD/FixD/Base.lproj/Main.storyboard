@@ -560,7 +560,7 @@
         <!--Invite Friends-->
         <scene sceneID="LmL-if-8tE">
             <objects>
-                <viewController id="lUY-w6-Elq" sceneMemberID="viewController">
+                <viewController id="lUY-w6-Elq" customClass="InviteFriendsViewController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F2G-y7-qJ9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -577,6 +577,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pUV-pY-B1g">
+                                <rect key="frame" x="165" y="203" width="85" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Send Invite"/>
+                                <connections>
+                                    <action selector="sendButton:" destination="lUY-w6-Elq" eventType="touchUpInside" id="GQG-ZD-W4U"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>

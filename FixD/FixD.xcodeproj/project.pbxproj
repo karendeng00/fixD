@@ -18,6 +18,7 @@
 		B4B1DBF922AAE02A005EFFA9 /* ScreenPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */; };
 		B4ED4D3522AEB9C300E50272 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3422AEB9C300E50272 /* UserProfile.swift */; };
 		B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3622AED64F00E50272 /* MapFunctionsViewController.swift */; };
+		B4ED4D3922B003C900E50272 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3822B003C900E50272 /* InviteFriendsViewController.swift */; };
 		F538299A22AABD7B0035F7A8 /* IssueBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F538299922AABD7B0035F7A8 /* IssueBuilder.swift */; };
 		F5F87D7922AAB587008DD7FE /* IssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F87D7822AAB587008DD7FE /* IssueViewController.swift */; };
 		FFB2C5A022A9680E00BC11ED /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB2C59F22A9680E00BC11ED /* AccountViewController.swift */; };
@@ -40,6 +41,7 @@
 		B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPageViewController.swift; sourceTree = "<group>"; };
 		B4ED4D3422AEB9C300E50272 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		B4ED4D3622AED64F00E50272 /* MapFunctionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFunctionsViewController.swift; sourceTree = "<group>"; };
+		B4ED4D3822B003C900E50272 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
 		F538299922AABD7B0035F7A8 /* IssueBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueBuilder.swift; sourceTree = "<group>"; };
 		F5F87D7822AAB587008DD7FE /* IssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueViewController.swift; sourceTree = "<group>"; };
 		FFB2C59F22A9680E00BC11ED /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				F538299922AABD7B0035F7A8 /* IssueBuilder.swift */,
 				B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */,
 				B4ED4D3622AED64F00E50272 /* MapFunctionsViewController.swift */,
+				B4ED4D3822B003C900E50272 /* InviteFriendsViewController.swift */,
 			);
 			path = FixD;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				FFB2C5A622A9785500BC11ED /* SettingsTableViewCell.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
 				FFB2C5A022A9680E00BC11ED /* AccountViewController.swift in Sources */,
+				B4ED4D3922B003C900E50272 /* InviteFriendsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
