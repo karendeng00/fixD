@@ -49,9 +49,9 @@ class FeedViewController: UITableViewController {
          //Configure the cell...
         let obj = myPosts![indexPath.row]
         
-        cell.issueName.text = obj.title
+        cell.issueName.text = obj.myTitle
         cell.issueDescription.text = obj.description
-        cell.issueLocation.text = obj.location
+        cell.issueLocation.text = obj.myLocation
         cell.issueDate.text = obj.date
         cell.issueImage.image = UIImage(named:obj.issueImage)
         

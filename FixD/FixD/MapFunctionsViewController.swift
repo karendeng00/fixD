@@ -18,6 +18,7 @@ class MapFunctionsViewController: UIViewController {
         
         //Sets up the Current Location
         setUpCurrentLocation()
+        setUpIssuesOnMap()
     }
     
     private func setUpCurrentLocation() {
@@ -33,10 +34,51 @@ class MapFunctionsViewController: UIViewController {
         
         //Zoom to user location
         if let userLocation = locationManager.location?.coordinate {
-            let viewRegion = MKCoordinateRegion(center: userLocation, latitudinalMeters: 2000, longitudinalMeters: 2000)
+            let viewRegion = MKCoordinateRegion(center: userLocation, latitudinalMeters: 10000000, longitudinalMeters: 10000000)
             myMapView.setRegion(viewRegion, animated: false)
         }
     }
+    
+    private func setUpIssuesOnMap() {
+        let issues = IssueBuilder().getIssues()
+        for issue in issues {
+            let loc = issue.getLocation()
+            let geoCoder = CLGeocoder()
+            geoCoder.geocodeAddressString(loc) { (placemarks, error) in
+                if let placemark = placemarks?.first,
+                    let lat = placemark.location?.coordinate.latitude,
+                    let long = placemark.location?.coordinate.longitude {
+                        let point = MKPointAnnotation()
+                        point.title = issue.getTitle()
+                    point.coordinate = CLLocationCoordinate2D(latitude:lat, longitude: long)
+                        self.myMapView.addAnnotation(point)
+                }
+                
+            }
+        }
+    
+//        let point = MKPointAnnotation()
+//        point.title = "Test"
+//        point.coordinate = CLLocationCoordinate2D(latitude: 37, longitude: -122)
+//        myMapView.addAnnotation(point)
+    }
+    
+    //Allow Points to be added to map
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is MKPointAnnotation else { return nil }
+        
+        let identifier = "Annotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = true
+        } else {
+            annotationView!.annotation = annotation
+        }
+        return annotationView
+    }
+    
 }
 
     

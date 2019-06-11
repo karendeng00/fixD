@@ -12,9 +12,9 @@ class IssueClass {
     
     let issueID:Int
     
-    let title:String
+    let myTitle:String
     let description:String
-    let location:String
+    let myLocation:String
     let date:String
     let issueImage:String
     
@@ -32,8 +32,8 @@ class IssueClass {
     
     init(title:String, description:String, location:String, date:String, issueImage:String, user:UserProfile) {
         self.issueID = 0 //FIX this, make ID unique ID
-        self.title = title
-        self.location = location
+        self.myTitle = title
+        self.myLocation = location
         self.description = description
         self.date = date
         self.issueImage = issueImage
@@ -67,6 +67,14 @@ class IssueClass {
     
     func getListOfComments() -> Array<String> {
         return myListOfComments
+    }
+    
+    func getTitle() -> String {
+        return myTitle
+    }
+    
+    func getLocation() -> String {
+        return myLocation
     }
 }
 
