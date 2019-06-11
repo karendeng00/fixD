@@ -16,11 +16,11 @@ class MapFunctionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Sets up the Current Location
         setUpCurrentLocation()
         setUpIssuesOnMap()
     }
     
+    //Sets up the current location
     private func setUpCurrentLocation() {
         let locationManager = CLLocationManager()
         locationManager.delegate = self as? CLLocationManagerDelegate
@@ -39,6 +39,7 @@ class MapFunctionsViewController: UIViewController {
         }
     }
     
+    //Adding Location of issues to Map
     private func setUpIssuesOnMap() {
         let issues = IssueBuilder().getIssues()
         for issue in issues {
@@ -53,14 +54,8 @@ class MapFunctionsViewController: UIViewController {
                     point.coordinate = CLLocationCoordinate2D(latitude:lat, longitude: long)
                         self.myMapView.addAnnotation(point)
                 }
-                
             }
         }
-    
-//        let point = MKPointAnnotation()
-//        point.title = "Test"
-//        point.coordinate = CLLocationCoordinate2D(latitude: 37, longitude: -122)
-//        myMapView.addAnnotation(point)
     }
     
     //Allow Points to be added to map

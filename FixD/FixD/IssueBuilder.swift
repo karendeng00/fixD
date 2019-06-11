@@ -17,7 +17,7 @@ class IssueBuilder {
     
         myPosts.append(IssueClass(title: "Broken Window in my Dorm", description: "I broke my window playing baseball", location: "315 Towerview Drive, Durham, NC 27708", date: "06/06/19", issueImage: "window", user: UserProfile(name:"Jimmy Jim Jim", image: "photo.jpg")))
         
-        myPosts.append(IssueClass(title: "Water fountain is leaking", description: "water fountain is broken near the west union south entrance", location:"416 Chapel Dr, Durham, NC 27710", date: "06/08/2019", issueImage: "window", user: UserProfile(name: "Jimmy Jim Jim", image: "photo.jpg" )))
+        myPosts.append(IssueClass(title: "Water fountain is leaking", description: "water fountain is broken near the west union south entrance", location:"416 Chapel Dr, Durham, NC 27708", date: "06/08/2019", issueImage: "window", user: UserProfile(name: "Jimmy Jim Jim", image: "photo.jpg" )))
     }
     
     func appendIssue(issue:IssueClass) {
