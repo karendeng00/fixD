@@ -46,7 +46,7 @@ class InviteFriendsViewController: UIViewController, MFMailComposeViewController
     }
     
     func showMailError() {
-        let sendMailError = UIAlertController(title: "Could not send email", message: "Your device could not send email. Please try again later.", preferredStyle: .alert)
+        let sendMailError = UIAlertController(title: "Could not send email", message: "Please try again later.", preferredStyle: .alert)
         let dismiss = UIAlertAction(title: "Ok", style: .default, handler: nil)
         sendMailError.addAction(dismiss)
         self.present(sendMailError, animated:true, completion:nil)
