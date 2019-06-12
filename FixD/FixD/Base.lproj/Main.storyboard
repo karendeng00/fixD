@@ -283,7 +283,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Guest"/>
                                 <connections>
-                                    <segue destination="Zew-2g-LDa" kind="show" id="Aq0-xk-RTY"/>
+                                    <segue destination="1ip-FG-GTM" kind="show" id="2WO-A0-IWP"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -297,7 +297,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzp" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-993" y="-589"/>
+            <point key="canvasLocation" x="-994.20289855072474" y="-589.28571428571422"/>
         </scene>
         <!--Issue View Controller-->
         <scene sceneID="2SV-lg-Ze7">
@@ -461,6 +461,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qs1-uW-SI0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5497" y="147"/>
+        </scene>
+        <!--Test View Controller-->
+        <scene sceneID="1n3-JL-hhM">
+            <objects>
+                <viewController id="1ip-FG-GTM" customClass="testViewController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gsd-BQ-Oyo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qS4-xm-ODk">
+                                <rect key="frame" x="188" y="252" width="39" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Menu"/>
+                                <connections>
+                                    <action selector="didTapMenu:" destination="1ip-FG-GTM" eventType="touchUpInside" id="Gnf-1R-vCT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <viewLayoutGuide key="safeArea" id="sBl-YP-AmE"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="vq9-LZ-CNn" appends="YES" id="vWJ-1X-bJ6"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="khs-w5-aIa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="vq9-LZ-CNn">
+                    <connections>
+                        <action selector="swipeLeft:" destination="1ip-FG-GTM" id="0Po-m7-DcN"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-1606" y="147"/>
         </scene>
         <!--MenuVC-->
         <scene sceneID="O2k-xQ-a5i">
@@ -637,6 +671,7 @@
                             <outlet property="delegate" destination="LB6-nh-tBT" id="1aI-h6-8oO"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="wpn-Ha-iWN"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mMQ-eJ-rYw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -719,6 +754,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IssueCell" rowHeight="145" id="Krf-dQ-DQx" customClass="FeedIssueCell" customModule="FixD" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="145"/>
@@ -854,6 +890,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Feed" id="Hfd-Zr-kVu">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" style="plain" id="jCn-S9-Uth">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="p2N-eR-0Me">
+                                <rect key="frame" x="20" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Menu"/>
+                                <connections>
+                                    <action selector="didTapMenu:" destination="JKy-it-l91" eventType="touchUpInside" id="14n-PP-JP2"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="+" id="BwJ-Wb-ELV">
                             <connections>
                                 <segue destination="Upv-sp-ccL" kind="show" id="6pw-zi-PrA"/>
