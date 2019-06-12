@@ -31,7 +31,6 @@
 		B4ED4D4122B0334400E50272 /* IssueBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D4022B0334400E50272 /* IssueBuilder.swift */; };
 		F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */; };
 		F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
-		F53411D722AEB86200127AF2 /* IssueFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53411D622AEB86200127AF2 /* IssueFeedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,7 +60,6 @@
 		B4ED4D4022B0334400E50272 /* IssueBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueBuilder.swift; sourceTree = "<group>"; };
 		F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
-		F53411D622AEB86200127AF2 /* IssueFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFeedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +134,6 @@
 		B4ED4D4422B034D800E50272 /* feed */ = {
 			isa = PBXGroup;
 			children = (
-				F53411D622AEB86200127AF2 /* IssueFeedViewController.swift */,
 				B4EC7FD222B16995001711BC /* IssueViewController.swift */,
 				B4086CE222A956EE00B48EFF /* FeedViewController.swift */,
 				B4086CE622A9593E00B48EFF /* FeedIssueCell.swift */,
@@ -257,7 +254,6 @@
 				B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */,
 				B4ED4D4122B0334400E50272 /* IssueBuilder.swift in Sources */,
 				B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */,
-				F53411D722AEB86200127AF2 /* IssueFeedViewController.swift in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
 				B4ED4D3F22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
