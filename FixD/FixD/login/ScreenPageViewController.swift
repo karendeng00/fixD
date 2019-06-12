@@ -15,7 +15,7 @@ class ScreenPageViewController: UIPageViewController, UIPageViewControllerDelega
     lazy var orderedViewControllers: [UIViewController] = {
         return [self.newVc(viewController: "sbFeed"),
                 self.newVc(viewController: "sbMap"),
-                self.newVc(viewController: "sbProfile")]
+                self.newVc(viewController: "sbProfNav")]
         //Add the profile here once its done!
     }()
 
@@ -97,16 +97,5 @@ class ScreenPageViewController: UIPageViewController, UIPageViewControllerDelega
         self.pageControl.currentPage = orderedViewControllers.index(of: pageContentViewController)!
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

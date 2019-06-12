@@ -1,20 +1,15 @@
 //
-//  FeedViewController.swift
+//  AccountIssueTableViewController.swift
 //  FixD
 //
-//  Created by Alejandro Meza on 6/6/19.
+//  Created by Ann Bailey on 6/11/19.
 //  Copyright © 2019 Duke. All rights reserved.
 //
 
 import UIKit
 
-class FeedViewController: UITableViewController {
-    
-    let myCellIndentifier = "IssueCell"
-    var myPosts:[IssueClass]?
-    //FIXME: delete 
-    let Issues = IssueAPI()
-    
+class AccountIssueTableViewController: UITableViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,7 +18,6 @@ class FeedViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        myPosts = Issues.getIssues()
     }
 
     // MARK: - Table view data source
@@ -35,38 +29,25 @@ class FeedViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 145
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
-
-         //Configure the cell...
-        let obj = myPosts![indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountIssueCell", for: indexPath) as! AccountIssueCell
         
-        cell.issueName.text = obj.title
-        cell.issueDescription.text = obj.description
-        cell.issueLocation.text = obj.location
-        cell.issueDate.text = obj.date
-        cell.issueImage.image = UIImage(named:obj.issueImage)
+        cell.accountCellMyImage.image = UIImage(named:"blue devil.jpg")
+        cell.accountCellStar.image = UIImage(named: "star.png")
+        cell.accountCellUpVote.image = UIImage(named: "upvote.png")
+        cell.accountCellComment.image = UIImage(named: "comments.png")
+        cell.accountCellLocationPin.image = UIImage(named: "locicon")
         
-        cell.userName.text = obj.userName
-        cell.userImage.image = UIImage(named:obj.userImage)
-        
-        cell.starButton.image = UIImage(named:"star.png")
-        cell.likeButton.image = UIImage(named:"upvote.png")
-        cell.commentButton.image = UIImage(named:"comments.png")
-        cell.locationImage.image = UIImage(named:"locicon")
-    
         return cell
     }
-    
-    
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

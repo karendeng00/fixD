@@ -10,14 +10,17 @@ import UIKit
 
 class AccountViewController: UIViewController {
     
-    @IBOutlet weak var myName: UILabel!
-    @IBOutlet weak var myPosition: UILabel!
-    @IBOutlet weak var myImage: UIImageView!
+    @IBOutlet weak var myAccountPosition: UILabel!
+    @IBOutlet weak var myAccountName: UILabel!
+    @IBOutlet weak var myAccountImage: UIImageView!
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        myAccountImage.image = UIImage(named:"blue devil.jpg")
+        //myAccountName.text = UILabel
+        //myAccountPosition.text = UILabel
     }
     
 

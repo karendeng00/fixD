@@ -1,15 +1,18 @@
 //
-//  SettingsViewController.swift
+//  IssueViewController.swift
 //  FixD
 //
-//  Created by Ann Bailey on 6/6/19.
+//  Created by Karen Deng on 6/7/19.
 //  Copyright © 2019 Duke. All rights reserved.
 //
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class IssueViewController: UIViewController {
 
+    @IBOutlet weak var issueTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,5 +29,12 @@ class SettingsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func cameraButton(_ sender: Any) {
+    }
+    
+    @IBAction func mapButton(_ sender: Any) {
+    }
+    
+    @IBAction func submitButton(_ sender: Any) {
+    }
 }
