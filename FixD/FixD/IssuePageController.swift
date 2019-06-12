@@ -8,10 +8,18 @@
 
 import UIKit
 
-class commentCell: UITableViewCell{
+class textCommentCell: UITableViewCell{
     
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var userLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
     
 }
 
@@ -25,13 +33,14 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var commentView: UITableView!
     
-    var userCommentDictionary:[String: String]!
+    var userCommentDictionary = ["This is awesome" : "Pren"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         userCommentDictionary["I hate this"] = "Ken"
         commentView.delegate = self
         commentView.dataSource = self
+        commentView.numberOfRows(inSection: 1)
         issueLabel.text = "Broken Toilet"
         dateLabel.text = "3/14/19"
         descriptionLabel.text = "The 3rd toilet in the third floor's bathroom is overflowing."
@@ -44,11 +53,18 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         dateLabel.text = issue.date
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath) as! textCommentCell
+        cell.commentLabel.text = "This is aghhhgwesome"
+        cell.userLabel.text = "-Friend"
+        return cell
     }
 }
