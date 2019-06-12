@@ -10,25 +10,25 @@ import Foundation
 
 class IssueClass {
     
-    let issueID:Int
+    private let issueID:Int
     
-    let myTitle:String
-    let description:String
-    let myLocation:String
-    let date:String
-    let issueImage:String
+    private let myTitle:String
+    private let description:String
+    private let myLocation:String
+    private let date:String
+    private let issueImage:String
     
-    let myUser:UserProfile
+    private let myUser:UserProfile
     
     let locationImage:String = "locicon.png"
     let favoriteButton:String = "star.png"
     let likeButton:String = "upvote.png"
     let commentButton:String = "comments.png"
     
-    var myFavorites = 0
-    var myUpVotes = 0
-    var myComments = 0
-    var myListOfComments: Array<String> = Array()
+    private var myFavorites = 0
+    private var myUpVotes = 0
+    private var myComments = 0
+    private var myListOfComments: Array<String> = Array()
     
     init(title:String, description:String, location:String, date:String, issueImage:String, user:UserProfile) {
         self.issueID = 0 //FIX this, make ID unique ID
@@ -71,6 +71,22 @@ class IssueClass {
     
     func getTitle() -> String {
         return myTitle
+    }
+    
+    func getDescription() -> String {
+        return description
+    }
+    
+    func getIssueImage() -> String {
+        return issueImage
+    }
+    
+    func getUser() -> UserProfile {
+        return myUser
+    }
+    
+    func getDate() -> String {
+        return date
     }
     
     func getLocation() -> String {

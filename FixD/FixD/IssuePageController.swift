@@ -33,24 +33,27 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var commentView: UITableView!
     
-    var userCommentDictionary = ["This is awesome" : "Pren"]
+    var comments:[String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userCommentDictionary["I hate this"] = "Ken"
+        let issue = IssueBuilder().myPosts[0]
+        issue.addComment(comment: "This printer has been broken for years now.")
+        issue.addComment(comment: "This printer prints as fast as my grandmother runs...Slowly!")
+        issue.addComment(comment: "What a waste of space this printer is.")
+        comments = issue.getListOfComments()
         commentView.delegate = self
         commentView.dataSource = self
-        commentView.numberOfRows(inSection: 1)
-        issueLabel.text = "Broken Toilet"
-        dateLabel.text = "3/14/19"
-        descriptionLabel.text = "The 3rd toilet in the third floor's bathroom is overflowing."
-        profileImage.image = UIImage(named: "photo1.png")
-        locationLabel.text = "420 Chapel Drive, Durham, NC"
-        issueImage.image = UIImage(named: "printer.jpg")
+        loadIssue(issue: issue)
     }
     
     func loadIssue(issue: IssueClass) {
-        dateLabel.text = issue.date
+        issueLabel.text = issue.getTitle()
+        dateLabel.text = issue.getDate()
+        descriptionLabel.text = issue.getDescription()
+        issueImage.image = UIImage(named: issue.getIssueImage())
+        locationLabel.text = issue.getLocation()
+        profileImage.image = UIImage(named: issue.getUser().userImage)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -58,12 +61,12 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath) as! textCommentCell
-        cell.commentLabel.text = "This is aghhhgwesome"
+        cell.commentLabel.text = comments.removeFirst()
         cell.userLabel.text = "-Friend"
         return cell
     }

@@ -49,14 +49,14 @@ class FeedViewController: UITableViewController {
          //Configure the cell...
         let obj = myPosts![indexPath.row]
         
-        cell.issueName.text = obj.myTitle
-        cell.issueDescription.text = obj.description
-        cell.issueLocation.text = obj.myLocation
-        cell.issueDate.text = obj.date
-        cell.issueImage.image = UIImage(named:obj.issueImage)
+        cell.issueName.text = obj.getTitle()
+        cell.issueDescription.text = obj.getDescription()
+        cell.issueLocation.text = obj.getLocation()
+        cell.issueDate.text = obj.getDate()
+        cell.issueImage.image = UIImage(named: obj.getIssueImage())
         
-        cell.userName.text = obj.myUser.userName
-        cell.userImage.image = UIImage(named:obj.myUser.userImage)
+        cell.userName.text = obj.getUser().userName
+        cell.userImage.image = UIImage(named:obj.getUser().userImage)
         
         cell.starButton.image = UIImage(named:"star.png")
         cell.likeButton.image = UIImage(named:"upvote.png")
