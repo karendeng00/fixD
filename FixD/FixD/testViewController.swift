@@ -1,14 +1,14 @@
 //
-//  IssueFeedViewController.swift
+//  testViewController.swift
 //  FixD
 //
-//  Created by Karen Deng on 6/10/19.
+//  Created by Karen Deng on 6/12/19.
 //  Copyright © 2019 Duke. All rights reserved.
 //
 
 import UIKit
 
-class IssueFeedViewController: UIViewController {
+class testViewController: UIViewController {
 
     
     let transition = SlideInTransition()
@@ -17,13 +17,9 @@ class IssueFeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
-        leftSwipe.direction = UISwipeGestureRecognizer.Direction.left
-        self.view.addGestureRecognizer(leftSwipe)
+        print("okay")
+        // Do any additional setup after loading the view.
     }
-    
-    //when you tap the menu button
     
     
     
@@ -33,7 +29,7 @@ class IssueFeedViewController: UIViewController {
         }
         
         //transition to new page
-        /*menuVC.didTapMenuType = {
+        menuVC.didTapMenuType = {
             MenuType in
             self.transitionToNew(MenuType)
             
@@ -42,11 +38,10 @@ class IssueFeedViewController: UIViewController {
         
         menuVC.modalPresentationStyle = .overCurrentContext
         menuVC.transitioningDelegate = self
-        present(menuVC, animated: true)*/
+        present(menuVC, animated: true)
+        
     }
     
-    
-    //when you click a button on the side menu, it brings you to another page
     func transitionToNew(_ menuType: MenuType) {
         let title = String(describing: menuType).capitalized
         self.title = title
@@ -73,16 +68,32 @@ class IssueFeedViewController: UIViewController {
             
         }
     }
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }
 
-extension IssueFeedViewController: UIViewControllerTransitioningDelegate {
+extension testViewController: UIViewControllerTransitioningDelegate {
+    //put side menu out
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.isPresenting = true
         return transition
     }
     
+    
+    //put side menu back in
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.isPresenting = false
         return transition
     }
+    
+    
 }
+

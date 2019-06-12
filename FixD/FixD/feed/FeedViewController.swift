@@ -8,15 +8,49 @@
 
 import UIKit
 
-class FeedViewController: UITableViewController {
+class FeedViewController: UITableViewController /*UIGestureRecognizerDelegate */{
+    
+    let transition = SlideInTransition()
+    var topView: UIView?
+    
+    /*override func tableView(_ tableView: UITableView,
+     leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+     {
+     let closeAction = UIContextualAction(style: .normal, title:  "Close", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+     print("OK, marked as Closed")
+     success(true)
+     })
+     
+     print("right")
+     
+     return UISwipeActionsConfiguration(actions: [closeAction])
+     
+     }
+     */
+    //left swipe
+    /*override func tableView(_ tableView: UITableView,
+     trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+     {
+     let modifyAction = UIContextualAction(style: .normal, title:  "Update", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+     print("Update action ...")
+     success(true)
+     })
+     
+     
+     return UISwipeActionsConfiguration(actions: [modifyAction])
+     }*/
+    
     
     let myCellIndentifier = "IssueCell"
     var myPosts:[IssueClass]?
     //FIXME: delete 
     let Issues = IssueBuilder()
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("Okay")
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -25,7 +59,8 @@ class FeedViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         myPosts = Issues.getIssues()
     }
-
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -67,49 +102,67 @@ class FeedViewController: UITableViewController {
     }
     
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    @IBAction func didTapMenu(_ sender: UIButton) {
+        guard let menuVC = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuVC else {
+            return
+        }
+        
+        //transition to new page
+        menuVC.didTapMenuType = {
+            MenuType in
+            self.transitionToNew(MenuType)
+            
+        }
+        
+        
+        menuVC.modalPresentationStyle = .overCurrentContext
+        menuVC.transitioningDelegate = self
+        present(menuVC, animated: true)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    
+    //when you click a button on the side menu, it brings you to another page
+    func transitionToNew(_ menuType: MenuType) {
+        let title = String(describing: menuType).capitalized
+        self.title = title
+        
+        topView?.removeFromSuperview()
+        
+        switch menuType {
+        case .location:
+            let view = UIView()
+            view.backgroundColor = .yellow
+            view.frame = self.view.bounds
+            self.view.addSubview(view)
+            
+            
+            
+        case .category:
+            let view = UIView()
+            view.backgroundColor = .blue
+            view.frame = self.view.bounds
+            self.view.addSubview(view)
+            
+        default:
+            break
+            
+        }
     }
-    */
+}
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+extension FeedViewController: UIViewControllerTransitioningDelegate {
+    //put side menu out
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.isPresenting = true
+        return transition
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    
+    //put side menu back in
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.isPresenting = false
+        return transition
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+   
 }
