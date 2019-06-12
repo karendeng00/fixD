@@ -21,6 +21,8 @@
 		B4EC7FCF22B16906001711BC /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FCB22B16906001711BC /* SettingsTableViewCell.swift */; };
 		B4EC7FD122B16964001711BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD022B16963001711BC /* ViewController.swift */; };
 		B4EC7FD322B16995001711BC /* IssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD222B16995001711BC /* IssueViewController.swift */; };
+		B4EC7FD622B16E69001711BC /* AccountIssueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD422B16E69001711BC /* AccountIssueCell.swift */; };
+		B4EC7FD722B16E69001711BC /* AccountIssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD522B16E69001711BC /* AccountIssueTableViewController.swift */; };
 		B4ED4D3522AEB9C300E50272 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3422AEB9C300E50272 /* UserProfile.swift */; };
 		B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3622AED64F00E50272 /* MapFunctionsViewController.swift */; };
 		B4ED4D3922B003C900E50272 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3822B003C900E50272 /* InviteFriendsViewController.swift */; };
@@ -30,8 +32,6 @@
 		F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */; };
 		F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
 		F53411D722AEB86200127AF2 /* IssueFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53411D622AEB86200127AF2 /* IssueFeedViewController.swift */; };
-		FF420E8E22B017490078906E /* AccountIssueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF420E8D22B017490078906E /* AccountIssueCell.swift */; };
-		FF420E9022B0191C0078906E /* AccountIssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF420E8F22B0191C0078906E /* AccountIssueTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +51,8 @@
 		B4EC7FCB22B16906001711BC /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		B4EC7FD022B16963001711BC /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B4EC7FD222B16995001711BC /* IssueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueViewController.swift; sourceTree = "<group>"; };
+		B4EC7FD422B16E69001711BC /* AccountIssueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountIssueCell.swift; sourceTree = "<group>"; };
+		B4EC7FD522B16E69001711BC /* AccountIssueTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountIssueTableViewController.swift; sourceTree = "<group>"; };
 		B4ED4D3422AEB9C300E50272 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		B4ED4D3622AED64F00E50272 /* MapFunctionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFunctionsViewController.swift; sourceTree = "<group>"; };
 		B4ED4D3822B003C900E50272 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
@@ -60,8 +62,6 @@
 		F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		F53411D622AEB86200127AF2 /* IssueFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFeedViewController.swift; sourceTree = "<group>"; };
-		FF420E8D22B017490078906E /* AccountIssueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountIssueCell.swift; sourceTree = "<group>"; };
-		FF420E8F22B0191C0078906E /* AccountIssueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountIssueTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +101,7 @@
 				B4ED4D4322B034B500E50272 /* useraccount */,
 				B4ED4D4222B0348E00E50272 /* sidemenu */,
 				B4085C0722A850A400A24525 /* AppDelegate.swift */,
-				FF420E8D22B017490078906E /* AccountIssueCell.swift */,
 				B4085C0B22A850A500A24525 /* Main.storyboard */,
-				FF420E8F22B0191C0078906E /* AccountIssueTableViewController.swift */,
 				B4085C0E22A850A500A24525 /* Assets.xcassets */,
 				B4085C1022A850A500A24525 /* LaunchScreen.storyboard */,
 				B4085C1322A850A500A24525 /* Info.plist */,
@@ -123,6 +121,8 @@
 		B4ED4D4322B034B500E50272 /* useraccount */ = {
 			isa = PBXGroup;
 			children = (
+				B4EC7FD422B16E69001711BC /* AccountIssueCell.swift */,
+				B4EC7FD522B16E69001711BC /* AccountIssueTableViewController.swift */,
 				B4EC7FC922B16906001711BC /* Account.swift */,
 				B4EC7FCA22B16906001711BC /* AccountViewController.swift */,
 				B4EC7FCB22B16906001711BC /* SettingsTableViewCell.swift */,
@@ -252,7 +252,6 @@
 				F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */,
 				B4B1DBF922AAE02A005EFFA9 /* ScreenPageViewController.swift in Sources */,
 				B4ED4D3D22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift in Sources */,
-				FF420E8E22B017490078906E /* AccountIssueCell.swift in Sources */,
 				B4086CE722A9593E00B48EFF /* FeedIssueCell.swift in Sources */,
 				B4EC7FD322B16995001711BC /* IssueViewController.swift in Sources */,
 				B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */,
@@ -263,8 +262,9 @@
 				B4ED4D3F22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
 				B4EC7FCD22B16906001711BC /* Account.swift in Sources */,
+				B4EC7FD622B16E69001711BC /* AccountIssueCell.swift in Sources */,
+				B4EC7FD722B16E69001711BC /* AccountIssueTableViewController.swift in Sources */,
 				B4EC7FCC22B16906001711BC /* SettingsTableViewController.swift in Sources */,
-				FF420E9022B0191C0078906E /* AccountIssueTableViewController.swift in Sources */,
 				B4ED4D3922B003C900E50272 /* InviteFriendsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
