@@ -32,6 +32,7 @@
 		B4ED4D4122B0334400E50272 /* IssueBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D4022B0334400E50272 /* IssueBuilder.swift */; };
 		F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */; };
 		F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
+		FF18E08F22B2A83100EC60A6 /* NewIssueOITViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF18E08E22B2A83100EC60A6 /* NewIssueOITViewController.swift */; };
 		FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		B4ED4D4022B0334400E50272 /* IssueBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueBuilder.swift; sourceTree = "<group>"; };
 		F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
+		FF18E08E22B2A83100EC60A6 /* NewIssueOITViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueOITViewController.swift; sourceTree = "<group>"; };
 		FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueGeneralInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,6 +106,7 @@
 				B4ED4D4222B0348E00E50272 /* sidemenu */,
 				B4085C0722A850A400A24525 /* AppDelegate.swift */,
 				B4085C0B22A850A500A24525 /* Main.storyboard */,
+				FF18E08E22B2A83100EC60A6 /* NewIssueOITViewController.swift */,
 				FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */,
 				22E8AF6D22AEA70100194036 /* IssuePageController.swift */,
 				B4085C0E22A850A500A24525 /* Assets.xcassets */,
@@ -258,6 +261,7 @@
 				B4ED4D3D22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift in Sources */,
 				B4086CE722A9593E00B48EFF /* FeedIssueCell.swift in Sources */,
 				B4EC7FD322B16995001711BC /* IssueViewController.swift in Sources */,
+				FF18E08F22B2A83100EC60A6 /* NewIssueOITViewController.swift in Sources */,
 				B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */,
 				B4ED4D4122B0334400E50272 /* IssueBuilder.swift in Sources */,
 				B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */,
