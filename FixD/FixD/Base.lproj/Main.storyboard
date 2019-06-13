@@ -1655,19 +1655,62 @@
                                     </tableView>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BJl-Se-Uq5">
+                                <rect key="frame" x="20" y="591" width="374" height="179"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOW-rh-Lm5">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <state key="normal" title="Select Room"/>
+                                        <connections>
+                                            <action selector="roomButtonDrop:" destination="9GK-sz-hyu" eventType="touchUpInside" id="cFs-HV-exO"/>
+                                        </connections>
+                                    </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9bP-nD-4HD">
+                                        <rect key="frame" x="0.0" y="38" width="374" height="141"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoomCell" textLabel="qRY-jl-EA9" style="IBUITableViewCellStyleDefault" id="2ne-1D-yzM">
+                                                <rect key="frame" x="0.0" y="28" width="374" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2ne-1D-yzM" id="WTG-1U-Duy">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qRY-jl-EA9">
+                                                            <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="9GK-sz-hyu" id="dOi-lD-Kf1"/>
+                                            <outlet property="delegate" destination="9GK-sz-hyu" id="euM-O2-U0g"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fAI-hc-75j" firstAttribute="leading" secondItem="QgD-UH-cZi" secondAttribute="leading" id="1L5-Iq-mPy"/>
                             <constraint firstItem="UI7-d3-XJj" firstAttribute="leading" secondItem="yZN-Xg-KBL" secondAttribute="leading" constant="20" id="K0E-Nn-48O"/>
                             <constraint firstItem="yZN-Xg-KBL" firstAttribute="trailing" secondItem="QgD-UH-cZi" secondAttribute="trailing" constant="20" id="LAM-FW-qSG"/>
+                            <constraint firstItem="yZN-Xg-KBL" firstAttribute="trailing" secondItem="BJl-Se-Uq5" secondAttribute="trailing" constant="20" id="MnX-Gs-6in"/>
                             <constraint firstItem="yZN-Xg-KBL" firstAttribute="trailing" secondItem="UI7-d3-XJj" secondAttribute="trailing" constant="20" id="b8X-ip-DNa"/>
+                            <constraint firstItem="BJl-Se-Uq5" firstAttribute="top" secondItem="UI7-d3-XJj" secondAttribute="bottom" constant="67" id="ddm-ZE-q6w"/>
                             <constraint firstItem="yZN-Xg-KBL" firstAttribute="bottom" secondItem="UI7-d3-XJj" secondAttribute="bottom" constant="338" id="e3j-Ao-nyo"/>
                             <constraint firstItem="UI7-d3-XJj" firstAttribute="top" secondItem="vKD-y3-bQC" secondAttribute="top" constant="358" id="iDW-Oj-8X3"/>
                             <constraint firstItem="fAI-hc-75j" firstAttribute="top" secondItem="yZN-Xg-KBL" secondAttribute="top" constant="23" id="kWE-iQ-Ron"/>
                             <constraint firstItem="UI7-d3-XJj" firstAttribute="top" secondItem="QgD-UH-cZi" secondAttribute="bottom" constant="33.5" id="lvj-Lr-rVE"/>
                             <constraint firstItem="QgD-UH-cZi" firstAttribute="leading" secondItem="yZN-Xg-KBL" secondAttribute="leading" constant="20" id="lz6-fd-TdN"/>
+                            <constraint firstItem="yZN-Xg-KBL" firstAttribute="bottom" secondItem="BJl-Se-Uq5" secondAttribute="bottom" constant="92" id="nQ5-5S-2lS"/>
                             <constraint firstItem="QgD-UH-cZi" firstAttribute="top" secondItem="fAI-hc-75j" secondAttribute="bottom" constant="8" id="zHA-C9-7p5"/>
+                            <constraint firstItem="BJl-Se-Uq5" firstAttribute="leading" secondItem="yZN-Xg-KBL" secondAttribute="leading" constant="20" id="zxe-Uk-TNm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yZN-Xg-KBL"/>
                     </view>
@@ -1677,6 +1720,8 @@
                         <outlet property="buildingTV" destination="ns5-QW-PRr" id="fhB-QB-sfg"/>
                         <outlet property="floorButton" destination="9Yg-0U-3lf" id="Ced-rR-soN"/>
                         <outlet property="floorTV" destination="fQp-0a-aWJ" id="U06-yg-tX4"/>
+                        <outlet property="roomButton" destination="mOW-rh-Lm5" id="Oar-rr-77B"/>
+                        <outlet property="roomTV" destination="9bP-nD-4HD" id="hC4-sZ-OPD"/>
                         <outlet property="searchDisplayController" destination="mIb-1K-hTU" id="zE3-p1-R2M"/>
                     </connections>
                 </viewController>
