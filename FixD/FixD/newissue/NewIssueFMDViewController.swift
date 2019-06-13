@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewIssueOITViewController: UIViewController {
+class NewIssueFMDViewController: UIViewController {
     
     @IBOutlet weak var buildingSB: UISearchBar!
     @IBOutlet weak var buildingTV: UITableView!
@@ -75,7 +75,7 @@ class NewIssueOITViewController: UIViewController {
     }
 }
 
-extension NewIssueOITViewController: UITableViewDelegate, UITableViewDataSource {
+extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == buildingTV {
             if searchingBuilding {
@@ -155,7 +155,7 @@ extension NewIssueOITViewController: UITableViewDelegate, UITableViewDataSource 
 //    }
 }
 
-extension NewIssueOITViewController: UISearchBarDelegate {
+extension NewIssueFMDViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         if searchBar == buildingSB {
             searchBuilding = buildingList.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
