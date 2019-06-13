@@ -9,50 +9,26 @@
 import UIKit
 
 class NewIssueOITViewController: UIViewController {
-
-    @IBOutlet weak var buildingButton: UIButton!
+    
+    @IBOutlet weak var buildingSB: UISearchBar!
     @IBOutlet weak var buildingTV: UITableView!
-    @IBOutlet weak var floorButton: UIButton!
+    @IBOutlet weak var floorSB: UISearchBar!
     @IBOutlet weak var floorTV: UITableView!
-    @IBOutlet weak var roomButton: UIButton!
+    @IBOutlet weak var roomSB: UISearchBar!
     @IBOutlet weak var roomTV: UITableView!
     
     let buildingList = ["Allen", "Brodhead Center", "Bryan Center", "Craven", "Few", "Perkins"]
     let floorList = ["1", "2", "3"]
     let roomList = ["a", "b", "c"]
     
+    var searchBuilding = [String]()
+    var searching = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         buildingTV.isHidden = true
         floorTV.isHidden = true
         roomTV.isHidden = true
-    }
-    
-    @IBAction func buildingButtonDrop(_ sender: Any) {
-        if buildingTV.isHidden {
-            buildingAnimate(toggle: true)
-        }
-        else {
-            buildingAnimate(toggle: false)
-        }
-    }
-    
-    @IBAction func floorButtonDrop(_ sender: Any) {
-        if floorTV.isHidden {
-            floorAnimate(toggle: true)
-        }
-        else {
-            floorAnimate(toggle: false)
-        }
-    }
-    
-    @IBAction func roomButtonDrop(_ sender: Any) {
-        if roomTV.isHidden {
-            roomAnimate(toggle: true)
-        }
-        else {
-            roomAnimate(toggle: false)
-        }
     }
     
     func buildingAnimate(toggle: Bool) {
@@ -98,7 +74,12 @@ class NewIssueOITViewController: UIViewController {
 extension NewIssueOITViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == buildingTV {
-            return buildingList.count
+            if searching {
+                return searchBuilding.count
+            }
+            else {
+                return buildingList.count
+            }
         }
         else if tableView == floorTV {
             return floorList.count
@@ -113,7 +94,12 @@ extension NewIssueOITViewController: UITableViewDelegate, UITableViewDataSource 
         var returnCell = UITableViewCell()
         if tableView == buildingTV {
             let cell = tableView.dequeueReusableCell(withIdentifier: "BuildingCell", for: indexPath)
-            cell.textLabel?.text = buildingList[indexPath.row]
+            if searching {
+                cell.textLabel?.text = searchBuilding[indexPath.row]
+            }
+            else {
+                cell.textLabel?.text = buildingList[indexPath.row]
+            }
             returnCell = cell
         }
         else if tableView == floorTV {
@@ -129,18 +115,37 @@ extension NewIssueOITViewController: UITableViewDelegate, UITableViewDataSource 
         return returnCell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == buildingTV {
-            buildingButton.setTitle("\(buildingList[indexPath.row])", for: .normal)
-            buildingAnimate(toggle: false)
-        }
-        if tableView == floorTV {
-            floorButton.setTitle("\(floorList[indexPath.row])", for: .normal)
-            floorAnimate(toggle: false)
-        }
-        if tableView == roomTV {
-            roomButton.setTitle("\(roomList[indexPath.row])", for: .normal)
-            roomAnimate(toggle: false)
-        }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if tableView == buildingTV {
+//            buildingButton.setTitle("\(buildingList[indexPath.row])", for: .normal)
+//            buildingAnimate(toggle: false)
+//        }
+//        if tableView == floorTV {
+//            floorButton.setTitle("\(floorList[indexPath.row])", for: .normal)
+//            floorAnimate(toggle: false)
+//        }
+//        if tableView == roomTV {
+//            roomButton.setTitle("\(roomList[indexPath.row])", for: .normal)
+//            roomAnimate(toggle: false)
+//        }
+//    }
+}
+
+extension NewIssueOITViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        searchBuilding = buildingList.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
+        searching = true
+        buildingTV.reloadData()
     }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+        searchBar.text = ""
+        buildingTV.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        buildingAnimate(toggle: true)
+    }
+    
 }
