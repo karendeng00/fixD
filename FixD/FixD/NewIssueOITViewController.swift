@@ -22,7 +22,11 @@ class NewIssueOITViewController: UIViewController {
     let roomList = ["a", "b", "c"]
     
     var searchBuilding = [String]()
-    var searching = false
+    var searchingBuilding = false
+    var searchFloor = [String]()
+    var searchingFloor = false
+    var searchRoom = [String]()
+    var searchingRoom = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +78,7 @@ class NewIssueOITViewController: UIViewController {
 extension NewIssueOITViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == buildingTV {
-            if searching {
+            if searchingBuilding {
                 return searchBuilding.count
             }
             else {
@@ -82,10 +86,20 @@ extension NewIssueOITViewController: UITableViewDelegate, UITableViewDataSource 
             }
         }
         else if tableView == floorTV {
-            return floorList.count
+            if searchingFloor{
+                return searchFloor.count
+            }
+            else {
+                return floorList.count
+            }
         }
         else if tableView == roomTV {
-            return roomList.count
+            if searchingRoom {
+                return searchRoom.count
+            }
+            else {
+                return roomList.count
+            }
         }
         return 0
     }
@@ -94,7 +108,7 @@ extension NewIssueOITViewController: UITableViewDelegate, UITableViewDataSource 
         var returnCell = UITableViewCell()
         if tableView == buildingTV {
             let cell = tableView.dequeueReusableCell(withIdentifier: "BuildingCell", for: indexPath)
-            if searching {
+            if searchingBuilding {
                 cell.textLabel?.text = searchBuilding[indexPath.row]
             }
             else {
@@ -104,12 +118,22 @@ extension NewIssueOITViewController: UITableViewDelegate, UITableViewDataSource 
         }
         else if tableView == floorTV {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FloorCell", for: indexPath)
-            cell.textLabel?.text = floorList[indexPath.row]
+            if searchingFloor {
+                cell.textLabel?.text = searchFloor[indexPath.row]
+            }
+            else {
+                cell.textLabel?.text = floorList[indexPath.row]
+            }
             returnCell = cell
         }
         else if tableView == roomTV {
             let cell = tableView.dequeueReusableCell(withIdentifier: "RoomCell", for: indexPath)
-            cell.textLabel?.text = roomList[indexPath.row]
+            if searchingRoom {
+                cell.textLabel?.text = searchRoom[indexPath.row]
+            }
+            else {
+                cell.textLabel?.text = roomList[indexPath.row]
+            }
             returnCell = cell
         }
         return returnCell
@@ -133,19 +157,51 @@ extension NewIssueOITViewController: UITableViewDelegate, UITableViewDataSource 
 
 extension NewIssueOITViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
-        searchBuilding = buildingList.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
-        searching = true
-        buildingTV.reloadData()
+        if searchBar == buildingSB {
+            searchBuilding = buildingList.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
+            searchingBuilding = true
+            buildingTV.reloadData()
+        }
+        else if searchBar == floorSB {
+            searchFloor = floorList.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
+            searchingFloor = true
+            floorTV.reloadData()
+        }
+        else if searchBar == roomSB {
+            searchRoom = roomList.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
+            searchingRoom = true
+            roomTV.reloadData()
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searching = false
-        searchBar.text = ""
-        buildingTV.reloadData()
+        if searchBar == buildingSB {
+            searchingBuilding = false
+            searchBar.text = ""
+            buildingTV.reloadData()
+        }
+        else if searchBar == floorSB {
+            searchingFloor = false
+            searchBar.text = ""
+            floorTV.reloadData()
+        }
+        else if searchBar == roomSB {
+            searchingRoom = false
+            searchBar.text = ""
+            roomTV.reloadData()
+        }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        buildingAnimate(toggle: true)
+        if searchBar == buildingSB {
+            buildingAnimate(toggle: true)
+        }
+        else if searchBar == floorSB {
+            floorAnimate(toggle: true)
+        }
+        else if searchBar == roomSB {
+            roomAnimate(toggle: true)
+        }
     }
     
 }
