@@ -233,11 +233,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DKF-F6-QPW">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DKF-F6-QPW">
                                 <rect key="frame" x="130" y="236" width="150" height="79"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="kfp-Jf-a3s">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="kfp-Jf-a3s">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="79"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fix'" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="152-VZ-JLA">
@@ -246,29 +245,29 @@
                                                 <color key="textColor" red="0.090792246162891388" green="0.20641127228736877" blue="0.61964303255081177" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qah-t3-QYx">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qah-t3-QYx">
                                                 <rect key="frame" x="84" y="0.0" width="66" height="79"/>
                                             </imageView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jAR-u9-9Mb">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jAR-u9-9Mb">
                                 <rect key="frame" x="116" y="386" width="182" height="188"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="188" id="ePA-B4-VcG"/>
+                                </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AsK-3j-eDu">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AsK-3j-eDu">
                                 <rect key="frame" x="150" y="637" width="123" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="DUKE login"/>
                                 <connections>
                                     <segue destination="TS8-n9-smc" kind="show" id="pjc-LD-knJ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arh-RN-Dvn">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arh-RN-Dvn">
                                 <rect key="frame" x="179" y="687" width="65" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Guest"/>
                                 <connections>
@@ -277,6 +276,18 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="DKF-F6-QPW" firstAttribute="leading" secondItem="6Tk-OE-BBZ" secondAttribute="leading" constant="130" id="0na-D0-MVW"/>
+                            <constraint firstItem="AsK-3j-eDu" firstAttribute="top" secondItem="jAR-u9-9Mb" secondAttribute="bottom" constant="63" id="2D7-U7-rQz"/>
+                            <constraint firstAttribute="bottom" secondItem="AsK-3j-eDu" secondAttribute="bottom" constant="217" id="2Np-sX-89J"/>
+                            <constraint firstItem="jAR-u9-9Mb" firstAttribute="top" secondItem="DKF-F6-QPW" secondAttribute="bottom" constant="71" id="8NZ-H8-wNh"/>
+                            <constraint firstItem="jAR-u9-9Mb" firstAttribute="leading" secondItem="6Tk-OE-BBZ" secondAttribute="leading" constant="116" id="BM8-y7-IJE"/>
+                            <constraint firstItem="AsK-3j-eDu" firstAttribute="centerX" secondItem="arh-RN-Dvn" secondAttribute="centerX" id="BeK-eP-9Rd"/>
+                            <constraint firstItem="AsK-3j-eDu" firstAttribute="leading" secondItem="6Tk-OE-BBZ" secondAttribute="leading" constant="150" id="DaP-1t-T6W"/>
+                            <constraint firstItem="arh-RN-Dvn" firstAttribute="top" secondItem="AsK-3j-eDu" secondAttribute="bottom" constant="8" symbolic="YES" id="YmV-tb-oG9"/>
+                            <constraint firstItem="6Tk-OE-BBZ" firstAttribute="trailing" secondItem="DKF-F6-QPW" secondAttribute="trailing" constant="134" id="ga9-cb-IXK"/>
+                            <constraint firstItem="jAR-u9-9Mb" firstAttribute="centerX" secondItem="8bC-Xf-vdD" secondAttribute="centerX" id="qyX-hx-cPe"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBZ"/>
                     </view>
                     <connections>
@@ -1786,6 +1797,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6pw-zi-PrA"/>
-        <segue reference="P0g-xy-hg4"/>
+        <segue reference="pjc-LD-knJ"/>
     </inferredMetricsTieBreakers>
 </document>
