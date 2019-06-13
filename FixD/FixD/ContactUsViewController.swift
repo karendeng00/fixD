@@ -9,16 +9,21 @@
 import UIKit
 
 class ContactUsViewController: UIViewController {
-
-    let phoneNum = "123-456-7890"
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
     
-    @IBAction func makeCall(_ sender: Any) {
-        
+    @IBAction func makeCall(_ sender: UIButton) {
+        let phoneNum = sender.titleLabel?.text
+        if let url = URL(string: "tel://\(phoneNum)"), UIApplication.shared.canOpenURL(url) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
     }
     
 }

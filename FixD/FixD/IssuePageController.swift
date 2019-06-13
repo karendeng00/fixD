@@ -66,7 +66,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath) as! textCommentCell
-        cell.commentLabel.text = comments.removeFirst()
+        cell.commentLabel.text = comments[0]
         cell.userLabel.text = "-Friend"
         return cell
     }

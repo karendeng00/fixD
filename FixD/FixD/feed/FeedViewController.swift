@@ -93,9 +93,6 @@ class FeedViewController: UITableViewController /*UIGestureRecognizerDelegate */
         cell.userName.text = obj.getUser().userName
         cell.userImage.image = UIImage(named:obj.getUser().userImage)
         
-        cell.starButton.image = UIImage(named:"star.png")
-        cell.likeButton.image = UIImage(named:"upvote.png")
-        cell.commentButton.image = UIImage(named:"comments.png")
         cell.locationImage.image = UIImage(named:"locicon")
     
         return cell
