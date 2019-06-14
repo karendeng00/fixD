@@ -20,6 +20,8 @@ class FeedIssueCell: UITableViewCell {
     @IBOutlet weak var issueDate: UILabel!
 
     @IBOutlet weak var locationImage: UIImageView!
+    @IBOutlet weak var issueUpvotes: UILabel!
+    @IBOutlet weak var issueFavorites: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

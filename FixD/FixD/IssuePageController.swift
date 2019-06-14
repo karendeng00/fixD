@@ -32,6 +32,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var issueImage: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var commentView: UITableView!
+    @IBOutlet weak var favoritesLabel: UILabel!
+    @IBOutlet weak var upvotesLabel: UILabel!
     
     var comments:[String] = []
     var issueID:Int = 0
@@ -55,6 +57,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         issueImage.image = UIImage(named: issue.getIssueImage())
         locationLabel.text = issue.getLocation()
         profileImage.image = UIImage(named: issue.getUser().userImage)
+        favoritesLabel.text = String(issue.getFavorites())
+        upvotesLabel.text = String(issue.getUpVotes())
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
