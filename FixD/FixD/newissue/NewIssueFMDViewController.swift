@@ -139,6 +139,12 @@ extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource 
         return returnCell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == buildingTV {
+            
+        }
+    }
+    
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        if tableView == buildingTV {
 //            buildingButton.setTitle("\(buildingList[indexPath.row])", for: .normal)
@@ -156,6 +162,7 @@ extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 extension NewIssueFMDViewController: UISearchBarDelegate {
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         if searchBar == buildingSB {
             searchBuilding = buildingList.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
@@ -174,34 +181,34 @@ extension NewIssueFMDViewController: UISearchBarDelegate {
         }
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        if searchBar == buildingSB {
-            searchingBuilding = false
-            searchBar.text = ""
-            buildingTV.reloadData()
-        }
-        else if searchBar == floorSB {
-            searchingFloor = false
-            searchBar.text = ""
-            floorTV.reloadData()
-        }
-        else if searchBar == roomSB {
-            searchingRoom = false
-            searchBar.text = ""
-            roomTV.reloadData()
-        }
-    }
+//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//        if searchBar == buildingSB {
+//            searchingBuilding = false
+//            buildingAnimate(toggle: false)
+//            searchBar.text = ""
+//            buildingTV.reloadData()
+//        }
+//        else if searchBar == floorSB {
+//            searchingFloor = false
+//            searchBar.text = ""
+//            floorTV.reloadData()
+//        }
+//        else if searchBar == roomSB {
+//            searchingRoom = false
+//            searchBar.text = ""
+//            roomTV.reloadData()
+//        }
+//    }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         if searchBar == buildingSB {
             buildingAnimate(toggle: true)
         }
-        else if searchBar == floorSB {
+        if searchBar == floorSB {
             floorAnimate(toggle: true)
         }
-        else if searchBar == roomSB {
+        if searchBar == roomSB {
             roomAnimate(toggle: true)
         }
     }
-    
 }
