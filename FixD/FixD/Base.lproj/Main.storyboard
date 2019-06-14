@@ -1689,7 +1689,7 @@
         <!--Facilities-->
         <scene sceneID="tN7-kO-GiB">
             <objects>
-                <viewController id="bdX-Zf-iNe" sceneMemberID="viewController">
+                <viewController id="bdX-Zf-iNe" customClass="NewIssueFMDPage2ViewController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fxw-kN-bWY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1753,6 +1753,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="requestPicker" destination="vTA-3m-Fhe" id="xRk-V6-26w"/>
+                        <outlet property="sameLocationSwitch" destination="qgC-L3-cnK" id="GB7-f5-LNV"/>
+                        <outlet property="servicePicker" destination="1DC-Wg-ZNu" id="MlO-Hc-Mjb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sxR-Af-e6v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1761,7 +1766,7 @@
         <!--Facilities-->
         <scene sceneID="fQV-lP-7fZ">
             <objects>
-                <viewController id="hbv-bu-oqm" sceneMemberID="viewController">
+                <viewController id="hbv-bu-oqm" customClass="NewIssueFMDPage3ViewController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wCS-fy-fms">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2002,7 +2007,7 @@
         <!--Facilities-->
         <scene sceneID="RUF-O4-0Jt">
             <objects>
-                <viewController id="cUP-vh-iTV" sceneMemberID="viewController">
+                <viewController id="cUP-vh-iTV" customClass="NewIssueFMDPage4ViewController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="msr-x1-WoK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2066,7 +2071,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ptQ-8G-5Yg">
+                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ptQ-8G-5Yg">
                                 <rect key="frame" x="0.0" y="171" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -2110,7 +2115,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="EnH-Hv-8kF">
+                            <searchBar contentMode="redraw" verticalCompressionResistancePriority="749" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EnH-Hv-8kF">
                                 <rect key="frame" x="0.0" y="391" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -2147,7 +2152,7 @@
                                     <outlet property="delegate" destination="9GK-sz-hyu" id="fDN-gu-607"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="lLT-Sq-cfG">
+                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lLT-Sq-cfG">
                                 <rect key="frame" x="0.0" y="611" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
@@ -2245,30 +2250,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kd-Uj-1Fu">
-                                <rect key="frame" x="346" y="141" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <action selector="buildingCancel:" destination="9GK-sz-hyu" eventType="touchUpInside" id="uVT-gk-Y8f"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TtO-Wv-pnH">
-                                <rect key="frame" x="347" y="361" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <action selector="floorCancel:" destination="9GK-sz-hyu" eventType="touchUpInside" id="FRn-cI-hEC"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tUg-wE-A4W">
-                                <rect key="frame" x="345" y="585" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <action selector="roomCancel:" destination="9GK-sz-hyu" eventType="touchUpInside" id="bEe-26-VIy"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -2317,15 +2298,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="buildingCancel" destination="1kd-Uj-1Fu" id="ezB-sS-M5l"/>
                         <outlet property="buildingSB" destination="ptQ-8G-5Yg" id="hZc-Yk-VrV"/>
                         <outlet property="buildingSelect" destination="VVf-nC-csR" id="F8H-y1-5Fd"/>
                         <outlet property="buildingTV" destination="ns5-QW-PRr" id="fhB-QB-sfg"/>
-                        <outlet property="floorCancel" destination="TtO-Wv-pnH" id="Xpw-K4-WCc"/>
                         <outlet property="floorSB" destination="EnH-Hv-8kF" id="8i5-O4-HMF"/>
                         <outlet property="floorSelect" destination="dr0-Mr-eGY" id="5QT-Gc-eFF"/>
                         <outlet property="floorTV" destination="fQp-0a-aWJ" id="U06-yg-tX4"/>
-                        <outlet property="roomCancel" destination="tUg-wE-A4W" id="KNT-a1-EZW"/>
                         <outlet property="roomSB" destination="lLT-Sq-cfG" id="HrM-k1-rgo"/>
                         <outlet property="roomSelect" destination="wjb-LF-sGZ" id="N5T-Gx-V5W"/>
                         <outlet property="roomTV" destination="9bP-nD-4HD" id="hC4-sZ-OPD"/>

@@ -88,41 +88,41 @@ class NewIssueFMDViewController: UIViewController {
     }
     
     
-    @IBAction func buildingCancel(_ sender: Any) {
-        if buildingChosen {
-            buildingSelect.text = ""
-            buildingTV.reloadData()
-            buildingAnimate(toggle: true)
-            buildingChosen = false
-        }
-        else {
-            buildingAnimate(toggle: false)
-        }
-    }
-    
-    @IBAction func floorCancel(_ sender: Any) {
-        if floorChosen {
-            floorSelect.text = ""
-            floorTV.reloadData()
-            floorAnimate(toggle: true)
-            floorChosen = false
-        }
-        else {
-            floorAnimate(toggle: false)
-        }
-    }
-    
-    @IBAction func roomCancel(_ sender: Any) {
-        if roomChosen {
-            roomSelect.text = ""
-            roomTV.reloadData()
-            roomAnimate(toggle: true)
-            roomChosen = false
-        }
-        else {
-            roomAnimate(toggle: false)
-        }
-    }
+//    @IBAction func buildingCancel(_ sender: Any) {
+//        if buildingChosen {
+//            buildingSelect.text = ""
+//            buildingTV.reloadData()
+//            buildingAnimate(toggle: true)
+//            buildingChosen = false
+//        }
+//        else {
+//            buildingAnimate(toggle: false)
+//        }
+//    }
+//
+//    @IBAction func floorCancel(_ sender: Any) {
+//        if floorChosen {
+//            floorSelect.text = ""
+//            floorTV.reloadData()
+//            floorAnimate(toggle: true)
+//            floorChosen = false
+//        }
+//        else {
+//            floorAnimate(toggle: false)
+//        }
+//    }
+//
+//    @IBAction func roomCancel(_ sender: Any) {
+//        if roomChosen {
+//            roomSelect.text = ""
+//            roomTV.reloadData()
+//            roomAnimate(toggle: true)
+//            roomChosen = false
+//        }
+//        else {
+//            roomAnimate(toggle: false)
+//        }
+//    }
 }
 
 extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource {
@@ -199,6 +199,7 @@ extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource 
                 self.buildingSelect.text = String("\(buildingList[indexPath.row])")
             }
             buildingAnimate(toggle: false)
+            buildingSB.showsCancelButton = true
             buildingChosen = true
             searchingBuilding = false
         }
@@ -210,6 +211,7 @@ extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource 
                 self.floorSelect.text = String("\(floorList[indexPath.row])")
             }
             floorAnimate(toggle: false)
+            floorSB.showsCancelButton = true
             floorChosen = true
             searchingFloor = false
         }
@@ -221,8 +223,36 @@ extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource 
                 self.roomSelect.text = ("\(roomList[indexPath.row])")
             }
             roomAnimate(toggle: false)
+            roomSB.showsCancelButton = true
             roomChosen = true
             searchingRoom = false
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        if searchBar == buildingSB {
+            buildingSB.text = ""
+            buildingSB.showsCancelButton = false
+            if buildingChosen {
+                buildingTV.reloadData()
+                buildingAnimate(toggle: true)
+            }
+        }
+        if searchBar == floorSB {
+            floorSB.text = ""
+            floorSB.showsCancelButton = false
+            if floorChosen {
+                floorTV.reloadData()
+                floorAnimate(toggle: true)
+            }
+        }
+        if searchBar == roomSB {
+            roomSB.text = ""
+            roomSB.showsCancelButton = false
+            if roomChosen {
+                roomTV.reloadData()
+                roomAnimate(toggle: true)
+            }
         }
     }
 }
@@ -255,12 +285,15 @@ extension NewIssueFMDViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         if searchBar == buildingSB {
+            buildingSB.showsCancelButton = true
             buildingAnimate(toggle: true)
         }
         if searchBar == floorSB {
+            floorSB.showsCancelButton = true
             floorAnimate(toggle: true)
         }
         if searchBar == roomSB {
+            roomSB.showsCancelButton = true
             roomAnimate(toggle: true)
         }
     }
