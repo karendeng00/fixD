@@ -1578,7 +1578,7 @@
             </objects>
             <point key="canvasLocation" x="487" y="41"/>
         </scene>
-        <!--Add Issue General Info View Controller-->
+        <!--Issue Report-->
         <scene sceneID="ELk-39-xWB">
             <objects>
                 <viewController id="GiZ-ID-eWp" customClass="AddIssueGeneralInfoViewController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
@@ -1670,24 +1670,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LeE-Gx-EL1">
-                                <rect key="frame" x="232" y="761" width="155" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <segue destination="Upv-sp-ccL" kind="show" id="hoa-fm-7lQ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="zc5-Dy-CVt"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Issue Report" id="6VC-eY-7Ct">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="vWm-9L-Yef">
+                            <connections>
+                                <segue destination="Upv-sp-ccL" kind="show" id="iWa-e7-teW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Li9-ee-p2C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2634.7826086956525" y="428.57142857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Facilities-->
         <scene sceneID="tN7-kO-GiB">
             <objects>
                 <viewController id="bdX-Zf-iNe" sceneMemberID="viewController">
@@ -1731,14 +1730,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAc-FV-k1f">
-                                <rect key="frame" x="355" y="832" width="32" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <segue destination="hbv-bu-oqm" kind="show" id="XF2-YX-CFF"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What is the service type?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGK-mI-ClM">
                                 <rect key="frame" x="111" y="387" width="193" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1754,12 +1745,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="qd0-lJ-YQX"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Facilities" id="fgG-Ah-moM">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="rF1-su-ez7"/>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="nvG-Wd-3lz">
+                            <connections>
+                                <segue destination="hbv-bu-oqm" kind="show" id="2qe-fW-gKf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sxR-Af-e6v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3679.7101449275365" y="791.51785714285711"/>
         </scene>
-        <!--View Controller-->
+        <!--Facilities-->
         <scene sceneID="fQV-lP-7fZ">
             <objects>
                 <viewController id="hbv-bu-oqm" sceneMemberID="viewController">
@@ -1947,14 +1946,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGr-Tx-tv4">
-                                <rect key="frame" x="362" y="818" width="32" height="30"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <segue destination="cUP-vh-iTV" kind="show" id="4PY-8k-yHd"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1964,14 +1955,11 @@
                             <constraint firstItem="Tuz-yo-uNq" firstAttribute="leading" secondItem="lE0-c8-4Af" secondAttribute="trailing" constant="7.5" id="7Xn-5B-FFm"/>
                             <constraint firstItem="B3y-j3-w2c" firstAttribute="leading" secondItem="tVW-uV-v9O" secondAttribute="leading" constant="20" id="7tj-0w-Fyk"/>
                             <constraint firstItem="B3y-j3-w2c" firstAttribute="top" secondItem="uYc-MZ-amk" secondAttribute="bottom" id="7zU-lB-cZX"/>
-                            <constraint firstItem="tVW-uV-v9O" firstAttribute="trailing" secondItem="pGr-Tx-tv4" secondAttribute="trailing" constant="20" id="AWS-Da-JPO"/>
                             <constraint firstItem="tVW-uV-v9O" firstAttribute="trailing" secondItem="375-N4-KXd" secondAttribute="trailing" constant="20" id="B2X-Fu-aTI"/>
                             <constraint firstItem="tVW-uV-v9O" firstAttribute="trailing" secondItem="jrY-j3-S92" secondAttribute="trailing" constant="20" id="B7m-p6-iNP"/>
-                            <constraint firstItem="pGr-Tx-tv4" firstAttribute="top" secondItem="tVW-uV-v9O" secondAttribute="top" constant="730" id="BZS-H2-gVZ"/>
                             <constraint firstItem="375-N4-KXd" firstAttribute="top" secondItem="lE0-c8-4Af" secondAttribute="bottom" id="EMo-Jb-S9i"/>
                             <constraint firstItem="J3G-CU-xog" firstAttribute="top" secondItem="tVW-uV-v9O" secondAttribute="top" constant="290" id="Gco-qr-KNF"/>
                             <constraint firstItem="Tuz-yo-uNq" firstAttribute="top" secondItem="tVW-uV-v9O" secondAttribute="top" constant="70" id="Gg8-iF-8p0"/>
-                            <constraint firstItem="pGr-Tx-tv4" firstAttribute="leading" secondItem="tVW-uV-v9O" secondAttribute="leading" constant="362" id="Ht2-5j-fMT"/>
                             <constraint firstItem="tVW-uV-v9O" firstAttribute="trailing" secondItem="B3y-j3-w2c" secondAttribute="trailing" constant="20" id="INt-Cd-72g"/>
                             <constraint firstItem="90G-0b-uLM" firstAttribute="top" secondItem="375-N4-KXd" secondAttribute="bottom" id="IOT-L4-xXj"/>
                             <constraint firstItem="lE0-c8-4Af" firstAttribute="leading" secondItem="tVW-uV-v9O" secondAttribute="leading" constant="20" id="ISN-cO-U5y"/>
@@ -1998,12 +1986,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tVW-uV-v9O"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Facilities" id="WnY-bT-LC8">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="n8d-ZP-jdG"/>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="S3H-9M-ymW">
+                            <connections>
+                                <segue destination="cUP-vh-iTV" kind="show" id="J7G-aP-vJX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rGT-SR-iiW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3677" y="1505"/>
         </scene>
-        <!--View Controller-->
+        <!--Facilities-->
         <scene sceneID="RUF-O4-0Jt">
             <objects>
                 <viewController id="cUP-vh-iTV" sceneMemberID="viewController">
@@ -2050,15 +2046,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ssl-bM-7FS">
-                                <rect key="frame" x="326" y="814" width="49" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Submit"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="zWg-9y-wG6"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Facilities" id="zme-HV-DIT">
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="Syg-tS-HhT"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JyX-jD-gVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2241,15 +2235,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGw-mn-XcU">
-                                <rect key="frame" x="362" y="824" width="32" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <segue destination="bdX-Zf-iNe" kind="show" id="UyE-WU-XE7"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wjb-LF-sGZ">
                                 <rect key="frame" x="83" y="590" width="60" height="21"/>
                                 <constraints>
@@ -2301,6 +2286,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Facilities" id="Ui5-Dc-zzl">
                         <barButtonItem key="backBarButtonItem" title="Back" id="kmE-DM-zQ4"/>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="Wr7-MA-rz8">
+                            <connections>
+                                <segue destination="bdX-Zf-iNe" kind="show" id="J59-WB-df2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="buildingSB" destination="ptQ-8G-5Yg" id="hZc-Yk-VrV"/>

@@ -26,10 +26,16 @@ class NewIssueFMDViewController: UIViewController {
     
     var searchBuilding = [String]()
     var searchingBuilding = false
+    var buildingTextDidChange = false
+    var buildingChosen = false
     var searchFloor = [String]()
     var searchingFloor = false
+    var floorTextDidChange = false
+    var floorChosen = false
     var searchRoom = [String]()
     var searchingRoom = false
+    var roomTextDidChange = false
+    var roomChosen = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,16 +151,34 @@ extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == buildingTV {
-            self.buildingSelect.text = String("\(buildingList[indexPath.row])")
+            if buildingTextDidChange {
+                self.buildingSelect.text = String("\(searchBuilding[indexPath.row])")
+            }
+            else {
+                self.buildingSelect.text = String("\(buildingList[indexPath.row])")
+            }
             buildingAnimate(toggle: false)
+            buildingChosen = true
         }
         if tableView == floorTV {
-            self.floorSelect.text = String("\(floorList[indexPath.row])")
+            if floorTextDidChange {
+                self.floorSelect.text = String("\(searchFloor[indexPath.row])")
+            }
+            else {
+                self.buildingSelect.text = String("\(floorList[indexPath.row])")
+            }
             floorAnimate(toggle: false)
+            floorChosen = true
         }
         if tableView == roomTV {
-            self.roomSelect.text = ("\(roomList[indexPath.row])")
+            if roomTextDidChange {
+                self.roomSelect.text = ("\(searchRoom[indexPath.row])")
+            }
+            else {
+                self.roomSelect.text = ("\(roomList[indexPath.row])")
+            }
             roomAnimate(toggle: false)
+            roomChosen = true
         }
     }
 }
@@ -163,40 +187,25 @@ extension NewIssueFMDViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         if searchBar == buildingSB {
+            buildingAnimate(toggle: true)
             searchBuilding = buildingList.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
             searchingBuilding = true
+            buildingTextDidChange = true
             buildingTV.reloadData()
         }
         else if searchBar == floorSB {
+            floorAnimate(toggle: true)
             searchFloor = floorList.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
             searchingFloor = true
             floorTV.reloadData()
         }
         else if searchBar == roomSB {
+            roomAnimate(toggle: true)
             searchRoom = roomList.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
             searchingRoom = true
             roomTV.reloadData()
         }
     }
-    
-//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        if searchBar == buildingSB {
-//            searchingBuilding = false
-//            buildingAnimate(toggle: false)
-//            searchBar.text = ""
-//            buildingTV.reloadData()
-//        }
-//        else if searchBar == floorSB {
-//            searchingFloor = false
-//            searchBar.text = ""
-//            floorTV.reloadData()
-//        }
-//        else if searchBar == roomSB {
-//            searchingRoom = false
-//            searchBar.text = ""
-//            roomTV.reloadData()
-//        }
-//    }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         if searchBar == buildingSB {
