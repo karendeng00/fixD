@@ -40,7 +40,6 @@ class FeedViewController: UITableViewController /*UIGestureRecognizerDelegate */
      return UISwipeActionsConfiguration(actions: [modifyAction])
      }*/
     
-    
     let myCellIndentifier = "IssueCell"
     var myPosts:[IssueClass]?
     //FIXME: delete 
@@ -49,17 +48,28 @@ class FeedViewController: UITableViewController /*UIGestureRecognizerDelegate */
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Okay")
-        
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //self.navigationItem.rightBarButtonItem = self.editButtonItem
         myPosts = Issues.getIssues()
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ShowIssuePage", sender: (Any).self)
+    }
+    
+    @IBOutlet var feedTable: UITableView!
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is IssuePageController {
+            let viewController = segue.destination as? IssuePageController
+            if let row = feedTable.indexPathForSelectedRow?.row{
+                viewController?.issueID = row
+            }
+        }
+    }
     
     // MARK: - Table view data source
 
@@ -77,7 +87,6 @@ class FeedViewController: UITableViewController /*UIGestureRecognizerDelegate */
         return 145
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
 
@@ -111,7 +120,6 @@ class FeedViewController: UITableViewController /*UIGestureRecognizerDelegate */
             
         }
         
-        
         menuVC.modalPresentationStyle = .overCurrentContext
         menuVC.transitioningDelegate = self
         present(menuVC, animated: true)
@@ -132,8 +140,6 @@ class FeedViewController: UITableViewController /*UIGestureRecognizerDelegate */
             view.frame = self.view.bounds
             self.view.addSubview(view)
             
-            
-            
         case .category:
             let view = UIView()
             view.backgroundColor = .blue
@@ -142,7 +148,6 @@ class FeedViewController: UITableViewController /*UIGestureRecognizerDelegate */
             
         default:
             break
-            
         }
     }
 }
@@ -154,12 +159,10 @@ extension FeedViewController: UIViewControllerTransitioningDelegate {
         return transition
     }
     
-    
     //put side menu back in
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.isPresenting = false
         return transition
     }
     
-   
 }

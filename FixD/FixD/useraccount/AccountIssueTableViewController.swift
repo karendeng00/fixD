@@ -43,9 +43,26 @@ class AccountIssueTableViewController: UITableViewController {
         cell.accountCellStar.image = UIImage(named: "star.png")
         cell.accountCellUpVote.image = UIImage(named: "upvote.png")
         cell.accountCellComment.image = UIImage(named: "comments.png")
-        cell.accountCellLocationPin.image = UIImage(named: "locicon")
+        cell.accountCellLocationPin.image = UIImage(named: "locicon.png")
+        cell.accountCellIssueImage.image = UIImage(named: "printer.jpg")
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ShowIssuePageFromAccount", sender: (Any).self)
+    }
+    
+    
+    @IBOutlet var accountFeed: UITableView!
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is IssuePageController {
+            let viewController = segue.destination as? IssuePageController
+            if let row = accountFeed.indexPathForSelectedRow?.row{
+                viewController?.issueID = row
+            }
+        }
     }
 
     /*

@@ -769,13 +769,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="144.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7xv-RZ-E3V">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="145"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <connections>
-                                                <segue destination="j16-qw-gvl" kind="show" id="AZR-nI-8oA"/>
-                                            </connections>
-                                        </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aaX-ut-3h2">
                                             <rect key="frame" x="20" y="24" width="50" height="50"/>
                                         </imageView>
@@ -916,10 +909,14 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="feedTable" destination="R5e-Nd-bzm" id="Fd9-Lb-mF6"/>
+                        <segue destination="j16-qw-gvl" kind="show" identifier="ShowIssuePage" id="tAk-x9-Ry1"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2g-Tz-eln" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1647.826086956522" y="-1049.3303571428571"/>
+            <point key="canvasLocation" x="1648" y="-1049"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="naq-p0-RSh">
@@ -1277,13 +1274,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="144.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="654-fe-2oX">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="145"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <connections>
-                                                <segue destination="j16-qw-gvl" kind="show" id="VvE-zI-uBK"/>
-                                            </connections>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duke Blue Devil" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxw-T6-Am1">
                                             <rect key="frame" x="6" y="72" width="78" height="12"/>
                                             <constraints>
@@ -1396,6 +1386,10 @@
                             <outlet property="delegate" destination="8um-IF-ytT" id="Mqx-jE-93c"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="accountFeed" destination="eMb-gj-9Fd" id="QM4-DE-1Ci"/>
+                        <segue destination="j16-qw-gvl" kind="show" identifier="ShowIssuePageFromAccount" id="V8I-D7-cNg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qpm-dV-FWs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1592,6 +1586,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6pw-zi-PrA"/>
-        <segue reference="VvE-zI-uBK"/>
+        <segue reference="V8I-D7-cNg"/>
     </inferredMetricsTieBreakers>
 </document>

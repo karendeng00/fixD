@@ -34,10 +34,11 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var commentView: UITableView!
     
     var comments:[String] = []
+    var issueID:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let issue = IssueBuilder().myPosts[0]
+        let issue = IssueBuilder().myPosts[issueID]
         issue.addComment(comment: "This printer has been broken for years now.")
         issue.addComment(comment: "This printer prints as fast as my grandmother runs...Slowly!")
         issue.addComment(comment: "What a waste of space this printer is.")
@@ -66,7 +67,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath) as! textCommentCell
-        cell.commentLabel.text = comments[0]
+        cell.commentLabel.text = comments[indexPath.row]
         cell.userLabel.text = "-Friend"
         return cell
     }
