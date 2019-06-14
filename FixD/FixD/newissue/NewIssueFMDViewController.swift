@@ -93,6 +93,7 @@ class NewIssueFMDViewController: UIViewController {
             buildingSelect.text = ""
             buildingTV.reloadData()
             buildingAnimate(toggle: true)
+            buildingChosen = false
         }
         else {
             buildingAnimate(toggle: false)
@@ -104,6 +105,7 @@ class NewIssueFMDViewController: UIViewController {
             floorSelect.text = ""
             floorTV.reloadData()
             floorAnimate(toggle: true)
+            floorChosen = false
         }
         else {
             floorAnimate(toggle: false)
@@ -115,6 +117,7 @@ class NewIssueFMDViewController: UIViewController {
             roomSelect.text = ""
             roomTV.reloadData()
             roomAnimate(toggle: true)
+            roomChosen = false
         }
         else {
             roomAnimate(toggle: false)
