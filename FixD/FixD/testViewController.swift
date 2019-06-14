@@ -10,89 +10,40 @@ import UIKit
 
 class testViewController: UIViewController {
 
-    
-    let transition = SlideInTransition()
-    var topView: UIView?
+
+    @IBOutlet weak var sideMenuConstraint: NSLayoutConstraint!
+    var sideMenuOpen = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("okay")
         // Do any additional setup after loading the view.
+        
+        //posts a notification
+        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ToggleSideMenu"), object: self)
+        
+        
+        
+        
     }
     
-    
-    
-    @IBAction func didTapMenu(_ sender: UIButton) {
-        guard let menuVC = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuVC else {
-            return
+    @objc func toggleSideMenu(/*_ notification: Notification*/) {
+        if sideMenuConstraint != nil {
+            if sideMenuOpen {
+                sideMenuOpen = false
+                sideMenuConstraint.constant = -240
+            }
+            else {
+                sideMenuOpen = true
+                sideMenuConstraint.constant = 0
+                
+            }
         }
         
-        //transition to new page
-        menuVC.didTapMenuType = {
-            MenuType in
-            self.transitionToNew(MenuType)
-            
-        }
-        
-        
-        menuVC.modalPresentationStyle = .overCurrentContext
-        menuVC.transitioningDelegate = self
-        present(menuVC, animated: true)
-        
-    }
-    
-    func transitionToNew(_ menuType: MenuType) {
-        let title = String(describing: menuType).capitalized
-        self.title = title
-        
-        topView?.removeFromSuperview()
-        
-        switch menuType {
-        case .location:
-            let view = UIView()
-            view.backgroundColor = .yellow
-            view.frame = self.view.bounds
-            self.view.addSubview(view)
-            
-            
-            
-        case .category:
-            let view = UIView()
-            view.backgroundColor = .blue
-            view.frame = self.view.bounds
-            self.view.addSubview(view)
-            
-        default:
-            break
-            
-        }
-    }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
-
-extension testViewController: UIViewControllerTransitioningDelegate {
-    //put side menu out
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.isPresenting = true
-        return transition
     }
     
     
-    //put side menu back in
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.isPresenting = false
-        return transition
-    }
     
     
 }

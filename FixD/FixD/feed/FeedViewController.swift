@@ -8,37 +8,11 @@
 
 import UIKit
 
-class FeedViewController: UITableViewController /*UIGestureRecognizerDelegate */{
+class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate{
+    
     
     let transition = SlideInTransition()
     var topView: UIView?
-    
-    /*override func tableView(_ tableView: UITableView,
-     leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
-     {
-     let closeAction = UIContextualAction(style: .normal, title:  "Close", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-     print("OK, marked as Closed")
-     success(true)
-     })
-     
-     print("right")
-     
-     return UISwipeActionsConfiguration(actions: [closeAction])
-     
-     }
-     */
-    //left swipe
-    /*override func tableView(_ tableView: UITableView,
-     trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
-     {
-     let modifyAction = UIContextualAction(style: .normal, title:  "Update", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-     print("Update action ...")
-     success(true)
-     })
-     
-     
-     return UISwipeActionsConfiguration(actions: [modifyAction])
-     }*/
     
     
     let myCellIndentifier = "IssueCell"
@@ -49,14 +23,13 @@ class FeedViewController: UITableViewController /*UIGestureRecognizerDelegate */
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Okay")
+        let leftPanSwipe = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(swipePanAction(sender:)))
+        leftPanSwipe.edges = .left
+        leftPanSwipe.delegate = self
+        self.view.addGestureRecognizer(leftPanSwipe)
+        
         
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         myPosts = Issues.getIssues()
     }
     
@@ -103,22 +76,21 @@ class FeedViewController: UITableViewController /*UIGestureRecognizerDelegate */
     
     
     @IBAction func didTapMenu(_ sender: UIButton) {
-        guard let menuVC = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuVC else {
-            return
-        }
-        
-        //transition to new page
-        menuVC.didTapMenuType = {
-            MenuType in
-            self.transitionToNew(MenuType)
-            
-        }
-        
-        
-        menuVC.modalPresentationStyle = .overCurrentContext
-        menuVC.transitioningDelegate = self
-        present(menuVC, animated: true)
+        self.openMenu()
     }
+    
+    
+    @objc func swipePanAction(sender: UIScreenEdgePanGestureRecognizer) {
+        if sender.state == .ended {
+            switch sender.edges {
+                case .left:
+                    self.openMenu()
+                default:
+                    break
+            }
+        }
+    }
+    
     
     
     //when you click a button on the side menu, it brings you to another page
@@ -148,6 +120,23 @@ class FeedViewController: UITableViewController /*UIGestureRecognizerDelegate */
             
         }
     }
+    
+    
+    func openMenu() {
+        guard let menuVC = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuVC else {
+            return
+        }
+        //transition to new page
+        menuVC.didTapMenuType = {
+            MenuType in
+            self.transitionToNew(MenuType)
+            
+        }
+        menuVC.modalPresentationStyle = .overCurrentContext
+        menuVC.transitioningDelegate = self
+        present(menuVC, animated: true)
+    }
+    
 }
 
 extension FeedViewController: UIViewControllerTransitioningDelegate {
