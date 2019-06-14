@@ -13,12 +13,16 @@ class NewIssueFMDViewController: UIViewController {
     @IBOutlet weak var buildingSB: UISearchBar!
     @IBOutlet weak var buildingSelect: UILabel!
     @IBOutlet weak var buildingTV: UITableView!
+    @IBOutlet weak var buildingCancel: UIButton!
     @IBOutlet weak var floorSB: UISearchBar!
     @IBOutlet weak var floorSelect: UILabel!
     @IBOutlet weak var floorTV: UITableView!
+    @IBOutlet weak var floorCancel: UIButton!
     @IBOutlet weak var roomSB: UISearchBar!
     @IBOutlet weak var roomSelect: UILabel!
     @IBOutlet weak var roomTV: UITableView!
+    @IBOutlet weak var roomCancel: UIButton!
+    
     
     let buildingList = ["Allen", "Brodhead Center", "Bryan Center", "Craven", "Few", "Perkins"]
     let floorList = ["1", "2", "3"]
@@ -80,6 +84,31 @@ class NewIssueFMDViewController: UIViewController {
             UIView.animate(withDuration: 0.3) {
                 self.roomTV.isHidden = true
             }
+        }
+    }
+    
+    
+    @IBAction func buildingCancel(_ sender: Any) {
+        if buildingChosen {
+            buildingSelect.text = ""
+            buildingTV.reloadData()
+            buildingAnimate(toggle: true)
+        }
+    }
+    
+    @IBAction func floorCancel(_ sender: Any) {
+        if floorChosen {
+            floorSelect.text = ""
+            floorTV.reloadData()
+            floorAnimate(toggle: true)
+        }
+    }
+    
+    @IBAction func roomCancel(_ sender: Any) {
+        if roomChosen {
+            roomSelect.text = ""
+            roomTV.reloadData()
+            roomAnimate(toggle: true)
         }
     }
 }
@@ -159,16 +188,18 @@ extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource 
             }
             buildingAnimate(toggle: false)
             buildingChosen = true
+            searchingBuilding = false
         }
         if tableView == floorTV {
             if floorTextDidChange {
                 self.floorSelect.text = String("\(searchFloor[indexPath.row])")
             }
             else {
-                self.buildingSelect.text = String("\(floorList[indexPath.row])")
+                self.floorSelect.text = String("\(floorList[indexPath.row])")
             }
             floorAnimate(toggle: false)
             floorChosen = true
+            searchingFloor = false
         }
         if tableView == roomTV {
             if roomTextDidChange {
@@ -179,6 +210,7 @@ extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource 
             }
             roomAnimate(toggle: false)
             roomChosen = true
+            searchingRoom = false
         }
     }
 }
@@ -197,12 +229,14 @@ extension NewIssueFMDViewController: UISearchBarDelegate {
             floorAnimate(toggle: true)
             searchFloor = floorList.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
             searchingFloor = true
+            floorTextDidChange = true
             floorTV.reloadData()
         }
         else if searchBar == roomSB {
             roomAnimate(toggle: true)
             searchRoom = roomList.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
             searchingRoom = true
+            roomTextDidChange = true
             roomTV.reloadData()
         }
     }
