@@ -94,6 +94,9 @@ class NewIssueFMDViewController: UIViewController {
             buildingTV.reloadData()
             buildingAnimate(toggle: true)
         }
+        else {
+            buildingAnimate(toggle: false)
+        }
     }
     
     @IBAction func floorCancel(_ sender: Any) {
@@ -102,6 +105,9 @@ class NewIssueFMDViewController: UIViewController {
             floorTV.reloadData()
             floorAnimate(toggle: true)
         }
+        else {
+            floorAnimate(toggle: false)
+        }
     }
     
     @IBAction func roomCancel(_ sender: Any) {
@@ -109,6 +115,9 @@ class NewIssueFMDViewController: UIViewController {
             roomSelect.text = ""
             roomTV.reloadData()
             roomAnimate(toggle: true)
+        }
+        else {
+            roomAnimate(toggle: false)
         }
     }
 }
