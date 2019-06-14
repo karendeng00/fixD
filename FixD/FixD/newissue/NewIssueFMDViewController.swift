@@ -11,10 +11,13 @@ import UIKit
 class NewIssueFMDViewController: UIViewController {
     
     @IBOutlet weak var buildingSB: UISearchBar!
+    @IBOutlet weak var buildingSelect: UILabel!
     @IBOutlet weak var buildingTV: UITableView!
     @IBOutlet weak var floorSB: UISearchBar!
+    @IBOutlet weak var floorSelect: UILabel!
     @IBOutlet weak var floorTV: UITableView!
     @IBOutlet weak var roomSB: UISearchBar!
+    @IBOutlet weak var roomSelect: UILabel!
     @IBOutlet weak var roomTV: UITableView!
     
     let buildingList = ["Allen", "Brodhead Center", "Bryan Center", "Craven", "Few", "Perkins"]
@@ -76,6 +79,7 @@ class NewIssueFMDViewController: UIViewController {
 }
 
 extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == buildingTV {
             if searchingBuilding {
@@ -141,24 +145,18 @@ extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == buildingTV {
-            
+            self.buildingSelect.text = String("\(buildingList[indexPath.row])")
+            buildingAnimate(toggle: false)
+        }
+        if tableView == floorTV {
+            self.floorSelect.text = String("\(floorList[indexPath.row])")
+            floorAnimate(toggle: false)
+        }
+        if tableView == roomTV {
+            self.roomSelect.text = ("\(roomList[indexPath.row])")
+            roomAnimate(toggle: false)
         }
     }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if tableView == buildingTV {
-//            buildingButton.setTitle("\(buildingList[indexPath.row])", for: .normal)
-//            buildingAnimate(toggle: false)
-//        }
-//        if tableView == floorTV {
-//            floorButton.setTitle("\(floorList[indexPath.row])", for: .normal)
-//            floorAnimate(toggle: false)
-//        }
-//        if tableView == roomTV {
-//            roomButton.setTitle("\(roomList[indexPath.row])", for: .normal)
-//            roomAnimate(toggle: false)
-//        }
-//    }
 }
 
 extension NewIssueFMDViewController: UISearchBarDelegate {
