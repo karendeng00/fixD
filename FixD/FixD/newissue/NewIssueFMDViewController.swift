@@ -234,6 +234,7 @@ extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource 
             buildingSB.text = ""
             buildingSB.showsCancelButton = false
             if buildingChosen {
+                buildingSelect.text = ""
                 buildingTV.reloadData()
                 buildingAnimate(toggle: true)
             }
@@ -242,6 +243,7 @@ extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource 
             floorSB.text = ""
             floorSB.showsCancelButton = false
             if floorChosen {
+                floorSelect.text = ""
                 floorTV.reloadData()
                 floorAnimate(toggle: true)
             }
@@ -250,6 +252,7 @@ extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource 
             roomSB.text = ""
             roomSB.showsCancelButton = false
             if roomChosen {
+                roomSelect.text = ""
                 roomTV.reloadData()
                 roomAnimate(toggle: true)
             }
