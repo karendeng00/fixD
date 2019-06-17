@@ -1633,8 +1633,7 @@
         <image name="upvote" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6pw-zi-PrA"/>
-        <segue reference="tAk-x9-Ry1"/>
         <segue reference="FMl-so-1ZS"/>
+        <segue reference="tAk-x9-Ry1"/>
     </inferredMetricsTieBreakers>
 </document>
