@@ -1052,17 +1052,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Feed" id="Hfd-Zr-kVu">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" style="plain" id="jCn-S9-Uth">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" id="p2N-eR-0Me">
-                                <rect key="frame" x="20" y="7" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Menu"/>
-                                <connections>
-                                    <action selector="didTapMenu:" destination="JKy-it-l91" eventType="touchUpInside" id="14n-PP-JP2"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="+" id="BwJ-Wb-ELV">
+                        <barButtonItem key="rightBarButtonItem" width="20" systemItem="add" id="BwJ-Wb-ELV">
                             <connections>
                                 <segue destination="Upv-sp-ccL" kind="show" id="6pw-zi-PrA"/>
                             </connections>
@@ -1135,19 +1125,9 @@
                         <viewLayoutGuide key="safeArea" id="BoY-E3-L8i"/>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="gxP-ot-ZXe">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" style="plain" id="cLc-Zb-Spn">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="53Y-RT-LpR">
-                                <rect key="frame" x="20" y="7" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Menu"/>
-                                <connections>
-                                    <action selector="tapMenu:" destination="H5R-x9-jHJ" eventType="touchUpInside" id="3pE-cb-0vb"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="+" id="XWb-1R-Rzo">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="KjO-tk-Wy1">
                             <connections>
-                                <segue destination="Upv-sp-ccL" kind="show" id="FMl-so-1ZS"/>
+                                <segue destination="Upv-sp-ccL" kind="show" id="nw3-37-6pk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2644,5 +2624,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6pw-zi-PrA"/>
+        <segue reference="tAk-x9-Ry1"/>
     </inferredMetricsTieBreakers>
 </document>
