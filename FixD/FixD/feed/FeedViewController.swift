@@ -8,12 +8,13 @@
 
 import UIKit
 
-class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate{
-    
+class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, UIViewControllerTransitioningDelegate{
     
     let transition = SlideInTransition()
     var topView: UIView?
     
+    var finalHeight = 0.0
+    var finalWidth = 0.0
     
     let myCellIndentifier = "IssueCell"
     var myPosts:[IssueClass]?
@@ -23,11 +24,31 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        finalHeight = Double(self.view.bounds.height)
+        finalWidth = Double(self.view.bounds.width * 0.8)
+        
+        //creates menu button
+        let menuBtn = UIButton(type: .custom)
+        menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 15, height: 15)
+        menuBtn.setImage(UIImage(named:"menu"), for: .normal)
+        menuBtn.addTarget(self, action: #selector(didTapMenu(_:)), for: UIControl.Event.touchUpInside)
+        
+        let menuBarItem = UIBarButtonItem(customView: menuBtn)
+        let currWidth = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 23)
+        currWidth?.isActive = true
+        let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 23)
+        currHeight?.isActive = true
+        self.navigationItem.leftBarButtonItem = menuBarItem
+    
+        
+        
+        //puts in left pan swipe gesture
         let leftPanSwipe = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(swipePanAction(sender:)))
         leftPanSwipe.edges = .left
         leftPanSwipe.delegate = self
         self.view.addGestureRecognizer(leftPanSwipe)
         myPosts = Issues.getIssues()
+    
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -90,7 +111,24 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate{
     
     
     @objc func swipePanAction(sender: UIScreenEdgePanGestureRecognizer) {
-        if sender.state == .ended {
+        
+        if (sender.state == UIGestureRecognizer.State.changed) {
+            let constraintMenuWidth  = self.view.bounds.width * 0.8
+            
+            // retrieve the amount viewMenu has been dragged
+            let translationX = sender.translation(in: sender.view).x
+            
+            //if dragged less than half way through
+            if translationX * 2 < constraintMenuWidth {
+                
+                //constraintMenuLeft.constant = -constraintMenuWidth.constant + translationX
+                print("true")
+                return
+            }
+            
+        
+        }
+        else {
             switch sender.edges {
                 case .left:
                     self.openMenu()
@@ -143,18 +181,21 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate{
         present(menuVC, animated: true)
     }
     
-}
 
-extension FeedViewController: UIViewControllerTransitioningDelegate {
+
     //put side menu out
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.isPresenting = true
+        transition.finalHeight = finalHeight
+        transition.finalWidth = finalWidth
         return transition
     }
     
     //put side menu back in
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.isPresenting = false
+        transition.finalHeight = finalHeight
+        transition.finalWidth = finalWidth
         return transition
     }
     
