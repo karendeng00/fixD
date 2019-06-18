@@ -13,15 +13,12 @@ class NewIssueFMDViewController: UIViewController {
     @IBOutlet weak var buildingSB: UISearchBar!
     @IBOutlet weak var buildingSelect: UILabel!
     @IBOutlet weak var buildingTV: UITableView!
-    @IBOutlet weak var buildingCancel: UIButton!
     @IBOutlet weak var floorSB: UISearchBar!
     @IBOutlet weak var floorSelect: UILabel!
     @IBOutlet weak var floorTV: UITableView!
-    @IBOutlet weak var floorCancel: UIButton!
     @IBOutlet weak var roomSB: UISearchBar!
     @IBOutlet weak var roomSelect: UILabel!
     @IBOutlet weak var roomTV: UITableView!
-    @IBOutlet weak var roomCancel: UIButton!
     
     
     let buildingList = ["Allen", "Brodhead Center", "Bryan Center", "Craven", "Few", "Perkins"]
@@ -86,43 +83,6 @@ class NewIssueFMDViewController: UIViewController {
             }
         }
     }
-    
-    
-//    @IBAction func buildingCancel(_ sender: Any) {
-//        if buildingChosen {
-//            buildingSelect.text = ""
-//            buildingTV.reloadData()
-//            buildingAnimate(toggle: true)
-//            buildingChosen = false
-//        }
-//        else {
-//            buildingAnimate(toggle: false)
-//        }
-//    }
-//
-//    @IBAction func floorCancel(_ sender: Any) {
-//        if floorChosen {
-//            floorSelect.text = ""
-//            floorTV.reloadData()
-//            floorAnimate(toggle: true)
-//            floorChosen = false
-//        }
-//        else {
-//            floorAnimate(toggle: false)
-//        }
-//    }
-//
-//    @IBAction func roomCancel(_ sender: Any) {
-//        if roomChosen {
-//            roomSelect.text = ""
-//            roomTV.reloadData()
-//            roomAnimate(toggle: true)
-//            roomChosen = false
-//        }
-//        else {
-//            roomAnimate(toggle: false)
-//        }
-//    }
 }
 
 extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource {
@@ -228,36 +188,6 @@ extension NewIssueFMDViewController: UITableViewDelegate, UITableViewDataSource 
             searchingRoom = false
         }
     }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        if searchBar == buildingSB {
-            buildingSB.text = ""
-            buildingSB.showsCancelButton = false
-            if buildingChosen {
-                buildingSelect.text = ""
-                buildingTV.reloadData()
-                buildingAnimate(toggle: true)
-            }
-        }
-        if searchBar == floorSB {
-            floorSB.text = ""
-            floorSB.showsCancelButton = false
-            if floorChosen {
-                floorSelect.text = ""
-                floorTV.reloadData()
-                floorAnimate(toggle: true)
-            }
-        }
-        if searchBar == roomSB {
-            roomSB.text = ""
-            roomSB.showsCancelButton = false
-            if roomChosen {
-                roomSelect.text = ""
-                roomTV.reloadData()
-                roomAnimate(toggle: true)
-            }
-        }
-    }
 }
 
 extension NewIssueFMDViewController: UISearchBarDelegate {
@@ -298,6 +228,36 @@ extension NewIssueFMDViewController: UISearchBarDelegate {
         if searchBar == roomSB {
             roomSB.showsCancelButton = true
             roomAnimate(toggle: true)
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        if searchBar == buildingSB {
+            buildingSB.text = ""
+            buildingSB.showsCancelButton = false
+            if buildingChosen {
+                buildingSelect.text = ""
+                buildingTV.reloadData()
+                buildingAnimate(toggle: true)
+            }
+        }
+        if searchBar == floorSB {
+            floorSB.text = ""
+            floorSB.showsCancelButton = false
+            if floorChosen {
+                floorSelect.text = ""
+                floorTV.reloadData()
+                floorAnimate(toggle: true)
+            }
+        }
+        if searchBar == roomSB {
+            roomSB.text = ""
+            roomSB.showsCancelButton = false
+            if roomChosen {
+                roomSelect.text = ""
+                roomTV.reloadData()
+                roomAnimate(toggle: true)
+            }
         }
     }
 }

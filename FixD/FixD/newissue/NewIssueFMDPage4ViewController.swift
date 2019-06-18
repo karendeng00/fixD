@@ -10,6 +10,9 @@ import UIKit
 
 class NewIssueFMDPage4ViewController: UIViewController {
 
+    @IBOutlet weak var FundCodeField: UITextField!
+    @IBOutlet weak var EmailButton: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
