@@ -66,6 +66,16 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         }
     }
     
+    
+    @IBAction func touchUpVote(_ sender: Any) {
+        
+    }
+    
+    
+    @IBAction func touchPin(_ sender: Any) {
+        
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
