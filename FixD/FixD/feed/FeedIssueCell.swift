@@ -23,18 +23,12 @@ class FeedIssueCell: UITableViewCell {
     @IBOutlet weak var issueUpvotes: UILabel!
     @IBOutlet weak var issueFavorites: UILabel!
     
-    @IBAction func upVote(_ sender: Any) {
-        let currCount = issueUpvotes.text!
-        let newCount = (Int(currCount) ?? 0) + 1
-        issueUpvotes.text = String(newCount)
-    }
     
-    @IBAction func favorite(_ sender: Any) {
-        let currCount = issueFavorites.text!
-        let newCount = (Int(currCount) ?? 0) + 1
-        issueFavorites.text = String(newCount)
-    }
+    @IBOutlet weak var upVoteButton: UIButton!
+    @IBOutlet weak var favoritesButton: UIButton!
     
+    private var issueID = 0
+    private var myIssues = IssueBuilder().myPosts
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,6 +39,22 @@ class FeedIssueCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setIssueID(ID: Int){
+        issueID = ID
+    }
+    
+    @IBAction func upVote(_ sender: Any) {
+        myIssues[issueID].addUpVote()
+        issueUpvotes.text = String(myIssues[issueID].getUpVotes())
+        upVoteButton.imageView?.image = UIImage(named: "fArrow.png")
+    }
+    
+    @IBAction func favorite(_ sender: Any) {
+        myIssues[issueID].addFavorites()
+        issueFavorites.text = String(myIssues[issueID].getFavorites())
+        favoritesButton.imageView?.image = UIImage(named: "fPin.png")
     }
 
 }

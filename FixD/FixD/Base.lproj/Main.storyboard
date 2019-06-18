@@ -110,7 +110,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fJ-PP-RHT">
                                         <rect key="frame" x="211" y="3" width="32" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="fArrow">
+                                        <state key="normal" backgroundImage="eArrow">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
@@ -959,7 +959,6 @@
                                             </constraints>
                                             <state key="normal" backgroundImage="eArrow"/>
                                             <connections>
-                                                <action selector="touchUpVote:" destination="JKy-it-l91" eventType="touchUpInside" id="Zvy-XN-bde"/>
                                                 <action selector="upVote:" destination="Krf-dQ-DQx" eventType="touchUpInside" id="M6G-zo-eNY"/>
                                             </connections>
                                         </button>
@@ -1039,6 +1038,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="favoritesButton" destination="wJa-Oi-VVo" id="2NI-2K-6WM"/>
                                     <outlet property="issueDate" destination="32i-mc-uhW" id="dUw-b0-dEj"/>
                                     <outlet property="issueDescription" destination="Oia-Ku-rL9" id="oTL-QN-ffy"/>
                                     <outlet property="issueFavorites" destination="0Oa-3L-5Oq" id="7ub-gx-bmQ"/>
@@ -1047,6 +1047,7 @@
                                     <outlet property="issueName" destination="ft6-AR-VRI" id="Rl9-qx-avi"/>
                                     <outlet property="issueUpvotes" destination="R6a-Lj-SV1" id="s1J-Sm-XlF"/>
                                     <outlet property="locationImage" destination="D5Q-AW-2Sp" id="fL0-Ef-mYq"/>
+                                    <outlet property="upVoteButton" destination="dEh-GC-X9X" id="8SZ-j9-SuM"/>
                                     <outlet property="userImage" destination="aaX-ut-3h2" id="pFS-Zs-x1W"/>
                                     <outlet property="userName" destination="0YU-Vq-UAa" id="J8n-dm-GsO"/>
                                 </connections>
@@ -1630,7 +1631,9 @@
         <scene sceneID="tIK-wH-hNp">
             <objects>
                 <navigationController storyboardIdentifier="sbProfNav" automaticallyAdjustsScrollViewInsets="NO" id="QzR-om-BP3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Account" id="UcX-6V-giC"/>
+                    <tabBarItem key="tabBarItem" title="My Account" id="UcX-6V-giC">
+                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="-1" maxX="0.0" maxY="0.0"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UXz-KT-nmt">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1664,11 +1667,11 @@
             </objects>
             <point key="canvasLocation" x="487" y="-311"/>
         </scene>
-        <!--Feed-->
+        <!--Navigation Controller-->
         <scene sceneID="1fp-tG-2kk">
             <objects>
                 <navigationController storyboardIdentifier="sbFeed" automaticallyAdjustsScrollViewInsets="NO" id="Gxd-wz-vyh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Feed" id="sbJ-To-HD8"/>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="sbJ-To-HD8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HHu-wz-eer">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

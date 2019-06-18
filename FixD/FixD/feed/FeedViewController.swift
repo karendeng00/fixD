@@ -66,16 +66,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         }
     }
     
-    
-    @IBAction func touchUpVote(_ sender: Any) {
-        
-    }
-    
-    
-    @IBAction func touchPin(_ sender: Any) {
-        
-    }
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -98,6 +88,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
          //Configure the cell...
         let obj = myPosts![indexPath.row]
         
+        cell.setIssueID(ID: indexPath.row)
         cell.issueName.text = obj.getTitle()
         cell.issueDescription.text = obj.getDescription()
         cell.issueLocation.text = obj.getLocation()

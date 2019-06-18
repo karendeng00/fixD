@@ -27,8 +27,8 @@ class IssueClass {
     let likeButton:String = "upvote.png"
     let commentButton:String = "comments.png"
     
-    private var myFavorites = 0
-    private var myUpVotes = 0
+    private var myFavorites = 234
+    private var myUpVotes = 1453
     private var myComments = 0
     private var myListOfComments: Array<String> = Array()
     
