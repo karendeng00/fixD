@@ -32,13 +32,10 @@ class FeedIssueCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func setIssueID(ID: Int){
@@ -48,13 +45,21 @@ class FeedIssueCell: UITableViewCell {
     @IBAction func upVote(_ sender: Any) {
         myIssues[issueID].addUpVote()
         issueUpvotes.text = String(myIssues[issueID].getUpVotes())
-        upVoteButton.imageView?.image = UIImage(named: "fArrow.png")
+        if (myIssues[issueID].getUpVoteState()){
+            upVoteButton.setImage(UIImage(named: "fArrow.png"), for: .normal)
+        }else {
+            upVoteButton.setImage(UIImage(named: "eArrow.png"), for: .normal)
+        }
     }
     
     @IBAction func favorite(_ sender: Any) {
         myIssues[issueID].addFavorites()
         issueFavorites.text = String(myIssues[issueID].getFavorites())
-        favoritesButton.imageView?.image = UIImage(named: "fPin.png")
+        if (myIssues[issueID].getFavoritesState()){
+            favoritesButton.setImage(UIImage(named: "fPin"), for: .normal)
+        }else {
+            favoritesButton.setImage(UIImage(named: "ePin"), for: .normal)
+        }
     }
 
 }

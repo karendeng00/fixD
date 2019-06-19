@@ -13,11 +13,11 @@ class IssueBuilder {
     var myPosts: Array<IssueClass> = Array()
     
     init() {
-        myPosts.append(IssueClass(title: "Broken Printer", description: "Printer in the Link wont work", location: "401 Chapel Dr, Durham, NC 27708", date: "05/08/19", issueImage: "printer.jpg", user: UserProfile(name: "Johnny John John", image: "photo1.png")))
+        myPosts.append(IssueClass(ID: 1, title: "Broken Printer", description: "Printer in the Link wont work", location: "401 Chapel Dr, Durham, NC 27708", date: "05/08/19", issueImage: "printer.jpg", user: UserProfile(name: "Johnny John John", image: "photo1.png"), upVotes: 231, favorites: 1099))
     
-        myPosts.append(IssueClass(title: "Broken Window in my Dorm", description: "I broke my window playing baseball", location: "315 Towerview Drive, Durham, NC 27708", date: "06/06/19", issueImage: "window", user: UserProfile(name:"Jimmy Jim Jim", image: "photo.jpg")))
+        myPosts.append(IssueClass(ID: 2, title: "Broken Window in my Dorm", description: "I broke my window playing baseball", location: "315 Towerview Drive, Durham, NC 27708", date: "06/06/19", issueImage: "window", user: UserProfile(name:"Jimmy Jim Jim", image: "photo.jpg"), upVotes: 980, favorites: 121))
         
-        myPosts.append(IssueClass(title: "Water fountain is leaking", description: "water fountain is broken near the west union south entrance", location:"416 Chapel Dr, Durham, NC 27708", date: "06/08/2019", issueImage: "window", user: UserProfile(name: "Jimmy Jim Jim", image: "photo.jpg" )))
+        myPosts.append(IssueClass(ID: 3, title: "Water fountain is leaking", description: "water fountain is broken near the west union south entrance", location:"416 Chapel Dr, Durham, NC 27708", date: "06/08/2019", issueImage: "window", user: UserProfile(name: "Jimmy Jim Jim", image: "photo.jpg" ), upVotes: 673, favorites: 1234))
     }
     
     func appendIssue(issue:IssueClass) {

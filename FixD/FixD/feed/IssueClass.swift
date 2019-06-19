@@ -18,7 +18,7 @@ class IssueClass {
     private let date:String
     private let issueImage:String
     private var upvoted = false
-    private var pined = false
+    private var pinned = false
     
     private let myUser:UserProfile
     
@@ -27,19 +27,22 @@ class IssueClass {
     let likeButton:String = "upvote.png"
     let commentButton:String = "comments.png"
     
-    private var myFavorites = 234
-    private var myUpVotes = 1453
-    private var myComments = 0
+    private var myFavorites: Int
+    private var myUpVotes: Int
+    private var myComments: Int
     private var myListOfComments: Array<String> = Array()
     
-    init(title:String, description:String, location:String, date:String, issueImage:String, user:UserProfile) {
-        self.issueID = 0 //FIX this, make ID unique ID
+    init(ID: Int, title:String, description:String, location:String, date:String, issueImage:String, user:UserProfile, upVotes: Int, favorites: Int) {
+        self.issueID = ID
         self.myTitle = title
         self.myLocation = location
         self.description = description
         self.date = date
         self.issueImage = issueImage
         self.myUser = user
+        self.myFavorites = favorites
+        self.myUpVotes = upVotes
+        self.myComments = myListOfComments.count
     }
     
     func addUpVote(){
@@ -51,13 +54,21 @@ class IssueClass {
         upvoted = !upvoted
     }
     
+    func getUpVoteState() -> Bool {
+        return upvoted
+    }
+    
+    func getFavoritesState() -> Bool {
+        return pinned
+    }
+    
     func addFavorites(){
-        if pined {
+        if pinned {
             myFavorites -= 1
         }else {
             myFavorites += 1
         }
-        pined = !pined
+        pinned = !pinned
     }
     
     func addComment(comment:String){
