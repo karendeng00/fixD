@@ -44,41 +44,51 @@ class MapFunctionsViewController: UIViewController {
         guard let menuVC = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuVC else {
             return
         }
+        
         //transition to new page
         menuVC.didTapMenuType = {
-            MenuType in
-            self.transitionToNew(MenuType)
+            menuType in
+            self.transitionToNew(menuType)
             
         }
+        
         menuVC.modalPresentationStyle = .overCurrentContext
         menuVC.transitioningDelegate = self
         present(menuVC, animated: true)
     }
     
     func transitionToNew(_ menuType: MenuType) {
-        let title = String(describing: menuType).capitalized
-        self.title = title
         
         topView?.removeFromSuperview()
         
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "tab") as? UITabBarController else {
+            return
+        }
         switch menuType {
-        case .location:
-            let view = UIView()
-            view.backgroundColor = .yellow
-            view.frame = self.view.bounds
-            self.view.addSubview(view)
+        case .home:
+            nextViewController.selectedIndex = 0
+            self.present(nextViewController, animated:false, completion:nil)
+        case .map:
+            
+            nextViewController.selectedIndex = 1
+            self.present(nextViewController, animated:false, completion:nil)
+            
+        case .account:
+            nextViewController.selectedIndex = 2
+            self.present(nextViewController, animated:false, completion:nil)
+            
+        case .settings:
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            guard let settingsViewController = storyBoard.instantiateViewController(withIdentifier: "settings") as? UITableViewController else {
+                return
+            }
+            self.present(settingsViewController, animated:false, completion:nil)
             
             
-            
-        case .category:
-            let view = UIView()
-            view.backgroundColor = .blue
-            view.frame = self.view.bounds
-            self.view.addSubview(view)
             
         default:
             break
-            
         }
     }
     

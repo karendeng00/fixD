@@ -8,23 +8,29 @@
 
 import UIKit
 
+
 enum MenuType: Int {
-    case location
-    case category
-    case liked
-    case starred
+    case home
+    case map
+    case account
+    case settings
+    case filter
 }
+
 
 class MenuVC: UITableViewController, UIGestureRecognizerDelegate{
     
-
-    //variable didTapMenuType is of type MenuType -> Void
+    @IBOutlet weak var filterButton: UIButton!
+    
     var didTapMenuType: ((MenuType) -> Void)?
+    //variable didTapMenuType is of type MenuType -> Void
+    var check = false
+    var row = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         print("this page has loaded")
-        
         
         //swipe back in
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(sender:)))
@@ -35,6 +41,9 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate{
         
         NotificationCenter.default.addObserver(self, selector: #selector(timeToGo(_:)), name: NSNotification.Name("tapOutBBY"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(leave(_:)), name: NSNotification.Name("clickedFilter"), object: nil)
+ 
+        
         
     }
     
@@ -42,6 +51,20 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate{
         self.dismiss(animated: true, completion: nil)
     }
     
+    @objc func leave(_ notification:Notification) {
+        print("leave")
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let menuType = MenuType(rawValue: indexPath.row) else { return }
+        
+        
+        dismiss(animated: true) { [weak self] in
+            print("Dismissing: \(menuType)")
+            self?.didTapMenuType?(menuType)
+        }
+    }
 
 }
 extension MenuVC: UIViewControllerTransitioningDelegate {
@@ -55,7 +78,6 @@ extension MenuVC: UIViewControllerTransitioningDelegate {
             }
         }
     }
-    
     
     
 }
