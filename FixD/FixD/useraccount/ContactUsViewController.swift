@@ -16,13 +16,16 @@ class ContactUsViewController: UIViewController {
     }
     
     @IBAction func makeCall(_ sender: UIButton) {
-        let phoneNum = sender.titleLabel?.text
-        if let url = URL(string: "tel://\(phoneNum)"), UIApplication.shared.canOpenURL(url) {
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url)
-            } else {
-                UIApplication.shared.openURL(url)
+        if let phoneNum = sender.titleLabel?.text {
+            if let url = URL(string: "tel://\(String(describing: phoneNum))"), UIApplication.shared.canOpenURL(url) {
+                if #available(iOS 10, *) {
+                    UIApplication.shared.open(url)
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
             }
+        }else{
+            print("Failed")
         }
     }
     
