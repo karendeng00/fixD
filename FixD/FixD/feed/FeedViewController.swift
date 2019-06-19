@@ -12,21 +12,15 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     let transition = SlideInTransition()
     var topView: UIView?
-    
-    var finalHeight = 0.0
-    var finalWidth = 0.0
-    
     let myCellIndentifier = "IssueCell"
     var myPosts:[IssueClass]?
     //FIXME: delete 
     let Issues = IssueBuilder()
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        finalHeight = Double(self.view.bounds.height)
-        finalWidth = Double(self.view.bounds.width * 0.8)
-        
+        self.refreshControl = UIRefreshControl()
         //creates menu button
         let menuBtn = UIButton(type: .custom)
         menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 15, height: 15)
@@ -47,8 +41,15 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         leftPanSwipe.edges = .left
         leftPanSwipe.delegate = self
         self.view.addGestureRecognizer(leftPanSwipe)
-        myPosts = Issues.getIssues()
+        
+        // Add Refresh Control to Table View
+        refreshControl!.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
     
+    }
+    
+    @objc func refresh(_ sender: Any) {
+        print("refreshed")
+        self.refreshControl!.endRefreshing()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -73,10 +74,10 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+    /*override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //#warning Incomplete implementation, return the number of rows
         return myPosts!.count
-    }
+    }*/
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 145
@@ -107,59 +108,101 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     @IBAction func didTapMenu(_ sender: UIButton) {
         self.openMenu()
+        print("tapped menu")
     }
     
+
     
     @objc func swipePanAction(sender: UIScreenEdgePanGestureRecognizer) {
         
-        if (sender.state == UIGestureRecognizer.State.changed) {
-            let constraintMenuWidth  = self.view.bounds.width * 0.8
+        
+        if sender.state == UIGestureRecognizer.State.ended {
+            self.openMenu()
+        }
+    
+        // retrieve the current state of the gesture
+        /*if sender.state == UIGestureRecognizer.State.began {
             
+            // if the user has just started dragging, make sure view for dimming effect is hidden well
+        }
+        
+        else if (sender.state == UIGestureRecognizer.State.changed) {
             // retrieve the amount viewMenu has been dragged
             let translationX = sender.translation(in: sender.view).x
             
-            //if dragged less than half way through
-            if translationX * 2 < constraintMenuWidth {
+            if -constraintMenuWidth + translationX > 0 {
                 
-                //constraintMenuLeft.constant = -constraintMenuWidth.constant + translationX
-                print("true")
-                return
+                // viewMenu fully dragged out
+                transition.move = constraintMenuWidth
+                print("number 1")
+                //fully black - viewBlack.alpha = maxBlackViewAlpha
             }
-            
-        
+            else if translationX < 0 {
+                // viewMenu fully dragged in
+                transition.move = 0
+                print("number 2")
+                //no black - viewBlack.alpha = 0
+            } else {
+                
+                // viewMenu is being dragged somewhere between min and max amount
+                transition.move = translationX
+                print("number 3")
+                //let ratio = translationX / constraintMenuWidth.constant
+                //blackness ratio - let alphaValue = ratio * maxBlackViewAlpha
+                //viewBlack.alpha = alphaValue
+            }
         }
         else {
-            switch sender.edges {
-                case .left:
-                    self.openMenu()
-                default:
-                    break
+            // if the menu was dragged less than half of it's width, close it. Otherwise, open it.
+            if transition.move < constraintMenuWidth / 2 {
+                topView?.removeFromSuperview()
+                
             }
-        }
+            else {
+                self.openMenu()
+                print("opened")
+            }
+        }*/
+        
     }
     
     
     
     //when you click a button on the side menu, it brings you to another page
     func transitionToNew(_ menuType: MenuType) {
-        let title = String(describing: menuType).capitalized
-        self.title = title
+    
         
-        topView?.removeFromSuperview()
         
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "tab") as? UITabBarController else {
+            return
+        }
         switch menuType {
-        case .location:
-            let view = UIView()
-            view.backgroundColor = .yellow
-            view.frame = self.view.bounds
-            self.view.addSubview(view)
+        case .home:
+            topView?.removeFromSuperview()
+            nextViewController.selectedIndex = 0
+            self.present(nextViewController, animated:false, completion:nil)
+        case .map:
+           topView?.removeFromSuperview()
+            nextViewController.selectedIndex = 1
+            self.present(nextViewController, animated:false, completion:nil)
             
-        case .category:
-            let view = UIView()
-            view.backgroundColor = .blue
-            view.frame = self.view.bounds
-            self.view.addSubview(view)
-            
+        case .account:
+            topView?.removeFromSuperview()
+            nextViewController.selectedIndex = 2
+            self.present(nextViewController, animated:false, completion:nil)
+          
+        case .settings:
+            topView?.removeFromSuperview()
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            guard let settingsViewController = storyBoard.instantiateViewController(withIdentifier: "settings") as? UITableViewController else {
+                return
+            }
+            self.present(settingsViewController, animated:false, completion:nil)
+    
+        case .filter:
+           NotificationCenter.default.post(name: NSNotification.Name("clickedFilter"), object: nil)
+        
         default:
             break
         }
@@ -170,32 +213,31 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         guard let menuVC = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuVC else {
             return
         }
+        
         //transition to new page
         menuVC.didTapMenuType = {
-            MenuType in
-            self.transitionToNew(MenuType)
+            menuType in
+            self.transitionToNew(menuType)
             
         }
+    
         menuVC.modalPresentationStyle = .overCurrentContext
         menuVC.transitioningDelegate = self
         present(menuVC, animated: true)
+        
     }
-    
+
 
 
     //put side menu out
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.isPresenting = true
-        transition.finalHeight = finalHeight
-        transition.finalWidth = finalWidth
         return transition
     }
     
     //put side menu back in
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.isPresenting = false
-        transition.finalHeight = finalHeight
-        transition.finalWidth = finalWidth
         return transition
     }
     
