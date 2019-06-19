@@ -40,9 +40,6 @@ class AccountIssueTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AccountIssueCell", for: indexPath) as! AccountIssueCell
         
         cell.accountCellMyImage.image = UIImage(named:"blue devil.jpg")
-        cell.accountCellStar.image = UIImage(named: "star.png")
-        cell.accountCellUpVote.image = UIImage(named: "upvote.png")
-        cell.accountCellComment.image = UIImage(named: "comments.png")
         cell.accountCellLocationPin.image = UIImage(named: "locicon.png")
         cell.accountCellIssueImage.image = UIImage(named: "printer.jpg")
         

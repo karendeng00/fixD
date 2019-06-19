@@ -23,6 +23,19 @@ class FeedIssueCell: UITableViewCell {
     @IBOutlet weak var issueUpvotes: UILabel!
     @IBOutlet weak var issueFavorites: UILabel!
     
+    @IBAction func upVote(_ sender: Any) {
+        let currCount = issueUpvotes.text!
+        let newCount = (Int(currCount) ?? 0) + 1
+        issueUpvotes.text = String(newCount)
+    }
+    
+    @IBAction func favorite(_ sender: Any) {
+        let currCount = issueFavorites.text!
+        let newCount = (Int(currCount) ?? 0) + 1
+        issueFavorites.text = String(newCount)
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

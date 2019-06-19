@@ -110,14 +110,14 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fJ-PP-RHT">
                                         <rect key="frame" x="211" y="3" width="32" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="upvote">
+                                        <state key="normal" backgroundImage="fArrow">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3v5-1y-l6L">
                                         <rect key="frame" x="112" y="3" width="34" height="39"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="star">
+                                        <state key="normal" backgroundImage="ePin">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
@@ -128,7 +128,6 @@
                                         </state>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Leg-jd-pbO" secondAttribute="trailing" constant="288" id="0Nd-hG-75J"/>
                                     <constraint firstAttribute="bottom" secondItem="Leg-jd-pbO" secondAttribute="bottom" constant="-1" id="3g4-MK-exd"/>
@@ -184,14 +183,14 @@
                                     <constraint firstAttribute="height" constant="2" id="shp-6j-Ker"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fullPin" translatesAutoresizingMaskIntoConstraints="NO" id="ohm-Kc-FvQ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fPin" translatesAutoresizingMaskIntoConstraints="NO" id="ohm-Kc-FvQ">
                                 <rect key="frame" x="30" y="366.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Ssm-BV-Mud"/>
                                     <constraint firstAttribute="width" constant="40" id="bca-gu-Xc8"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fullArrow" translatesAutoresizingMaskIntoConstraints="NO" id="NrQ-Cq-sYG">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fArrow" translatesAutoresizingMaskIntoConstraints="NO" id="NrQ-Cq-sYG">
                                 <rect key="frame" x="192" y="366" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="1F6-qc-fxn"/>
@@ -1083,7 +1082,11 @@
                                                 <constraint firstAttribute="height" constant="30" id="hOr-04-rdo"/>
                                                 <constraint firstAttribute="width" constant="30" id="weW-l4-PuR"/>
                                             </constraints>
-                                            <state key="normal" backgroundImage="emptyArrow"/>
+                                            <state key="normal" backgroundImage="eArrow"/>
+                                            <connections>
+                                                <action selector="touchUpVote:" destination="JKy-it-l91" eventType="touchUpInside" id="Zvy-XN-bde"/>
+                                                <action selector="upVote:" destination="Krf-dQ-DQx" eventType="touchUpInside" id="M6G-zo-eNY"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7w0-y8-bP3">
                                             <rect key="frame" x="354" y="109.5" width="30" height="30"/>
@@ -1099,7 +1102,10 @@
                                                 <constraint firstAttribute="height" constant="30" id="U61-zP-xYy"/>
                                                 <constraint firstAttribute="width" constant="30" id="WCO-Mn-wOp"/>
                                             </constraints>
-                                            <state key="normal" backgroundImage="emptyPin"/>
+                                            <state key="normal" backgroundImage="ePin"/>
+                                            <connections>
+                                                <action selector="favorite:" destination="Krf-dQ-DQx" eventType="touchUpInside" id="iMZ-P1-Qab"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Oa-3L-5Oq">
                                             <rect key="frame" x="228" y="113.5" width="69" height="21"/>
@@ -1557,13 +1563,13 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tBW-Ru-7xB">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="eArrow" translatesAutoresizingMaskIntoConstraints="NO" id="tBW-Ru-7xB">
                                             <rect key="frame" x="31" y="106.5" width="28" height="32.5"/>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ISh-l1-4Qx">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comments" translatesAutoresizingMaskIntoConstraints="NO" id="ISh-l1-4Qx">
                                             <rect key="frame" x="352" y="112" width="27" height="27"/>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NKt-tr-OAH">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ePin" translatesAutoresizingMaskIntoConstraints="NO" id="NKt-tr-OAH">
                                             <rect key="frame" x="190" y="112" width="26" height="27"/>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t2X-J5-DuJ">
@@ -1597,8 +1603,8 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="William  R Perkins Library, Campus Drive, Durham, NC" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygR-9H-FBD">
-                                            <rect key="frame" x="127" y="77" width="187" height="34"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="William  R Perkins Library, Campus Drive, Durham, NC" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygR-9H-FBD">
+                                            <rect key="frame" x="127" y="85" width="187" height="19.5"/>
                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="8"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1660,6 +1666,10 @@
                             <outlet property="delegate" destination="8um-IF-ytT" id="Mqx-jE-93c"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="accountFeed" destination="eMb-gj-9Fd" id="VrX-yb-ZMO"/>
+                        <segue destination="j16-qw-gvl" kind="show" identifier="ShowIssuePageFromAccount" id="aQc-FV-48w"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qpm-dV-FWs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1674,7 +1684,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PsT-eB-Tvo">
-                                <rect key="frame" x="20" y="104" width="125" height="125"/>
+                                <rect key="frame" x="20" y="104" width="125" height="76"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="125" id="eHg-Tr-2dK"/>
                                     <constraint firstAttribute="width" constant="125" id="mjR-jo-94C"/>
@@ -2740,19 +2750,18 @@
         <image name="arrowright" width="42" height="42"/>
         <image name="cameraIcon" width="512" height="512"/>
         <image name="comments" width="512" height="512"/>
-        <image name="emptyArrow" width="122" height="122"/>
-        <image name="emptyPin" width="126" height="134"/>
+        <image name="eArrow" width="112" height="137"/>
+        <image name="ePin" width="112" height="112"/>
+        <image name="fArrow" width="129" height="139"/>
+        <image name="fPin" width="114" height="112"/>
         <image name="filter" width="685" height="800"/>
-        <image name="fullArrow" width="92" height="112"/>
-        <image name="fullPin" width="106" height="118"/>
         <image name="home" width="170" height="170"/>
         <image name="locicon" width="512" height="512"/>
         <image name="me" width="170" height="170"/>
         <image name="settings" width="170" height="170"/>
-        <image name="star" width="512" height="512"/>
-        <image name="upvote" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="iWa-e7-teW"/>
+        <segue reference="tAk-x9-Ry1"/>
     </inferredMetricsTieBreakers>
 </document>

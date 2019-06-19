@@ -17,6 +17,8 @@ class IssueClass {
     private let myLocation:String
     private let date:String
     private let issueImage:String
+    private var upvoted = false
+    private var pined = false
     
     private let myUser:UserProfile
     
@@ -40,12 +42,22 @@ class IssueClass {
         self.myUser = user
     }
     
-    func addFavorite(){
-        myFavorites = myFavorites + 1
+    func addUpVote(){
+        if upvoted{
+            myUpVotes -= 1
+        }else {
+            myUpVotes += 1
+        }
+        upvoted = !upvoted
     }
     
-    func addUpVote(){
-        myUpVotes = myUpVotes + 1
+    func addFavorites(){
+        if pined {
+            myFavorites -= 1
+        }else {
+            myFavorites += 1
+        }
+        pined = !pined
     }
     
     func addComment(comment:String){
