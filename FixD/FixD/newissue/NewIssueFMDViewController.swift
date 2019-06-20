@@ -19,7 +19,7 @@ class NewIssueFMDViewController: UIViewController {
     @IBOutlet weak var floorDD2: DropDown!
     @IBOutlet weak var roomDD2: DropDown!
     @IBOutlet weak var requestSelector: DropDown!
-    @IBOutlet weak var serviceTypeSelector: DropDown!
+    @IBOutlet weak var serviceTypeSelector: DropDown?
     @IBOutlet weak var fundCode: UITextField!
     @IBOutlet weak var emailSelector: DropDown!
     
@@ -71,17 +71,34 @@ class NewIssueFMDViewController: UIViewController {
         requestSelector.optionArray = requestList
         emailSelector.optionArray = ["Yes", "No"]
         
-//        if requestSelector?.selectedIndex == 0 {
-//            serviceTypeSelector.optionArray = keyLockList
-//        }
-        
+        requestSelector.didSelect{(selectedText , index ,id) in
+            if index == 0 {
+                self.serviceTypeSelector?.optionArray = self.keyLockList
+            }
+            if index == 1 {
+                self.serviceTypeSelector?.optionArray = self.interiorBuildingList
+            }
+            if index == 2 {
+                self.serviceTypeSelector?.optionArray = self.exteriorBuildingList
+            }
+            if index == 3 {
+                self.serviceTypeSelector?.optionArray = self.studentHousingList
+            }
+            if index == 4 {
+                self.serviceTypeSelector?.optionArray = self.eventSupportList
+            }
+            if index == 5 {
+                self.serviceTypeSelector?.optionArray = self.roadsList
+            }
+            if index == 6 {
+                self.serviceTypeSelector?.optionArray = self.sanitationList
+            }
+        }
         
 //        buildingTV.isHidden = true
 //        floorTV.isHidden = true
 //        roomTV.isHidden = true
     }
-    
-    
     
 //    func buildingAnimate(toggle: Bool) {
 //        if toggle {
