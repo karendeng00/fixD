@@ -12,6 +12,7 @@ class IssueBuilder {
 
     private var myPosts: Array<IssueClass> = Array()
     
+    
     init() {
         loadData()
     }

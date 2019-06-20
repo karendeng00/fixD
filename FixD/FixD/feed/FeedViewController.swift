@@ -52,7 +52,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ShowIssuePage", sender: (Any).self)
+        performSegue(withIdentifier: "ShowIssuePage", sender: self)
     }
     
     @IBOutlet var feedTable: UITableView!
@@ -62,14 +62,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             let viewController = segue.destination as? IssuePageController
             if let row = feedTable.indexPathForSelectedRow?.row{
                 viewController?.issueID = row
+                viewController?.issue = myPosts[row]
             }
         }
     }
     
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
@@ -166,42 +164,29 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         
     }
     
-    
-    
     //when you click a button on the side menu, it brings you to another page
     func transitionToNew(_ menuType: MenuType) {
-    
-        
-        
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "tab") as? UITabBarController else {
             return
         }
         switch menuType {
-        case .home:
-            topView?.removeFromSuperview()
-            nextViewController.selectedIndex = 0
-            self.present(nextViewController, animated:false, completion:nil)
         case .map:
-           topView?.removeFromSuperview()
+            
             nextViewController.selectedIndex = 1
             self.present(nextViewController, animated:false, completion:nil)
             
         case .account:
-            topView?.removeFromSuperview()
+            
             nextViewController.selectedIndex = 2
             self.present(nextViewController, animated:false, completion:nil)
           
         case .settings:
-            topView?.removeFromSuperview()
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             guard let settingsViewController = storyBoard.instantiateViewController(withIdentifier: "settings") as? UITableViewController else {
                 return
             }
             self.present(settingsViewController, animated:false, completion:nil)
-    
-        case .filter:
-           NotificationCenter.default.post(name: NSNotification.Name("clickedFilter"), object: nil)
         
         default:
             break
@@ -226,8 +211,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         present(menuVC, animated: true)
         
     }
-
-
 
     //put side menu out
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
