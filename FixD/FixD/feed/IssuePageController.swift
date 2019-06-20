@@ -37,16 +37,16 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var comments:[String] = []
     var issueID:Int = 0
+    var issue:IssueClass!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let issue = IssueBuilder().myPosts[issueID]
+        commentView.delegate = self
+        commentView.dataSource = self
         issue.addComment(comment: "This printer has been broken for years now.")
         issue.addComment(comment: "This printer prints as fast as my grandmother runs...Slowly!")
         issue.addComment(comment: "What a waste of space this printer is.")
         comments = issue.getListOfComments()
-        commentView.delegate = self
-        commentView.dataSource = self
         loadIssue(issue: issue)
     }
     
@@ -72,7 +72,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath) as! textCommentCell
         cell.commentLabel.text = comments[indexPath.row]
-        cell.userLabel.text = "-Friend"
+        cell.userLabel.text = "-Anderson C."
         return cell
     }
 }

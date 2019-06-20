@@ -14,12 +14,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     var topView: UIView?
     let myCellIndentifier = "IssueCell"
     var myPosts:[IssueClass]?
-    //FIXME: delete 
     let Issues = IssueBuilder()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        myPosts = Issues.myPosts
         self.refreshControl = UIRefreshControl()
         //creates menu button
         let menuBtn = UIButton(type: .custom)
@@ -53,7 +53,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ShowIssuePage", sender: (Any).self)
+        performSegue(withIdentifier: "ShowIssuePage", sender: self)
     }
     
     @IBOutlet var feedTable: UITableView!
@@ -63,21 +63,18 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             let viewController = segue.destination as? IssuePageController
             if let row = feedTable.indexPathForSelectedRow?.row{
                 viewController?.issueID = row
+                viewController?.issue = myPosts![row]
             }
         }
     }
     
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    /*override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //#warning Incomplete implementation, return the number of rows
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myPosts!.count
-    }*/
+    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 145
@@ -167,12 +164,8 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         
     }
     
-    
-    
     //when you click a button on the side menu, it brings you to another page
     func transitionToNew(_ menuType: MenuType) {
-    
-        
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "tab") as? UITabBarController else {
@@ -227,8 +220,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         present(menuVC, animated: true)
         
     }
-
-
 
     //put side menu out
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
