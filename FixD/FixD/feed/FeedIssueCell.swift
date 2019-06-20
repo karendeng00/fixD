@@ -27,8 +27,9 @@ class FeedIssueCell: UITableViewCell {
     @IBOutlet weak var upVoteButton: UIButton!
     @IBOutlet weak var favoritesButton: UIButton!
     
+    
     private var issueID = 0
-    private var myIssues = IssueBuilder().myPosts
+    private var myIssues = IssueBuilder().getIssues()
     
     override func awakeFromNib() {
         super.awakeFromNib()

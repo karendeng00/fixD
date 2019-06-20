@@ -40,7 +40,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let issue = IssueBuilder().myPosts[issueID]
+        let issue = IssueBuilder().getIssues()[issueID]
         issue.addComment(comment: "This printer has been broken for years now.")
         issue.addComment(comment: "This printer prints as fast as my grandmother runs...Slowly!")
         issue.addComment(comment: "What a waste of space this printer is.")

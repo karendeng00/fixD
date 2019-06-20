@@ -35,7 +35,6 @@
 		B4ED4D4122B0334400E50272 /* IssueBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D4022B0334400E50272 /* IssueBuilder.swift */; };
 		F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */; };
 		F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
-		F5B20B2522B41E5900BE70F7 /* testApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B20B2422B41E5900BE70F7 /* testApplication.swift */; };
 		F5EFD1A522BAAF1D00137B25 /* MenuTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EFD1A422BAAF1D00137B25 /* MenuTable.swift */; };
 		FF18E08F22B2A83100EC60A6 /* NewIssueFMDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF18E08E22B2A83100EC60A6 /* NewIssueFMDViewController.swift */; };
 		FF1C82D522B4241A008DB60B /* NewIssueFMDPage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1C82D422B4241A008DB60B /* NewIssueFMDPage2ViewController.swift */; };
@@ -78,7 +77,6 @@
 		B4ED4D4022B0334400E50272 /* IssueBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueBuilder.swift; sourceTree = "<group>"; };
 		F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
-		F5B20B2422B41E5900BE70F7 /* testApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testApplication.swift; sourceTree = "<group>"; };
 		F5EFD1A422BAAF1D00137B25 /* MenuTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTable.swift; sourceTree = "<group>"; };
 		FF18E08E22B2A83100EC60A6 /* NewIssueFMDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDViewController.swift; sourceTree = "<group>"; };
 		FF1C82D422B4241A008DB60B /* NewIssueFMDPage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDPage2ViewController.swift; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 		B4085BFB22A850A400A24525 = {
 			isa = PBXGroup;
 			children = (
-				F5B20B2422B41E5900BE70F7 /* testApplication.swift */,
 				B4085C0622A850A400A24525 /* FixD */,
 				B4085C0522A850A400A24525 /* Products */,
 			);
@@ -280,7 +277,6 @@
 				B4EC7FCF22B16906001711BC /* SettingsTableViewCell.swift in Sources */,
 				B4EC7FCE22B16906001711BC /* AccountViewController.swift in Sources */,
 				B4086CE322A956EE00B48EFF /* FeedViewController.swift in Sources */,
-				F5B20B2522B41E5900BE70F7 /* testApplication.swift in Sources */,
 				22E8AF6E22AEA70100194036 /* IssuePageController.swift in Sources */,
 				B4EC7FD122B16964001711BC /* ViewController.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,

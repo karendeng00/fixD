@@ -13,12 +13,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     let transition = SlideInTransition()
     var topView: UIView?
     let myCellIndentifier = "IssueCell"
-    var myPosts:[IssueClass]?
-    //FIXME: delete 
     let Issues = IssueBuilder()
+    var myPosts:[IssueClass] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.myPosts = Issues.getIssues()
         
         self.refreshControl = UIRefreshControl()
         //creates menu button
@@ -74,10 +74,10 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         return 1
     }
 
-    /*override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //#warning Incomplete implementation, return the number of rows
-        return myPosts!.count
-    }*/
+        return myPosts.count
+    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 145
@@ -87,7 +87,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
 
          //Configure the cell...
-        let obj = myPosts![indexPath.row]
+        let obj = myPosts[indexPath.row]
         
         cell.setIssueID(ID: indexPath.row)
         cell.issueName.text = obj.getTitle()
