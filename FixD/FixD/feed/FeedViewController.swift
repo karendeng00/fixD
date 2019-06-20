@@ -180,38 +180,27 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     //when you click a button on the side menu, it brings you to another page
     func transitionToNew(_ menuType: MenuType) {
-    
-        
-        
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "tab") as? UITabBarController else {
             return
         }
         switch menuType {
-        case .home:
-            topView?.removeFromSuperview()
-            nextViewController.selectedIndex = 0
-            self.present(nextViewController, animated:false, completion:nil)
         case .map:
-           topView?.removeFromSuperview()
+            
             nextViewController.selectedIndex = 1
             self.present(nextViewController, animated:false, completion:nil)
             
         case .account:
-            topView?.removeFromSuperview()
+            
             nextViewController.selectedIndex = 2
             self.present(nextViewController, animated:false, completion:nil)
           
         case .settings:
-            topView?.removeFromSuperview()
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             guard let settingsViewController = storyBoard.instantiateViewController(withIdentifier: "settings") as? UITableViewController else {
                 return
             }
             self.present(settingsViewController, animated:false, completion:nil)
-    
-        case .filter:
-           NotificationCenter.default.post(name: NSNotification.Name("clickedFilter"), object: nil)
         
         default:
             break
