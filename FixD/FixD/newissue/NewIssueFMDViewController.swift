@@ -37,7 +37,14 @@ class NewIssueFMDViewController: UIViewController {
     let buildingList = ["Allen", "Brodhead Center", "Bryan Center", "Craven", "Few", "Perkins"]
     let floorList = ["1", "2", "3"]
     let roomList = ["a", "b", "c"]
-    let requestList = ["Key & Lock", "University Interior Building", "Grounds/Exterior Building Request", ]
+    let requestList = ["Key & Lock", "University Interior Building", "Grounds/Exterior Building Request", "Student Housing", "Event Support", "Roads", "Sanitation/Recycling"]
+    let keyLockList = ["Keys/Locks/Doors"]
+    let interiorBuildingList = [String]()
+    let exteriorBuildingList = ["Grounds/Landscaping", "Projects", "Sidewalks", "Site Lighting", "Site Utilities"]
+    let studentHousingList = [String]()
+    let eventSupportList = ["Event Support"]
+    let roadsList = ["Roads"]
+    let sanitationList = ["Sanitation/Recycling"]
     
 //    var searchBuilding = [String]()
 //    var searchingBuilding = false
@@ -57,14 +64,24 @@ class NewIssueFMDViewController: UIViewController {
         buildingDD1.optionArray = buildingList
         floorDD1.optionArray = floorList
         roomDD1.optionArray = roomList
+        serviceLocationSelector.optionArray = ["Yes", "No"]
         buildingDD2.optionArray = buildingList
         floorDD2.optionArray = floorList
         roomDD2.optionArray = roomList
+        requestSelector.optionArray = requestList
+        emailSelector.optionArray = ["Yes", "No"]
+        
+//        if requestSelector?.selectedIndex == 0 {
+//            serviceTypeSelector.optionArray = keyLockList
+//        }
+        
         
 //        buildingTV.isHidden = true
 //        floorTV.isHidden = true
 //        roomTV.isHidden = true
     }
+    
+    
     
 //    func buildingAnimate(toggle: Bool) {
 //        if toggle {
