@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import iOSDropDown
 
 class NewIssueFMDViewController: UIViewController {
     
