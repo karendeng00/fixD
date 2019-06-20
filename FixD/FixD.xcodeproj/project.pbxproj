@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -41,14 +41,20 @@
 		FF1C82D922B42661008DB60B /* NewIssueFMDPage3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1C82D822B42661008DB60B /* NewIssueFMDPage3ViewController.swift */; };
 		FF1C82DB22B42698008DB60B /* NewIssueFMDPage4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1C82DA22B42698008DB60B /* NewIssueFMDPage4ViewController.swift */; };
 		FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */; };
+		FF62745B22BBD66500CC87A8 /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF62745A22BBD66500CC87A8 /* iOSDropDown.framework */; };
+		FF62745C22BBD78400CC87A8 /* Pods_FixD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C56988BB01BB37C1532EF52 /* Pods_FixD.framework */; };
 		FFB2C5A222A968A300BC11ED /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FFB2C5A622A9785500BC11ED /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FFB2C5A822A97BB100BC11ED /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FFD6795222BACD8100FE4C2F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = FFD6795122BACD8100FE4C2F /* Podfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2299A35322B18E07000BD0F6 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		22E8AF6D22AEA70100194036 /* IssuePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuePageController.swift; sourceTree = "<group>"; };
+		329A204D82CB0FDE7F223F5E /* Pods-FixD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FixD.debug.xcconfig"; path = "Target Support Files/Pods-FixD/Pods-FixD.debug.xcconfig"; sourceTree = "<group>"; };
+		4C56988BB01BB37C1532EF52 /* Pods_FixD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FixD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BA2BEB23E4E595DFD609066 /* Pods-FixD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FixD.release.xcconfig"; path = "Target Support Files/Pods-FixD/Pods-FixD.release.xcconfig"; sourceTree = "<group>"; };
 		B4085C0422A850A400A24525 /* FixD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FixD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4085C0722A850A400A24525 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4085C0C22A850A500A24525 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -83,6 +89,9 @@
 		FF1C82D822B42661008DB60B /* NewIssueFMDPage3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDPage3ViewController.swift; sourceTree = "<group>"; };
 		FF1C82DA22B42698008DB60B /* NewIssueFMDPage4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDPage4ViewController.swift; sourceTree = "<group>"; };
 		FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueGeneralInfoViewController.swift; sourceTree = "<group>"; };
+		FF62745A22BBD66500CC87A8 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF9D1E6622BAD25E00D8A234 /* iOSDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = iOSDropDown.swift; path = Pods/iOSDropDown/iOSDropDown/Classes/iOSDropDown.swift; sourceTree = "<group>"; };
+		FFD6795122BACD8100FE4C2F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,18 +99,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF62745B22BBD66500CC87A8 /* iOSDropDown.framework in Frameworks */,
+				FF62745C22BBD78400CC87A8 /* Pods_FixD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1AD5A36014C1C7EAD63F8D88 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF62745A22BBD66500CC87A8 /* iOSDropDown.framework */,
+				FF9D1E6622BAD25E00D8A234 /* iOSDropDown.swift */,
+				4C56988BB01BB37C1532EF52 /* Pods_FixD.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2C16855352DD68D5157D62F8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				329A204D82CB0FDE7F223F5E /* Pods-FixD.debug.xcconfig */,
+				6BA2BEB23E4E595DFD609066 /* Pods-FixD.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B4085BFB22A850A400A24525 = {
 			isa = PBXGroup;
 			children = (
+				FFD6795122BACD8100FE4C2F /* Podfile */,
 				F5B20B2422B41E5900BE70F7 /* testApplication.swift */,
 				B4085C0622A850A400A24525 /* FixD */,
 				B4085C0522A850A400A24525 /* Products */,
+				2C16855352DD68D5157D62F8 /* Pods */,
+				1AD5A36014C1C7EAD63F8D88 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -209,9 +242,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4085C1622A850A500A24525 /* Build configuration list for PBXNativeTarget "FixD" */;
 			buildPhases = (
+				0D8E4F9EE1E58A681CE5EF00 /* [CP] Check Pods Manifest.lock */,
 				B4085C0022A850A400A24525 /* Sources */,
 				B4085C0122A850A400A24525 /* Frameworks */,
 				B4085C0222A850A400A24525 /* Resources */,
+				DC0430A7FCDA23B091A7D71C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -262,11 +297,54 @@
 			files = (
 				B4085C1222A850A500A24525 /* LaunchScreen.storyboard in Resources */,
 				B4085C0F22A850A500A24525 /* Assets.xcassets in Resources */,
+				FFD6795222BACD8100FE4C2F /* Podfile in Resources */,
 				B4085C0D22A850A500A24525 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D8E4F9EE1E58A681CE5EF00 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FixD-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC0430A7FCDA23B091A7D71C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FixD/Pods-FixD-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FixD/Pods-FixD-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FixD/Pods-FixD-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B4085C0022A850A400A24525 /* Sources */ = {
@@ -452,6 +530,7 @@
 		};
 		B4085C1722A850A500A24525 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 329A204D82CB0FDE7F223F5E /* Pods-FixD.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -469,6 +548,7 @@
 		};
 		B4085C1822A850A500A24525 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BA2BEB23E4E595DFD609066 /* Pods-FixD.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
