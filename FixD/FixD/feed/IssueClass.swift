@@ -92,6 +92,10 @@ class IssueClass {
         return myListOfComments
     }
     
+    func getID() -> Int {
+        return issueID
+    }
+    
     func getTitle() -> String {
         return myTitle
     }

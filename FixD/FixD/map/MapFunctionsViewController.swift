@@ -113,7 +113,7 @@ class MapFunctionsViewController: UIViewController {
     
     //Adding Location of issues to Map
     private func setUpIssuesOnMap() {
-        let issues = [IssueClass]() //fixme phil (network stuff)
+        let issues = getIssueData()
         for issue in issues {
             let loc = issue.getLocation()
             let geoCoder = CLGeocoder()
@@ -160,6 +160,15 @@ extension MapFunctionsViewController: UIViewControllerTransitioningDelegate {
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.isPresenting = false
         return transition
+    }
+    
+    private func getIssueData() -> [IssueClass] {
+        var list = [IssueClass]()
+        IssueBuilder().getData() { issueData in
+            list = issueData
+        }
+        return list
+        
     }
     
     

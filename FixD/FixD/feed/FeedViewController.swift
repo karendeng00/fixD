@@ -50,7 +50,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     }
     
-    private func getIssueData() {
+    func getIssueData() {
         IssueBuilder().getData() { issueData in
             self.myPosts = issueData
             self.tableView.reloadData()
@@ -97,7 +97,8 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
          //Configure the cell...
         let obj = myPosts[indexPath.row]
         
-        cell.setIssueID(ID: indexPath.row)
+        
+        cell.setIssueID(ID: obj.getID())
         cell.issueName.text = obj.getTitle()
         cell.issueDescription.text = obj.getDescription()
         cell.issueLocation.text = obj.getLocation()
