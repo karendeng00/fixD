@@ -113,7 +113,7 @@ class MapFunctionsViewController: UIViewController {
     
     //Adding Location of issues to Map
     private func setUpIssuesOnMap() {
-        let issues = IssueBuilder().getIssues()
+        let issues = [IssueClass]() //fixme phil (network stuff)
         for issue in issues {
             let loc = issue.getLocation()
             let geoCoder = CLGeocoder()

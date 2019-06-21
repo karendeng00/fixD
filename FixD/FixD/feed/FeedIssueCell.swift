@@ -29,7 +29,7 @@ class FeedIssueCell: UITableViewCell {
     
     
     private var issueID = 0
-    private var myIssues = IssueBuilder().getIssues()
+    private var myIssues: [IssueClass] = Array() //fixme phil
     
     override func awakeFromNib() {
         super.awakeFromNib()
