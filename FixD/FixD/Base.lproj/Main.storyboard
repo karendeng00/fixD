@@ -941,16 +941,19 @@
                                                         <constraint firstAttribute="height" constant="2" id="Ub3-3I-48s"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWe-dd-hM7">
-                                                    <rect key="frame" x="236" y="26" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="xIw-Nw-0bl">
+                                                    <rect key="frame" x="87" y="16" width="240" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="240" id="POw-GA-866"/>
+                                                        <constraint firstAttribute="height" constant="60" id="uWK-rN-m94"/>
+                                                    </constraints>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </searchBar>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="0gM-AM-xPv" firstAttribute="leading" secondItem="4Ts-Ss-hsC" secondAttribute="leading" constant="15" id="AbD-T4-ICc"/>
+                                                <constraint firstItem="xIw-Nw-0bl" firstAttribute="centerY" secondItem="4Ts-Ss-hsC" secondAttribute="centerY" id="ZhO-4G-5bw"/>
+                                                <constraint firstItem="xIw-Nw-0bl" firstAttribute="centerX" secondItem="4Ts-Ss-hsC" secondAttribute="centerX" id="aAB-Jh-1AS"/>
                                                 <constraint firstAttribute="trailing" secondItem="0gM-AM-xPv" secondAttribute="trailing" id="aTg-gS-smK"/>
                                                 <constraint firstAttribute="bottom" secondItem="0gM-AM-xPv" secondAttribute="bottom" id="acI-78-sT9"/>
                                             </constraints>
@@ -2116,8 +2119,9 @@
         <!--Map Nav Controller-->
         <scene sceneID="hiK-bB-2LD">
             <objects>
-                <navigationController storyboardIdentifier="sbMap" title="Map Nav Controller" automaticallyAdjustsScrollViewInsets="NO" id="Oc5-rI-9Ks" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="search" id="wqV-Sl-GCb"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VTu-us-MX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="sbMap" automaticallyAdjustsScrollViewInsets="NO" id="Oc5-rI-9Ks" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" id="wqV-Sl-GCb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aHT-PF-hH3">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -2128,7 +2132,6 @@
                         <segue destination="H5R-x9-jHJ" kind="relationship" relationship="rootViewController" id="TcS-ng-Mzs"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VTu-us-MX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="487" y="-311"/>
         </scene>

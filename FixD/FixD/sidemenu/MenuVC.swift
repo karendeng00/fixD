@@ -23,7 +23,12 @@ enum MenuType: Int {
     case category2
 }
 
+import UIKit
+import MapKit
+
 class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
+    
+    let locationManager = CLLocationManager()
     
     //filter
     @IBOutlet weak var filterImage: UIImageView!
@@ -53,6 +58,7 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
         tableView.estimatedRowHeight = 60.0;
         tableView.rowHeight = UITableView.automaticDimension
@@ -66,6 +72,8 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(timeToGo(_:)), name: NSNotification.Name("tapOutBBY"), object: nil)
     }
+    
+    
 
     
     @IBAction func facilities(_ sender: UIButton) {
@@ -102,42 +110,60 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
         
         if(indexPath.row == 4) {
             filterImage.image = UIImage(named: "arrow\(check)")
+            //if check is true and you select it
             if(check) {
-               categoryOptions.isHidden = true
+                categoryArrow.image = UIImage(named: "arrowtrue")
+                categoryOptions.isHidden = true
+                
+                locationArrow.image = UIImage(named: "arrowtrue")
                 location.isHidden = true
+                
+                checkLoc = false
+                checkCategory = false
                 
             }
             check = !check
             filterOptions.forEach { (option) in
                 option.isHidden = !option.isHidden
             }
-            
+            self.tableView.reloadData()
         }
         
         if(indexPath.row == 7) {
             locationArrow.image = UIImage(named: "arrow\(checkLoc)")
-            location.isHidden = !location.isHidden
+            location.isHidden = checkLoc
             checkLoc = !checkLoc
             
+            self.tableView.reloadData()
         }
         
         if(indexPath.row == 9) {
-            
+            print("selected #9")
             categoryArrow.image = UIImage(named: "arrow\(checkCategory)")
-            categoryOptions.isHidden = !categoryOptions.isHidden
+            categoryOptions.isHidden = checkCategory
+            print(categoryOptions.isHidden)
             checkCategory = !checkCategory
-
+        
+            self.tableView.reloadData()
         }
     }
  
-    
+    //if check == false, collapsed
+    //if check == true, expand
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if check && indexPath.row > 4 {
-            return 60
+        if !check && indexPath.row > 4 {
+            return 0
         }
         
-        if(indexPath.row == 10) {
+        if check && !checkLoc && indexPath.row == 8{
+            return 0
+        }
+        if check && !checkCategory && indexPath.row == 10 {
+            return 0
+        }
+        
+        if(indexPath.row == 10 || indexPath.row == 8) {
             return 150
         }
         return 60
@@ -155,25 +181,8 @@ extension MenuVC: UIViewControllerTransitioningDelegate {
             }
         }
     }
+
     
     
 }
-
-protocol ProfileViewModelItem {
-
-    var isCollapsible: Bool { get }
-    var isCollapsed: Bool { get set }
-}
-
-extension ProfileViewModelItem {
-    var rowCount: Int {
-        return 1
-    }
-    
-    var isCollapsible: Bool {
-        return true
-    }
-}
-
-
 

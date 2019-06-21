@@ -17,7 +17,7 @@ class SlideInTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
     //takes 3 seconds to appear on the screen
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-            return 1.0
+            return 0.5
     }
     
     
