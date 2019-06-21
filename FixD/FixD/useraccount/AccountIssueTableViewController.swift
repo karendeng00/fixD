@@ -58,7 +58,6 @@ class AccountIssueTableViewController: UITableViewController {
             let viewController = segue.destination as? IssuePageController
             if let row = accountFeed.indexPathForSelectedRow?.row{
                 viewController?.issueID = row
-                viewController?.issue = IssueBuilder().myPosts[0]
             }
         }
     }
