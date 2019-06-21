@@ -103,7 +103,6 @@
 		B4085BFB22A850A400A24525 = {
 			isa = PBXGroup;
 			children = (
-				F5B20B2422B41E5900BE70F7 /* testApplication.swift */,
 				B4085C0622A850A400A24525 /* FixD */,
 				B4085C0522A850A400A24525 /* Products */,
 			);
@@ -284,7 +283,6 @@
 				B4EC7FCF22B16906001711BC /* SettingsTableViewCell.swift in Sources */,
 				B4EC7FCE22B16906001711BC /* AccountViewController.swift in Sources */,
 				B4086CE322A956EE00B48EFF /* FeedViewController.swift in Sources */,
-				F5B20B2522B41E5900BE70F7 /* testApplication.swift in Sources */,
 				22E8AF6E22AEA70100194036 /* IssuePageController.swift in Sources */,
 				B4EC7FD122B16964001711BC /* ViewController.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,

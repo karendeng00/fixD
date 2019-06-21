@@ -13,14 +13,17 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     let transition = SlideInTransition()
     var topView: UIView?
     let myCellIndentifier = "IssueCell"
-    var myPosts:[IssueClass]?
     let Issues = IssueBuilder()
+    var myPosts:[IssueClass] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Get Issue Data for Feed
+        getIssueData()
         
-        myPosts = Issues.myPosts
+        //self.myPosts = self.Issues.getIssues()
         self.refreshControl = UIRefreshControl()
+        
         //creates menu button
         let menuBtn = UIButton(type: .custom)
         menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 15, height: 15)
@@ -47,8 +50,15 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     }
     
+    func getIssueData() {
+        IssueBuilder().getData() { issueData in
+            self.myPosts = issueData
+            self.tableView.reloadData()
+        }
+    }
+    
     @objc func refresh(_ sender: Any) {
-        print("refreshed")
+        getIssueData()
         self.refreshControl!.endRefreshing()
     }
     
@@ -63,7 +73,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             let viewController = segue.destination as? IssuePageController
             if let row = feedTable.indexPathForSelectedRow?.row{
                 viewController?.issueID = row
-                viewController?.issue = myPosts![row]
+                viewController?.issue = myPosts[row]
             }
         }
     }
@@ -73,7 +83,8 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myPosts!.count
+        //#warning Incomplete implementation, return the number of rows
+        return myPosts.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -84,9 +95,10 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
 
          //Configure the cell...
-        let obj = myPosts![indexPath.row]
+        let obj = myPosts[indexPath.row]
         
-        cell.setIssueID(ID: indexPath.row)
+        
+        cell.setIssueID(ID: obj.getID())
         cell.issueName.text = obj.getTitle()
         cell.issueDescription.text = obj.getDescription()
         cell.issueLocation.text = obj.getLocation()
