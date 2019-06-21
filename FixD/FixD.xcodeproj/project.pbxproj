@@ -35,7 +35,6 @@
 		B4ED4D4122B0334400E50272 /* IssueBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D4022B0334400E50272 /* IssueBuilder.swift */; };
 		F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */; };
 		F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
-		F5B20B2522B41E5900BE70F7 /* testApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B20B2422B41E5900BE70F7 /* testApplication.swift */; };
 		FF18E08F22B2A83100EC60A6 /* NewIssueFMDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF18E08E22B2A83100EC60A6 /* NewIssueFMDViewController.swift */; };
 		FF1C82D522B4241A008DB60B /* NewIssueFMDPage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1C82D422B4241A008DB60B /* NewIssueFMDPage2ViewController.swift */; };
 		FF1C82D922B42661008DB60B /* NewIssueFMDPage3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1C82D822B42661008DB60B /* NewIssueFMDPage3ViewController.swift */; };
@@ -77,7 +76,6 @@
 		B4ED4D4022B0334400E50272 /* IssueBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueBuilder.swift; sourceTree = "<group>"; };
 		F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
-		F5B20B2422B41E5900BE70F7 /* testApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testApplication.swift; sourceTree = "<group>"; };
 		FF18E08E22B2A83100EC60A6 /* NewIssueFMDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDViewController.swift; sourceTree = "<group>"; };
 		FF1C82D422B4241A008DB60B /* NewIssueFMDPage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDPage2ViewController.swift; sourceTree = "<group>"; };
 		FF1C82D822B42661008DB60B /* NewIssueFMDPage3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDPage3ViewController.swift; sourceTree = "<group>"; };

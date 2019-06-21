@@ -14,8 +14,12 @@ class IssueBuilder {
     private var myPosts: Array<IssueClass> = Array()
     
     func getData(completionHandler: @escaping (Array<IssueClass>) -> ()) {
+        //url
         let url = URL(string: myURL)!
+        
+        //url session
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            
             if let json = try? JSONSerialization.jsonObject(with: data!, options: []) {
                 let issuesList = (json as! NSArray) as Array
                 for issue in issuesList {

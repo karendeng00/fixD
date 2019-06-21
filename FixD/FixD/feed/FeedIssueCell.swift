@@ -66,9 +66,9 @@ class FeedIssueCell: UITableViewCell {
                 issue.addFavorites()
                 issueFavorites.text = String(issue.getFavorites())
                 if (issue.getFavoritesState()){
-                    favoritesButton.setImage(UIImage(named: "fPin"), for: .normal)
+                    favoritesButton.setImage(UIImage(named: "filled star"), for: .normal)
                 }else {
-                    favoritesButton.setImage(UIImage(named: "ePin"), for: .normal)
+                    favoritesButton.setImage(UIImage(named: "star"), for: .normal)
                 }
             }
         }
