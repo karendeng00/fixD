@@ -102,7 +102,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         cell.issueName.text = obj.getTitle()
         cell.issueDescription.text = obj.getDescription()
         cell.issueLocation.text = obj.getLocation()
-        cell.issueDate.text = obj.getDate()
         cell.issueImage.image = UIImage(named: obj.getIssueImage())
         cell.issueUpvotes.text = String(obj.getUpVotes())
         cell.issueFavorites.text = String(obj.getFavorites())

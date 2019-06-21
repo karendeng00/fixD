@@ -29,7 +29,6 @@ class IssueBuilder {
                                 title:"\(dictionary["title"]!)",
                                 description: "\(dictionary["description"]!)",
                                 location: "\(dictionary["location"]!)",
-                                date: "\(dictionary["date"]!)",
                                 issueImage: "\(dictionary["image"]!)",
                                 user: UserProfile(
                                 name: "\(dictionary["user"]!)",
