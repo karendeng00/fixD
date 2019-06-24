@@ -12,7 +12,7 @@ import iOSDropDown
 class NEWNewIssueFMDViewController: UIViewController {
     
     var dex:Int = 0
-    var option:String = ""
+    var locationOption:String = ""
 
     @IBOutlet weak var firstBuildingDropDown: DropDown!
     @IBOutlet weak var firstFloorDropDown: DropDown!
@@ -42,7 +42,7 @@ class NEWNewIssueFMDViewController: UIViewController {
         }
             
         sameDropDown.didSelect{(selectedText, index, id) in
-            self.option = selectedText
+            self.locationOption = selectedText
         }
     }
     
@@ -50,8 +50,9 @@ class NEWNewIssueFMDViewController: UIViewController {
         if segue.identifier == "FMDissue" {
             let viewController = segue.destination as? NEWNewIssueFMDPage2ViewController
             
-            if option == "yes" {
-                
+            if locationOption == "yes" {
+                viewController?.option = true
+                viewController?.buildingText = firstBuildingDropDown.text!
             }
             
             viewController?.serviceList = serviceOptions[dex]

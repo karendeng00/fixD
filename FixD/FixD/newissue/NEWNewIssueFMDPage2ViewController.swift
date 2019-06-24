@@ -17,6 +17,9 @@ class NEWNewIssueFMDPage2ViewController: UIViewController {
     @IBOutlet weak var serviceListDropDown: DropDown!
     @IBOutlet weak var fundCodeTextField: UITextField!
     
+    var option:Bool = false
+    var buildingText:String = ""
+    
     let buildingList = ["a", "b"]
     let floorList = ["c", "d"]
     let roomList = ["e", "f"]
@@ -29,6 +32,11 @@ class NEWNewIssueFMDPage2ViewController: UIViewController {
         floorSecondDropDown.optionArray = floorList
         roomSecondDropDown.optionArray = roomList
         serviceListDropDown.optionArray = serviceList
+        
+        if option {
+            print("yes")
+            buildingSecondDropDown.text = buildingText
+        }
         
     }
     
