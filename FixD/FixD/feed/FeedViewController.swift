@@ -18,6 +18,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sleep(2)
         self.myPosts = Issues.getIssues()
         self.refreshControl = UIRefreshControl()
         //creates menu button
