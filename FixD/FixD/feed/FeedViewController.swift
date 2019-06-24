@@ -21,6 +21,10 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         //Get Issue Data for Feed
         getIssueData()
         
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        
         //self.myPosts = self.Issues.getIssues()
         self.refreshControl = UIRefreshControl()
         
@@ -57,6 +61,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         }
     }
     
+    /*override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // this will turn on `masksToBounds` just before showing the cell
+        cell.layer.cornerRadius = 10
+        cell.layer.masksToBounds = true
+    }*/
+    
     @objc func refresh(_ sender: Any) {
         getIssueData()
         self.refreshControl!.endRefreshing()
@@ -88,7 +98,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 145
+        return 210
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,16 +108,16 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         let obj = myPosts[indexPath.row]
         
         
+        
         cell.setIssueID(ID: obj.getID())
         cell.issueName.text = obj.getTitle()
         cell.issueDescription.text = obj.getDescription()
         cell.issueLocation.text = obj.getLocation()
         cell.issueImage.image = UIImage(named: obj.getIssueImage())
-        cell.issueUpvotes.text = String(obj.getUpVotes())
-        cell.issueFavorites.text = String(obj.getFavorites())
         
         cell.userName.text = obj.getUser().userName
         cell.userImage.image = UIImage(named:obj.getUser().userImage)
+        
         
         cell.locationImage.image = UIImage(named:"locicon")
     
