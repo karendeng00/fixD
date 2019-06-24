@@ -17,10 +17,10 @@ class NEWNewIssueFMDPage2ViewController: UIViewController {
     @IBOutlet weak var serviceListDropDown: DropDown!
     @IBOutlet weak var fundCodeTextField: UITextField!
     
-    let buildingList = [String]()
-    let floorList = [String]()
-    let roomList = [String]()
-    let serviceList = [String]()
+    let buildingList = ["a", "b"]
+    let floorList = ["c", "d"]
+    let roomList = ["e", "f"]
+    var serviceList:[String] = Array()
     
     override func viewDidLoad() {
         super.viewDidLoad()

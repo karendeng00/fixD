@@ -10,6 +10,9 @@ import UIKit
 import iOSDropDown
 
 class NEWNewIssueFMDViewController: UIViewController {
+    
+    var dex:Int = 0
+    var option:String = ""
 
     @IBOutlet weak var firstBuildingDropDown: DropDown!
     @IBOutlet weak var firstFloorDropDown: DropDown!
@@ -22,19 +25,39 @@ class NEWNewIssueFMDViewController: UIViewController {
     let roomList = ["a", "b", "c"]
     let requestList = ["Key & Lock", "University Interior Building", "Grounds/Exterior Building Request"]
     let sameList = ["yes", "no"]
+    let serviceOptions = [["Keys/Locks/Doors"], ["Electrical", "Elevator", "Ice Machine"], ["Grounds/Landscaping", "Projects", "Sidewalks"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("view loaded")
         firstBuildingDropDown.optionArray = buildingList
         firstFloorDropDown.optionArray = floorList
         firstRoomDropDown.optionArray = roomList
         requestDropDown.optionArray = requestList
         sameDropDown.optionArray = sameList
         
+        requestDropDown.didSelect{(selectedText , index ,id) in
+            self.dex = index
+        }
+            
+        sameDropDown.didSelect{(selectedText, index, id) in
+            self.option = selectedText
+        }
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FMDissue" {
+            let viewController = segue.destination as? NEWNewIssueFMDPage2ViewController
+            
+            if option == "yes" {
+                
+            }
+            
+            viewController?.serviceList = serviceOptions[dex]
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
