@@ -60,16 +60,12 @@ class FeedIssueCell: UITableViewCell {
     }
 
     @objc func like(_ sender: Any) {
-        for issue in myIssues {
-            if issue.getID() == issueID {
-                issue.addUpVote()
-                issueUpvotes.text = String(issue.getUpVotes())
-                if (issue.getUpVoteState()){
-                    upVoteButton.setImage(UIImage(named: "heart-1.png"), for: .normal)
-                }else {
-                    upVoteButton.setImage(UIImage(named: "filled heart.png"), for: .normal)
-                }
-            }
+        myIssue.addUpVote()
+        issueUpvotes.text = String(myIssue.getUpVotes())
+        if (myIssue.getUpVoteState()){
+            upVoteButton.setImage(UIImage(named: "heart-1.png"), for: .normal)
+        }else {
+            upVoteButton.setImage(UIImage(named: "filled heart.png"), for: .normal)
         }
     }
 
