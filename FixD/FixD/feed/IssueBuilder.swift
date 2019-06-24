@@ -16,7 +16,10 @@ class IssueBuilder {
     
     func getData(completionHandler: @escaping (Dictionary<Int, IssueClass>) -> ()) {
         let url = URL(string: myURL)!
+        
+        //url session
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            
             if let json = try? JSONSerialization.jsonObject(with: data!, options: []) {
                 let issuesList = (json as! NSArray) as Array
                 for issue in issuesList {
@@ -26,7 +29,6 @@ class IssueBuilder {
                                 title:"\(dictionary["title"]!)",
                                 description: "\(dictionary["description"]!)",
                                 location: "\(dictionary["location"]!)",
-                                date: "\(dictionary["date"]!)",
                                 issueImage: "\(dictionary["image"]!)",
                                 user: UserProfile(
                                 name: "\(dictionary["user"]!)",

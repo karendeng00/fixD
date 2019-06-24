@@ -1,32 +1,30 @@
 //
-//  NewIssueServiceNowViewController.swift
+//  TestViewController.swift
 //  FixD
 //
-//  Created by Alejandro Meza on 6/12/19.
+//  Created by Karen Deng on 6/21/19.
 //  Copyright © 2019 Duke. All rights reserved.
 //
 
 import UIKit
 
-class NewIssueServiceNowViewController: UIViewController {
 
-    @IBOutlet weak var urgencySlider: UISlider!
+import Foundation
+
+class TestViewController: UIViewController {
+
+    @IBOutlet weak var nameText: UITextField!
     
-    @IBOutlet weak var impactControl: UISegmentedControl!
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        IssuePasser().passData()
 
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func sliderMoved(sender: UISlider) { sender.setValue(Float(lroundf(urgencySlider.value)), animated: true)
-    }
-    
-    
-    
-
+}
     /*
     // MARK: - Navigation
 
@@ -37,4 +35,4 @@ class NewIssueServiceNowViewController: UIViewController {
     }
     */
 
-}
+
