@@ -15,7 +15,6 @@ class IssueClass {
     private let myTitle:String
     private let description:String
     private let myLocation:String
-    private let date:String
     private let issueImage:String
     private var upvoted = false
     private var pinned = false
@@ -32,12 +31,11 @@ class IssueClass {
     private var myComments: Int
     private var myListOfComments: Array<String> = Array()
     
-    init(ID: Int, title:String, description:String, location:String, date:String, issueImage:String, user:UserProfile, upVotes: Int, favorites: Int) {
+    init(ID: Int, title:String, description:String, location:String, issueImage:String, user:UserProfile, upVotes: Int, favorites: Int) {
         self.issueID = ID
         self.myTitle = title
         self.myLocation = location
         self.description = description
-        self.date = date
         self.issueImage = issueImage
         self.myUser = user
         self.myFavorites = favorites
@@ -92,6 +90,10 @@ class IssueClass {
         return myListOfComments
     }
     
+    func getID() -> Int {
+        return issueID
+    }
+    
     func getTitle() -> String {
         return myTitle
     }
@@ -107,11 +109,7 @@ class IssueClass {
     func getUser() -> UserProfile {
         return myUser
     }
-    
-    func getDate() -> String {
-        return date
-    }
-    
+
     func getLocation() -> String {
         return myLocation
     }

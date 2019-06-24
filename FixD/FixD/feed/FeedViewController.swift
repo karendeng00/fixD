@@ -18,9 +18,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sleep(2)
-        self.myPosts = Issues.getIssues()
+        //Get Issue Data for Feed
+        getIssueData()
+        
+        //self.myPosts = self.Issues.getIssues()
         self.refreshControl = UIRefreshControl()
+        
         //creates menu button
         let menuBtn = UIButton(type: .custom)
         menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 15, height: 15)
@@ -47,8 +50,15 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     }
     
+    func getIssueData() {
+        IssueBuilder().getData() { issueData in
+            self.myPosts = issueData
+            self.tableView.reloadData()
+        }
+    }
+    
     @objc func refresh(_ sender: Any) {
-        print("refreshed")
+        getIssueData()
         self.refreshControl!.endRefreshing()
     }
     
@@ -87,11 +97,11 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
          //Configure the cell...
         let obj = myPosts[indexPath.row]
         
-        cell.setIssueID(ID: indexPath.row)
+        
+        cell.setIssueID(ID: obj.getID())
         cell.issueName.text = obj.getTitle()
         cell.issueDescription.text = obj.getDescription()
         cell.issueLocation.text = obj.getLocation()
-        cell.issueDate.text = obj.getDate()
         cell.issueImage.image = UIImage(named: obj.getIssueImage())
         cell.issueUpvotes.text = String(obj.getUpVotes())
         cell.issueFavorites.text = String(obj.getFavorites())

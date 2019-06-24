@@ -1,30 +1,20 @@
 //
-//  NewIssueServiceNowViewController.swift
+//  NEWNewIssueFMDViewController.swift
 //  FixD
 //
-//  Created by Alejandro Meza on 6/12/19.
+//  Created by Ann Bailey on 6/24/19.
 //  Copyright © 2019 Duke. All rights reserved.
 //
 
 import UIKit
 
-class NewIssueServiceNowViewController: UIViewController {
+class NEWNewIssueFMDViewController: UIViewController {
 
-    @IBOutlet weak var urgencySlider: UISlider!
-    
-    @IBOutlet weak var impactControl: UISegmentedControl!
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-    @IBAction func sliderMoved(sender: UISlider) { sender.setValue(Float(lroundf(urgencySlider.value)), animated: true)
-    }
-    
-    
     
 
     /*

@@ -1,30 +1,33 @@
 //
-//  NewIssueServiceNowViewController.swift
+//  Search.swift
 //  FixD
 //
-//  Created by Alejandro Meza on 6/12/19.
+//  Created by Karen Deng on 6/21/19.
 //  Copyright © 2019 Duke. All rights reserved.
 //
 
 import UIKit
+import MapKit
 
-class NewIssueServiceNowViewController: UIViewController {
+class Search: UISearchController {
 
-    @IBOutlet weak var urgencySlider: UISlider!
-    
-    @IBOutlet weak var impactControl: UISegmentedControl!
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let searchRequest = MKLocalSearch.Request()
+        
+        searchRequest.naturalLanguageQuery = self.searchBar.text
+        
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        
+        activeSearch.start { (response, error) in
+            if response == nil {
+                print("Error")
+            }
+            
+        }
+        
         // Do any additional setup after loading the view.
     }
-    
-    @IBAction func sliderMoved(sender: UISlider) { sender.setValue(Float(lroundf(urgencySlider.value)), animated: true)
-    }
-    
-    
     
 
     /*

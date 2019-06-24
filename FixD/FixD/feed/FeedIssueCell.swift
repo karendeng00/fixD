@@ -29,10 +29,12 @@ class FeedIssueCell: UITableViewCell {
     
     
     private var issueID = 0
-    private var myIssues = IssueBuilder().getIssues()
+    private var myIssues: [IssueClass] = Array()
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        getIssueData()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -44,24 +46,39 @@ class FeedIssueCell: UITableViewCell {
     }
     
     @IBAction func upVote(_ sender: Any) {
-        myIssues[issueID].addUpVote()
-        issueUpvotes.text = String(myIssues[issueID].getUpVotes())
-        if (myIssues[issueID].getUpVoteState()){
-            upVoteButton.setImage(UIImage(named: "fArrow.png"), for: .normal)
-        }else {
-            upVoteButton.setImage(UIImage(named: "eArrow.png"), for: .normal)
+        for issue in myIssues {
+            if issue.getID() == issueID {
+                issue.addUpVote()
+                issueUpvotes.text = String(issue.getUpVotes())
+                if (issue.getUpVoteState()){
+                    upVoteButton.setImage(UIImage(named: "fArrow.png"), for: .normal)
+                }else {
+                    upVoteButton.setImage(UIImage(named: "eArrow.png"), for: .normal)
+                }
+            }
         }
+       
     }
     
     @IBAction func favorite(_ sender: Any) {
-        myIssues[issueID].addFavorites()
-        issueFavorites.text = String(myIssues[issueID].getFavorites())
-        if (myIssues[issueID].getFavoritesState()){
-            favoritesButton.setImage(UIImage(named: "fPin"), for: .normal)
-        }else {
-            favoritesButton.setImage(UIImage(named: "ePin"), for: .normal)
+        for issue in myIssues {
+            if issue.getID() == issueID {
+                issue.addFavorites()
+                issueFavorites.text = String(issue.getFavorites())
+                if (issue.getFavoritesState()){
+                    favoritesButton.setImage(UIImage(named: "filled star"), for: .normal)
+                }else {
+                    favoritesButton.setImage(UIImage(named: "star"), for: .normal)
+                }
+            }
         }
     }
 
+    private func getIssueData() {
+        IssueBuilder().getData() { issueData in
+            self.myIssues = issueData
+        }
+    }
+    
 }
 

@@ -52,7 +52,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func loadIssue(issue: IssueClass) {
         issueLabel.text = issue.getTitle()
-        dateLabel.text = issue.getDate()
         descriptionLabel.text = issue.getDescription()
         issueImage.image = UIImage(named: issue.getIssueImage())
         locationLabel.text = issue.getLocation()
