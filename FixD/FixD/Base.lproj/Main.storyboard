@@ -109,6 +109,9 @@
                                         <state key="normal" image="comments">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="tapCommentButton:" destination="j16-qw-gvl" eventType="touchUpInside" id="lQB-qA-geP"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fJ-PP-RHT">
                                         <rect key="frame" x="289" y="44" width="35" height="40"/>
@@ -140,7 +143,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vTb-sv-7d4">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Comment Here" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vTb-sv-7d4">
                                         <rect key="frame" x="2" y="2" width="297" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="fVG-B2-P4U"/>
@@ -148,6 +151,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="updateComments:" destination="j16-qw-gvl" eventType="editingDidEnd" id="SiU-Yj-uDE"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -304,6 +310,7 @@
                     <tabBarItem key="tabBarItem" title="Issue Page" id="v1q-B9-uIA"/>
                     <navigationItem key="navigationItem" id="sIU-5C-3HN"/>
                     <connections>
+                        <outlet property="commentTextField" destination="vTb-sv-7d4" id="XVg-Cp-mat"/>
                         <outlet property="commentView" destination="ZCr-ds-qkn" id="Ei7-hK-9zR"/>
                         <outlet property="dateLabel" destination="P5Y-6b-SEr" id="iQj-EJ-U04"/>
                         <outlet property="descriptionLabel" destination="N3c-Sq-gL4" id="v2m-am-bFS"/>
@@ -1882,7 +1889,7 @@
             <objects>
                 <tableViewController id="8um-IF-ytT" customClass="AccountIssueTableViewController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eMb-gj-9Fd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="581"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="630"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -2023,7 +2030,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PsT-eB-Tvo">
-                                <rect key="frame" x="20" y="104" width="125" height="76"/>
+                                <rect key="frame" x="20" y="104" width="125" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="125" id="eHg-Tr-2dK"/>
                                     <constraint firstAttribute="width" constant="125" id="mjR-jo-94C"/>
@@ -2048,7 +2055,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BCK-U0-JkI">
-                                <rect key="frame" x="0.0" y="281" width="414" height="581"/>
+                                <rect key="frame" x="0.0" y="281" width="414" height="630"/>
                                 <connections>
                                     <segue destination="8um-IF-ytT" kind="embed" id="4S7-64-lEO"/>
                                 </connections>
@@ -2098,7 +2105,7 @@
         <scene sceneID="tIK-wH-hNp">
             <objects>
                 <navigationController storyboardIdentifier="sbProfNav" title="Account Nav Controller" automaticallyAdjustsScrollViewInsets="NO" id="QzR-om-BP3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="UcX-6V-giC">
+                    <tabBarItem key="tabBarItem" title="My Account" id="UcX-6V-giC">
                         <inset key="largeContentSizeImageInsets" minX="0.0" minY="-1" maxX="0.0" maxY="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -2138,7 +2145,7 @@
         <scene sceneID="1fp-tG-2kk">
             <objects>
                 <navigationController storyboardIdentifier="sbFeed" title="Feed Nav Controller" automaticallyAdjustsScrollViewInsets="NO" id="Gxd-wz-vyh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="topRated" id="sbJ-To-HD8"/>
+                    <tabBarItem key="tabBarItem" title="Feed" id="sbJ-To-HD8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HHu-wz-eer">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

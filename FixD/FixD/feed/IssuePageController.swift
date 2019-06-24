@@ -23,7 +23,7 @@ class textCommentCell: UITableViewCell{
     
 }
 
-class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var issueLabel: UILabel!
@@ -34,6 +34,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var commentView: UITableView!
     @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var upvotesLabel: UILabel!
+    @IBOutlet weak var commentTextField: UITextField!
     
     var comments:[String] = []
     var issueID:Int = 0
@@ -41,12 +42,12 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        commentTextField.delegate = self
         commentView.delegate = self
         commentView.dataSource = self
         issue.addComment(comment: "This printer has been broken for years now.")
         issue.addComment(comment: "This printer prints as fast as my grandmother runs...Slowly!")
         issue.addComment(comment: "What a waste of space this printer is.")
-        comments = issue.getListOfComments()
         loadIssue()
     }
     
@@ -58,6 +59,18 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         profileImage.image = UIImage(named: issue.getUser().userImage)
         favoritesLabel.text = String(issue.getFavorites())
         upvotesLabel.text = String(issue.getUpVotes())
+        comments = issue.getListOfComments()
+        configureTapGesture()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    private func configureTapGesture(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(IssuePageController.updateComments))
+        view.addGestureRecognizer(tapGesture)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -73,5 +86,20 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.commentLabel.text = comments[indexPath.row]
         cell.userLabel.text = "-Anderson C."
         return cell
+    }
+    
+    @IBAction func updateComments(_ sender: Any) {
+        if commentTextField.hasText{
+            issue.addComment(comment: commentTextField.text!)
+            commentTextField.text = ""
+            comments = issue.getListOfComments()
+            commentView.reloadData()
+        }
+        view.endEditing(true)
+    }
+    
+    
+    @IBAction func tapCommentButton(_ sender: Any) {
+        view.endEditing(true)
     }
 }
