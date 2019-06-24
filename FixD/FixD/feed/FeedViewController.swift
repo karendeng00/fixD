@@ -13,15 +13,13 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     let transition = SlideInTransition()
     var topView: UIView?
     let myCellIndentifier = "IssueCell"
-    let Issues = IssueBuilder()
-    var myPosts:[IssueClass] = []
+    var myIssueDict:[Int: IssueClass] = [:]
+    var issueIDS:[Int] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //Get Issue Data for Feed
         getIssueData()
-        
-        //self.myPosts = self.Issues.getIssues()
         self.refreshControl = UIRefreshControl()
         
         //creates menu button
@@ -52,7 +50,8 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     func getIssueData() {
         IssueBuilder().getData() { issueData in
-            self.myPosts = issueData
+            self.myIssueDict = issueData
+            self.issueIDS = Array(self.myIssueDict.keys)
             self.tableView.reloadData()
         }
     }
@@ -71,9 +70,9 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is IssuePageController {
             let viewController = segue.destination as? IssuePageController
-            if let row = feedTable.indexPathForSelectedRow?.row{
-                viewController?.issueID = row
-                viewController?.issue = myPosts[row]
+            if let indexPath = feedTable.indexPathForSelectedRow{
+                let currCell = feedTable.cellForRow(at: indexPath) as! FeedIssueCell
+                viewController?.issue = currCell.myIssue
             }
         }
     }
@@ -84,7 +83,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //#warning Incomplete implementation, return the number of rows
-        return myPosts.count
+        return issueIDS.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -95,10 +94,9 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
 
          //Configure the cell...
-        let obj = myPosts[indexPath.row]
+        let obj = myIssueDict[issueIDS.removeFirst()]!
         
-        
-        cell.setIssueID(ID: obj.getID())
+        cell.setIssue(issue: obj)
         cell.issueName.text = obj.getTitle()
         cell.issueDescription.text = obj.getDescription()
         cell.issueLocation.text = obj.getLocation()
@@ -106,10 +104,8 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         cell.issueImage.image = UIImage(named: obj.getIssueImage())
         cell.issueUpvotes.text = String(obj.getUpVotes())
         cell.issueFavorites.text = String(obj.getFavorites())
-        
         cell.userName.text = obj.getUser().userName
         cell.userImage.image = UIImage(named:obj.getUser().userImage)
-        
         cell.locationImage.image = UIImage(named:"locicon")
     
         return cell

@@ -106,7 +106,7 @@ class MapFunctionsViewController: UIViewController {
     //Adding Location of issues to Map
     private func setUpIssuesOnMap() {
         let issues = getIssueData()
-        for issue in issues {
+        for issue in issues.values {
             let loc = issue.getLocation()
             let geoCoder = CLGeocoder()
             geoCoder.geocodeAddressString(loc) { (placemarks, error) in
@@ -154,13 +154,12 @@ extension MapFunctionsViewController: UIViewControllerTransitioningDelegate {
         return transition
     }
     
-    private func getIssueData() -> [IssueClass] {
-        var list = [IssueClass]()
+    private func getIssueData() -> [Int: IssueClass] {
+        var list: [Int: IssueClass] = [:]
         IssueBuilder().getData() { issueData in
             list = issueData
         }
         return list
-        
     }
     
     

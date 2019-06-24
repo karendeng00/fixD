@@ -47,10 +47,10 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         issue.addComment(comment: "This printer prints as fast as my grandmother runs...Slowly!")
         issue.addComment(comment: "What a waste of space this printer is.")
         comments = issue.getListOfComments()
-        loadIssue(issue: issue)
+        loadIssue()
     }
     
-    func loadIssue(issue: IssueClass) {
+    func loadIssue() {
         issueLabel.text = issue.getTitle()
         dateLabel.text = issue.getDate()
         descriptionLabel.text = issue.getDescription()
