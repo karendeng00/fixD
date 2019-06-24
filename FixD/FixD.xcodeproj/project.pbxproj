@@ -45,6 +45,7 @@
 		FFB2C5A622A9785500BC11ED /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FFB2C5A822A97BB100BC11ED /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FFE35B1822C12E730087FC64 /* NEWNewIssueFMDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE35B1722C12E730087FC64 /* NEWNewIssueFMDViewController.swift */; };
+		FFE35B1A22C1375C0087FC64 /* NEWNewIssueFMDPage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE35B1922C1375C0087FC64 /* NEWNewIssueFMDPage2ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +88,7 @@
 		FF1C82DA22B42698008DB60B /* NewIssueFMDPage4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDPage4ViewController.swift; sourceTree = "<group>"; };
 		FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueGeneralInfoViewController.swift; sourceTree = "<group>"; };
 		FFE35B1722C12E730087FC64 /* NEWNewIssueFMDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NEWNewIssueFMDViewController.swift; sourceTree = "<group>"; };
+		FFE35B1922C1375C0087FC64 /* NEWNewIssueFMDPage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NEWNewIssueFMDPage2ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 				FF1C82D422B4241A008DB60B /* NewIssueFMDPage2ViewController.swift */,
 				FF1C82D822B42661008DB60B /* NewIssueFMDPage3ViewController.swift */,
 				FFE35B1722C12E730087FC64 /* NEWNewIssueFMDViewController.swift */,
+				FFE35B1922C1375C0087FC64 /* NEWNewIssueFMDPage2ViewController.swift */,
 			);
 			path = newissue;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				FFB2C5A222A968A300BC11ED /* (null) in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
 				FFB2C5A822A97BB100BC11ED /* (null) in Sources */,
+				FFE35B1A22C1375C0087FC64 /* NEWNewIssueFMDPage2ViewController.swift in Sources */,
 				FFB2C5A622A9785500BC11ED /* (null) in Sources */,
 				B4ED4D3F22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
