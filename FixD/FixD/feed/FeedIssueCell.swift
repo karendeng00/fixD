@@ -23,12 +23,28 @@ class FeedIssueCell: UITableViewCell {
     @IBOutlet weak var issueUpvotes: UILabel!
     @IBOutlet weak var issueFavorites: UILabel!
     
+    @IBOutlet weak var likeView: UIView!
+    @IBOutlet weak var starView: UIView!
+    @IBOutlet weak var commentView: UIView!
     
     @IBOutlet weak var upVoteButton: UIButton!
     @IBOutlet weak var favoritesButton: UIButton!
     
     var myIssue: IssueClass!
-
+    
+    override func layoutSubviews() {
+        
+        super.layoutSubviews()
+        
+        print("this loaded")
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(like(_:)))
+        likeView.addGestureRecognizer(tap)
+        
+        let tap1 = UITapGestureRecognizer(target: self, action: #selector(like(_:)))
+        likeView.addGestureRecognizer(tap1)
+    
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,7 +58,21 @@ class FeedIssueCell: UITableViewCell {
     func setIssue(issue: IssueClass){
         myIssue = issue
     }
-    
+
+    @objc func like(_ sender: Any) {
+        for issue in myIssues {
+            if issue.getID() == issueID {
+                issue.addUpVote()
+                issueUpvotes.text = String(issue.getUpVotes())
+                if (issue.getUpVoteState()){
+                    upVoteButton.setImage(UIImage(named: "heart-1.png"), for: .normal)
+                }else {
+                    upVoteButton.setImage(UIImage(named: "filled heart.png"), for: .normal)
+                }
+            }
+        }
+    }
+
     @IBAction func upVote(_ sender: Any) {
         myIssue.addUpVote()
         issueUpvotes.text = String(myIssue.getUpVotes())

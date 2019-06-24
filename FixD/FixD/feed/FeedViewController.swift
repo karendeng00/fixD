@@ -20,6 +20,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         super.viewDidLoad()
         //Get Issue Data for Feed
         getIssueData()
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        
+        //self.myPosts = self.Issues.getIssues()
         self.refreshControl = UIRefreshControl()
         
         //creates menu button
@@ -56,6 +62,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         }
     }
     
+    /*override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // this will turn on `masksToBounds` just before showing the cell
+        cell.layer.cornerRadius = 10
+        cell.layer.masksToBounds = true
+    }*/
+    
     @objc func refresh(_ sender: Any) {
         getIssueData()
         self.refreshControl!.endRefreshing()
@@ -87,7 +99,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 145
+        return 210
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
