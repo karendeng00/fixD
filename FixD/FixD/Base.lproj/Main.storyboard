@@ -781,7 +781,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filter" translatesAutoresizingMaskIntoConstraints="NO" id="P2i-BP-dd9">
-                                                    <rect key="frame" x="15" y="36" width="30" height="20"/>
+                                                    <rect key="frame" x="15" y="36" width="30.000000000000114" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="79F-hK-RFg"/>
                                                         <constraint firstAttribute="width" constant="30" id="HtF-VW-8wN"/>
@@ -1443,7 +1443,7 @@
                                                                 <constraint firstAttribute="width" constant="30" id="crG-EA-JNp"/>
                                                                 <constraint firstAttribute="height" constant="30" id="w7a-qa-Zn2"/>
                                                             </constraints>
-                                                            <state key="normal" title="Button" backgroundImage="heart-1"/>
+                                                            <state key="normal" image="heart-1"/>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6a-Lj-SV1">
                                                             <rect key="frame" x="73" y="12" width="31" height="21"/>
@@ -1469,7 +1469,7 @@
                                                                 <constraint firstAttribute="height" constant="30" id="U61-zP-xYy"/>
                                                                 <constraint firstAttribute="width" constant="30" id="WCO-Mn-wOp"/>
                                                             </constraints>
-                                                            <state key="normal" backgroundImage="star"/>
+                                                            <state key="normal" image="star"/>
                                                             <connections>
                                                                 <action selector="favorite:" destination="Krf-dQ-DQx" eventType="touchUpInside" id="iMZ-P1-Qab"/>
                                                             </connections>
@@ -1498,7 +1498,7 @@
                                                                 <constraint firstAttribute="height" constant="30" id="VU9-y9-SQ1"/>
                                                                 <constraint firstAttribute="width" constant="30" id="YG2-Xm-hBX"/>
                                                             </constraints>
-                                                            <state key="normal" backgroundImage="comments"/>
+                                                            <state key="normal" image="comments"/>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oga-Nf-wcX">
                                                             <rect key="frame" x="50" y="12" width="75" height="21"/>
@@ -1950,7 +1950,7 @@
             <objects>
                 <tableViewController id="8um-IF-ytT" customClass="AccountIssueTableViewController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eMb-gj-9Fd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="581"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="630"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
