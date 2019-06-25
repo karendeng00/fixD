@@ -42,6 +42,7 @@
 		FFB2C5A822A97BB100BC11ED /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FFE35B1822C12E730087FC64 /* NewIssueFMDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE35B1722C12E730087FC64 /* NewIssueFMDViewController.swift */; };
 		FFE35B1A22C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE35B1922C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift */; };
+		FFE35B2422C2AEB90087FC64 /* SubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE35B2322C2AEB90087FC64 /* SubmissionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueGeneralInfoViewController.swift; sourceTree = "<group>"; };
 		FFE35B1722C12E730087FC64 /* NewIssueFMDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDViewController.swift; sourceTree = "<group>"; };
 		FFE35B1922C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDPage2ViewController.swift; sourceTree = "<group>"; };
+		FFE35B2322C2AEB90087FC64 /* SubmissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 				B4EC7FDA22B2933D001711BC /* NewIssueHRLViewController.swift */,
 				FFE35B1722C12E730087FC64 /* NewIssueFMDViewController.swift */,
 				FFE35B1922C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift */,
+				FFE35B2322C2AEB90087FC64 /* SubmissionViewController.swift */,
 			);
 			path = newissue;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFE35B2422C2AEB90087FC64 /* SubmissionViewController.swift in Sources */,
 				FFE35B1822C12E730087FC64 /* NewIssueFMDViewController.swift in Sources */,
 				B4ED4D3522AEB9C300E50272 /* UserProfile.swift in Sources */,
 				B4EC7FCF22B16906001711BC /* SettingsTableViewCell.swift in Sources */,
