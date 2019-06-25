@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/newissue/NewIssueFMDViewController.swift"
-            timestampString = "583166686.440555"
+            timestampString = "583170085.135229"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77">
+            startingLineNumber = "87"
+            endingLineNumber = "87">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/newissue/NewIssueFMDViewController.swift"
-            timestampString = "583166686.441107"
+            timestampString = "583170085.1358711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77">
+            startingLineNumber = "87"
+            endingLineNumber = "87">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -38,11 +38,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/newissue/NewIssueFMDViewController.swift"
-            timestampString = "583166686.441429"
+            timestampString = "583170085.1365221"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77">
+            startingLineNumber = "87"
+            endingLineNumber = "87">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -84,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/newissue/NewIssueFMDViewController.swift"
-            timestampString = "583166686.4417551"
+            timestampString = "583170085.13708"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77">
+            startingLineNumber = "87"
+            endingLineNumber = "87">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -98,11 +98,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/newissue/NewIssueFMDViewController.swift"
-            timestampString = "583166686.442096"
+            timestampString = "583170085.137632"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77">
+            startingLineNumber = "87"
+            endingLineNumber = "87">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -112,11 +112,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/newissue/NewIssueFMDViewController.swift"
-            timestampString = "583166686.442431"
+            timestampString = "583170085.138183"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77">
+            startingLineNumber = "87"
+            endingLineNumber = "87">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

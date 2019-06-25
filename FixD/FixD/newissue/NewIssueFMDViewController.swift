@@ -13,7 +13,7 @@ class NewIssueFMDViewController: UIViewController {
     
     var dex:Int = 0
     var locationOption:String = ""
-    var cont:Bool = false
+    var cont:Bool = true
     
     @IBOutlet weak var firstBuildingDropDown: DropDown!
     @IBOutlet weak var firstFloorDropDown: DropDown!
@@ -40,6 +40,8 @@ class NewIssueFMDViewController: UIViewController {
         firstBuildingDropDown.text = "Please select"
         firstFloorDropDown.text = "Please select"
         firstRoomDropDown.text = "Please select"
+        requestDropDown.text = "Please select"
+        sameDropDown.text = "Please select"
         
         requestDropDown.didSelect{(selectedText , index ,id) in
             self.dex = index
@@ -51,7 +53,11 @@ class NewIssueFMDViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        return cont
+        if firstBuildingDropDown.text != "Please select" && firstFloorDropDown.text != "Please select" && firstRoomDropDown.text != "Please select" && requestDropDown.text != "Please select" && sameDropDown.text != "Please select" {
+            return true
+        }
+        createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
+        return false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,10 +73,14 @@ class NewIssueFMDViewController: UIViewController {
             
             viewController?.serviceList = serviceOptions[dex]
             
-            if firstBuildingDropDown.text != "Please select" || firstFloorDropDown.text != "Please select" || firstRoomDropDown.text != "Please select" {
-                cont = true
-            }
-            
         }
+    }
+    
+    func createAlert(title:String, message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 }
