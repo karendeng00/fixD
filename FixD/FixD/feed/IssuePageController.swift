@@ -45,9 +45,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         commentTextField.delegate = self
         commentView.delegate = self
         commentView.dataSource = self
-        issue.addComment(comment: "This printer has been broken for years now.")
-        issue.addComment(comment: "This printer prints as fast as my grandmother runs...Slowly!")
-        issue.addComment(comment: "What a waste of space this printer is.")
         loadIssue()
     }
     

@@ -106,7 +106,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
 
          //Configure the cell...
-        let obj = myIssueDict[issueIDS.removeFirst()]!
+        let obj = myIssueDict[issueIDS[indexPath.row]]!
         
         cell.setIssue(issue: obj)
         cell.issueName.text = obj.getTitle()

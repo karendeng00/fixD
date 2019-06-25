@@ -29,9 +29,9 @@ class FeedIssueCell: UITableViewCell {
     
     @IBOutlet weak var upVoteButton: UIButton!
     @IBOutlet weak var favoritesButton: UIButton!
-    
+
     var myIssue: IssueClass!
-    
+
     override func layoutSubviews() {
         
         super.layoutSubviews()
@@ -45,7 +45,7 @@ class FeedIssueCell: UITableViewCell {
         likeView.addGestureRecognizer(tap1)
     
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         //getIssueData()
@@ -54,7 +54,7 @@ class FeedIssueCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     func setIssue(issue: IssueClass){
         myIssue = issue
     }
@@ -63,9 +63,9 @@ class FeedIssueCell: UITableViewCell {
         myIssue.addUpVote()
         issueUpvotes.text = String(myIssue.getUpVotes())
         if (myIssue.getUpVoteState()){
-            upVoteButton.setImage(UIImage(named: "heart-1.png"), for: .normal)
+            upVoteButton.setImage(UIImage(named: "filled heart"), for: .normal)
         }else {
-            upVoteButton.setImage(UIImage(named: "filled heart.png"), for: .normal)
+            upVoteButton.setImage(UIImage(named: "heart-1"), for: .normal)
         }
     }
 
@@ -83,9 +83,9 @@ class FeedIssueCell: UITableViewCell {
         myIssue.addFavorites()
         issueFavorites.text = String(myIssue.getFavorites())
         if (myIssue.getFavoritesState()){
-            favoritesButton.setImage(UIImage(named: "fPin"), for: .normal)
+            favoritesButton.setImage(UIImage(named: "filled star"), for: .normal)
         }else {
-            favoritesButton.setImage(UIImage(named: "ePin"), for: .normal)
+            favoritesButton.setImage(UIImage(named: "star"), for: .normal)
         }
     }
 
