@@ -36,13 +36,11 @@ class FeedIssueCell: UITableViewCell {
         
         super.layoutSubviews()
         
-        print("this loaded")
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(like(_:)))
         likeView.addGestureRecognizer(tap)
         
-        let tap1 = UITapGestureRecognizer(target: self, action: #selector(like(_:)))
-        likeView.addGestureRecognizer(tap1)
+        let favoriteTap = UITapGestureRecognizer(target: self, action: #selector(favorite(_:)))
+        starView.addGestureRecognizer(favoriteTap)
     
     }
 
@@ -70,13 +68,7 @@ class FeedIssueCell: UITableViewCell {
     }
 
     @IBAction func upVote(_ sender: Any) {
-        myIssue.addUpVote()
-        issueUpvotes.text = String(myIssue.getUpVotes())
-        if (myIssue.getUpVoteState()){
-            upVoteButton.setImage(UIImage(named: "fArrow.png"), for: .normal)
-        }else {
-            upVoteButton.setImage(UIImage(named: "eArrow.png"), for: .normal)
-        }
+        like(sender)
     }
     
     @IBAction func favorite(_ sender: Any) {

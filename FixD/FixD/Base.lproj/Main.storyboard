@@ -119,7 +119,7 @@
                                             <constraint firstAttribute="width" constant="35" id="39f-KZ-F0Z"/>
                                             <constraint firstAttribute="height" constant="40" id="6PQ-US-OGM"/>
                                         </constraints>
-                                        <state key="normal" image="eArrow">
+                                        <state key="normal" image="star">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
@@ -129,7 +129,7 @@
                                             <constraint firstAttribute="height" constant="40" id="fIg-hz-kZr"/>
                                             <constraint firstAttribute="width" constant="35" id="qRc-pS-COc"/>
                                         </constraints>
-                                        <state key="normal" image="ePin">
+                                        <state key="normal" image="heart-1">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
@@ -220,14 +220,14 @@
                                     <constraint firstAttribute="height" constant="2" id="shp-6j-Ker"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fPin" translatesAutoresizingMaskIntoConstraints="NO" id="ohm-Kc-FvQ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filled star" translatesAutoresizingMaskIntoConstraints="NO" id="ohm-Kc-FvQ">
                                 <rect key="frame" x="30" y="366.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Ssm-BV-Mud"/>
                                     <constraint firstAttribute="width" constant="40" id="bca-gu-Xc8"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fArrow" translatesAutoresizingMaskIntoConstraints="NO" id="NrQ-Cq-sYG">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filled heart" translatesAutoresizingMaskIntoConstraints="NO" id="NrQ-Cq-sYG">
                                 <rect key="frame" x="192" y="366" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="1F6-qc-fxn"/>
@@ -1444,6 +1444,9 @@
                                                                 <constraint firstAttribute="height" constant="30" id="w7a-qa-Zn2"/>
                                                             </constraints>
                                                             <state key="normal" image="heart-1"/>
+                                                            <connections>
+                                                                <action selector="upVote:" destination="Krf-dQ-DQx" eventType="touchUpInside" id="l1C-ds-KUN"/>
+                                                            </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6a-Lj-SV1">
                                                             <rect key="frame" x="73" y="12" width="31" height="21"/>
@@ -3566,8 +3569,8 @@
         <image name="duke" width="2000" height="1787"/>
         <image name="eArrow" width="112" height="137"/>
         <image name="ePin" width="112" height="112"/>
-        <image name="fArrow" width="129" height="139"/>
-        <image name="fPin" width="114" height="112"/>
+        <image name="filled heart" width="446" height="419"/>
+        <image name="filled star" width="449" height="438"/>
         <image name="filter" width="685" height="800"/>
         <image name="gears" width="862" height="844"/>
         <image name="heart" width="170" height="170"/>
