@@ -51,8 +51,10 @@ class NEWNewIssueFMDViewController: UIViewController {
             let viewController = segue.destination as? NEWNewIssueFMDPage2ViewController
             
             if locationOption == "yes" {
-                viewController?.option = true
+                viewController?.same = true
                 viewController?.buildingText = firstBuildingDropDown.text!
+                viewController?.floorText = firstFloorDropDown.text!
+                viewController?.roomText = firstRoomDropDown.text!
             }
             
             viewController?.serviceList = serviceOptions[dex]

@@ -17,8 +17,10 @@ class NEWNewIssueFMDPage2ViewController: UIViewController {
     @IBOutlet weak var serviceListDropDown: DropDown!
     @IBOutlet weak var fundCodeTextField: UITextField!
     
-    var option:Bool = false
+    var same:Bool = false
     var buildingText:String = ""
+    var floorText:String = ""
+    var roomText:String = ""
     
     let buildingList = ["a", "b"]
     let floorList = ["c", "d"]
@@ -33,9 +35,11 @@ class NEWNewIssueFMDPage2ViewController: UIViewController {
         roomSecondDropDown.optionArray = roomList
         serviceListDropDown.optionArray = serviceList
         
-        if option {
+        if same {
             print("yes")
             buildingSecondDropDown.text = buildingText
+            floorSecondDropDown.text = floorText
+            roomSecondDropDown.text = roomText
         }
         
     }
