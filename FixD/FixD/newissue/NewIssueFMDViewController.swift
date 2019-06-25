@@ -13,7 +13,7 @@ class NewIssueFMDViewController: UIViewController {
     
     var dex:Int = 0
     var locationOption:String = ""
-
+    var cont:Bool = false
     
     @IBOutlet weak var firstBuildingDropDown: DropDown!
     @IBOutlet weak var firstFloorDropDown: DropDown!
@@ -30,13 +30,16 @@ class NewIssueFMDViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("view loaded")
+
         firstBuildingDropDown.optionArray = buildingList
         firstFloorDropDown.optionArray = floorList
         firstRoomDropDown.optionArray = roomList
         requestDropDown.optionArray = requestList
         sameDropDown.optionArray = sameList
+        
+        firstBuildingDropDown.text = "Please select"
+        firstFloorDropDown.text = "Please select"
+        firstRoomDropDown.text = "Please select"
         
         requestDropDown.didSelect{(selectedText , index ,id) in
             self.dex = index
@@ -45,6 +48,10 @@ class NewIssueFMDViewController: UIViewController {
         sameDropDown.didSelect{(selectedText, index, id) in
             self.locationOption = selectedText
         }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return cont
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -59,17 +66,11 @@ class NewIssueFMDViewController: UIViewController {
             }
             
             viewController?.serviceList = serviceOptions[dex]
+            
+            if firstBuildingDropDown.text != "Please select" || firstFloorDropDown.text != "Please select" || firstRoomDropDown.text != "Please select" {
+                cont = true
+            }
+            
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
