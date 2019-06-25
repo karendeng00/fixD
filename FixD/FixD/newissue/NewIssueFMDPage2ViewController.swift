@@ -1,23 +1,47 @@
 //
-//  NewIssueFMDPage2ViewController.swift
+//  NEWNewIssueFMDPage2ViewController.swift
 //  FixD
 //
-//  Created by Ann Bailey on 6/14/19.
+//  Created by Ann Bailey on 6/24/19.
 //  Copyright © 2019 Duke. All rights reserved.
 //
 
 import UIKit
+import iOSDropDown
 
 class NewIssueFMDPage2ViewController: UIViewController {
 
-    @IBOutlet weak var requestPicker: UIPickerView!
-    @IBOutlet weak var servicePicker: UIPickerView!
-    @IBOutlet weak var sameLocationSwitch: UISwitch!
+    @IBOutlet weak var buildingSecondDropDown: DropDown!
+    @IBOutlet weak var floorSecondDropDown: DropDown!
+    @IBOutlet weak var roomSecondDropDown: DropDown!
+    @IBOutlet weak var serviceListDropDown: DropDown!
+    @IBOutlet weak var fundCodeTextField: UITextField!
+    
+    var same:Bool = false
+    var buildingText:String = ""
+    var floorText:String = ""
+    var roomText:String = ""
+    
+    let buildingList = ["a", "b"]
+    let floorList = ["c", "d"]
+    let roomList = ["e", "f"]
+    var serviceList:[String] = Array()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        buildingSecondDropDown.optionArray = buildingList
+        floorSecondDropDown.optionArray = floorList
+        roomSecondDropDown.optionArray = roomList
+        serviceListDropDown.optionArray = serviceList
+        
+        if same {
+            print("yes")
+            buildingSecondDropDown.text = buildingText
+            floorSecondDropDown.text = floorText
+            roomSecondDropDown.text = roomText
+        }
+        
     }
     
 

@@ -36,16 +36,12 @@
 		B4ED4D4122B0334400E50272 /* IssueBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D4022B0334400E50272 /* IssueBuilder.swift */; };
 		F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */; };
 		F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
-		FF18E08F22B2A83100EC60A6 /* NewIssueFMDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF18E08E22B2A83100EC60A6 /* NewIssueFMDViewController.swift */; };
-		FF1C82D522B4241A008DB60B /* NewIssueFMDPage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1C82D422B4241A008DB60B /* NewIssueFMDPage2ViewController.swift */; };
-		FF1C82D922B42661008DB60B /* NewIssueFMDPage3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1C82D822B42661008DB60B /* NewIssueFMDPage3ViewController.swift */; };
-		FF1C82DB22B42698008DB60B /* NewIssueFMDPage4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1C82DA22B42698008DB60B /* NewIssueFMDPage4ViewController.swift */; };
 		FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */; };
 		FFB2C5A222A968A300BC11ED /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FFB2C5A622A9785500BC11ED /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FFB2C5A822A97BB100BC11ED /* (null) in Sources */ = {isa = PBXBuildFile; };
-		FFE35B1822C12E730087FC64 /* NEWNewIssueFMDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE35B1722C12E730087FC64 /* NEWNewIssueFMDViewController.swift */; };
-		FFE35B1A22C1375C0087FC64 /* NEWNewIssueFMDPage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE35B1922C1375C0087FC64 /* NEWNewIssueFMDPage2ViewController.swift */; };
+		FFE35B1822C12E730087FC64 /* NewIssueFMDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE35B1722C12E730087FC64 /* NewIssueFMDViewController.swift */; };
+		FFE35B1A22C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE35B1922C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,13 +78,9 @@
 		B4ED4D4022B0334400E50272 /* IssueBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueBuilder.swift; sourceTree = "<group>"; };
 		F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
-		FF18E08E22B2A83100EC60A6 /* NewIssueFMDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDViewController.swift; sourceTree = "<group>"; };
-		FF1C82D422B4241A008DB60B /* NewIssueFMDPage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDPage2ViewController.swift; sourceTree = "<group>"; };
-		FF1C82D822B42661008DB60B /* NewIssueFMDPage3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDPage3ViewController.swift; sourceTree = "<group>"; };
-		FF1C82DA22B42698008DB60B /* NewIssueFMDPage4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDPage4ViewController.swift; sourceTree = "<group>"; };
 		FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueGeneralInfoViewController.swift; sourceTree = "<group>"; };
-		FFE35B1722C12E730087FC64 /* NEWNewIssueFMDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NEWNewIssueFMDViewController.swift; sourceTree = "<group>"; };
-		FFE35B1922C1375C0087FC64 /* NEWNewIssueFMDPage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NEWNewIssueFMDPage2ViewController.swift; sourceTree = "<group>"; };
+		FFE35B1722C12E730087FC64 /* NewIssueFMDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDViewController.swift; sourceTree = "<group>"; };
+		FFE35B1922C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDPage2ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,15 +183,11 @@
 			children = (
 				B4ED4D3C22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift */,
 				B4ED4D3E22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift */,
-				FF18E08E22B2A83100EC60A6 /* NewIssueFMDViewController.swift */,
 				FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */,
 				B4EC7FD822B18163001711BC /* NewIssueServiceNowViewController.swift */,
 				B4EC7FDA22B2933D001711BC /* NewIssueHRLViewController.swift */,
-				FF1C82DA22B42698008DB60B /* NewIssueFMDPage4ViewController.swift */,
-				FF1C82D422B4241A008DB60B /* NewIssueFMDPage2ViewController.swift */,
-				FF1C82D822B42661008DB60B /* NewIssueFMDPage3ViewController.swift */,
-				FFE35B1722C12E730087FC64 /* NEWNewIssueFMDViewController.swift */,
-				FFE35B1922C1375C0087FC64 /* NEWNewIssueFMDPage2ViewController.swift */,
+				FFE35B1722C12E730087FC64 /* NewIssueFMDViewController.swift */,
+				FFE35B1922C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift */,
 			);
 			path = newissue;
 			sourceTree = "<group>";
@@ -344,7 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFE35B1822C12E730087FC64 /* NEWNewIssueFMDViewController.swift in Sources */,
+				FFE35B1822C12E730087FC64 /* NewIssueFMDViewController.swift in Sources */,
 				B4ED4D3522AEB9C300E50272 /* UserProfile.swift in Sources */,
 				B4EC7FCF22B16906001711BC /* SettingsTableViewCell.swift in Sources */,
 				B4EC7FCE22B16906001711BC /* AccountViewController.swift in Sources */,
@@ -360,8 +348,6 @@
 				2299A35422B18E07000BD0F6 /* ContactUsViewController.swift in Sources */,
 				B4EC7FDB22B2933D001711BC /* NewIssueHRLViewController.swift in Sources */,
 				B4EC7FD322B16995001711BC /* IssueViewController.swift in Sources */,
-				FF18E08F22B2A83100EC60A6 /* NewIssueFMDViewController.swift in Sources */,
-				FF1C82D522B4241A008DB60B /* NewIssueFMDPage2ViewController.swift in Sources */,
 				B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */,
 				B4ED4D4122B0334400E50272 /* IssueBuilder.swift in Sources */,
 				B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */,
@@ -369,14 +355,12 @@
 				FFB2C5A222A968A300BC11ED /* (null) in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
 				FFB2C5A822A97BB100BC11ED /* (null) in Sources */,
-				FFE35B1A22C1375C0087FC64 /* NEWNewIssueFMDPage2ViewController.swift in Sources */,
+				FFE35B1A22C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift in Sources */,
 				FFB2C5A622A9785500BC11ED /* (null) in Sources */,
 				B4ED4D3F22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
 				B4EC7FCD22B16906001711BC /* Account.swift in Sources */,
 				B4EC7FD622B16E69001711BC /* AccountIssueCell.swift in Sources */,
-				FF1C82D922B42661008DB60B /* NewIssueFMDPage3ViewController.swift in Sources */,
-				FF1C82DB22B42698008DB60B /* NewIssueFMDPage4ViewController.swift in Sources */,
 				B4EC7FD722B16E69001711BC /* AccountIssueTableViewController.swift in Sources */,
 				FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */,
 				B4EC7FCC22B16906001711BC /* SettingsTableViewController.swift in Sources */,
