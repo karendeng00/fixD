@@ -98,7 +98,8 @@ class MapFunctionsViewController: UIViewController {
         
         //Zoom to user location
         if let userLocation = locationManager.location?.coordinate {
-            let viewRegion = MKCoordinateRegion(center: userLocation, latitudinalMeters: 10000000, longitudinalMeters: 10000000)
+            print("Reached User Location")
+            let viewRegion = MKCoordinateRegion(center: userLocation, latitudinalMeters: 1000000, longitudinalMeters: 1000000)
             myMapView.setRegion(viewRegion, animated: false)
         }
     }
