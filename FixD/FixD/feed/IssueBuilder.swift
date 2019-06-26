@@ -12,11 +12,10 @@ class IssueBuilder {
 
     private let myURL:String = "http://localhost:3000/json"
     private var myIssueDictionary: [Int: IssueClass] = [:]
-    private var myPosts: Array<IssueClass> = Array()
-    
+
     func getData(completionHandler: @escaping (Dictionary<Int, IssueClass>) -> ()) {
         let url = URL(string: myURL)!
-        
+    
         //url session
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
             
@@ -35,7 +34,6 @@ class IssueBuilder {
                                 image: "\(dictionary["user_image"]!)"),
                                 upVotes: 000,
                                 favorites: 000)
-                        self.myPosts.append(i)
                         self.myIssueDictionary[i.getID()] = i
                     }
                 }
