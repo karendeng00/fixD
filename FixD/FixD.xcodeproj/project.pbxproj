@@ -27,7 +27,6 @@
 		B4EC7FD622B16E69001711BC /* AccountIssueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD422B16E69001711BC /* AccountIssueCell.swift */; };
 		B4EC7FD722B16E69001711BC /* AccountIssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD522B16E69001711BC /* AccountIssueTableViewController.swift */; };
 		B4EC7FD922B18163001711BC /* NewIssueServiceNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD822B18163001711BC /* NewIssueServiceNowViewController.swift */; };
-		B4EC7FDB22B2933D001711BC /* NewIssueHRLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FDA22B2933D001711BC /* NewIssueHRLViewController.swift */; };
 		B4ED4D3522AEB9C300E50272 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3422AEB9C300E50272 /* UserProfile.swift */; };
 		B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3622AED64F00E50272 /* MapFunctionsViewController.swift */; };
 		B4ED4D3922B003C900E50272 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3822B003C900E50272 /* InviteFriendsViewController.swift */; };
@@ -43,6 +42,7 @@
 		FFE35B1822C12E730087FC64 /* NewIssueFMDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE35B1722C12E730087FC64 /* NewIssueFMDViewController.swift */; };
 		FFE35B1A22C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE35B1922C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift */; };
 		FFE35B2422C2AEB90087FC64 /* SubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE35B2322C2AEB90087FC64 /* SubmissionViewController.swift */; };
+		FFE6EEA422C3BE8C00E2CBED /* HRLredoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6EEA322C3BE8C00E2CBED /* HRLredoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,7 +70,6 @@
 		B4EC7FD422B16E69001711BC /* AccountIssueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountIssueCell.swift; sourceTree = "<group>"; };
 		B4EC7FD522B16E69001711BC /* AccountIssueTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountIssueTableViewController.swift; sourceTree = "<group>"; };
 		B4EC7FD822B18163001711BC /* NewIssueServiceNowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueServiceNowViewController.swift; sourceTree = "<group>"; };
-		B4EC7FDA22B2933D001711BC /* NewIssueHRLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueHRLViewController.swift; sourceTree = "<group>"; };
 		B4ED4D3422AEB9C300E50272 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		B4ED4D3622AED64F00E50272 /* MapFunctionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFunctionsViewController.swift; sourceTree = "<group>"; };
 		B4ED4D3822B003C900E50272 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +82,7 @@
 		FFE35B1722C12E730087FC64 /* NewIssueFMDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDViewController.swift; sourceTree = "<group>"; };
 		FFE35B1922C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDPage2ViewController.swift; sourceTree = "<group>"; };
 		FFE35B2322C2AEB90087FC64 /* SubmissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionViewController.swift; sourceTree = "<group>"; };
+		FFE6EEA322C3BE8C00E2CBED /* HRLredoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRLredoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,10 +187,10 @@
 				B4ED4D3E22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift */,
 				FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */,
 				B4EC7FD822B18163001711BC /* NewIssueServiceNowViewController.swift */,
-				B4EC7FDA22B2933D001711BC /* NewIssueHRLViewController.swift */,
 				FFE35B1722C12E730087FC64 /* NewIssueFMDViewController.swift */,
 				FFE35B1922C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift */,
 				FFE35B2322C2AEB90087FC64 /* SubmissionViewController.swift */,
+				FFE6EEA322C3BE8C00E2CBED /* HRLredoViewController.swift */,
 			);
 			path = newissue;
 			sourceTree = "<group>";
@@ -349,8 +349,8 @@
 				B4B1DBF922AAE02A005EFFA9 /* ScreenPageViewController.swift in Sources */,
 				B4ED4D3D22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift in Sources */,
 				B4086CE722A9593E00B48EFF /* FeedIssueCell.swift in Sources */,
+				FFE6EEA422C3BE8C00E2CBED /* HRLredoViewController.swift in Sources */,
 				2299A35422B18E07000BD0F6 /* ContactUsViewController.swift in Sources */,
-				B4EC7FDB22B2933D001711BC /* NewIssueHRLViewController.swift in Sources */,
 				B4EC7FD322B16995001711BC /* IssueViewController.swift in Sources */,
 				B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */,
 				B4ED4D4122B0334400E50272 /* IssueBuilder.swift in Sources */,
