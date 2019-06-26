@@ -17,8 +17,6 @@ class HRLredoViewController: UIViewController {
     @IBOutlet weak var roomTextField: UITextField!
     @IBOutlet weak var serviceAnimalDropDown: DropDown!
     
-    @IBOutlet weak var random: DropDown!
-    
     
     let campusList = ["East Campus", "West Campus"]
     let areaList = ["Crowell", "Craven", "Keohane", "Few", "Edens", "Kilgo", "Hollows", "Wannamaker"]
@@ -31,7 +29,6 @@ class HRLredoViewController: UIViewController {
         areaDropDown.optionArray = areaList
         locationDropDown.optionArray = locationList
         serviceAnimalDropDown.optionArray = ["yes", "no"]
-        random.optionArray = ["a", "b", "c"]
         
         campusDropDown.text = "Please select"
         areaDropDown.text = "Please select"
