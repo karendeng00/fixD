@@ -43,6 +43,7 @@
 		FFE35B1A22C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE35B1922C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift */; };
 		FFE35B2422C2AEB90087FC64 /* SubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE35B2322C2AEB90087FC64 /* SubmissionViewController.swift */; };
 		FFE6EEA422C3BE8C00E2CBED /* HRLredoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6EEA322C3BE8C00E2CBED /* HRLredoViewController.swift */; };
+		FFE6EEA622C3D9DD00E2CBED /* OITredoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6EEA522C3D9DD00E2CBED /* OITredoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		FFE35B1922C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDPage2ViewController.swift; sourceTree = "<group>"; };
 		FFE35B2322C2AEB90087FC64 /* SubmissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionViewController.swift; sourceTree = "<group>"; };
 		FFE6EEA322C3BE8C00E2CBED /* HRLredoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRLredoViewController.swift; sourceTree = "<group>"; };
+		FFE6EEA522C3D9DD00E2CBED /* OITredoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OITredoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 				FFE35B1922C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift */,
 				FFE35B2322C2AEB90087FC64 /* SubmissionViewController.swift */,
 				FFE6EEA322C3BE8C00E2CBED /* HRLredoViewController.swift */,
+				FFE6EEA522C3D9DD00E2CBED /* OITredoViewController.swift */,
 			);
 			path = newissue;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				2299A35422B18E07000BD0F6 /* ContactUsViewController.swift in Sources */,
 				B4EC7FD322B16995001711BC /* IssueViewController.swift in Sources */,
 				B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */,
+				FFE6EEA622C3D9DD00E2CBED /* OITredoViewController.swift in Sources */,
 				B4ED4D4122B0334400E50272 /* IssueBuilder.swift in Sources */,
 				B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,

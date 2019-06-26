@@ -77,7 +77,7 @@ class AddIssueGeneralInfoViewController: UIViewController {
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if nameText.text != "" &&
-            emailText.text != "" && phoneText.text != "" && titleText.text != "" && descriptionText.text != "" {
+            emailText.text != "" && phoneText.text != "" && titleText.text != "" && descriptionText.text != "Type Your Description Here" {
             return true
         }
         createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
