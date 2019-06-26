@@ -10,13 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/newissue/NewIssueFMDViewController.swift"
-            timestampString = "582233496.712885"
+            timestampString = "583251836.013634"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
-            landmarkName = "searchBar(_:textDidChange:)"
-            landmarkType = "7">
+            startingLineNumber = "87"
+            endingLineNumber = "87">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,13 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/newissue/NewIssueFMDViewController.swift"
-            timestampString = "582233496.713611"
+            timestampString = "583251836.014155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
-            landmarkType = "7">
+            startingLineNumber = "87"
+            endingLineNumber = "87">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,13 +38,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/newissue/NewIssueFMDViewController.swift"
-            timestampString = "582233496.714088"
+            timestampString = "583251836.014426"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
-            landmarkName = "searchBar(_:textDidChange:)"
-            landmarkType = "7">
+            startingLineNumber = "87"
+            endingLineNumber = "87">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -90,13 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/newissue/NewIssueFMDViewController.swift"
-            timestampString = "582233496.714548"
+            timestampString = "583251836.014654"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
-            landmarkName = "searchBar(_:textDidChange:)"
-            landmarkType = "7">
+            startingLineNumber = "87"
+            endingLineNumber = "87">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -106,13 +98,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/newissue/NewIssueFMDViewController.swift"
-            timestampString = "582233496.71501"
+            timestampString = "583251836.014887"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
-            landmarkName = "searchBar(_:textDidChange:)"
-            landmarkType = "7">
+            startingLineNumber = "87"
+            endingLineNumber = "87">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -122,13 +112,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/newissue/NewIssueFMDViewController.swift"
-            timestampString = "582233496.715464"
+            timestampString = "583251836.015099"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "304"
-            endingLineNumber = "304"
-            landmarkName = "NewIssueFMDViewController"
-            landmarkType = "21">
+            startingLineNumber = "87"
+            endingLineNumber = "87">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

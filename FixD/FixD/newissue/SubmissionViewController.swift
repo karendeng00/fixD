@@ -1,20 +1,20 @@
 //
-//  NewIssueFMDPage4ViewController.swift
+//  SubmissionViewController.swift
 //  FixD
 //
-//  Created by Ann Bailey on 6/14/19.
+//  Created by Ann Bailey on 6/25/19.
 //  Copyright © 2019 Duke. All rights reserved.
 //
 
 import UIKit
 
-class NewIssueFMDPage4ViewController: UIViewController {
+class SubmissionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
+
     
 
     /*
