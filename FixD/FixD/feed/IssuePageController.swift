@@ -13,6 +13,8 @@ class textCommentCell: UITableViewCell{
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var userLabel: UILabel!
     
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -25,6 +27,17 @@ class textCommentCell: UITableViewCell{
 
 class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
+    
+    @IBOutlet weak var likeView: UIView!
+    @IBOutlet weak var favView: UIView!
+    @IBOutlet weak var comView: UIView!
+    
+    
+
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var favButton: UIButton!
+    @IBOutlet weak var comButton: UIButton!
+    
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var issueLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -46,6 +59,32 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         commentView.delegate = self
         commentView.dataSource = self
         loadIssue()
+        
+        let tapLike = UITapGestureRecognizer(target: self, action: #selector(like(_:)))
+        likeView.addGestureRecognizer(tapLike)
+        
+        let tapFav = UITapGestureRecognizer(target: self, action: #selector(favorite(_:)))
+        favView.addGestureRecognizer(tapFav)
+    }
+    
+    
+    @IBAction func liked(_ sender: Any) {
+        issue.addUpVote()
+        if (issue.getUpVoteState()){
+            likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
+        }else {
+            likeButton.setImage(UIImage(named: "heart-1"), for: .normal)
+        }
+    }
+    
+    
+    @IBAction func favorited(_ sender: Any) {
+        issue.addFavorites()
+        if (issue.getFavoritesState()){
+            favButton.setImage(UIImage(named: "filled star"), for: .normal)
+        }else {
+            favButton.setImage(UIImage(named: "star"), for: .normal)
+        }
     }
     
     func loadIssue() {
@@ -54,10 +93,28 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         issueImage.image = UIImage(named: issue.getIssueImage())
         locationLabel.text = issue.getLocation()
         profileImage.image = UIImage(named: issue.getUser().userImage)
-        favoritesLabel.text = String(issue.getFavorites())
-        upvotesLabel.text = String(issue.getUpVotes())
         comments = issue.getListOfComments()
         configureTapGesture()
+    }
+    
+    
+    
+    @objc func like(_ sender: Any) {
+        issue.addUpVote()
+        if (issue.getUpVoteState()){
+            likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
+        }else {
+            likeButton.setImage(UIImage(named: "heart-1"), for: .normal)
+        }
+    }
+    
+    @objc func favorite(_ sender: Any) {
+        issue.addFavorites()
+        if (issue.getFavoritesState()){
+            favButton.setImage(UIImage(named: "filled star"), for: .normal)
+        }else {
+            favButton.setImage(UIImage(named: "star"), for: .normal)
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
