@@ -84,6 +84,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             let viewController = segue.destination as? IssuePageController
             if let indexPath = feedTable.indexPathForSelectedRow{
                 let currCell = feedTable.cellForRow(at: indexPath) as! FeedIssueCell
+                print("Hello")
                 viewController?.issue = currCell.myIssue
             }
         }
