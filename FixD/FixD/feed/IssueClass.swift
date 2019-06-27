@@ -21,11 +21,6 @@ class IssueClass {
     
     private let myUser:UserProfile
     
-    let locationImage:String = "locicon.png"
-    let favoriteButton:String = "star.png"
-    let likeButton:String = "upvote.png"
-    let commentButton:String = "comments.png"
-    
     private var myFavorites: Int
     private var myUpVotes: Int
     private var myComments: Int

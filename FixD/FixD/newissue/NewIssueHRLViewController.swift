@@ -9,7 +9,7 @@
 import UIKit
 import iOSDropDown
 
-class NewIssueHRLViewController: UIViewController { //, UIPickerViewDelegate, UIPickerViewDataSource {
+class _NewIssueHRLViewController: UIViewController { //, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var campusDropDown: DropDown!
     @IBOutlet weak var areaDropDown: DropDown!
@@ -21,7 +21,7 @@ class NewIssueHRLViewController: UIViewController { //, UIPickerViewDelegate, UI
     //private var dict: Dictionary <String, Dictionary<String,Array<String>>> = Dictionary()
     
     @IBOutlet weak var roomTextField: UITextField!
-    @IBOutlet weak var descriptionTextField: UITextField!
+//    @IBOutlet weak var descriptionTextField: UITextField!
     
     let campusList = ["East Campus", "West Campus"]
     let areaList = ["Crowell", "Craven", "Keohane", "Few", "Edens", "Kilgo", "Hollows", "Wannamaker"]
@@ -34,6 +34,11 @@ class NewIssueHRLViewController: UIViewController { //, UIPickerViewDelegate, UI
         areaDropDown.optionArray = areaList
         locationDropDown.optionArray = locationList
         serviceAnimalDropDown.optionArray = ["yes", "no"]
+        
+        campusDropDown.text = "Please select"
+        areaDropDown.text = "Please select"
+        locationDropDown.text = "Please select"
+        serviceAnimalDropDown.text = "Please select"
      
 //        setUpPickers()
 //        campusPickerData = ["East Campus", "West Campus"]
@@ -93,5 +98,20 @@ class NewIssueHRLViewController: UIViewController { //, UIPickerViewDelegate, UI
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if campusDropDown.text != "Please select" && areaDropDown.text != "Please select" && locationDropDown.text != "Please select" && serviceAnimalDropDown.text != "Please select" {
+            return true
+        }
+        createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
+        return false
+    }
+    
+    func createAlert(title:String, message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
