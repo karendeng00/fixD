@@ -9,7 +9,7 @@
 import UIKit
 import iOSDropDown
 
-class NewIssueHRLViewController: UIViewController { //, UIPickerViewDelegate, UIPickerViewDataSource {
+class _NewIssueHRLViewController: UIViewController { //, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var campusDropDown: DropDown!
     @IBOutlet weak var areaDropDown: DropDown!
@@ -21,7 +21,7 @@ class NewIssueHRLViewController: UIViewController { //, UIPickerViewDelegate, UI
     //private var dict: Dictionary <String, Dictionary<String,Array<String>>> = Dictionary()
     
     @IBOutlet weak var roomTextField: UITextField!
-    @IBOutlet weak var descriptionTextField: UITextField!
+//    @IBOutlet weak var descriptionTextField: UITextField!
     
     let campusList = ["East Campus", "West Campus"]
     let areaList = ["Crowell", "Craven", "Keohane", "Few", "Edens", "Kilgo", "Hollows", "Wannamaker"]
