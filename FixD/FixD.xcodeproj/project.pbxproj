@@ -49,7 +49,7 @@
 /* Begin PBXFileReference section */
 		0602A645D2AA86E5A338DE83 /* Pods-FixD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FixD.debug.xcconfig"; path = "Target Support Files/Pods-FixD/Pods-FixD.debug.xcconfig"; sourceTree = "<group>"; };
 		2299A35322B18E07000BD0F6 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
-		22E8AF6D22AEA70100194036 /* IssuePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuePageController.swift; sourceTree = "<group>"; };
+		22E8AF6D22AEA70100194036 /* IssuePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuePageController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		2FA8AB52C72AF2A93F009963 /* Pods-FixD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FixD.release.xcconfig"; path = "Target Support Files/Pods-FixD/Pods-FixD.release.xcconfig"; sourceTree = "<group>"; };
 		5AA4C96F8C6571126F23B8AC /* Pods_FixD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FixD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4085C0422A850A400A24525 /* FixD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FixD.app; sourceTree = BUILT_PRODUCTS_DIR; };
