@@ -36,7 +36,7 @@ class MapFunctionsViewController: UIViewController {
         currHeight?.isActive = true
         self.navigationItem.leftBarButtonItem = menuBarItem
         
-        setUpCurrentLocation()
+        
     }
     
     @IBAction func tapMenu(_ sender: UIButton) {
@@ -118,10 +118,10 @@ class MapFunctionsViewController: UIViewController {
             let loc = issue.getLocation()
             let geoCoder = CLGeocoder()
             geoCoder.geocodeAddressString(loc) { (placemarks, error) -> Void in
-                if let placemark = placemarks?.first {
+                if let pMark = placemarks?.first {
                     let point = MKPointAnnotation()
                     point.title = issue.getTitle()
-                    if let coordinate = placemark.location?.coordinate{
+                    if let coordinate = pMark.location?.coordinate{
                         point.coordinate = coordinate
                         self.myMapView.addAnnotation(point)
                     }
@@ -163,8 +163,9 @@ extension MapFunctionsViewController: UIViewControllerTransitioningDelegate {
     }
     
     private func getIssueData() {
-        IssueBuilder().getData() { issueData in
+        IssueLoader().getData() { issueData in
             self.myIssues = issueData
+            self.setUpCurrentLocation()
         }
     }
     
@@ -181,6 +182,7 @@ extension MapFunctionsViewController: CLLocationManagerDelegate{
             setUpIssuesOnMap()
         }
         currentCoord = latestLocation.coordinate
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
