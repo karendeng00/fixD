@@ -2773,7 +2773,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The service location is the same as my location above." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sY9-mh-qV5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The service location is the same as my location above.*" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sY9-mh-qV5">
                                 <rect key="frame" x="20" y="509" width="220" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="B8k-Zi-eJV"/>
@@ -3891,8 +3891,8 @@
         <image name="star-1" width="170" height="170"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="v3b-J1-vTz"/>
-        <segue reference="0BR-N4-qAY"/>
+        <segue reference="MPa-7a-kIW"/>
+        <segue reference="elw-hr-S50"/>
         <segue reference="tAk-x9-Ry1"/>
         <segue reference="6L9-9h-tX1"/>
     </inferredMetricsTieBreakers>
