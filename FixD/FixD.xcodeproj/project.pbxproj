@@ -36,6 +36,7 @@
 		F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */; };
 		F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
 		FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */; };
+		FFB04AE122C52E1B00C17F4B /* IssueAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB04AE022C52E1B00C17F4B /* IssueAlert.swift */; };
 		FFB2C5A222A968A300BC11ED /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FFB2C5A622A9785500BC11ED /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FFB2C5A822A97BB100BC11ED /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -80,6 +81,7 @@
 		F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueGeneralInfoViewController.swift; sourceTree = "<group>"; };
+		FFB04AE022C52E1B00C17F4B /* IssueAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAlert.swift; sourceTree = "<group>"; };
 		FFE35B1722C12E730087FC64 /* NewIssueFMDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDViewController.swift; sourceTree = "<group>"; };
 		FFE35B1922C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDPage2ViewController.swift; sourceTree = "<group>"; };
 		FFE35B2322C2AEB90087FC64 /* SubmissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				FFE35B2322C2AEB90087FC64 /* SubmissionViewController.swift */,
 				FFE6EEA322C3BE8C00E2CBED /* HRLredoViewController.swift */,
 				FFE6EEA522C3D9DD00E2CBED /* OITredoViewController.swift */,
+				FFB04AE022C52E1B00C17F4B /* IssueAlert.swift */,
 			);
 			path = newissue;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				FFE35B1A22C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift in Sources */,
 				FFB2C5A622A9785500BC11ED /* (null) in Sources */,
 				B4ED4D3F22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift in Sources */,
+				FFB04AE122C52E1B00C17F4B /* IssueAlert.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
 				B4EC7FCD22B16906001711BC /* Account.swift in Sources */,
 				B4EC7FD622B16E69001711BC /* AccountIssueCell.swift in Sources */,
