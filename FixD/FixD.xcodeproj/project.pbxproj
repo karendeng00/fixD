@@ -24,7 +24,6 @@
 		B4EC7FCF22B16906001711BC /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FCB22B16906001711BC /* SettingsTableViewCell.swift */; };
 		B4EC7FD122B16964001711BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD022B16963001711BC /* ViewController.swift */; };
 		B4EC7FD322B16995001711BC /* IssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD222B16995001711BC /* IssueViewController.swift */; };
-		B4EC7FD622B16E69001711BC /* AccountIssueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD422B16E69001711BC /* AccountIssueCell.swift */; };
 		B4EC7FD722B16E69001711BC /* AccountIssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD522B16E69001711BC /* AccountIssueTableViewController.swift */; };
 		B4EC7FD922B18163001711BC /* NewIssueServiceNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD822B18163001711BC /* NewIssueServiceNowViewController.swift */; };
 		B4ED4D3522AEB9C300E50272 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3422AEB9C300E50272 /* UserProfile.swift */; };
@@ -68,7 +67,6 @@
 		B4EC7FCB22B16906001711BC /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		B4EC7FD022B16963001711BC /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B4EC7FD222B16995001711BC /* IssueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueViewController.swift; sourceTree = "<group>"; };
-		B4EC7FD422B16E69001711BC /* AccountIssueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountIssueCell.swift; sourceTree = "<group>"; };
 		B4EC7FD522B16E69001711BC /* AccountIssueTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountIssueTableViewController.swift; sourceTree = "<group>"; };
 		B4EC7FD822B18163001711BC /* NewIssueServiceNowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueServiceNowViewController.swift; sourceTree = "<group>"; };
 		B4ED4D3422AEB9C300E50272 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
@@ -157,7 +155,6 @@
 			isa = PBXGroup;
 			children = (
 				2299A35322B18E07000BD0F6 /* ContactUsViewController.swift */,
-				B4EC7FD422B16E69001711BC /* AccountIssueCell.swift */,
 				B4EC7FD522B16E69001711BC /* AccountIssueTableViewController.swift */,
 				B4EC7FC922B16906001711BC /* Account.swift */,
 				B4EC7FCA22B16906001711BC /* AccountViewController.swift */,
@@ -368,7 +365,6 @@
 				B4ED4D3F22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
 				B4EC7FCD22B16906001711BC /* Account.swift in Sources */,
-				B4EC7FD622B16E69001711BC /* AccountIssueCell.swift in Sources */,
 				B4EC7FD722B16E69001711BC /* AccountIssueTableViewController.swift in Sources */,
 				FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */,
 				B4EC7FCC22B16906001711BC /* SettingsTableViewController.swift in Sources */,
