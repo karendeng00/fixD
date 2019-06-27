@@ -82,7 +82,7 @@ class FeedIssueCell: UITableViewCell {
     }
 
 //    private func getIssueData() {
-//        IssueBuilder().getData() { issueData in
+//        IssueLoader().getData() { issueData in
 //            self.myIssues = issueData
 //        }
 //    }
