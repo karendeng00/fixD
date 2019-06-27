@@ -10,38 +10,89 @@ import Foundation
 
 class IssueClass {
     
-    private let issueID:Int
+    private var myIssueID:Int = 0
     
-    private let myTitle:String
-    private let description:String
-    private let myLocation:String
-    private let issueImage:String
+    
+    private var myName:String = ""
+    private var myEmail:String = ""
+    private var myPhone:String = ""
+    private var myAltPhone:String = ""
+    private var myTitle:String = ""
+    private var myDescription:String = ""
+    private var myLocation:String = ""
+    private var myIssueImage:String = ""
     private var upvoted = false
     private var pinned = false
     
-    private let myUser:UserProfile
+//    private let myUser:UserProfile
+    private var myUserID:Int = 0
+    private var myType:String = ""
+    
+    
+    //Service Now Params
+    private var myUrgency:String = ""
+    private var myImpact:String = ""
+    private var mySensitiveInfo:String = ""
+    
     
     let locationImage:String = "locicon.png"
     let favoriteButton:String = "star.png"
     let likeButton:String = "upvote.png"
     let commentButton:String = "comments.png"
     
-    private var myFavorites: Int
-    private var myUpVotes: Int
-    private var myComments: Int
+    private var myFavorites: Int = 0
+    private var myUpVotes: Int = 0
+    private var myComments: Int = 0
     private var myListOfComments: Array<String> = Array()
     
-    init(ID: Int, title:String, description:String, location:String, issueImage:String, user:UserProfile, upVotes: Int, favorites: Int) {
-        self.issueID = ID
+    
+    //For Loading
+    init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, upVotes: Int, favorites: Int) {
+        self.myIssueID = issueID
         self.myTitle = title
         self.myLocation = location
-        self.description = description
-        self.issueImage = issueImage
-        self.myUser = user
+        self.myDescription = description
+        self.myIssueImage = issueImage
+        self.myUserID = user_id
         self.myFavorites = favorites
         self.myUpVotes = upVotes
         self.myComments = myListOfComments.count
     }
+    
+    //For Basic Initialization
+    init(name:String, email:String, phone:String, altPhone:String, title:String, description:String){
+        self.myName = name
+        self.myEmail = email
+        self.myPhone = phone
+        self.myAltPhone = altPhone
+        self.myTitle = title
+        self.myDescription = description
+        self.myComments = myListOfComments.count
+    }
+    
+    //For ?
+    init(title:String, description:String, location:String, issueImage:String, user_id:Int, upVotes: Int, favorites: Int) {
+        self.myTitle = title
+        self.myLocation = location
+        self.myDescription = description
+        self.myIssueImage = issueImage
+        self.myUserID = user_id
+        self.myFavorites = favorites
+        self.myUpVotes = upVotes
+        self.myComments = myListOfComments.count
+    }
+    
+    
+    func setType(type:String) {
+        self.myType = type
+    }
+    
+    func defineServiceNowParams(urgency:String, impact:String, sensitive_info:String) {
+        self.myUrgency = urgency
+        self.myImpact = impact
+        self.mySensitiveInfo = sensitive_info
+    }
+    
     
     func addUpVote(){
         if upvoted{
@@ -90,8 +141,12 @@ class IssueClass {
         return myListOfComments
     }
     
+    func setID(id:Int) {
+        self.myIssueID = id
+    }
+    
     func getID() -> Int {
-        return issueID
+        return myIssueID
     }
     
     func getTitle() -> String {
@@ -99,16 +154,16 @@ class IssueClass {
     }
     
     func getDescription() -> String {
-        return description
+        return myDescription
     }
     
     func getIssueImage() -> String {
-        return issueImage
+        return myIssueImage
     }
     
-    func getUser() -> UserProfile {
-        return myUser
-    }
+//    func getUser() -> UserProfile {
+//        return myUser
+//    }
 
     func getLocation() -> String {
         return myLocation

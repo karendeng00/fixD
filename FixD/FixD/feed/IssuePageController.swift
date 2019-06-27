@@ -163,7 +163,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         descriptionLabel.text = issue.getDescription()
         issueImage.image = UIImage(named: issue.getIssueImage())
         locationLabel.text = issue.getLocation()
-        profileImage.image = UIImage(named: issue.getUser().userImage)
+        profileImage.image = UIImage(named: "Temporary Name")
         comments = issue.getListOfComments()
         configureTapGesture()
     }

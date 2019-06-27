@@ -10,6 +10,8 @@ import UIKit
 
 class NewIssueFromCategoryTableViewController: UITableViewController {
 
+    var myIssue:IssueClass
+    
     let categories = ["OIT", "Facilities", "HRL", "Parking"]
     let segueIdentifiers = ["SNsegue", "EAMsegue", "HRLsegue", "Psegue"]
     
