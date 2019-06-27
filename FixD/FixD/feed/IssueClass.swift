@@ -70,6 +70,11 @@ class IssueClass {
         self.myComments = myListOfComments.count
     }
     
+    //Empty Object constructor
+    init() {
+        
+    }
+    
     //For ?
     init(title:String, description:String, location:String, issueImage:String, user_id:Int, upVotes: Int, favorites: Int) {
         self.myTitle = title
@@ -149,6 +154,38 @@ class IssueClass {
         return myIssueID
     }
     
+    func getName() ->String {
+        return myName
+    }
+    
+    func getEmail() -> String {
+        return myEmail
+    }
+    
+    func getPhone() ->String {
+        return myPhone
+    }
+    
+    func getAltPhone() ->String {
+        return myAltPhone
+    }
+    
+    func getUrgency() -> String {
+        return myUrgency
+    }
+    
+    func getImpact() -> String {
+        return myImpact
+    }
+    
+    func getSensitiveInfo() -> String {
+        return mySensitiveInfo
+    }
+    
+    func getType() ->String {
+        return myType
+    }
+    
     func getTitle() -> String {
         return myTitle
     }
@@ -167,6 +204,59 @@ class IssueClass {
 
     func getLocation() -> String {
         return myLocation
+    }
+    
+    
+    func buildSNIssue() {
+        let params = ["title": self.getTitle(),
+                      "description": self.getDescription(),
+                      "name": self.getName(),
+                      "type": self.getType(),
+                      "email": self.getEmail(),
+                      "phone": self.getPhone(),
+                      "alternate_phone": self.getAltPhone(),
+                      "urgency": self.getUrgency(),
+                      "impact": self.getImpact(),
+                      "sensitive_info": self.getSensitiveInfo(),
+                      "user_id": 1]
+            as [String: Any]
+        
+        let url = URL(string: "http://localhost:3000/createIssueMobile")! //change the url
+        
+        //create the session object
+        let session = URLSession.shared
+        
+        //now create the URLRequest object using the url object
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST" //set http method as POST
+        
+        request.httpBody = try! JSONSerialization.data(withJSONObject: params, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+        
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        //create dataTask using the session object to send data to the server
+        let task = session.dataTask(with: request, completionHandler: { data, response, error in
+            guard error == nil else {
+                return
+            }
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                //create json object from data
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    print(json)
+                    // handle json...
+                }
+                
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        })
+        task.resume()
     }
 }
 

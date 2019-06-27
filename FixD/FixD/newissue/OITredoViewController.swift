@@ -14,13 +14,13 @@ class OITredoViewController: UIViewController {
     
     @IBOutlet weak var urgencyDropDown: DropDown!
     @IBOutlet weak var impactDropDown: DropDown!
-    @IBOutlet weak var senstiveInfo: UITextView!
+    @IBOutlet weak var sensitiveInfo: UITextView!
     @IBOutlet weak var attachementPic: UIImageView!
     
-
+    var myIssue:IssueClass = IssueClass()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         urgencyDropDown.optionArray = ["Low", "Medium", "High"]
         impactDropDown.optionArray = ["Individual", "Work Group", "Widespread"]
         
@@ -31,6 +31,9 @@ class OITredoViewController: UIViewController {
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if urgencyDropDown.text != "Please select" && impactDropDown.text != "Please select" {
+            myIssue.defineServiceNowParams(urgency: urgencyDropDown.text!, impact: impactDropDown.text!, sensitive_info: sensitiveInfo.text!)
+            myIssue.buildSNIssue()
+            print(myIssue.getTitle())
             return true
         }
         createAlert(title: "Selections Missing", message: "Please fill in missing selections.")

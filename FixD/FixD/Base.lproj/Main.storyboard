@@ -1449,7 +1449,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EuP-n7-ZQi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3675.36231884058" y="-563.83928571428567"/>
+            <point key="canvasLocation" x="6626" y="-1400"/>
         </scene>
         <!--Feed-->
         <scene sceneID="lHo-4n-bUJ">
@@ -2047,7 +2047,7 @@
             <objects>
                 <tableViewController id="8um-IF-ytT" customClass="AccountIssueTableViewController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eMb-gj-9Fd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="581"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="630"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -2402,7 +2402,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PsT-eB-Tvo">
-                                <rect key="frame" x="20" y="104" width="125" height="76"/>
+                                <rect key="frame" x="20" y="104" width="125" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="125" id="eHg-Tr-2dK"/>
                                     <constraint firstAttribute="width" constant="125" id="mjR-jo-94C"/>
@@ -2427,7 +2427,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BCK-U0-JkI">
-                                <rect key="frame" x="0.0" y="281" width="414" height="581"/>
+                                <rect key="frame" x="0.0" y="281" width="414" height="630"/>
                                 <connections>
                                     <segue destination="8um-IF-ytT" kind="embed" id="4S7-64-lEO"/>
                                 </connections>
@@ -2591,8 +2591,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4f5-nX-TP8">
-                                        <rect key="frame" x="20" y="20" width="53" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4f5-nX-TP8">
+                                        <rect key="frame" x="20" y="20" width="45" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -2695,14 +2695,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="descriptionText" destination="zns-0z-hJG" id="zUP-R8-mrv"/>
+                        <outlet property="altPhoneText" destination="nWX-h8-jV7" id="tBY-Q0-Wyr"/>
                         <outlet property="emailText" destination="zns-0z-hJG" id="Wnj-IX-BYz"/>
-                        <outlet property="imageText" destination="6k4-EO-0nQ" id="abn-8E-DJ8"/>
                         <outlet property="issueDescriptionText" destination="ppU-e3-Q74" id="LPL-rU-TXg"/>
-                        <outlet property="locationText" destination="nWX-h8-jV7" id="S4r-wa-GX7"/>
-                        <outlet property="nameText" destination="zns-0z-hJG" id="PGr-GM-dzR"/>
-                        <outlet property="titleText" destination="Y1d-Qs-7Sd" id="eRo-lt-2V5"/>
-                        <outlet property="userImageText" destination="Dp4-NF-6zL" id="fXc-2J-sOu"/>
+                        <outlet property="issueTitleText" destination="Dp4-NF-6zL" id="pQy-jv-b47"/>
+                        <outlet property="nameText" destination="Y1d-Qs-7Sd" id="t13-9r-cML"/>
+                        <outlet property="phoneText" destination="6k4-EO-0nQ" id="Qat-5d-qe8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Li9-ee-p2C" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3916,6 +3914,7 @@
                     <navigationItem key="navigationItem" title="OIT" id="KKL-Md-ESI">
                         <barButtonItem key="rightBarButtonItem" title="Submit" id="EkL-9i-Sfp">
                             <connections>
+                                <action selector="submitIssue:" destination="RgB-Xe-zGh" id="5NQ-rg-vuh"/>
                                 <segue destination="ise-Sj-vpN" kind="popoverPresentation" popoverAnchorBarButtonItem="EkL-9i-Sfp" id="v3b-J1-vTz">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
@@ -3925,13 +3924,13 @@
                     <connections>
                         <outlet property="attachementPic" destination="Rld-Sy-3PO" id="3hk-HL-fcS"/>
                         <outlet property="impactDropDown" destination="mQH-6g-qxe" id="xSn-pO-wTn"/>
-                        <outlet property="senstiveInfo" destination="lHK-S0-P90" id="f1D-dG-T1p"/>
+                        <outlet property="sensitiveInfo" destination="lHK-S0-P90" id="fDj-HA-6cT"/>
                         <outlet property="urgencyDropDown" destination="NH8-IW-7Vb" id="tGt-hC-9Lk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7je-5s-0Yr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6560.8695652173919" y="-565.17857142857144"/>
+            <point key="canvasLocation" x="3683" y="-565"/>
         </scene>
     </scenes>
     <resources>
@@ -3955,7 +3954,7 @@
         <image name="star-1" width="170" height="170"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9lA-t5-3nB"/>
+        <segue reference="v3b-J1-vTz"/>
         <segue reference="0BR-N4-qAY"/>
         <segue reference="tAk-x9-Ry1"/>
         <segue reference="m0H-PQ-Cib"/>

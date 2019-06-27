@@ -1,5 +1,5 @@
 //
-//  IssueAPI.swift
+//  IssueLoader.swift
 //  FixD
 //
 //  Created by Karen Deng on 6/7/19.
