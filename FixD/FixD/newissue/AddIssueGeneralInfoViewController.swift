@@ -15,7 +15,6 @@ class AddIssueGeneralInfoViewController: UIViewController {
     @IBOutlet weak var phoneText: UITextField!
     @IBOutlet weak var altPhoneText: UITextField!
     @IBOutlet weak var issueTitleText: UITextField!
-    
     @IBOutlet weak var issueDescriptionText: UITextView!
     
     override func viewDidLoad() {
@@ -30,6 +29,23 @@ class AddIssueGeneralInfoViewController: UIViewController {
             
             viewController?.myIssue = IssueClass(name: nameText.text, email: emailText.text, phone: phoneText.text, altPhone: altPhoneText.text, title: issueTitleText.text, description: issueDescriptionText.text)
         }
+    }
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if nameText.text != "" &&
+            emailText.text != "" && phoneText.text != "" && titleText.text != "" && descriptionText.text != "Type Your Description Here" {
+            return true
+        }
+        createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
+        return false
+    }
+
+    func createAlert(title:String, message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
 //    func passData() {
@@ -78,8 +94,5 @@ class AddIssueGeneralInfoViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    
-
-    
 
 }
