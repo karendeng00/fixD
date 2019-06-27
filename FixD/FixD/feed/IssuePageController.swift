@@ -148,16 +148,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-    
-    @IBAction func favorited(_ sender: Any) {
-        issue.addFavorites()
-        if (issue.getFavoritesState()){
-            favButton.setImage(UIImage(named: "filled star"), for: .normal)
-        }else {
-            favButton.setImage(UIImage(named: "star"), for: .normal)
-        }
-    }
-    
     func loadIssue() {
         issueLabel.text = issue.getTitle()
         descriptionLabel.text = issue.getDescription()
@@ -167,8 +157,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         comments = issue.getListOfComments()
         configureTapGesture()
     }
-    
-    
     
     @objc func like(_ sender: Any) {
         issue.addUpVote()
@@ -209,7 +197,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath) as! textCommentCell
         cell.commentLabel.text = comments[indexPath.row]
-        cell.userLabel.text = "-Anderson C."
+        cell.userLabel.text = "-Name"
         return cell
     }
     
