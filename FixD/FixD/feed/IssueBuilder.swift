@@ -30,8 +30,8 @@ class IssueBuilder {
                                 location: "\(dictionary["location"]!)",
                                 issueImage: "\(dictionary["image"]!)",
                                 user: UserProfile(
-                                name: "\(dictionary["user"]!)",
-                                image: "\(dictionary["user_image"]!)"),
+                                name: "John Doe",
+                                image: "photo"),
                                 upVotes: 000,
                                 favorites: 000)
                         self.myIssueDictionary[i.getID()] = i
