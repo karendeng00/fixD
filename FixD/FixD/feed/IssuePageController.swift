@@ -13,8 +13,6 @@ class textCommentCell: UITableViewCell{
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var userLabel: UILabel!
     
-
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -31,7 +29,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var likeView: UIView!
     @IBOutlet weak var favView: UIView!
     @IBOutlet weak var comView: UIView!
-    
     
     @IBOutlet var views: [UIView]!
     
@@ -64,6 +61,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         commentView.dataSource = self
         loadIssue()
         
+        listenForNotifications()                //Code to set up and event listener
+        
         for v in views {
             v.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])
             v.layer.masksToBounds = false
@@ -91,6 +90,12 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         longCom.minimumPressDuration = 0
         comView.addGestureRecognizer(longCom)
         
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     @objc func longL(_ gestureRecognizer: UILongPressGestureRecognizer) {
@@ -177,13 +182,45 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        updateComments()
         textField.resignFirstResponder()
         return true
     }
-
+    
     private func configureTapGesture(){
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(IssuePageController.updateComments))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(IssuePageController.handleTap))
         view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func handleTap(){
+        view.endEditing(true)
+    }
+    
+    @objc func keyboardWillChange(notification: Notification){
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        if notification.name == UIResponder.keyboardWillShowNotification  || notification.name == UIResponder.keyboardWillChangeFrameNotification{
+            view.frame.origin.y = -keyboardRect.height + 100
+        }else {
+            view.frame.origin.y = 0
+            
+        }
+    }
+    
+    func updateComments() {
+        if commentTextField.hasText{
+            issue.addComment(comment: commentTextField.text!)
+            commentTextField.text = ""
+            comments = issue.getListOfComments()
+            commentView.reloadData()
+        }
+    }
+    
+    func listenForNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -201,18 +238,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
-    @IBAction func updateComments(_ sender: Any) {
-        if commentTextField.hasText{
-            issue.addComment(comment: commentTextField.text!)
-            commentTextField.text = ""
-            comments = issue.getListOfComments()
-            commentView.reloadData()
-        }
-        view.endEditing(true)
-    }
-    
-    
     @IBAction func tapCommentButton(_ sender: Any) {
+        updateComments()
         view.endEditing(true)
     }
 }
