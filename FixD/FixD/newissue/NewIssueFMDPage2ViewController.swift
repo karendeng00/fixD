@@ -17,6 +17,8 @@ class NewIssueFMDPage2ViewController: UIViewController {
     @IBOutlet weak var serviceListDropDown: DropDown!
     @IBOutlet weak var fundCodeTextField: UITextField!
     
+    var myIssue = IssueClass()
+    
     var same:Bool = false
     var buildingText:String = ""
     var floorText:String = ""
@@ -50,6 +52,8 @@ class NewIssueFMDPage2ViewController: UIViewController {
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if buildingSecondDropDown.text != "Please select" && floorSecondDropDown.text != "Please select" && roomSecondDropDown.text != "Please select" && serviceListDropDown.text != "Please select" {
+            myIssue.defineEAMParamsP2(service_building: buildingSecondDropDown.text!, service_floor: floorSecondDropDown.text!, service_room: roomSecondDropDown.text!, service_type: serviceListDropDown.text!, fund_code: fundCodeTextField.text ?? "")
+            myIssue.buildIssue()
             return true
         }
         createAlert(title: "Selections Missing", message: "Please fill in missing selections.")

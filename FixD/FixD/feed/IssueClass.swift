@@ -34,6 +34,23 @@ class IssueClass {
     private var myImpact:String = ""
     private var mySensitiveInfo:String = ""
     
+    //HRL Params
+    private var myCampus = ""
+    private var myArea = ""
+    private var myRoom = ""
+    private var mySpecificLocation = ""
+    private var myAnimal = false
+    
+    //EAM Params
+    private var myBuildingFacilities = ""
+    private var myFloorFacilities = ""
+    private var myRoomFacilities = ""
+    private var myRequestFor = ""
+    private var myBuildingService = ""
+    private var myFloorService = ""
+    private var myRoomService = ""
+    private var myServiceType = ""
+    private var myFundCode = ""
     
     private var myFavorites: Int = 0
     private var myUpVotes: Int = 0
@@ -66,9 +83,7 @@ class IssueClass {
     }
     
     //Empty Object constructor
-    init() {
-        
-    }
+    init() {}
     
     //For ?
     init(title:String, description:String, location:String, issueImage:String, user_id:Int, upVotes: Int, favorites: Int) {
@@ -82,7 +97,7 @@ class IssueClass {
         self.myComments = myListOfComments.count
     }
     
-    
+    //Set type of the Issue (SN, HRL, Dining, PT, EAM)
     func setType(type:String) {
         self.myType = type
     }
@@ -93,6 +108,28 @@ class IssueClass {
         self.mySensitiveInfo = sensitive_info
     }
     
+    func defineHRLParams(campus:String, area:String, specific_location:String, room:String, animal:Bool) {
+        self.myCampus = campus
+        self.myArea = area
+        self.mySpecificLocation = specific_location
+        self.myRoom = room
+        self.myAnimal = animal
+    }
+    
+    func defineEAMParamsP1(your_building:String, your_floor:String, your_room:String, request_for:String){
+        self.myBuildingFacilities = your_building
+        self.myFloorFacilities = your_floor
+        self.myRoomFacilities = your_room
+        self.myRequestFor = request_for
+    }
+    
+    func defineEAMParamsP2(service_building:String, service_floor:String, service_room:String, service_type:String, fund_code:String) {
+        self.myBuildingService = service_building
+        self.myFloorService = service_floor
+        self.myRoomService = service_room
+        self.myServiceType = service_type
+        self.myFundCode = fund_code
+    }
     
     func addUpVote(){
         if upvoted{
@@ -177,6 +214,62 @@ class IssueClass {
         return mySensitiveInfo
     }
     
+    func getCampus() -> String {
+        return myCampus
+    }
+    
+    func getArea() -> String {
+        return myArea
+    }
+    
+    func getSpecificLocation() -> String {
+        return mySpecificLocation
+    }
+    
+    func getRoom() -> String {
+        return myRoom
+    }
+    
+    func getAnimal() -> Bool {
+        return myAnimal
+    }
+    
+    func getBuildingFacilities() -> String {
+        return myBuildingFacilities
+    }
+    
+    func getFloorFacilities() -> String {
+        return myFloorFacilities
+    }
+    
+    func getRoomFacilities() -> String {
+        return myRoomFacilities
+    }
+    
+    func getRequestFor() -> String {
+        return myRequestFor
+    }
+    
+    func getBuildingService() -> String {
+        return myBuildingService
+    }
+    
+    func getFloorService() -> String {
+        return myFloorService
+    }
+    
+    func getRoomService() -> String {
+        return myRoomService
+    }
+    
+    func getServiceType() -> String {
+        return myServiceType
+    }
+    
+    func getFundCode() -> String {
+        return myFundCode
+    }
+    
     func getType() ->String {
         return myType
     }
@@ -202,32 +295,15 @@ class IssueClass {
     }
     
     
-    func buildSNIssue() {
-        let params = ["title": self.getTitle(),
-                      "description": self.getDescription(),
-                      "name": self.getName(),
-                      "type": self.getType(),
-                      "email": self.getEmail(),
-                      "phone": self.getPhone(),
-                      "alternate_phone": self.getAltPhone(),
-                      "urgency": self.getUrgency(),
-                      "impact": self.getImpact(),
-                      "sensitive_info": self.getSensitiveInfo(),
-                      "user_id": 1]
-            as [String: Any]
-        
+    func buildIssue() {
+        let params = buildParams(type:myType)
         let url = URL(string: "http://localhost:3000/createIssueMobile")! //change the url
-        
         //create the session object
         let session = URLSession.shared
-        
         //now create the URLRequest object using the url object
         var request = URLRequest(url: url)
         request.httpMethod = "POST" //set http method as POST
-        
         request.httpBody = try! JSONSerialization.data(withJSONObject: params, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-        
-        
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
@@ -239,20 +315,74 @@ class IssueClass {
             guard let data = data else {
                 return
             }
-            
             do {
                 //create json object from data
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                     print(json)
-                    // handle json...
                 }
-                
             } catch let error {
                 print(error.localizedDescription)
             }
         })
         task.resume()
     }
+    
+    private func buildParams(type:String) -> [String:Any] {
+        if myType == "SnIssue" {
+            return ["title": self.getTitle(),
+                          "description": self.getDescription(),
+                          "name": self.getName(),
+                          "type": self.getType(),
+                          "email": self.getEmail(),
+                          "phone": self.getPhone(),
+                          "alternate_phone": self.getAltPhone(),
+                          "urgency": self.getUrgency(),
+                          "impact": self.getImpact(),
+                          "sensitive_info": self.getSensitiveInfo(),
+                          "user_id": 1]
+                as [String: Any]
+        }
+        else if myType == "HrlIssue" {
+            return ["title": self.getTitle(),
+                    "description": self.getDescription(),
+                    "name": self.getName(),
+                    "type": self.getType(),
+                    "email": self.getEmail(),
+                    "phone": self.getPhone(),
+                    "alternate_phone": self.getAltPhone(),
+                    "campus": self.getCampus(),
+                    "area": self.getArea(),
+                    "specific_location": self.getSpecificLocation(),
+                    "room_number": self.getRoom(),
+                    "service_animal": self.getAnimal(),
+                    "user_id": 1]
+                as [String: Any]
+        }
+        else if myType == "EamIssue" {
+            return ["title": self.getTitle(),
+                    "description": self.getDescription(),
+                    "name": self.getName(),
+                    "type": self.getType(),
+                    "email": self.getEmail(),
+                    "phone": self.getPhone(),
+                    "alternate_phone": self.getAltPhone(),
+                    "your_building": self.getBuildingFacilities(),
+                    "your_floor": self.getFloorFacilities(),
+                    "your_room": self.getRoomFacilities(),
+                    "request_type": self.getRequestFor(),
+                    "issue_building": self.getBuildingService(),
+                    "issue_floor": self.getFloorService(),
+                    "issue_room": self.getRoomService(),
+                    "service_type": self.getServiceType(),
+                    "fund_code": self.getFundCode(),
+                    "user_id": 1]
+                as [String: Any]
+        }
+        else {
+            return ["Error":"Error"] //should never reach this part of the code
+        }
+    }
+        
 }
 
 
