@@ -41,7 +41,6 @@ class FeedIssueCell: UITableViewCell {
         
         let favoriteTap = UITapGestureRecognizer(target: self, action: #selector(favorite(_:)))
         starView.addGestureRecognizer(favoriteTap)
-    
     }
 
     override func awakeFromNib() {
