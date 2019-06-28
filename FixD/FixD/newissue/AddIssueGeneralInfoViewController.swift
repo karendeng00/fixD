@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddIssueGeneralInfoViewController: UIViewController {
+class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var emailText: UITextField!
@@ -19,8 +19,7 @@ class AddIssueGeneralInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        issueDescriptionText.text = "Type your description here."
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -33,7 +32,7 @@ class AddIssueGeneralInfoViewController: UIViewController {
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if nameText.text != "" &&
-            nameText.text != "" && emailText.text != "" && phoneText.text != "" && altPhoneText.text != "" && emailText.text != "" && phoneText.text != "" && issueTitleText.text != "" && issueDescriptionText.text != "Type Your Description Here" {
+            nameText.text != "" && emailText.text != "" && phoneText.text != "" && emailText.text != "" && phoneText.text != "" && issueTitleText.text != "" && issueDescriptionText.text != "Type Your Description Here" {
             return true
         }
         createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
@@ -47,4 +46,9 @@ class AddIssueGeneralInfoViewController: UIViewController {
         }))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+            issueDescriptionText.text = ""
+    }
+    
 }

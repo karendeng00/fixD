@@ -9,7 +9,7 @@
 import UIKit
 import iOSDropDown
 
-class OITredoViewController: UIViewController {
+class OITredoViewController: UIViewController, UITextViewDelegate {
     
     
     @IBOutlet weak var urgencyDropDown: DropDown!
@@ -26,6 +26,8 @@ class OITredoViewController: UIViewController {
         
         urgencyDropDown.text = "Please select"
         impactDropDown.text = "Please select"
+        
+        sensitiveInfo.text = "Enter any PHI or other sensitive information in this field."
         
     }
     
@@ -46,6 +48,10 @@ class OITredoViewController: UIViewController {
             alert.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        sensitiveInfo.text = ""
     }
 
 }
