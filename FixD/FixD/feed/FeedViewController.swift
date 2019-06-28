@@ -19,7 +19,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         //Get Issue Data for Feed
-        getIssueData()
+        //getIssueData()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self

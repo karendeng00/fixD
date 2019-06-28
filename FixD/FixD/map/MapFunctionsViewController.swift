@@ -22,7 +22,7 @@ class MapFunctionsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getIssueData()
+        //getIssueData()
         //creates menu button
         let menuBtn = UIButton(type: .custom)
         menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 15, height: 15)
