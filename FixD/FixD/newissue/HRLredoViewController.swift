@@ -17,6 +17,7 @@ class HRLredoViewController: UIViewController {
     @IBOutlet weak var roomTextField: UITextField!
     @IBOutlet weak var serviceAnimalDropDown: DropDown!
     
+    var myIssue:IssueClass = IssueClass()
     
     let campusList = ["East Campus", "West Campus"]
     let areaList = ["Crowell", "Craven", "Keohane", "Few", "Edens", "Kilgo", "Hollows", "Wannamaker"]
@@ -38,6 +39,13 @@ class HRLredoViewController: UIViewController {
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if campusDropDown.text != "Please select" && areaDropDown.text != "Please select" && locationDropDown.text != "Please select" && serviceAnimalDropDown.text != "Please select" {
+            var ifAnimal = false
+            if (serviceAnimalDropDown.text! == "yes") {
+                ifAnimal = true
+            }
+            else { ifAnimal = false}
+            myIssue.defineHRLParams(campus: campusDropDown.text!, area: areaDropDown.text!, specific_location: locationDropDown.text!, room: roomTextField.text!, animal: ifAnimal )
+            myIssue.buildIssue()
             return true
         }
         createAlert(title: "Selections Missing", message: "Please fill in missing selections.")

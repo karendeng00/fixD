@@ -80,6 +80,12 @@ class FeedIssueCell: UITableViewCell {
             favoritesButton.setImage(UIImage(named: "star"), for: .normal)
         }
     }
+
+//    private func getIssueData() {
+//        IssueLoader().getData() { issueData in
+//            self.myIssues = issueData
+//        }
+//    }
     
 }
 

@@ -55,7 +55,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     }
     
     func getIssueData() {
-        IssueBuilder().getData() { issueData in
+        IssueLoader().getData() { issueData in
             self.myIssueDict = issueData
             self.issueIDS = Array(self.myIssueDict.keys)
             self.tableView.reloadData()
@@ -115,13 +115,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         cell.issueImage.image = UIImage(named: obj.getIssueImage())
         cell.issueUpvotes.text = String(obj.getUpVotes())
         cell.issueFavorites.text = String(obj.getFavorites())
-        cell.userName.text = obj.getUser().userName
-        cell.userImage.image = UIImage(named:obj.getUser().userImage)
+        cell.userName.text = "Temporary Name"
+        cell.userImage.image = UIImage(named:"photo.jpg")
         cell.locationImage.image = UIImage(named:"locicon")
     
         return cell
     }
-    
     
     @IBAction func didTapMenu(_ sender: UIButton) {
         self.openMenu()
