@@ -96,7 +96,7 @@ open class DropDown : UITextField{
             
         }
     }
-    @IBInspectable public var checkMarkEnabled: Bool = true {
+    @IBInspectable public var checkMarkEnabled: Bool = false {
         didSet{
             
         }
@@ -229,22 +229,22 @@ open class DropDown : UITextField{
         if height < (keyboardHeight+tableheightX){
             y = self.pointToParent.y - tableheightX
         }
-        UIView.animate(withDuration: 0.5,
-                       delay: 0,
-                       usingSpringWithDamping: 0.3,
-                       initialSpringVelocity: 0.1,
-                       options: .curveEaseInOut,
-                       animations: { () -> Void in
+        UIView.animate(withDuration: 0,
+//                       delay: 0,
+//                       usingSpringWithDamping: 0.3,
+//                       initialSpringVelocity: 0.1,
+//                       options: .curveEaseInOut,
+                      animations: { () -> Void in
 
                         self.table.frame = CGRect(x: self.pointToParent.x,
                                                   y: y,
                                                   width: self.frame.width,
                                                   height: self.tableheightX)
                         self.table.alpha = 1
-                        self.shadow.frame = self.table.frame
-                        self.shadow.dropShadow()
+                        //self.shadow.frame = self.table.frame
+                        //self.shadow.dropShadow()
                         self.arrow.position = .up
-                       
+
 
         },
                        completion: { (finish) -> Void in
@@ -257,11 +257,11 @@ open class DropDown : UITextField{
 
     public func hideList() {
         TableWillDisappearCompletion()
-        UIView.animate(withDuration: 0.5,
-                       delay: 0.2,
-                       usingSpringWithDamping: 0.9,
-                       initialSpringVelocity: 0.1,
-                       options: .curveEaseInOut,
+       UIView.animate(withDuration: 0.2,
+//                       delay: 0.2,
+//                       usingSpringWithDamping: 0.9,
+//                       initialSpringVelocity: 0.1,
+//                       options: .curveEaseInOut,
                        animations: { () -> Void in
                         self.table.frame = CGRect(x: self.pointToParent.x,
                                                   y: self.pointToParent.y+self.frame.height,
@@ -297,17 +297,17 @@ open class DropDown : UITextField{
             y = self.pointToParent.y - tableheightX
         }
         UIView.animate(withDuration: 0.2,
-                       delay: 0.1,
-                       usingSpringWithDamping: 0.9,
-                       initialSpringVelocity: 0.1,
-                       options: .curveEaseInOut,
+//                       delay: 0.1,
+//                       usingSpringWithDamping: 0.9,
+//                       initialSpringVelocity: 0.1,
+//                       options: .curveEaseInOut,
                        animations: { () -> Void in
                         self.table.frame = CGRect(x: self.pointToParent.x,
                                                   y: y,
                                                   width: self.frame.width,
                                                   height: self.tableheightX)
                         self.shadow.frame = self.table.frame
-                        self.shadow.dropShadow()
+                        //self.shadow.dropShadow()
 
         },
                        completion: { (didFinish) -> Void in
@@ -514,16 +514,16 @@ class Arrow: UIView {
 
 extension UIView {
 
-    func dropShadow(scale: Bool = true) {
-        layer.masksToBounds = false
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.5
-        layer.shadowOffset = CGSize(width: 1, height: 1)
-        layer.shadowRadius = 2
-        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
-        layer.shouldRasterize = true
-        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
-    }
+//    func dropShadow(scale: Bool = true) {
+//        layer.masksToBounds = false
+////        layer.shadowColor = UIColor.black.cgColor
+////        layer.shadowOpacity = 0.5
+////        layer.shadowOffset = CGSize(width: 1, height: 1)
+////        layer.shadowRadius = 2
+////        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+//        layer.shouldRasterize = true
+//        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+//    }
 
     var parentViewController: UIViewController? {
         var parentResponder: UIResponder? = self
