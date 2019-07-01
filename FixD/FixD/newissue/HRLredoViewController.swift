@@ -17,6 +17,7 @@ class HRLredoViewController: UIViewController {
     @IBOutlet weak var roomTextField: UITextField!
     @IBOutlet weak var serviceAnimalDropDown: DropDown!
     
+    var HRLredoViewController:IssueVC = IssueVC()
     
     let campusList = ["East Campus", "West Campus"]
     let areaList = ["Crowell", "Craven", "Keohane", "Few", "Edens", "Kilgo", "Hollows", "Wannamaker"]
@@ -37,19 +38,20 @@ class HRLredoViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if campusDropDown.text != "Please select" && areaDropDown.text != "Please select" && locationDropDown.text != "Please select" && serviceAnimalDropDown.text != "Please select" {
+        if HRLredoViewController.checkSelections(selectionsList:[campusDropDown.text!, areaDropDown.text!, locationDropDown.text!, serviceAnimalDropDown.text!]) {
+//            campusDropDown.text != "Please select" && areaDropDown.text != "Please select" && locationDropDown.text != "Please select" && serviceAnimalDropDown.text != "Please select" {
             return true
         }
-        createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
+        HRLredoViewController.createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
         return false
     }
     
-    func createAlert(title:String, message:String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
+//    func createAlert(title:String, message:String) {
+//        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
+//            alert.dismiss(animated: true, completion: nil)
+//        }))
+//        self.present(alert, animated: true, completion: nil)
+//    }
 
 }
