@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class IssueClass {
     
@@ -55,7 +56,9 @@ class IssueClass {
     private var myFavorites: Int = 0
     private var myUpVotes: Int = 0
     private var myComments: Int = 0
+    private var myImages: Int = 0
     private var myListOfComments: Array<String> = Array()
+    private var myListOfImages: Array<UIImage> = Array()
     
     
     //For Loading
@@ -69,6 +72,7 @@ class IssueClass {
         self.myFavorites = favorites
         self.myUpVotes = upVotes
         self.myComments = myListOfComments.count
+        self.myImages = myListOfImages.count
     }
     
     //For Basic Initialization
@@ -131,6 +135,8 @@ class IssueClass {
         self.myFundCode = fund_code
     }
     
+    
+    
     func addUpVote(){
         if upvoted{
             myUpVotes -= 1
@@ -162,6 +168,11 @@ class IssueClass {
         myComments = myComments + 1
     }
     
+    func addImage(image:UIImage) {
+        myListOfImages.append(image)
+        myImages = myImages + 1
+    }
+    
     func getFavorites() -> Int {
         return myFavorites
     }
@@ -174,8 +185,16 @@ class IssueClass {
         return myComments
     }
     
+    func getNumberOfImages() -> Int {
+        return myImages
+    }
+    
     func getListOfComments() -> Array<String> {
         return myListOfComments
+    }
+    
+    func getListOfImages() -> Array<UIImage> {
+        return myListOfImages
     }
     
     func setID(id:Int) {

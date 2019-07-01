@@ -18,9 +18,6 @@
 		B4086CE722A9593E00B48EFF /* FeedIssueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4086CE622A9593E00B48EFF /* FeedIssueCell.swift */; };
 		B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4086CE822A95A7400B48EFF /* IssueClass.swift */; };
 		B4B1DBF922AAE02A005EFFA9 /* ScreenPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */; };
-		B4E2FB9022CA5A4300B993C6 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E2FB8F22CA5A4300B993C6 /* OAuthService.swift */; };
-		B4E2FB9222CA5A5D00B993C6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B4E2FB9122CA5A5D00B993C6 /* README.md */; };
-		B4E2FB9422CA5A6300B993C6 /* ShibAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E2FB9322CA5A6300B993C6 /* ShibAuthViewController.swift */; };
 		B4E2FB9622CA691800B993C6 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E2FB9522CA691800B993C6 /* TabBarViewController.swift */; };
 		B4EC7FCC22B16906001711BC /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FC822B16906001711BC /* SettingsTableViewController.swift */; };
 		B4EC7FCD22B16906001711BC /* FixDAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FC922B16906001711BC /* FixDAccount.swift */; };
@@ -38,6 +35,9 @@
 		B4ED4D4122B0334400E50272 /* IssueLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D4022B0334400E50272 /* IssueLoader.swift */; };
 		F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */; };
 		F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
+		F5EE5DB022CA89DC00F89735 /* ShibAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EE5DAD22CA89DB00F89735 /* ShibAuthViewController.swift */; };
+		F5EE5DB122CA89DC00F89735 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EE5DAE22CA89DB00F89735 /* OAuthService.swift */; };
+		F5EE5DB222CA89DC00F89735 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F5EE5DAF22CA89DB00F89735 /* README.md */; };
 		FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */; };
 		FFB04AE122C52E1B00C17F4B /* IssueAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB04AE022C52E1B00C17F4B /* IssueAlert.swift */; };
 		FFB2C5A222A968A300BC11ED /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -49,6 +49,19 @@
 		FFE6EEA422C3BE8C00E2CBED /* HRLredoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6EEA322C3BE8C00E2CBED /* HRLredoViewController.swift */; };
 		FFE6EEA622C3D9DD00E2CBED /* OITredoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6EEA522C3D9DD00E2CBED /* OITredoViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F5EE5DC922CA8EBF00F89735 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0602A645D2AA86E5A338DE83 /* Pods-FixD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FixD.debug.xcconfig"; path = "Target Support Files/Pods-FixD/Pods-FixD.debug.xcconfig"; sourceTree = "<group>"; };
@@ -66,9 +79,6 @@
 		B4086CE622A9593E00B48EFF /* FeedIssueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedIssueCell.swift; sourceTree = "<group>"; };
 		B4086CE822A95A7400B48EFF /* IssueClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueClass.swift; sourceTree = "<group>"; };
 		B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPageViewController.swift; sourceTree = "<group>"; };
-		B4E2FB8F22CA5A4300B993C6 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthService.swift; path = ../../../../../../../../Downloads/OAuthService.swift; sourceTree = "<group>"; };
-		B4E2FB9122CA5A5D00B993C6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../../../../../../Downloads/README.md; sourceTree = "<group>"; };
-		B4E2FB9322CA5A6300B993C6 /* ShibAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShibAuthViewController.swift; path = ../../../../../../../../Downloads/ShibAuthViewController.swift; sourceTree = "<group>"; };
 		B4E2FB9522CA691800B993C6 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B4EC7FC822B16906001711BC /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		B4EC7FC922B16906001711BC /* FixDAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixDAccount.swift; sourceTree = "<group>"; };
@@ -86,6 +96,10 @@
 		B4ED4D4022B0334400E50272 /* IssueLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueLoader.swift; sourceTree = "<group>"; };
 		F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
+		F5EE5DAD22CA89DB00F89735 /* ShibAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShibAuthViewController.swift; sourceTree = "<group>"; };
+		F5EE5DAE22CA89DB00F89735 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthService.swift; sourceTree = "<group>"; };
+		F5EE5DAF22CA89DB00F89735 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F5EE5DB822CA8EBD00F89735 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueGeneralInfoViewController.swift; sourceTree = "<group>"; };
 		FFB04AE022C52E1B00C17F4B /* IssueAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAlert.swift; sourceTree = "<group>"; };
 		FFE35B1722C12E730087FC64 /* NewIssueFMDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDViewController.swift; sourceTree = "<group>"; };
@@ -137,7 +151,7 @@
 		B4085C0622A850A400A24525 /* FixD */ = {
 			isa = PBXGroup;
 			children = (
-				B4E2FB8622CA58AC00B993C6 /* OAuth */,
+				F5EE5DAC22CA89DB00F89735 /* OAuth */,
 				B4ED4D4722B0353900E50272 /* login */,
 				B4ED4D4622B0350800E50272 /* map */,
 				B4ED4D4522B034F600E50272 /* newissue */,
@@ -151,16 +165,6 @@
 				B4085C1322A850A500A24525 /* Info.plist */,
 			);
 			path = FixD;
-			sourceTree = "<group>";
-		};
-		B4E2FB8622CA58AC00B993C6 /* OAuth */ = {
-			isa = PBXGroup;
-			children = (
-				B4E2FB8F22CA5A4300B993C6 /* OAuthService.swift */,
-				B4E2FB9122CA5A5D00B993C6 /* README.md */,
-				B4E2FB9322CA5A6300B993C6 /* ShibAuthViewController.swift */,
-			);
-			path = OAuth;
 			sourceTree = "<group>";
 		};
 		B4ED4D4222B0348E00E50272 /* sidemenu */ = {
@@ -239,8 +243,19 @@
 			isa = PBXGroup;
 			children = (
 				5AA4C96F8C6571126F23B8AC /* Pods_FixD.framework */,
+				F5EE5DB822CA8EBD00F89735 /* Messages.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F5EE5DAC22CA89DB00F89735 /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				F5EE5DAD22CA89DB00F89735 /* ShibAuthViewController.swift */,
+				F5EE5DAE22CA89DB00F89735 /* OAuthService.swift */,
+				F5EE5DAF22CA89DB00F89735 /* README.md */,
+			);
+			path = OAuth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +270,7 @@
 				B4085C0122A850A400A24525 /* Frameworks */,
 				B4085C0222A850A400A24525 /* Resources */,
 				8EEEA2D224890605C7A36ECE /* [CP] Embed Pods Frameworks */,
+				F5EE5DC922CA8EBF00F89735 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -305,7 +321,7 @@
 			files = (
 				B4085C1222A850A500A24525 /* LaunchScreen.storyboard in Resources */,
 				B4085C0F22A850A500A24525 /* Assets.xcassets in Resources */,
-				B4E2FB9222CA5A5D00B993C6 /* README.md in Resources */,
+				F5EE5DB222CA89DC00F89735 /* README.md in Resources */,
 				B4085C0D22A850A500A24525 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,16 +395,16 @@
 				B4EC7FD322B16995001711BC /* IssueViewController.swift in Sources */,
 				B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */,
 				B4ED4D4122B0334400E50272 /* IssueLoader.swift in Sources */,
-				B4E2FB9022CA5A4300B993C6 /* OAuthService.swift in Sources */,
+				F5EE5DB022CA89DC00F89735 /* ShibAuthViewController.swift in Sources */,
 				FFE6EEA622C3D9DD00E2CBED /* OITredoViewController.swift in Sources */,
 				B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
-				B4E2FB9422CA5A6300B993C6 /* ShibAuthViewController.swift in Sources */,
 				FFB2C5A222A968A300BC11ED /* (null) in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
 				FFB2C5A822A97BB100BC11ED /* (null) in Sources */,
 				FFE35B1A22C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift in Sources */,
 				FFB2C5A622A9785500BC11ED /* (null) in Sources */,
+				F5EE5DB122CA89DC00F89735 /* OAuthService.swift in Sources */,
 				B4ED4D3F22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift in Sources */,
 				FFB04AE122C52E1B00C17F4B /* IssueAlert.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
@@ -544,7 +560,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U6J58C8CJT;
+				DEVELOPMENT_TEAM = H253YA8Y99;
 				INFOPLIST_FILE = FixD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -563,7 +579,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U6J58C8CJT;
+				DEVELOPMENT_TEAM = H253YA8Y99;
 				INFOPLIST_FILE = FixD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
