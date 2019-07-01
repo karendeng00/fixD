@@ -23,7 +23,7 @@ class textCommentCell: UITableViewCell{
     
 }
 
-class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     
     @IBOutlet weak var likeView: UIView!
@@ -31,6 +31,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var comView: UIView!
     
     @IBOutlet var views: [UIView]!
+    
+    @IBOutlet weak var cameraView: UIView!
     
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var favButton: UIButton!
@@ -46,6 +48,9 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var upvotesLabel: UILabel!
     @IBOutlet weak var commentTextField: UITextField!
+    
+    @IBOutlet weak var commentImage: UIImageView!
+   
     
     var comments:[String] = []
     var issueID:Int = 0
@@ -90,6 +95,10 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         longCom.minimumPressDuration = 0
         comView.addGestureRecognizer(longCom)
         
+        let longCamera = UILongPressGestureRecognizer(target: self, action: #selector(longCam(_:)))
+        longCamera.minimumPressDuration = 0
+        cameraView.addGestureRecognizer(longCamera)
+        
     }
     
     deinit {
@@ -98,21 +107,53 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
+    //imports image
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            commentImage.image = image
+        }
+        else {
+            print("error")
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func longCam(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state == .ended {
+            cameraView.backgroundColor = white
+            cameraView.layer.shadowOffset = CGSize(width: -1, height: 1)
+            
+            let image = UIImagePickerController()
+            image.delegate = self
+            image.sourceType = UIImagePickerController.SourceType.photoLibrary
+            image.allowsEditing = false
+            self.present(image, animated: true) {
+                //After it is complete
+            }
+        }
+        else {
+            cameraView.backgroundColor = granite
+            cameraView.layer.shadowOffset = CGSize(width: -10, height: 10)
+        }
+        
+        
+    }
+    
     @objc func longL(_ gestureRecognizer: UILongPressGestureRecognizer) {
         
         if gestureRecognizer.state == .ended {
-            commentView.backgroundColor = white
-            commentView.layer.shadowOffset = CGSize(width: -1, height: 1)
-            issue.addUpVote()
+            likeView.backgroundColor = white
+            likeView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
+            issue.addUpVote()
             if (issue.getUpVoteState()){
                 likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
             } else {
                 likeButton.setImage(UIImage(named: "heart-1"), for: .normal)
             }
         }
-        else {
             
+        else {
             likeView.backgroundColor = granite
             likeView.layer.shadowOffset = CGSize(width: -10, height: 10)
         }
@@ -158,7 +199,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         descriptionLabel.text = issue.getDescription()
         issueImage.image = UIImage(named: issue.getIssueImage())
         locationLabel.text = issue.getLocation()
-        profileImage.image = UIImage(named: "Temporary Name")
+        profileImage.image = UIImage(named: "photo")
         comments = issue.getListOfComments()
         configureTapGesture()
     }
