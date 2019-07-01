@@ -9,37 +9,19 @@
 import UIKit
 
 class LoginScreenController: UIViewController {
-    
-    @IBOutlet weak var usernameTextBox: UITextField!
-    
-    private var myUserAccount: FixDAccount?
+
+    var oAuthService: OAuthService?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        usernameTextBox.delegate = self
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        view.addGestureRecognizer(tapGesture)
+        oAuthService = OAuthService.shared
     }
 
-    @objc func handleTap(){
-        view.endEditing(true)
-    }
-    
-    func createAccount(name: String) {
-        myUserAccount = FixDAccount(name: name)
-    }
-    
-    @IBAction func submit(_ sender: UIButton) {
-        view.endEditing(true)
-        performSegue(withIdentifier: "LoginButton", sender: sender)
-    }
-}
-
-extension LoginScreenController: UITextFieldDelegate{
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    @IBAction func loginButton(_ sender: UIButton) {
+        oAuthService?.setClientName(oAuthClientName: "dukemobile")
+        if oAuthService!.isAuthenticated() {
+            print("Login - about to refresh tokens")
+        }
     }
     
 }

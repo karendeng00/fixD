@@ -19,6 +19,9 @@
 		B4086CE722A9593E00B48EFF /* FeedIssueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4086CE622A9593E00B48EFF /* FeedIssueCell.swift */; };
 		B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4086CE822A95A7400B48EFF /* IssueClass.swift */; };
 		B4B1DBF922AAE02A005EFFA9 /* ScreenPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */; };
+		B4E2FB9022CA5A4300B993C6 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E2FB8F22CA5A4300B993C6 /* OAuthService.swift */; };
+		B4E2FB9222CA5A5D00B993C6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B4E2FB9122CA5A5D00B993C6 /* README.md */; };
+		B4E2FB9422CA5A6300B993C6 /* ShibAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E2FB9322CA5A6300B993C6 /* ShibAuthViewController.swift */; };
 		B4EC7FCC22B16906001711BC /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FC822B16906001711BC /* SettingsTableViewController.swift */; };
 		B4EC7FCD22B16906001711BC /* FixDAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FC922B16906001711BC /* FixDAccount.swift */; };
 		B4EC7FCE22B16906001711BC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FCA22B16906001711BC /* AccountViewController.swift */; };
@@ -64,6 +67,9 @@
 		B4086CE622A9593E00B48EFF /* FeedIssueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedIssueCell.swift; sourceTree = "<group>"; };
 		B4086CE822A95A7400B48EFF /* IssueClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueClass.swift; sourceTree = "<group>"; };
 		B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPageViewController.swift; sourceTree = "<group>"; };
+		B4E2FB8F22CA5A4300B993C6 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthService.swift; path = ../../../../../../../../Downloads/OAuthService.swift; sourceTree = "<group>"; };
+		B4E2FB9122CA5A5D00B993C6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../../../../../../Downloads/README.md; sourceTree = "<group>"; };
+		B4E2FB9322CA5A6300B993C6 /* ShibAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShibAuthViewController.swift; path = ../../../../../../../../Downloads/ShibAuthViewController.swift; sourceTree = "<group>"; };
 		B4EC7FC822B16906001711BC /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		B4EC7FC922B16906001711BC /* FixDAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixDAccount.swift; sourceTree = "<group>"; };
 		B4EC7FCA22B16906001711BC /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +137,7 @@
 		B4085C0622A850A400A24525 /* FixD */ = {
 			isa = PBXGroup;
 			children = (
+				B4E2FB8622CA58AC00B993C6 /* OAuth */,
 				B4ED4D4722B0353900E50272 /* login */,
 				B4ED4D4622B0350800E50272 /* map */,
 				B4ED4D4522B034F600E50272 /* newissue */,
@@ -145,6 +152,16 @@
 				B4085C1322A850A500A24525 /* Info.plist */,
 			);
 			path = FixD;
+			sourceTree = "<group>";
+		};
+		B4E2FB8622CA58AC00B993C6 /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				B4E2FB8F22CA5A4300B993C6 /* OAuthService.swift */,
+				B4E2FB9122CA5A5D00B993C6 /* README.md */,
+				B4E2FB9322CA5A6300B993C6 /* ShibAuthViewController.swift */,
+			);
+			path = OAuth;
 			sourceTree = "<group>";
 		};
 		B4ED4D4222B0348E00E50272 /* sidemenu */ = {
@@ -288,6 +305,7 @@
 			files = (
 				B4085C1222A850A500A24525 /* LaunchScreen.storyboard in Resources */,
 				B4085C0F22A850A500A24525 /* Assets.xcassets in Resources */,
+				B4E2FB9222CA5A5D00B993C6 /* README.md in Resources */,
 				B4085C0D22A850A500A24525 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,9 +379,11 @@
 				B4EC7FD322B16995001711BC /* IssueViewController.swift in Sources */,
 				B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */,
 				B4ED4D4122B0334400E50272 /* IssueLoader.swift in Sources */,
+				B4E2FB9022CA5A4300B993C6 /* OAuthService.swift in Sources */,
 				FFE6EEA622C3D9DD00E2CBED /* OITredoViewController.swift in Sources */,
 				B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
+				B4E2FB9422CA5A6300B993C6 /* ShibAuthViewController.swift in Sources */,
 				FFB2C5A222A968A300BC11ED /* (null) in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
 				FFB2C5A822A97BB100BC11ED /* (null) in Sources */,
