@@ -10,10 +10,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar View Controller-->
         <scene sceneID="aNH-Qs-qXa">
             <objects>
-                <tabBarController storyboardIdentifier="tab" id="JCi-aT-sd8" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tab" id="JCi-aT-sd8" customClass="TabBarViewController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="cUE-zN-Gun"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mbe-Yo-D7f">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -34,11 +35,11 @@
             <objects>
                 <viewController id="j16-qw-gvl" customClass="IssuePageController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xjr-Mj-4FN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="581"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="630"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZCr-ds-qkn">
-                                <rect key="frame" x="30" y="447" width="354" height="4"/>
+                                <rect key="frame" x="30" y="447" width="354" height="53"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextCommentCell" rowHeight="83" id="grs-mx-Fph" customClass="textCommentCell" customModule="FixD" customModuleProvider="target">
@@ -89,7 +90,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Leg-jd-pbO">
-                                <rect key="frame" x="30" y="481" width="36" height="36"/>
+                                <rect key="frame" x="30" y="530" width="36" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="Dt4-CY-2aY"/>
                                     <constraint firstAttribute="width" constant="36" id="ljo-jN-FgO"/>
@@ -99,7 +100,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0AJ-w2-gzR">
-                                <rect key="frame" x="348" y="481" width="36" height="36"/>
+                                <rect key="frame" x="348" y="530" width="36" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="Dqs-Mf-77M"/>
                                     <constraint firstAttribute="width" constant="36" id="Qe1-ZT-6y8"/>
@@ -112,7 +113,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Comment Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vTb-sv-7d4">
-                                <rect key="frame" x="81" y="484" width="252" height="30"/>
+                                <rect key="frame" x="81" y="533" width="252" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -469,7 +470,7 @@
                                 <state key="normal" title="DUKE login"/>
                                 <connections>
                                     <action selector="loginButton:" destination="BYZ-38-t0p" eventType="touchUpInside" id="lDA-c4-PJM"/>
-                                    <segue destination="JCi-aT-sd8" kind="show" id="FHY-8m-KhX"/>
+                                    <segue destination="JCi-aT-sd8" kind="show" id="3xw-lC-m6R"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arh-RN-Dvn">
@@ -2051,7 +2052,7 @@
             <objects>
                 <tableViewController id="8um-IF-ytT" customClass="AccountIssueTableViewController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eMb-gj-9Fd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="581"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="630"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -2294,7 +2295,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PsT-eB-Tvo">
-                                <rect key="frame" x="20" y="104" width="125" height="76"/>
+                                <rect key="frame" x="20" y="104" width="125" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="125" id="eHg-Tr-2dK"/>
                                     <constraint firstAttribute="width" constant="125" id="mjR-jo-94C"/>
@@ -2319,7 +2320,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BCK-U0-JkI">
-                                <rect key="frame" x="0.0" y="281" width="414" height="581"/>
+                                <rect key="frame" x="0.0" y="281" width="414" height="630"/>
                                 <connections>
                                     <segue destination="8um-IF-ytT" kind="embed" id="4S7-64-lEO"/>
                                 </connections>
@@ -3856,6 +3857,6 @@
         <segue reference="v3b-J1-vTz"/>
         <segue reference="0BR-N4-qAY"/>
         <segue reference="aQc-FV-48w"/>
-        <segue reference="FHY-8m-KhX"/>
+        <segue reference="3xw-lC-m6R"/>
     </inferredMetricsTieBreakers>
 </document>
