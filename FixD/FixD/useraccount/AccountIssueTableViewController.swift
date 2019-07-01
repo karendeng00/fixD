@@ -10,41 +10,44 @@ import UIKit
 
 class AccountIssueTableViewController: UITableViewController {
 
+    let myCellIndentifier = "IssueCell"
+    var myIssueDict:[Int: IssueClass] = [:]
+    var issueIDS:[Int] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        getIssueData()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 1
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 145
+        return 210
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return issueIDS.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountIssueCell", for: indexPath) as! AccountIssueCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell", for: indexPath) as! FeedIssueCell
         
-        cell.accountCellMyImage.image = UIImage(named:"blue devil.jpg")
-        cell.accountCellStar.image = UIImage(named: "star.png")
-        cell.accountCellUpVote.image = UIImage(named: "upvote.png")
-        cell.accountCellComment.image = UIImage(named: "comments.png")
-        cell.accountCellLocationPin.image = UIImage(named: "locicon.png")
-        cell.accountCellIssueImage.image = UIImage(named: "printer.jpg")
+        let obj = myIssueDict[issueIDS[indexPath.row]]!
+        
+        cell.setIssue(issue: obj)
+        cell.issueName.text = obj.getTitle()
+        cell.issueDescription.text = obj.getDescription()
+        cell.issueLocation.text = obj.getLocation()
+        cell.issueImage.image = UIImage(named: obj.getIssueImage())
+        cell.issueUpvotes.text = String(obj.getUpVotes())
+        cell.issueFavorites.text = String(obj.getFavorites())
+//        cell.userName.text = obj.getUser().userName
+//        cell.userImage.image = UIImage(named:obj.getUser().userImage)
+        cell.locationImage.image = UIImage(named:"locicon")
         
         return cell
     }
@@ -59,9 +62,20 @@ class AccountIssueTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is IssuePageController {
             let viewController = segue.destination as? IssuePageController
-            if let row = accountFeed.indexPathForSelectedRow?.row{
-                viewController?.issueID = row
+            if let indexPath = self.tableView.indexPathForSelectedRow{
+                let currCell = self.tableView.cellForRow(at: indexPath) as! FeedIssueCell
+                viewController?.issue = currCell.myIssue
             }
+        }
+    }
+    
+    func getIssueData() {
+        IssueLoader().getData() { issueData in
+            self.myIssueDict = issueData
+            self.issueIDS = Array(self.myIssueDict.keys)
+            self.tableView.reloadData()
+            print(self.myIssueDict)
+            print(self.issueIDS)
         }
     }
 

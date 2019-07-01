@@ -13,11 +13,11 @@ class SlideInTransition: NSObject, UIViewControllerAnimatedTransitioning {
     var isPresenting = false
     let dimmingView = UIView()
     let toViewController = UIViewController()
-
+    var move = CGFloat(0.0)
     
     //takes 3 seconds to appear on the screen
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-            return 1.0
+            return 0.5
     }
     
     
@@ -31,8 +31,6 @@ class SlideInTransition: NSObject, UIViewControllerAnimatedTransitioning {
         
         //let containerView = transitionContext.containerView
         let containerView: UIWindow? = UIApplication.shared.keyWindow
-        
-        
         
         let finalWidth = toViewController.view.bounds.width * 0.8
         let finalHeight = toViewController.view.bounds.height
@@ -66,7 +64,7 @@ class SlideInTransition: NSObject, UIViewControllerAnimatedTransitioning {
         //animate onto screen
         let transform = {
             self.dimmingView.alpha = 0.5
-            toViewController.view.transform = CGAffineTransform(translationX: finalWidth, y: 0)
+            toViewController.view.transform = CGAffineTransform(translationX: CGFloat(finalWidth), y: 0)
             
         }
         

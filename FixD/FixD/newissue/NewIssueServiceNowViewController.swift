@@ -13,8 +13,7 @@ class NewIssueServiceNowViewController: UIViewController {
     @IBOutlet weak var urgencySlider: UISlider!
     
     @IBOutlet weak var impactControl: UISegmentedControl!
-    
-    @IBOutlet weak var infoTextField: UITextField!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

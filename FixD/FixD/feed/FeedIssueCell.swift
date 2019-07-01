@@ -23,16 +23,69 @@ class FeedIssueCell: UITableViewCell {
     @IBOutlet weak var issueUpvotes: UILabel!
     @IBOutlet weak var issueFavorites: UILabel!
     
+    @IBOutlet weak var likeView: UIView!
+    @IBOutlet weak var starView: UIView!
+    @IBOutlet weak var commentView: UIView!
+    
+    @IBOutlet weak var upVoteButton: UIButton!
+    @IBOutlet weak var favoritesButton: UIButton!
+
+    var myIssue: IssueClass!
+
+    override func layoutSubviews() {
+        
+        super.layoutSubviews()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(like(_:)))
+        likeView.addGestureRecognizer(tap)
+        
+        let favoriteTap = UITapGestureRecognizer(target: self, action: #selector(favorite(_:)))
+        starView.addGestureRecognizer(favoriteTap)
+    
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        //getIssueData()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
+    func setIssue(issue: IssueClass){
+        myIssue = issue
+    }
+
+    @objc func like(_ sender: Any) {
+        myIssue.addUpVote()
+        issueUpvotes.text = String(myIssue.getUpVotes())
+        if (myIssue.getUpVoteState()){
+            upVoteButton.setImage(UIImage(named: "filled heart"), for: .normal)
+        }else {
+            upVoteButton.setImage(UIImage(named: "heart-1"), for: .normal)
+        }
+    }
+
+    @IBAction func upVote(_ sender: Any) {
+        like(sender)
+    }
+    
+    @IBAction func favorite(_ sender: Any) {
+        myIssue.addFavorites()
+        issueFavorites.text = String(myIssue.getFavorites())
+        if (myIssue.getFavoritesState()){
+            favoritesButton.setImage(UIImage(named: "filled star"), for: .normal)
+        }else {
+            favoritesButton.setImage(UIImage(named: "star"), for: .normal)
+        }
+    }
+
+//    private func getIssueData() {
+//        IssueLoader().getData() { issueData in
+//            self.myIssues = issueData
+//        }
+//    }
+    
 }
 

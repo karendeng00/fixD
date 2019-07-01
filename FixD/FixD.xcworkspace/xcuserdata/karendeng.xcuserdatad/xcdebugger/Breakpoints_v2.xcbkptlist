@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FixD/feed/IssuePageController.swift"
+            timestampString = "583267395.924644"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "IssuePageController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FixD.IssuePageController.views.getter : Swift.Optional&lt;Swift.Array&lt;__C.UIView&gt;&gt;"
+                  moduleName = "FixD"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/feed/IssuePageController.swift"
+                  timestampString = "583262034.2796921"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "114">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FixD.IssuePageController.views.setter : Swift.Optional&lt;Swift.Array&lt;__C.UIView&gt;&gt;"
+                  moduleName = "FixD"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/feed/IssuePageController.swift"
+                  timestampString = "583262034.281327"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FixD.IssuePageController.views.modify : Swift.Optional&lt;Swift.Array&lt;__C.UIView&gt;&gt;"
+                  moduleName = "FixD"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/feed/IssuePageController.swift"
+                  timestampString = "583262034.283121"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FixD.IssuePageController.views.modify : Swift.Optional&lt;Swift.Array&lt;__C.UIView&gt;&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "FixD"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/feed/IssuePageController.swift"
+                  timestampString = "583262034.28495"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FixD.IssuePageController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; FixD.IssuePageController"
+                  moduleName = "FixD"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/feed/IssuePageController.swift"
+                  timestampString = "583262034.286827"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "525">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FixD.IssuePageController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;FixD.IssuePageController&gt;"
+                  moduleName = "FixD"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/feed/IssuePageController.swift"
+                  timestampString = "583262034.2884229"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "445">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FixD/feed/IssuePageController.swift"
+            timestampString = "583267395.926332"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

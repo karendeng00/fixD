@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/sidemenu/SlideInTransition.swift"
-            timestampString = "582232669.405339"
+            timestampString = "582828737.136861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "animateTransition(using:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/sidemenu/SlideInTransition.swift"
-            timestampString = "582232669.405728"
+            timestampString = "582828737.136981"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "animateTransition(using:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/sidemenu/SlideInTransition.swift"
-            timestampString = "582232669.405982"
+            timestampString = "582828737.137042"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "animateTransition(using:)"
             landmarkType = "7">
             <Locations>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/sidemenu/SlideInTransition.swift"
-            timestampString = "582232669.406227"
+            timestampString = "582828737.1370879"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "animateTransition(using:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/sidemenu/SlideInTransition.swift"
-            timestampString = "582232669.4064699"
+            timestampString = "582828737.137169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "animateTransition(using:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/sidemenu/SlideInTransition.swift"
-            timestampString = "582232669.4067039"
+            timestampString = "582828737.137253"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "animateTransition(using:)"
             landmarkType = "7">
             <Locations>
@@ -193,6 +193,22 @@
                   offsetFromSymbolStart = "169">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FixD/sidemenu/MenuVC.swift"
+            timestampString = "583085783.9246171"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
