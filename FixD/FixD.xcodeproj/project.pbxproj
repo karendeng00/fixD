@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		228D431C22C68CEC00637BF2 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228D431B22C68CEC00637BF2 /* TabBarViewController.swift */; };
-		228D431F22C6A20C00637BF2 /* FeedNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228D431E22C6A20C00637BF2 /* FeedNavController.swift */; };
 		2299A35422B18E07000BD0F6 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299A35322B18E07000BD0F6 /* ContactUsViewController.swift */; };
 		22E8AF6E22AEA70100194036 /* IssuePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8AF6D22AEA70100194036 /* IssuePageController.swift */; };
 		4D0E1B019D6EBD8681595E60 /* Pods_FixD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AA4C96F8C6571126F23B8AC /* Pods_FixD.framework */; };
@@ -50,8 +48,6 @@
 
 /* Begin PBXFileReference section */
 		0602A645D2AA86E5A338DE83 /* Pods-FixD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FixD.debug.xcconfig"; path = "Target Support Files/Pods-FixD/Pods-FixD.debug.xcconfig"; sourceTree = "<group>"; };
-		228D431B22C68CEC00637BF2 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		228D431E22C6A20C00637BF2 /* FeedNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNavController.swift; sourceTree = "<group>"; };
 		2299A35322B18E07000BD0F6 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		22E8AF6D22AEA70100194036 /* IssuePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuePageController.swift; sourceTree = "<group>"; };
 		2FA8AB52C72AF2A93F009963 /* Pods-FixD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FixD.release.xcconfig"; path = "Target Support Files/Pods-FixD/Pods-FixD.release.xcconfig"; sourceTree = "<group>"; };
@@ -103,14 +99,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		228D431D22C6A1C800637BF2 /* Navigation Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				228D431E22C6A20C00637BF2 /* FeedNavController.swift */,
-			);
-			path = "Navigation Controllers";
-			sourceTree = "<group>";
-		};
 		ADB3BB97195793C7E3B7576D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,7 +129,6 @@
 		B4085C0622A850A400A24525 /* FixD */ = {
 			isa = PBXGroup;
 			children = (
-				228D431D22C6A1C800637BF2 /* Navigation Controllers */,
 				B4ED4D4722B0353900E50272 /* login */,
 				B4ED4D4622B0350800E50272 /* map */,
 				B4ED4D4522B034F600E50272 /* newissue */,
@@ -149,7 +136,6 @@
 				B4ED4D4322B034B500E50272 /* useraccount */,
 				B4ED4D4222B0348E00E50272 /* sidemenu */,
 				B4085C0722A850A400A24525 /* AppDelegate.swift */,
-				228D431B22C68CEC00637BF2 /* TabBarViewController.swift */,
 				B4085C0B22A850A500A24525 /* Main.storyboard */,
 				B4085C0E22A850A500A24525 /* Assets.xcassets */,
 				B4085C1022A850A500A24525 /* LaunchScreen.storyboard */,
@@ -362,7 +348,6 @@
 				B4EC7FD122B16964001711BC /* LoginScreenController.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
 				F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */,
-				228D431C22C68CEC00637BF2 /* TabBarViewController.swift in Sources */,
 				B4EC7FD922B18163001711BC /* NewIssueServiceNowViewController.swift in Sources */,
 				B4B1DBF922AAE02A005EFFA9 /* ScreenPageViewController.swift in Sources */,
 				B4ED4D3D22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift in Sources */,
@@ -377,7 +362,6 @@
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
 				FFB2C5A222A968A300BC11ED /* (null) in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
-				228D431F22C6A20C00637BF2 /* FeedNavController.swift in Sources */,
 				FFB2C5A822A97BB100BC11ED /* (null) in Sources */,
 				FFE35B1A22C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift in Sources */,
 				FFB2C5A622A9785500BC11ED /* (null) in Sources */,

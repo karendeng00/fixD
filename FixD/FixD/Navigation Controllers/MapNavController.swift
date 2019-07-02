@@ -1,21 +1,21 @@
 //
-//  FeedNavController.swift
+//  MapNavController.swift
 //  FixD
 //
-//  Created by Duc Tran on 6/28/19.
+//  Created by Duc Tran on 7/1/19.
 //  Copyright © 2019 Duke. All rights reserved.
 //
 
 import UIKit
 
-class FeedNavController: UINavigationController {
+class MapNavController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let icon = UIImage(named: "home")
+        let icon = UIImage(named: "locicon")
         //self.tabBarItem.image = resizeImage(image: icon!, targetSize: CGSize(width: 35, height: 35))
     }
-    
+
     func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
         let size = image.size
         

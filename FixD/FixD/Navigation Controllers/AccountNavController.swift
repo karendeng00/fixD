@@ -1,18 +1,18 @@
 //
-//  FeedNavController.swift
+//  AccountNavController.swift
 //  FixD
 //
-//  Created by Duc Tran on 6/28/19.
+//  Created by Duc Tran on 7/1/19.
 //  Copyright © 2019 Duke. All rights reserved.
 //
 
 import UIKit
 
-class FeedNavController: UINavigationController {
+class AccountNavController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let icon = UIImage(named: "home")
+        let icon = UIImage(named: "me")
         //self.tabBarItem.image = resizeImage(image: icon!, targetSize: CGSize(width: 35, height: 35))
     }
     
