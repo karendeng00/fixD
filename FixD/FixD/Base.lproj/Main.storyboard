@@ -13,7 +13,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="aNH-Qs-qXa">
             <objects>
-                <tabBarController storyboardIdentifier="tab" id="JCi-aT-sd8" customClass="TabBarViewController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tab" id="JCi-aT-sd8" customClass="TabBarViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="cUE-zN-Gun"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mbe-Yo-D7f">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -394,6 +394,7 @@
                         <outlet property="favoritesLabel" destination="DsP-n3-T0n" id="jNl-pG-xAI"/>
                         <outlet property="issueImage" destination="atE-Wc-3rw" id="dBi-By-44i"/>
                         <outlet property="issueLabel" destination="FJu-8b-E1B" id="Ori-OV-jP6"/>
+                        <outlet property="likeAndFavoriteAmountLabel" destination="RyZ-vs-0vh" id="il6-V0-1Cr"/>
                         <outlet property="likeButton" destination="8jU-tg-hya" id="jVG-67-wD5"/>
                         <outlet property="likeView" destination="zEq-Ei-cvq" id="Cvh-iT-10z"/>
                         <outlet property="locationLabel" destination="EX2-5F-IZZ" id="riQ-o6-fDh"/>
@@ -672,7 +673,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" translatesAutoresizingMaskIntoConstraints="NO" id="hLi-Xm-ORf">
-                                    <rect key="frame" x="3" y="60" width="90" height="90"/>
+                                    <rect key="frame" x="3" y="60" width="90.000000000000014" height="90"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="90" id="NMG-YZ-esa"/>
                                         <constraint firstAttribute="height" constant="90" id="yOk-Te-dPT"/>
@@ -883,7 +884,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filter" translatesAutoresizingMaskIntoConstraints="NO" id="P2i-BP-dd9">
-                                                    <rect key="frame" x="15" y="36" width="30" height="20"/>
+                                                    <rect key="frame" x="15" y="36" width="30.000000000000114" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="79F-hK-RFg"/>
                                                         <constraint firstAttribute="width" constant="30" id="HtF-VW-8wN"/>
@@ -3864,7 +3865,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="v3b-J1-vTz"/>
-        <segue reference="0BR-N4-qAY"/>
+        <segue reference="elw-hr-S50"/>
         <segue reference="tAk-x9-Ry1"/>
         <segue reference="3xw-lC-m6R"/>
     </inferredMetricsTieBreakers>

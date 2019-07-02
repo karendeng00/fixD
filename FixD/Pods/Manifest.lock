@@ -1,7 +1,7 @@
 PODS:
-  - Apollo (0.10.1):
-    - Apollo/Core (= 0.10.1)
-  - Apollo/Core (0.10.1)
+  - Apollo (0.10.2):
+    - Apollo/Core (= 0.10.2)
+  - Apollo/Core (0.10.2)
   - iOSDropDown (0.3.3)
   - SwiftKeychainWrapper (3.4.0)
 
@@ -21,14 +21,14 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Apollo:
-    :commit: 17e223d2b192e75698bd56c101f36d61b57b202b
+    :commit: 40a270b6ee15b8df3948a08393f512b902957dac
     :git: https://github.com/apollographql/apollo-ios.git
 
 SPEC CHECKSUMS:
-  Apollo: e26a0d2cda6f7a7de10f64cb9fb80f97bc819ef8
+  Apollo: 6cc3615e2cc29fd52e10bdee51d85cc063c5882d
   iOSDropDown: ae675451f6b91cec00531c953372e09c54dbd818
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
 
-PODFILE CHECKSUM: 2c095fa84d8d00d1664a7fbda378fc036ad4f0e9
+PODFILE CHECKSUM: 152ad0358cac97558bbf78adbd26007a7daca781
 
 COCOAPODS: 1.7.2
