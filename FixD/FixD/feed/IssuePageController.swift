@@ -64,10 +64,9 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     var issueID:Int = 0
     var issue:IssueClass!
     var tempImg: UIImage?
-    var test = false
-    var test2 = false
+    var hasImage = false
     
-    let white = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255/255.0, alpha: 1.0)
+    let white = UIColor(cgColor: CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])!)
     let granite = UIColor(red: 181/255.0, green: 181/255.0, blue: 181/255.0, alpha: 0.5)
     
     
@@ -133,7 +132,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             tempImg = image
-            test = true
+            hasImage = true
             
         }
         else {
@@ -152,7 +151,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             cameraView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
-                print("yeP")
+                print("yep")
                 let imagePicker = UIImagePickerController()
                 imagePicker.delegate = self
                 imagePicker.sourceType = UIImagePickerController.SourceType.camera
@@ -202,6 +201,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             } else {
                 likeButton.setImage(UIImage(named: "heart-1"), for: .normal)
             }
+            
         }
             
         else {
@@ -253,25 +253,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         profileImage.image = UIImage(named: "photo")
         comments = issue.getListOfComments()
         images = issue.getListOfImages()
+        likeAndFavoriteAmountLabel.text = ""
         configureTapGesture()
-    }
-    
-    @objc func like(_ sender: Any) {
-        issue.addUpVote()
-        if (issue.getUpVoteState()){
-            likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
-        }else {
-            likeButton.setImage(UIImage(named: "heart-1"), for: .normal)
-        }
-    }
-    
-    @objc func favorite(_ sender: Any) {
-        issue.addFavorites()
-        if (issue.getFavoritesState()){
-            favButton.setImage(UIImage(named: "filled star"), for: .normal)
-        }else {
-            favButton.setImage(UIImage(named: "star"), for: .normal)
-        }
     }
     
     @objc func send(_ gestureRecognizer: UILongPressGestureRecognizer) {
@@ -303,7 +286,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             return
         }
         if notification.name == UIResponder.keyboardWillShowNotification  || notification.name == UIResponder.keyboardWillChangeFrameNotification{
-            view.frame.origin.y = -keyboardRect.height + 100
+            view.frame.origin.y = -keyboardRect.height
         }else {
             view.frame.origin.y = 0
             
@@ -311,13 +294,15 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func updateComments() {
-        issue.addComment(comment: commentTextField.text!)
-        commentTextField.text = ""
-        comments = issue.getListOfComments()
-        commentView.reloadData()
-        if test == true {
+        if commentTextField.hasText {
+            issue.addComment(comment: commentTextField.text!)
+            commentTextField.text = ""
+            comments = issue.getListOfComments()
+            commentView.reloadData()
+        }
+        if hasImage == true {
             issue.addImage(image: tempImg!)
-            test = false
+            hasImage = false
         }
         else {
             issue.addImage(image: UIImage())

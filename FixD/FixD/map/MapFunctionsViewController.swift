@@ -22,6 +22,7 @@ class MapFunctionsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        myMapView.delegate = self
         getIssueData()
         //creates menu button
         let menuBtn = UIButton(type: .custom)
@@ -35,8 +36,6 @@ class MapFunctionsViewController: UIViewController {
         let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 23)
         currHeight?.isActive = true
         self.navigationItem.leftBarButtonItem = menuBarItem
-        
-        
     }
     
     @IBAction func tapMenu(_ sender: UIButton) {
@@ -47,23 +46,18 @@ class MapFunctionsViewController: UIViewController {
         guard let menuVC = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuVC else {
             return
         }
-        
         //transition to new page
         menuVC.didTapMenuType = {
             menuType in
             self.transitionToNew(menuType)
-            
         }
-        
         menuVC.modalPresentationStyle = .overCurrentContext
         menuVC.transitioningDelegate = self
         present(menuVC, animated: true)
     }
     
     func transitionToNew(_ menuType: MenuType) {
-        
         topView?.removeFromSuperview()
-        
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "tab") as? UITabBarController else {
             return
@@ -130,22 +124,6 @@ class MapFunctionsViewController: UIViewController {
         }
     }
     
-    //Allow Points to be added to map
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard annotation is MKPointAnnotation else { return nil }
-        
-        let identifier = "Annotation"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-        
-        if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView!.canShowCallout = true
-        } else {
-            annotationView!.annotation = annotation
-        }
-        return annotationView
-    }
-    
 }
 
 extension MapFunctionsViewController: UIViewControllerTransitioningDelegate {
@@ -194,3 +172,23 @@ extension MapFunctionsViewController: CLLocationManagerDelegate{
     
 }
 
+extension MapFunctionsViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "AnnotationView")
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "AnnotationView")
+        }
+        
+        if !(annotation === mapView.userLocation) {
+            annotationView?.image = UIImage(named: "ePin")
+        }
+        
+        annotationView?.canShowCallout = true
+        
+        return annotationView
+    }
+    
+}
