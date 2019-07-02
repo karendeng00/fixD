@@ -372,24 +372,45 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Comment Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vTb-sv-7d4">
-                                <rect key="frame" x="108" y="756" width="276" height="30"/>
+                                <rect key="frame" x="108" y="756" width="234" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPJ-Ct-UiG">
+                                <rect key="frame" x="348" y="753" width="36" height="36"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="send" translatesAutoresizingMaskIntoConstraints="NO" id="ONZ-vL-NbX">
+                                        <rect key="frame" x="6" y="6" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="HF8-ld-KB7"/>
+                                            <constraint firstAttribute="width" constant="24" id="gQF-Qu-d4X"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="70B-6N-CYe"/>
+                                    <constraint firstAttribute="width" constant="36" id="Gfm-Db-T4r"/>
+                                    <constraint firstItem="ONZ-vL-NbX" firstAttribute="centerX" secondItem="gPJ-Ct-UiG" secondAttribute="centerX" id="TOY-bD-qeH"/>
+                                    <constraint firstItem="ONZ-vL-NbX" firstAttribute="centerY" secondItem="gPJ-Ct-UiG" secondAttribute="centerY" id="VdI-u0-n7s"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ULa-S9-VJJ" firstAttribute="trailing" secondItem="vTb-sv-7d4" secondAttribute="trailing" constant="30" id="1yj-hm-vsL"/>
                             <constraint firstItem="bJV-py-2t9" firstAttribute="top" secondItem="ZCr-ds-qkn" secondAttribute="bottom" constant="24" id="3Wf-8S-jyi"/>
                             <constraint firstItem="uME-Sh-oPh" firstAttribute="top" secondItem="Xjr-Mj-4FN" secondAttribute="top" constant="430" id="76j-SB-spu"/>
                             <constraint firstAttribute="trailing" secondItem="uME-Sh-oPh" secondAttribute="trailing" constant="15" id="7ra-b5-Xjq"/>
+                            <constraint firstItem="gPJ-Ct-UiG" firstAttribute="centerY" secondItem="bJV-py-2t9" secondAttribute="centerY" id="B3n-jX-ata"/>
+                            <constraint firstItem="ULa-S9-VJJ" firstAttribute="trailing" secondItem="gPJ-Ct-UiG" secondAttribute="trailing" constant="30" id="EMP-Xc-nJo"/>
                             <constraint firstItem="uME-Sh-oPh" firstAttribute="top" secondItem="Fuc-Po-0gk" secondAttribute="bottom" constant="15" id="NVZ-mo-ADA"/>
                             <constraint firstItem="Fuc-Po-0gk" firstAttribute="centerX" secondItem="uME-Sh-oPh" secondAttribute="centerX" id="R0b-bd-YwV"/>
                             <constraint firstItem="Fuc-Po-0gk" firstAttribute="top" secondItem="hD8-Mu-Ysd" secondAttribute="bottom" constant="15" id="UPI-84-tg2"/>
                             <constraint firstItem="BFZ-fL-20I" firstAttribute="leading" secondItem="bJV-py-2t9" secondAttribute="trailing" constant="6" id="VXr-6S-dNG"/>
                             <constraint firstItem="vTb-sv-7d4" firstAttribute="leading" secondItem="BFZ-fL-20I" secondAttribute="trailing" constant="6" id="d2V-1P-blg"/>
                             <constraint firstItem="ZCr-ds-qkn" firstAttribute="leading" secondItem="ULa-S9-VJJ" secondAttribute="leading" constant="30" id="gUg-0p-YoA"/>
+                            <constraint firstItem="gPJ-Ct-UiG" firstAttribute="leading" secondItem="vTb-sv-7d4" secondAttribute="trailing" constant="6" id="gzz-gz-DFD"/>
                             <constraint firstItem="uME-Sh-oPh" firstAttribute="leading" secondItem="Xjr-Mj-4FN" secondAttribute="leading" constant="15" id="jX8-hJ-DuU"/>
                             <constraint firstItem="bJV-py-2t9" firstAttribute="leading" secondItem="ULa-S9-VJJ" secondAttribute="leading" constant="24" id="jqu-Gk-XfX"/>
                             <constraint firstItem="hD8-Mu-Ysd" firstAttribute="top" secondItem="ULa-S9-VJJ" secondAttribute="top" constant="15" id="k4n-nH-609"/>
@@ -424,6 +445,7 @@
                         <outlet property="likeView" destination="zEq-Ei-cvq" id="Cvh-iT-10z"/>
                         <outlet property="locationLabel" destination="EX2-5F-IZZ" id="riQ-o6-fDh"/>
                         <outlet property="profileImage" destination="8jX-UA-Lv0" id="ErM-v7-fhB"/>
+                        <outlet property="sendView" destination="gPJ-Ct-UiG" id="vKS-Ph-oEn"/>
                         <outlet property="upvotesLabel" destination="RRd-pl-aiV" id="4SR-xk-X16"/>
                         <outletCollection property="views" destination="hD8-Mu-Ysd" collectionClass="NSMutableArray" id="ZJJ-j4-Prc"/>
                         <outletCollection property="views" destination="zEq-Ei-cvq" collectionClass="NSMutableArray" id="7qm-HU-eVU"/>
@@ -431,6 +453,7 @@
                         <outletCollection property="views" destination="zZ6-vm-7qg" collectionClass="NSMutableArray" id="RDi-OQ-nkE"/>
                         <outletCollection property="views" destination="bJV-py-2t9" collectionClass="NSMutableArray" id="a29-oG-dhw"/>
                         <outletCollection property="views" destination="BFZ-fL-20I" collectionClass="NSMutableArray" id="CLI-H3-Fn6"/>
+                        <outletCollection property="views" destination="gPJ-Ct-UiG" collectionClass="NSMutableArray" id="Vd2-n6-0Og"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xd7-4f-qOF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1067,7 +1090,7 @@
                                         <rect key="frame" x="0.0" y="906" width="414" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aea-F1-6o0" id="4Ts-Ss-hsC">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="91.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="92"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gM-AM-xPv">
@@ -1099,7 +1122,7 @@
                                         <rect key="frame" x="0.0" y="998" width="414" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HgH-2Z-BMj" id="atp-Rw-FKC">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="91.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="92"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I7c-vq-6mg">
@@ -1147,7 +1170,7 @@
                                         <rect key="frame" x="0.0" y="1090" width="414" height="153"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nlB-aX-C1u" id="aaG-fY-UFx">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="152.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="153"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UUC-dM-GfO">
@@ -2076,7 +2099,7 @@
             <objects>
                 <tableViewController id="8um-IF-ytT" customClass="AccountIssueTableViewController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eMb-gj-9Fd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="630"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="581"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -2319,7 +2342,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PsT-eB-Tvo">
-                                <rect key="frame" x="20" y="104" width="125" height="125"/>
+                                <rect key="frame" x="20" y="104" width="125" height="76"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="125" id="eHg-Tr-2dK"/>
                                     <constraint firstAttribute="width" constant="125" id="mjR-jo-94C"/>
@@ -2344,7 +2367,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BCK-U0-JkI">
-                                <rect key="frame" x="0.0" y="281" width="414" height="630"/>
+                                <rect key="frame" x="0.0" y="281" width="414" height="581"/>
                                 <connections>
                                     <segue destination="8um-IF-ytT" kind="embed" id="4S7-64-lEO"/>
                                 </connections>
@@ -3874,6 +3897,7 @@
         <image name="locicon" width="512" height="512"/>
         <image name="me" width="170" height="170"/>
         <image name="photos" width="158" height="126"/>
+        <image name="send" width="238" height="219"/>
         <image name="settings" width="170" height="170"/>
         <image name="star" width="449" height="438"/>
         <image name="star-1" width="170" height="170"/>

@@ -31,6 +31,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var likeView: UIView!
     @IBOutlet weak var favView: UIView!
     @IBOutlet weak var comView: UIView!
+    @IBOutlet weak var sendView: UIView!
+    
     
     @IBOutlet var views: [UIView]!
     
@@ -112,6 +114,10 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         let longCamera = UILongPressGestureRecognizer(target: self, action: #selector(longCam(_:)))
         longCamera.minimumPressDuration = 0
         cameraView.addGestureRecognizer(longCamera)
+        
+        let longSend = UILongPressGestureRecognizer(target: self, action: #selector(send(_:)))
+        longSend.minimumPressDuration = 0
+        sendView.addGestureRecognizer(longSend)
         
     }
     
@@ -266,10 +272,19 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        updateComments()
-        textField.resignFirstResponder()
-        return true
+    @objc func send(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state == .ended {
+            sendView.backgroundColor = white
+            sendView.layer.shadowOffset = CGSize(width: -1, height: 1)
+            
+            updateComments()
+            commentTextField.resignFirstResponder()
+        }
+        else {
+            sendView.backgroundColor = granite
+            sendView.layer.shadowOffset = CGSize(width: -10, height: 10)
+        }
+
     }
     
     private func configureTapGesture(){
@@ -294,9 +309,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func updateComments() {
-        print(test)
-        
-        
         issue.addComment(comment: commentTextField.text!)
         commentTextField.text = ""
         comments = issue.getListOfComments()
@@ -309,9 +321,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             issue.addImage(image: UIImage())
         }
         images = issue.getListOfImages()
-
-    
-    
     }
     
     func listenForNotifications() {
