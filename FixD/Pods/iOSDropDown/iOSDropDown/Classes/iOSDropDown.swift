@@ -219,7 +219,7 @@ open class DropDown : UITextField{
         table.alpha = 0
         table.separatorStyle = .none
         table.layer.cornerRadius = 3
-        table.backgroundColor = rowBackgroundColor
+        table.backgroundColor = .clear
         table.rowHeight = rowHeight
         parentController?.view.addSubview(shadow)
         parentController?.view.addSubview(table)
