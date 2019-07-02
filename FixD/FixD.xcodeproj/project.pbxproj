@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		228D433622CBA6C900637BF2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 228D433322CBA6C900637BF2 /* README.md */; };
-		228D433722CBA6C900637BF2 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228D433422CBA6C900637BF2 /* OAuthService.swift */; };
-		228D433822CBA6C900637BF2 /* ShibAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228D433522CBA6C900637BF2 /* ShibAuthViewController.swift */; };
+		22775BCE22CBC4C400130E12 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22775BCD22CBC4C400130E12 /* OAuthService.swift */; };
+		22775BD122CBC4E000130E12 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 22775BCF22CBC4E000130E12 /* README.md */; };
+		22775BD222CBC4E000130E12 /* ShibAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22775BD022CBC4E000130E12 /* ShibAuthViewController.swift */; };
 		2299A35422B18E07000BD0F6 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299A35322B18E07000BD0F6 /* ContactUsViewController.swift */; };
 		22E8AF6E22AEA70100194036 /* IssuePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8AF6D22AEA70100194036 /* IssuePageController.swift */; };
 		4D0E1B019D6EBD8681595E60 /* Pods_FixD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AA4C96F8C6571126F23B8AC /* Pods_FixD.framework */; };
@@ -37,12 +37,7 @@
 		B4ED4D4122B0334400E50272 /* IssueLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D4022B0334400E50272 /* IssueLoader.swift */; };
 		F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */; };
 		F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
-		F5EE5DB022CA89DC00F89735 /* ShibAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EE5DAD22CA89DB00F89735 /* ShibAuthViewController.swift */; };
-		F5EE5DB122CA89DC00F89735 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EE5DAE22CA89DB00F89735 /* OAuthService.swift */; };
-		F5EE5DB222CA89DC00F89735 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F5EE5DAF22CA89DB00F89735 /* README.md */; };
 		FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */; };
-		FF95139322CA563200B94CB2 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95139222CA563200B94CB2 /* OAuthService.swift */; };
-		FF95139522CA564200B94CB2 /* ShibAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95139422CA564200B94CB2 /* ShibAuthViewController.swift */; };
 		FF95139722CA8EEA00B94CB2 /* NewIssuePTSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95139622CA8EEA00B94CB2 /* NewIssuePTSViewController.swift */; };
 		FF95139922CA98E600B94CB2 /* IssueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95139822CA98E600B94CB2 /* IssueVC.swift */; };
 		FFB2C5A222A968A300BC11ED /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -70,9 +65,9 @@
 
 /* Begin PBXFileReference section */
 		0602A645D2AA86E5A338DE83 /* Pods-FixD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FixD.debug.xcconfig"; path = "Target Support Files/Pods-FixD/Pods-FixD.debug.xcconfig"; sourceTree = "<group>"; };
-		228D433322CBA6C900637BF2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = FixD/DukeOAuth/README.md; sourceTree = SOURCE_ROOT; };
-		228D433422CBA6C900637BF2 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthService.swift; path = FixD/DukeOAuth/OAuthService.swift; sourceTree = SOURCE_ROOT; };
-		228D433522CBA6C900637BF2 /* ShibAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShibAuthViewController.swift; path = FixD/DukeOAuth/ShibAuthViewController.swift; sourceTree = SOURCE_ROOT; };
+		22775BCD22CBC4C400130E12 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthService.swift; sourceTree = "<group>"; };
+		22775BCF22CBC4E000130E12 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		22775BD022CBC4E000130E12 /* ShibAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShibAuthViewController.swift; sourceTree = "<group>"; };
 		2299A35322B18E07000BD0F6 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		22E8AF6D22AEA70100194036 /* IssuePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuePageController.swift; sourceTree = "<group>"; };
 		2FA8AB52C72AF2A93F009963 /* Pods-FixD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FixD.release.xcconfig"; path = "Target Support Files/Pods-FixD/Pods-FixD.release.xcconfig"; sourceTree = "<group>"; };
@@ -104,13 +99,8 @@
 		B4ED4D4022B0334400E50272 /* IssueLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueLoader.swift; sourceTree = "<group>"; };
 		F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
-		F5EE5DAD22CA89DB00F89735 /* ShibAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShibAuthViewController.swift; sourceTree = "<group>"; };
-		F5EE5DAE22CA89DB00F89735 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthService.swift; sourceTree = "<group>"; };
-		F5EE5DAF22CA89DB00F89735 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F5EE5DB822CA8EBD00F89735 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueGeneralInfoViewController.swift; sourceTree = "<group>"; };
-		FF95139222CA563200B94CB2 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthService.swift; path = ../../../../../Downloads/OAuthService.swift; sourceTree = "<group>"; };
-		FF95139422CA564200B94CB2 /* ShibAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShibAuthViewController.swift; path = ../../../../../Downloads/ShibAuthViewController.swift; sourceTree = "<group>"; };
 		FF95139622CA8EEA00B94CB2 /* NewIssuePTSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssuePTSViewController.swift; sourceTree = "<group>"; };
 		FF95139822CA98E600B94CB2 /* IssueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueVC.swift; sourceTree = "<group>"; };
 		FFE35B1722C12E730087FC64 /* NewIssueFMDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +122,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22775BCC22CBC4A200130E12 /* DukeOAuth */ = {
+			isa = PBXGroup;
+			children = (
+				22775BCF22CBC4E000130E12 /* README.md */,
+				22775BD022CBC4E000130E12 /* ShibAuthViewController.swift */,
+				22775BCD22CBC4C400130E12 /* OAuthService.swift */,
+			);
+			path = DukeOAuth;
+			sourceTree = "<group>";
+		};
 		ADB3BB97195793C7E3B7576D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,7 +162,7 @@
 		B4085C0622A850A400A24525 /* FixD */ = {
 			isa = PBXGroup;
 			children = (
-				F5EE5DAC22CA89DB00F89735 /* OAuth */,
+				22775BCC22CBC4A200130E12 /* DukeOAuth */,
 				B4ED4D4722B0353900E50272 /* login */,
 				B4ED4D4622B0350800E50272 /* map */,
 				B4ED4D4522B034F600E50272 /* newissue */,
@@ -176,16 +176,6 @@
 				B4085C1322A850A500A24525 /* Info.plist */,
 			);
 			path = FixD;
-			sourceTree = "<group>";
-		};
-		B4E2FB8622CA58AC00B993C6 /* OAuth */ = {
-			isa = PBXGroup;
-			children = (
-				228D433422CBA6C900637BF2 /* OAuthService.swift */,
-				228D433322CBA6C900637BF2 /* README.md */,
-				228D433522CBA6C900637BF2 /* ShibAuthViewController.swift */,
-			);
-			path = OAuth;
 			sourceTree = "<group>";
 		};
 		B4ED4D4222B0348E00E50272 /* sidemenu */ = {
@@ -238,8 +228,6 @@
 				FFE35B2322C2AEB90087FC64 /* SubmissionViewController.swift */,
 				FFE6EEA322C3BE8C00E2CBED /* HRLredoViewController.swift */,
 				FFE6EEA522C3D9DD00E2CBED /* OITredoViewController.swift */,
-				FFB04AE022C52E1B00C17F4B /* IssueAlert.swift */,
-				B43D949D22C552DB002ACF21 /* IssueMaker.swift */,
 				FF95139622CA8EEA00B94CB2 /* NewIssuePTSViewController.swift */,
 				FF95139822CA98E600B94CB2 /* IssueVC.swift */,
 			);
@@ -270,15 +258,6 @@
 				F5EE5DB822CA8EBD00F89735 /* Messages.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		FF95139122CA55FF00B94CB2 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-				FF95139422CA564200B94CB2 /* ShibAuthViewController.swift */,
-				FF95139222CA563200B94CB2 /* OAuthService.swift */,
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,7 +323,7 @@
 			files = (
 				B4085C1222A850A500A24525 /* LaunchScreen.storyboard in Resources */,
 				B4085C0F22A850A500A24525 /* Assets.xcassets in Resources */,
-				228D433622CBA6C900637BF2 /* README.md in Resources */,
+				22775BD122CBC4E000130E12 /* README.md in Resources */,
 				B4085C0D22A850A500A24525 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,22 +393,20 @@
 				B4ED4D3D22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift in Sources */,
 				B4086CE722A9593E00B48EFF /* FeedIssueCell.swift in Sources */,
 				FFE6EEA422C3BE8C00E2CBED /* HRLredoViewController.swift in Sources */,
-				228D433722CBA6C900637BF2 /* OAuthService.swift in Sources */,
 				2299A35422B18E07000BD0F6 /* ContactUsViewController.swift in Sources */,
 				B4EC7FD322B16995001711BC /* IssueViewController.swift in Sources */,
 				B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */,
 				B4ED4D4122B0334400E50272 /* IssueLoader.swift in Sources */,
-				228D433822CBA6C900637BF2 /* ShibAuthViewController.swift in Sources */,
+				22775BCE22CBC4C400130E12 /* OAuthService.swift in Sources */,
 				FFE6EEA622C3D9DD00E2CBED /* OITredoViewController.swift in Sources */,
 				B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
-				FF95139522CA564200B94CB2 /* ShibAuthViewController.swift in Sources */,
+				22775BD222CBC4E000130E12 /* ShibAuthViewController.swift in Sources */,
 				FFB2C5A222A968A300BC11ED /* (null) in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
 				FFB2C5A822A97BB100BC11ED /* (null) in Sources */,
 				FFE35B1A22C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift in Sources */,
 				FFB2C5A622A9785500BC11ED /* (null) in Sources */,
-				F5EE5DB122CA89DC00F89735 /* OAuthService.swift in Sources */,
 				B4ED4D3F22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
 				B4EC7FCD22B16906001711BC /* FixDAccount.swift in Sources */,
@@ -585,7 +562,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H253YA8Y99;
+				DEVELOPMENT_TEAM = U6J58C8CJT;
 				INFOPLIST_FILE = FixD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -604,7 +581,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H253YA8Y99;
+				DEVELOPMENT_TEAM = U6J58C8CJT;
 				INFOPLIST_FILE = FixD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
