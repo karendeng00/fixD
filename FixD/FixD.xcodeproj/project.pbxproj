@@ -37,6 +37,9 @@
 		B4ED4D4122B0334400E50272 /* IssueLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D4022B0334400E50272 /* IssueLoader.swift */; };
 		F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */; };
 		F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
+		F5EE5DB022CA89DC00F89735 /* ShibAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EE5DAD22CA89DB00F89735 /* ShibAuthViewController.swift */; };
+		F5EE5DB122CA89DC00F89735 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EE5DAE22CA89DB00F89735 /* OAuthService.swift */; };
+		F5EE5DB222CA89DC00F89735 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F5EE5DAF22CA89DB00F89735 /* README.md */; };
 		FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */; };
 		FF95139322CA563200B94CB2 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95139222CA563200B94CB2 /* OAuthService.swift */; };
 		FF95139522CA564200B94CB2 /* ShibAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95139422CA564200B94CB2 /* ShibAuthViewController.swift */; };
@@ -51,6 +54,19 @@
 		FFE6EEA422C3BE8C00E2CBED /* HRLredoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6EEA322C3BE8C00E2CBED /* HRLredoViewController.swift */; };
 		FFE6EEA622C3D9DD00E2CBED /* OITredoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6EEA522C3D9DD00E2CBED /* OITredoViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F5EE5DC922CA8EBF00F89735 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0602A645D2AA86E5A338DE83 /* Pods-FixD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FixD.debug.xcconfig"; path = "Target Support Files/Pods-FixD/Pods-FixD.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +104,10 @@
 		B4ED4D4022B0334400E50272 /* IssueLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueLoader.swift; sourceTree = "<group>"; };
 		F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
+		F5EE5DAD22CA89DB00F89735 /* ShibAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShibAuthViewController.swift; sourceTree = "<group>"; };
+		F5EE5DAE22CA89DB00F89735 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthService.swift; sourceTree = "<group>"; };
+		F5EE5DAF22CA89DB00F89735 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F5EE5DB822CA8EBD00F89735 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueGeneralInfoViewController.swift; sourceTree = "<group>"; };
 		FF95139222CA563200B94CB2 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthService.swift; path = ../../../../../Downloads/OAuthService.swift; sourceTree = "<group>"; };
 		FF95139422CA564200B94CB2 /* ShibAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShibAuthViewController.swift; path = ../../../../../Downloads/ShibAuthViewController.swift; sourceTree = "<group>"; };
@@ -142,7 +162,7 @@
 		B4085C0622A850A400A24525 /* FixD */ = {
 			isa = PBXGroup;
 			children = (
-				B4E2FB8622CA58AC00B993C6 /* OAuth */,
+				F5EE5DAC22CA89DB00F89735 /* OAuth */,
 				B4ED4D4722B0353900E50272 /* login */,
 				B4ED4D4622B0350800E50272 /* map */,
 				B4ED4D4522B034F600E50272 /* newissue */,
@@ -247,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				5AA4C96F8C6571126F23B8AC /* Pods_FixD.framework */,
+				F5EE5DB822CA8EBD00F89735 /* Messages.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -272,6 +293,7 @@
 				B4085C0122A850A400A24525 /* Frameworks */,
 				B4085C0222A850A400A24525 /* Resources */,
 				8EEEA2D224890605C7A36ECE /* [CP] Embed Pods Frameworks */,
+				F5EE5DC922CA8EBF00F89735 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -407,6 +429,7 @@
 				FFB2C5A822A97BB100BC11ED /* (null) in Sources */,
 				FFE35B1A22C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift in Sources */,
 				FFB2C5A622A9785500BC11ED /* (null) in Sources */,
+				F5EE5DB122CA89DC00F89735 /* OAuthService.swift in Sources */,
 				B4ED4D3F22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
 				B4EC7FCD22B16906001711BC /* FixDAccount.swift in Sources */,
@@ -562,7 +585,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U6J58C8CJT;
+				DEVELOPMENT_TEAM = H253YA8Y99;
 				INFOPLIST_FILE = FixD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -581,7 +604,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U6J58C8CJT;
+				DEVELOPMENT_TEAM = H253YA8Y99;
 				INFOPLIST_FILE = FixD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
