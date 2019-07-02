@@ -16,8 +16,9 @@ class HRLredoViewController: UIViewController {
     @IBOutlet weak var locationDropDown: DropDown!
     @IBOutlet weak var roomTextField: UITextField!
     @IBOutlet weak var serviceAnimalDropDown: DropDown!
+    private var dropDownsCombined = [campusDropDown, areaDropDown, locationDropDown, serviceAnimalDropDown]
     
-    var HRLredoViewController:IssueVC = IssueVC()
+    var HRLredoVC:IssueVC = IssueVC(viewController:HRLredoViewController, dropDowns:dropDownsCombined, dropDownLists:[[String]])
     
     let campusList = ["East Campus", "West Campus"]
     let areaList = ["Crowell", "Craven", "Keohane", "Few", "Edens", "Kilgo", "Hollows", "Wannamaker"]
