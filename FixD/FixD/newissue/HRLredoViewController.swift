@@ -18,7 +18,7 @@ class HRLredoViewController: UIViewController {
     @IBOutlet weak var serviceAnimalDropDown: DropDown!
     private var dropDownsCombined = [campusDropDown, areaDropDown, locationDropDown, serviceAnimalDropDown]
     
-    var HRLredoVC:IssueVC = IssueVC(viewController:HRLredoViewController, dropDowns:dropDownsCombined, dropDownLists:[[String]])
+    var HRLredoVC = IssueVC(viewController: HRLredoViewController, dropDowns: dropDownsCombined, dropDownLists: [[String]])
     
     let campusList = ["East Campus", "West Campus"]
     let areaList = ["Crowell", "Craven", "Keohane", "Few", "Edens", "Kilgo", "Hollows", "Wannamaker"]
@@ -39,11 +39,11 @@ class HRLredoViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if HRLredoViewController.checkSelections(selectionsList:[campusDropDown.text!, areaDropDown.text!, locationDropDown.text!, serviceAnimalDropDown.text!]) {
+        if HRLredoVC.checkSelections(selectionsList:[campusDropDown.text!, areaDropDown.text!, locationDropDown.text!, serviceAnimalDropDown.text!]) {
 //            campusDropDown.text != "Please select" && areaDropDown.text != "Please select" && locationDropDown.text != "Please select" && serviceAnimalDropDown.text != "Please select" {
             return true
         }
-        HRLredoViewController.createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
+        HRLredoVC.createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
         return false
     }
     
