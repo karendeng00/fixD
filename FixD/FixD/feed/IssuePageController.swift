@@ -54,6 +54,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var upvotesLabel: UILabel!
     @IBOutlet weak var commentTextField: UITextField!
+    @IBOutlet weak var likeAndFavoriteAmountLabel: UILabel!
     
     @IBOutlet weak var commentImage: UIImageView!
    
@@ -78,8 +79,9 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         commentView.dataSource = self
         loadIssue()
         
-        listenForNotifications()                //Code to set up and event listener
-        
+        //Code to set up and event listener
+        listenForNotifications()
+
         for v in views {
             v.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])
             v.layer.masksToBounds = false
