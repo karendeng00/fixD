@@ -23,6 +23,7 @@ class MapFunctionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         myMapView.delegate = self
+        myMapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: NSStringFromClass(IssueAnnotation.self))
         getIssueData()
         //creates menu button
         let menuBtn = UIButton(type: .custom)
@@ -113,11 +114,11 @@ class MapFunctionsViewController: UIViewController {
             let geoCoder = CLGeocoder()
             geoCoder.geocodeAddressString(loc) { (placemarks, error) -> Void in
                 if let pMark = placemarks?.first {
-                    let point = MKPointAnnotation()
-                    point.title = issue.getTitle()
                     if let coordinate = pMark.location?.coordinate{
-                        point.coordinate = coordinate
-                        self.myMapView.addAnnotation(point)
+                        let issueAnnotation = IssueAnnotation(coordinate: coordinate)
+                        issueAnnotation.title = issue.getTitle()
+                        issueAnnotation.imageName = issue.getIssueImage()
+                        self.myMapView.addAnnotation(issueAnnotation)
                     }
                 }
             }
@@ -175,19 +176,20 @@ extension MapFunctionsViewController: CLLocationManagerDelegate{
 extension MapFunctionsViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "AnnotationView")
-        
-        if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "AnnotationView")
+        guard !annotation.isKind(of: MKUserLocation.self) else {
+            print("User Location Clicked")
+            return nil
         }
-        
-        if !(annotation === mapView.userLocation) {
-            annotationView?.image = UIImage(named: "ePin")
+        var annotationView: MKAnnotationView?
+        if let newAnnotation = annotation as? IssueAnnotation {
+            annotationView = myMapView.dequeueReusableAnnotationView(withIdentifier: NSStringFromClass(IssueAnnotation.self), for: newAnnotation)
         }
-        
         annotationView?.canShowCallout = true
-        
+        if let imagePath = (annotationView?.annotation as! IssueAnnotation).imageName{
+            if let image = UIImage(named: imagePath){
+                annotationView?.detailCalloutAccessoryView = UIImageView(image: image)
+            }
+        }
         return annotationView
     }
     
