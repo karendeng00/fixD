@@ -332,10 +332,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
     @IBAction func tapCommentButton(_ sender: Any) {
         updateComments()
         view.endEditing(true)
