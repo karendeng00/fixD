@@ -38,21 +38,22 @@ class HRLredoViewController: UIViewController {
         serviceAnimalDropDown.text = "Please select"
     }
     
-//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
 //        if HRLredoVC.checkSelections(selectionsList:[campusDropDown.text!, areaDropDown.text!, locationDropDown.text!, serviceAnimalDropDown.text!]) {
-////            campusDropDown.text != "Please select" && areaDropDown.text != "Please select" && locationDropDown.text != "Please select" && serviceAnimalDropDown.text != "Please select" {
-//            return true
-//        }
-//        HRLredoVC.createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
-//        return false
-//    }
+            if campusDropDown.text != "Please select" && areaDropDown.text != "Please select" && locationDropDown.text != "Please select" && serviceAnimalDropDown.text != "Please select" {
+            return true
+        }
+        
+        createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
+        return false
+    }
     
-//    func createAlert(title:String, message:String) {
-//        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
-//            alert.dismiss(animated: true, completion: nil)
-//        }))
-//        self.present(alert, animated: true, completion: nil)
-//    }
+    func createAlert(title:String, message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
 
 }
