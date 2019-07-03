@@ -1,0 +1,11 @@
+query AllIssues {
+    allIssues{
+        id
+        title
+        description
+        location
+        image
+        userId
+    }
+}
+

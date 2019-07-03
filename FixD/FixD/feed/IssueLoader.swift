@@ -14,6 +14,8 @@ class IssueLoader {
     private var myIssueDictionary: [Int: IssueClass] = [:]
 
     func getData(completionHandler: @escaping (Dictionary<Int, IssueClass>) -> ()) {
+        
+        
         let url = URL(string: myURL)!
     
         //url session
