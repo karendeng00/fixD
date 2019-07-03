@@ -18,14 +18,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Get Issue Data for Feed
         getIssueData()
-        
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
-        
-        //self.myPosts = self.Issues.getIssues()
         self.refreshControl = UIRefreshControl()
         
         //creates menu button

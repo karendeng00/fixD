@@ -16,7 +16,7 @@ class AccountIssueTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getIssueData()
+        //getIssueData()
     }
 
     // MARK: - Table view data source
@@ -74,8 +74,6 @@ class AccountIssueTableViewController: UITableViewController {
             self.myIssueDict = issueData
             self.issueIDS = Array(self.myIssueDict.keys)
             self.tableView.reloadData()
-            print(self.myIssueDict)
-            print(self.issueIDS)
         }
     }
 

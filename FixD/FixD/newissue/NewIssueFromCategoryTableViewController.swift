@@ -53,7 +53,7 @@ class NewIssueFromCategoryTableViewController: UITableViewController {
         else if segue.identifier == "HRLsegue" {
             let viewController = segue.destination as? HRLredoViewController
             myIssue.setType(type: "HrlIssue") //This type ties it back to the database!
-            viewController?.myIssue = myIssue
+//            viewController?.myIssue = myIssue
         }
         else if segue.identifier == "EAMsegue" {
             let viewController = segue.destination as? NewIssueFMDViewController
