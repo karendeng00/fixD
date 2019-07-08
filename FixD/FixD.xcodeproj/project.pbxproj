@@ -23,6 +23,7 @@
 		B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4086CE822A95A7400B48EFF /* IssueClass.swift */; };
 		B42E2F1222CD180700F9DC9C /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42E2F1122CD180700F9DC9C /* MainTabViewController.swift */; };
 		B44EED4022D39D16004C1627 /* AllIssues.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B44EED3F22D39D16004C1627 /* AllIssues.graphql */; };
+		B44EED4222D3C13F004C1627 /* IssueById.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B44EED4122D3C13F004C1627 /* IssueById.graphql */; };
 		B48713F322CBE12B00380D34 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B48713F222CBE12B00380D34 /* schema.json */; };
 		B48713F722CCF8D100380D34 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48713F622CCF8D100380D34 /* API.swift */; };
 		B4B1DBF922AAE02A005EFFA9 /* ScreenPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */; };
@@ -89,6 +90,7 @@
 		B4086CE822A95A7400B48EFF /* IssueClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueClass.swift; sourceTree = "<group>"; };
 		B42E2F1122CD180700F9DC9C /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		B44EED3F22D39D16004C1627 /* AllIssues.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = AllIssues.graphql; sourceTree = "<group>"; };
+		B44EED4122D3C13F004C1627 /* IssueById.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; name = IssueById.graphql; path = FixD/IssueById.graphql; sourceTree = SOURCE_ROOT; };
 		B48713F222CBE12B00380D34 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		B48713F622CCF8D100380D34 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPageViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				B48713F222CBE12B00380D34 /* schema.json */,
 				B4085C1022A850A500A24525 /* LaunchScreen.storyboard */,
 				B4085C1322A850A500A24525 /* Info.plist */,
+				B44EED4122D3C13F004C1627 /* IssueById.graphql */,
 				B44EED3F22D39D16004C1627 /* AllIssues.graphql */,
 			);
 			path = FixD;
@@ -340,6 +343,7 @@
 				B4085C0F22A850A500A24525 /* Assets.xcassets in Resources */,
 				22775BD122CBC4E000130E12 /* README.md in Resources */,
 				B44EED4022D39D16004C1627 /* AllIssues.graphql in Resources */,
+				B44EED4222D3C13F004C1627 /* IssueById.graphql in Resources */,
 				B4085C0D22A850A500A24525 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
