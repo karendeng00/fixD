@@ -21,7 +21,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         
         //Get Issue Data for Feed
         getIssueData()
-        
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.refreshControl = UIRefreshControl()

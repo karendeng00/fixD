@@ -22,6 +22,8 @@ class MapFunctionsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        myMapView.delegate = self
+        myMapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: NSStringFromClass(IssueAnnotation.self))
         getIssueData()
         //creates menu button
         let menuBtn = UIButton(type: .custom)
@@ -35,8 +37,6 @@ class MapFunctionsViewController: UIViewController {
         let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 23)
         currHeight?.isActive = true
         self.navigationItem.leftBarButtonItem = menuBarItem
-        
-        
     }
     
     @IBAction func tapMenu(_ sender: UIButton) {
@@ -47,23 +47,18 @@ class MapFunctionsViewController: UIViewController {
         guard let menuVC = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuVC else {
             return
         }
-        
         //transition to new page
         menuVC.didTapMenuType = {
             menuType in
             self.transitionToNew(menuType)
-            
         }
-        
         menuVC.modalPresentationStyle = .overCurrentContext
         menuVC.transitioningDelegate = self
         present(menuVC, animated: true)
     }
     
     func transitionToNew(_ menuType: MenuType) {
-        
         topView?.removeFromSuperview()
-        
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "tab") as? UITabBarController else {
             return
@@ -119,31 +114,15 @@ class MapFunctionsViewController: UIViewController {
             let geoCoder = CLGeocoder()
             geoCoder.geocodeAddressString(loc) { (placemarks, error) -> Void in
                 if let pMark = placemarks?.first {
-                    let point = MKPointAnnotation()
-                    point.title = issue.getTitle()
                     if let coordinate = pMark.location?.coordinate{
-                        point.coordinate = coordinate
-                        self.myMapView.addAnnotation(point)
+                        let issueAnnotation = IssueAnnotation(coordinate: coordinate)
+                        issueAnnotation.title = issue.getTitle()
+                        issueAnnotation.imageName = issue.getIssueImage()
+                        self.myMapView.addAnnotation(issueAnnotation)
                     }
                 }
             }
         }
-    }
-    
-    //Allow Points to be added to map
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard annotation is MKPointAnnotation else { return nil }
-        
-        let identifier = "Annotation"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-        
-        if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView!.canShowCallout = true
-        } else {
-            annotationView!.annotation = annotation
-        }
-        return annotationView
     }
     
 }
@@ -194,3 +173,24 @@ extension MapFunctionsViewController: CLLocationManagerDelegate{
     
 }
 
+extension MapFunctionsViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !annotation.isKind(of: MKUserLocation.self) else {
+            print("User Location Clicked")
+            return nil
+        }
+        var annotationView: MKAnnotationView?
+        if let newAnnotation = annotation as? IssueAnnotation {
+            annotationView = myMapView.dequeueReusableAnnotationView(withIdentifier: NSStringFromClass(IssueAnnotation.self), for: newAnnotation)
+        }
+        annotationView?.canShowCallout = true
+        if let imagePath = (annotationView?.annotation as! IssueAnnotation).imageName{
+            if let image = UIImage(named: imagePath){
+                annotationView?.detailCalloutAccessoryView = UIImageView(image: image)
+            }
+        }
+        return annotationView
+    }
+    
+}
