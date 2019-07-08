@@ -84,16 +84,8 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
             nextViewController.selectedIndex = 0
             self.present(nextViewController, animated:false, completion:nil)
         case .map:
-            
             nextViewController.selectedIndex = 1
             self.present(nextViewController, animated:false, completion:nil)            
-        case .settings:
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            guard let settingsViewController = storyBoard.instantiateViewController(withIdentifier: "settings") as? UITableViewController else {
-                return
-            }
-            self.present(settingsViewController, animated:false, completion:nil)
-            
             
             
         default:

@@ -13,7 +13,6 @@ enum MenuType: Int {
     case home
     case map
     case account
-    case settings
     case filter
     case liked
     case starred
@@ -103,12 +102,12 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
         guard let menuType = MenuType(rawValue: indexPath.row) else { return }
-        if(indexPath.row <= 3) {
+        if(indexPath.row <= 2) {
             dismiss(animated: true)
             self.didTapMenuType!(menuType)
         }
         
-        if(indexPath.row == 4) {
+        if(indexPath.row == 3) {
             filterImage.image = UIImage(named: "arrow\(check)")
             //if check is true and you select it
             if(check) {
@@ -129,7 +128,7 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
             self.tableView.reloadData()
         }
         
-        if(indexPath.row == 7) {
+        if(indexPath.row == 6) {
             locationArrow.image = UIImage(named: "arrow\(checkLoc)")
             location.isHidden = checkLoc
             checkLoc = !checkLoc
@@ -137,7 +136,7 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
             self.tableView.reloadData()
         }
         
-        if(indexPath.row == 9) {
+        if(indexPath.row == 8) {
             print("selected #9")
             categoryArrow.image = UIImage(named: "arrow\(checkCategory)")
             categoryOptions.isHidden = checkCategory
@@ -152,18 +151,18 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
     //if check == true, expand
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if !check && indexPath.row > 4 {
+        if !check && indexPath.row > 3 && indexPath.row != 10{
             return 0
         }
         
-        if check && !checkLoc && indexPath.row == 8{
+        if check && !checkLoc && indexPath.row == 7{
             return 0
         }
-        if check && !checkCategory && indexPath.row == 10 {
+        if check && !checkCategory && indexPath.row == 9 {
             return 0
         }
         
-        if(indexPath.row == 10 || indexPath.row == 8) {
+        if(indexPath.row == 9 || indexPath.row == 7) {
             return 150
         }
         return 60

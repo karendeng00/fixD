@@ -128,55 +128,10 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
 
     
     @objc func swipePanAction(sender: UIScreenEdgePanGestureRecognizer) {
-        
-        
+
         if sender.state == UIGestureRecognizer.State.ended {
             self.openMenu()
         }
-    
-        // retrieve the current state of the gesture
-        /*if sender.state == UIGestureRecognizer.State.began {
-            
-            // if the user has just started dragging, make sure view for dimming effect is hidden well
-        }
-        
-        else if (sender.state == UIGestureRecognizer.State.changed) {
-            // retrieve the amount viewMenu has been dragged
-            let translationX = sender.translation(in: sender.view).x
-            
-            if -constraintMenuWidth + translationX > 0 {
-                
-                // viewMenu fully dragged out
-                transition.move = constraintMenuWidth
-                print("number 1")
-                //fully black - viewBlack.alpha = maxBlackViewAlpha
-            }
-            else if translationX < 0 {
-                // viewMenu fully dragged in
-                transition.move = 0
-                print("number 2")
-                //no black - viewBlack.alpha = 0
-            } else {
-                
-                // viewMenu is being dragged somewhere between min and max amount
-                transition.move = translationX
-                print("number 3")
-                //let ratio = translationX / constraintMenuWidth.constant
-                //blackness ratio - let alphaValue = ratio * maxBlackViewAlpha
-                //viewBlack.alpha = alphaValue
-            }
-        }
-        else {
-            // if the menu was dragged less than half of it's width, close it. Otherwise, open it.
-            if transition.move < constraintMenuWidth / 2 {
-                topView?.removeFromSuperview()
-                
-            }
-            else {
-                self.openMenu()
-                print("opened")
-            }
-        }*/
         
     }
     
@@ -196,13 +151,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             
             nextViewController.selectedIndex = 2
             self.present(nextViewController, animated:false, completion:nil)
-          
-        case .settings:
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            guard let settingsViewController = storyBoard.instantiateViewController(withIdentifier: "settings") as? UITableViewController else {
-                return
-            }
-            self.present(settingsViewController, animated:false, completion:nil)
         
         default:
             break

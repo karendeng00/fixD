@@ -70,13 +70,6 @@ class MapFunctionsViewController: UIViewController {
         case .account:
             nextViewController.selectedIndex = 2
             self.present(nextViewController, animated:false, completion:nil)
-        case .settings:
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            guard let settingsViewController = storyBoard.instantiateViewController(withIdentifier: "settings") as? UITableViewController else {
-                return
-            }
-            self.present(settingsViewController, animated:false, completion:nil)
- 
         default:
             break
         }
