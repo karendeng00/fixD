@@ -11,7 +11,7 @@ import UIKit
 
 class IssueClass {
     
-    private var myIssueID:Int = 0
+    private var myIssueID:String = "0"
     
     
     private var myName:String = ""
@@ -62,7 +62,7 @@ class IssueClass {
     
     
     //For Loading
-    init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, upVotes: Int, favorites: Int) {
+    init(issueID:String, title:String, description:String, location:String, issueImage:String, user_id:Int, upVotes: Int, favorites: Int) {
         self.myIssueID = issueID
         self.myTitle = title
         self.myLocation = location
@@ -197,11 +197,11 @@ class IssueClass {
         return myListOfImages
     }
     
-    func setID(id:Int) {
+    func setID(id:String) {
         self.myIssueID = id
     }
     
-    func getID() -> Int {
+    func getID() -> String {
         return myIssueID
     }
     
