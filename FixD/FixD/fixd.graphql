@@ -1,0 +1,22 @@
+query AllIssues {
+    allIssues {
+        id
+        title
+        description
+        location
+        image
+        userId
+    }
+}
+
+query IssueById($id: Int!) {
+    issueById(id: $id) {
+        id
+        title
+        description
+        location
+        image
+        userId
+    }
+}
+

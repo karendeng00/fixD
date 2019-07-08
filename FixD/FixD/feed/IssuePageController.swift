@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Apollo
 
 class textCommentCell: UITableViewCell{
     
@@ -27,6 +28,7 @@ class textCommentCell: UITableViewCell{
 
 class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
+    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
     
     @IBOutlet weak var likeView: UIView!
     @IBOutlet weak var favView: UIView!
@@ -76,7 +78,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         commentTextField.delegate = self
         commentView.delegate = self
         commentView.dataSource = self
-        loadIssue()
+//        loadIssue()
         
         //Code to set up and event listener
         listenForNotifications()
@@ -245,17 +247,26 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+
+    
     func loadIssue() {
-        issueLabel.text = issue.getTitle()
-        descriptionLabel.text = issue.getDescription()
-        issueImage.image = UIImage(named: issue.getIssueImage())
-        locationLabel.text = issue.getLocation()
-        profileImage.image = UIImage(named: "photo")
-        comments = issue.getListOfComments()
-        images = issue.getListOfImages()
-        likeAndFavoriteAmountLabel.text = ""
+        let issueQuery = IssueByIdQuery()
+        apollo.fetch(query: issueQuery) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+            let issue = result?.data?.issueQuery
+        }
         configureTapGesture()
     }
+//    issueLabel.text = issue.getTitle()
+//    descriptionLabel.text = issue.getDescription()
+//    issueImage.image = UIImage(named: issue.getIssueImage())
+//    locationLabel.text = issue.getLocation()
+//    profileImage.image = UIImage(named: "photo")
+//    comments = issue.getListOfComments()
+//    images = issue.getListOfImages()
+//    likeAndFavoriteAmountLabel.text = ""
     
     @objc func send(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .ended {
