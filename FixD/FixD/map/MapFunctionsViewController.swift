@@ -153,8 +153,8 @@ extension MapFunctionsViewController: UIViewControllerTransitioningDelegate {
 
 extension MapFunctionsViewController: CLLocationManagerDelegate{
     
+    //Is Called Whenever Locations is Changed
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Did Update Location")
         guard let latestLocation = locations.first else {return}
         if currentCoord == nil {
             zoomToRegion(with: latestLocation.coordinate)
@@ -164,8 +164,8 @@ extension MapFunctionsViewController: CLLocationManagerDelegate{
         
     }
     
+    //Checks for when the user gives the app location permission
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("Did Change Authorization")
         if status == .authorizedAlways || status == .authorizedWhenInUse {
             beginLocationUpdate(locationManager: manager)
         }
@@ -184,13 +184,25 @@ extension MapFunctionsViewController: MKMapViewDelegate {
         if let newAnnotation = annotation as? IssueAnnotation {
             annotationView = myMapView.dequeueReusableAnnotationView(withIdentifier: NSStringFromClass(IssueAnnotation.self), for: newAnnotation)
         }
-        annotationView?.canShowCallout = true
-        if let imagePath = (annotationView?.annotation as! IssueAnnotation).imageName{
-            if let image = UIImage(named: imagePath){
-                annotationView?.detailCalloutAccessoryView = UIImageView(image: image)
+        if let markerAnnotationView = annotationView as? MKMarkerAnnotationView{
+            markerAnnotationView.animatesWhenAdded = true
+            markerAnnotationView.canShowCallout = true
+            if let imagePath = (markerAnnotationView.annotation as! IssueAnnotation).imageName{
+                if let image = UIImage(named: imagePath){
+                    markerAnnotationView.detailCalloutAccessoryView = UIImageView(image: image)
+                }else {
+                    let image = UIImage(named: "NoImage")
+                    markerAnnotationView.detailCalloutAccessoryView = UIImageView(image: image)
+                }
             }
+            let rightButton = UIButton(type: .detailDisclosure)
+            markerAnnotationView.rightCalloutAccessoryView = rightButton
         }
         return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
     }
     
 }

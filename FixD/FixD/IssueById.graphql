@@ -1,11 +1,11 @@
 
 query IssueById {
-allIssues {
-id
-title
-description
-location
-image
-userId
-}
+    allIssues {
+        id
+        title
+        description
+        location
+        image
+        userId
+    }
 }

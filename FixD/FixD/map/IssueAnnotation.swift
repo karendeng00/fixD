@@ -13,6 +13,8 @@ class IssueAnnotation: NSObject, MKAnnotation {
     
     @objc dynamic var coordinate: CLLocationCoordinate2D
     
+    var issueID: String?
+    
     var title: String?
     
     var subtitle: String?
