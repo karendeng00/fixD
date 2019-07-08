@@ -6,7 +6,7 @@ target 'FixD' do
   use_frameworks!
   # Pods for FixD
   pod 'iOSDropDown'
-  pod 'Apollo', :git => 'https://github.com/apollographql/apollo-ios.git'
+  pod 'Apollo'
   pod 'SwiftKeychainWrapper'
 end
 

@@ -7,40 +7,45 @@
 //
 
 import Foundation
+import Apollo
 
 class IssueLoader {
 
     private let myURL:String = "http://localhost:3000/json"
     private var myIssueDictionary: [Int: IssueClass] = [:]
-
-    func getData(completionHandler: @escaping (Dictionary<Int, IssueClass>) -> ()) {
-        let url = URL(string: myURL)!
     
-        //url session
-        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-            
-            if let json = try? JSONSerialization.jsonObject(with: data!, options: []) {
-                let issuesList = (json as! NSArray) as Array
-                for issue in issuesList {
-                    if let data = issue as? [String: Any] {
-                        let i = IssueClass(
-                            issueID: data["id"]! as! Int,
-                                title:"\(data["title"]!)",
-                                description: "\(data["description"]!)",
-                                location: "\(data["location"]!)",
-                                issueImage: "\(data["image"]!)",
-                                user_id: data["user_id"]! as! Int,
-                                upVotes: 000,
-                                favorites: 000)
-                        self.myIssueDictionary[i.getID()] = i
-                    }
-                }
-                //anonymous function call
-                DispatchQueue.main.async {
-                    completionHandler(self.myIssueDictionary)
-                }
+    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
+
+    
+    
+    func getData(completionHandler: @escaping (Dictionary<Int, IssueClass>) -> ()) {
+        
+        let allIssues = AllIssuesQuery()
+        apollo.fetch(query: allIssues) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+            let issues = result?.data?.allIssues
+            for issue in issues! {
+                let i = IssueClass(
+                    issueID: 1,
+                    title: issue.title,
+                    description: issue.description,
+                    location: issue.location,
+                    issueImage: issue.image,
+                    user_id: issue.userId,
+                    upVotes: 000,
+                    favorites: 000)
+                print(i.getID())
+                print(i.getTitle())
+                print(i.getDescription())
+                //self.myIssueDictionary["\(issue.id)" as! Int] = i
             }
         }
-        task.resume()
+        self.myIssueDictionary[0] = IssueClass()
+        //anonymous function call
+        DispatchQueue.main.async {
+            completionHandler(self.myIssueDictionary)
+        }
     }
 }
