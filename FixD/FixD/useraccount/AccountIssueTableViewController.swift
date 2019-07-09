@@ -64,7 +64,7 @@ class AccountIssueTableViewController: UITableViewController {
             let viewController = segue.destination as? IssuePageController
             if let indexPath = self.tableView.indexPathForSelectedRow{
                 let currCell = self.tableView.cellForRow(at: indexPath) as! FeedIssueCell
-                viewController?.issue = currCell.myIssue
+                viewController?.myIssue = currCell.myIssue
             }
         }
     }

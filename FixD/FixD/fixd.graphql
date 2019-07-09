@@ -20,3 +20,43 @@ query IssueById($id: Int!) {
     }
 }
 
+query IssuesByType($type: String!) {
+    issuesByType(type: $type) {
+        id
+        title
+        description
+        location
+        image
+        userId
+    }
+}
+
+query IssuesByUser($userId: Int!){
+    issuesByUser(userId: $userId){
+        id
+        title
+        description
+        location
+        image
+        userId
+    }
+}
+
+query CommentById($id: Int!){
+    commentById(id: $id){
+        body
+        userId
+        issueId
+    }
+}
+
+query CommentsByIssue($issueId: Int!){
+    commentsByIssue(issueId: $issueId){
+        body
+        userId
+        issueId
+    }
+}
+
+
+

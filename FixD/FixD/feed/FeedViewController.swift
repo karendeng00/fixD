@@ -77,15 +77,15 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     @IBOutlet var feedTable: UITableView!
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.destination is IssuePageController {
-//            let viewController = segue.destination as? IssuePageController
-//            if let indexPath = feedTable.indexPathForSelectedRow{
-//                let currCell = feedTable.cellForRow(at: indexPath) as! FeedIssueCell
-//                viewController?.issue = currCell.myIssue
-//            }
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is IssuePageController {
+            let viewController = segue.destination as? IssuePageController
+            if let indexPath = feedTable.indexPathForSelectedRow{
+                let currCell = feedTable.cellForRow(at: indexPath) as! FeedIssueCell
+                viewController?.issueID = currCell.myIssue.getID()
+            }
+        }
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
