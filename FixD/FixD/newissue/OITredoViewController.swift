@@ -83,14 +83,12 @@ class OITredoViewController: UIViewController, UITextViewDelegate, UINavigationC
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             tempImg = image
             hasImage = true
-            
         }
         else {
             print("error")
         }
-        
         self.dismiss(animated: true, completion: nil)
-        
+        attachementPic.image = tempImg
     }
     
     @objc func longCam(_ gestureRecognizer: UILongPressGestureRecognizer) {
@@ -98,7 +96,6 @@ class OITredoViewController: UIViewController, UITextViewDelegate, UINavigationC
         if gestureRecognizer.state == .ended {
             cameraView.backgroundColor = white
             cameraView.layer.shadowOffset = CGSize(width: -1, height: 1)
-            
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
                 print("yep")
                 let imagePicker = UIImagePickerController()
@@ -107,16 +104,12 @@ class OITredoViewController: UIViewController, UITextViewDelegate, UINavigationC
                 imagePicker.allowsEditing = false
                 self.present(imagePicker, animated: true, completion: nil)
             }
-            
         }
         else {
             cameraView.backgroundColor = granite
             cameraView.layer.shadowOffset = CGSize(width: -10, height: 10)
         }
-        
-        
     }
-    
     
     @objc func longGal(_ gestureRecognizer: UILongPressGestureRecognizer) {
         print("you've pressed me")
@@ -134,9 +127,14 @@ class OITredoViewController: UIViewController, UITextViewDelegate, UINavigationC
             galleryView.backgroundColor = granite
             galleryView.layer.shadowOffset = CGSize(width: -10, height: 10)
         }
-        
-        
     }
-
-
+    
+    private func configureTapGesture(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(OITredoViewController.handleTap))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func handleTap(){
+        view.endEditing(true)
+    }
 }
