@@ -20,28 +20,28 @@ class IssueLoader {
     
     func getData(completionHandler: @escaping (Dictionary<Int, IssueClass>) -> ()) {
         
-//        let allIssues = AllIssuesQuery()
-//        apollo.fetch(query: allIssues) { (result, error) in
-//            if let err = error as? GraphQLHTTPResponseError {
-//                print(err.response.statusCode)
-//            }
-//            let issues = result?.data?.allIssues
-//            for issue in issues! {
-//                let i = IssueClass(
-//                    issueID: 1,
-//                    title: issue.title,
-//                    description: issue.description,
-//                    location: issue.location,
-//                    issueImage: issue.image,
-//                    user_id: issue.userId,
-//                    upVotes: 000,
-//                    favorites: 000)
-//                print(i.getID())
-//                print(i.getTitle())
-//                print(i.getDescription())
-//                //self.myIssueDictionary["\(issue.id)" as! Int] = i
-//            }
-//        }
+        let allIssues = AllIssuesQuery()
+        apollo.fetch(query: allIssues) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+            let issues = result?.data?.allIssues
+            for issue in issues! {
+                let i = IssueClass(
+                    issueID: 1,
+                    title: issue.title,
+                    description: issue.description,
+                    location: issue.location,
+                    issueImage: issue.image,
+                    user_id: issue.userId,
+                    upVotes: 000,
+                    favorites: 000)
+                print(i.getID())
+                print(i.getTitle())
+                print(i.getDescription())
+                //self.myIssueDictionary["\(issue.id)" as! Int] = i
+            }
+        }
         self.myIssueDictionary[0] = IssueClass()
         //anonymous function call
         DispatchQueue.main.async {
