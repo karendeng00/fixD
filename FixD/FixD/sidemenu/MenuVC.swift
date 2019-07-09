@@ -71,10 +71,7 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(timeToGo(_:)), name: NSNotification.Name("tapOutBBY"), object: nil)
     }
-    
-    
 
-    
     @IBAction func facilities(_ sender: UIButton) {
         sender.setImage(UIImage(named: "box\(checkFacilities)"), for: .normal)
         checkFacilities = !checkFacilities
