@@ -11,12 +11,11 @@ import UIKit
 class AccountIssueTableViewController: UITableViewController {
 
     let myCellIndentifier = "IssueCell"
-    var myIssueDict:[Int: IssueClass] = [:]
-    var issueIDS:[Int] = []
+    var myIssueList:[IssueClass] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getIssueData()
+        //getIssueData()
     }
 
     // MARK: - Table view data source
@@ -30,13 +29,13 @@ class AccountIssueTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return issueIDS.count
+        return myIssueList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell", for: indexPath) as! FeedIssueCell
         
-        let obj = myIssueDict[issueIDS[indexPath.row]]!
+        let obj = myIssueList[indexPath.row]
         
         cell.setIssue(issue: obj)
         cell.issueName.text = obj.getTitle()
@@ -64,18 +63,15 @@ class AccountIssueTableViewController: UITableViewController {
             let viewController = segue.destination as? IssuePageController
             if let indexPath = self.tableView.indexPathForSelectedRow{
                 let currCell = self.tableView.cellForRow(at: indexPath) as! FeedIssueCell
-                viewController?.issue = currCell.myIssue
+                viewController?.myIssue = currCell.myIssue
             }
         }
     }
     
     func getIssueData() {
         IssueLoader().getData() { issueData in
-            self.myIssueDict = issueData
-            self.issueIDS = Array(self.myIssueDict.keys)
+            self.myIssueList = issueData
             self.tableView.reloadData()
-            print(self.myIssueDict)
-            print(self.issueIDS)
         }
     }
 

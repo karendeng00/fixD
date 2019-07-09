@@ -16,9 +16,27 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var altPhoneText: UITextField!
     @IBOutlet weak var issueTitleText: UITextField!
     @IBOutlet weak var issueDescriptionText: UITextView!
+    @IBOutlet weak var issueReportScrollView: UIScrollView!
+    
+    fileprivate func setUpTapGesture() {
+        nameText.delegate = self
+        emailText.delegate = self
+        phoneText.delegate = self
+        altPhoneText.delegate = self
+        issueTitleText.delegate = self
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AddIssueGeneralInfoViewController.handleTapOutside))
+        view.addGestureRecognizer(tapGesture)
+        issueReportScrollView.addGestureRecognizer(tapGesture)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTapGesture()
+    }
+    
+    @objc func handleTapOutside(){
+        view.endEditing(true)
+        issueReportScrollView.endEditing(true)
         issueDescriptionText.text = "Type your description here."
     }
     
@@ -30,6 +48,14 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
         }
     }
 
+   func createAlert(title:String, message:String) {
+       let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+       alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
+           alert.dismiss(animated: true, completion: nil)
+       }))
+       self.present(alert, animated: true, completion: nil)
+   }
+
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if nameText.text != "" &&
             nameText.text != "" && emailText.text != "" && phoneText.text != "" && emailText.text != "" && phoneText.text != "" && issueTitleText.text != "" && issueDescriptionText.text != "Type Your Description Here" {
@@ -38,13 +64,13 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
         createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
         return false
     }
+}
 
-    func createAlert(title:String, message:String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
+extension AddIssueGeneralInfoViewController: UITextFieldDelegate{
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

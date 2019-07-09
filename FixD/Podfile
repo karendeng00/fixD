@@ -6,5 +6,8 @@ target 'FixD' do
   use_frameworks!
   # Pods for FixD
   pod 'iOSDropDown'
-
+  pod 'Apollo'
+  pod 'SwiftKeychainWrapper'
+  
 end
+

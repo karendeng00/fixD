@@ -13,19 +13,16 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     let transition = SlideInTransition()
     var topView: UIView?
     let myCellIndentifier = "IssueCell"
-    var myIssueDict:[Int: IssueClass] = [:]
-    var issueIDS:[Int] = []
+    var myIssueList:[IssueClass] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Get Issue Data for Feed
         getIssueData()
-        
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
-        
-        //self.myPosts = self.Issues.getIssues()
         self.refreshControl = UIRefreshControl()
         
         //creates menu button
@@ -56,8 +53,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     func getIssueData() {
         IssueLoader().getData() { issueData in
-            self.myIssueDict = issueData
-            self.issueIDS = Array(self.myIssueDict.keys)
+            self.myIssueList = issueData
             self.tableView.reloadData()
         }
     }
@@ -84,7 +80,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             let viewController = segue.destination as? IssuePageController
             if let indexPath = feedTable.indexPathForSelectedRow{
                 let currCell = feedTable.cellForRow(at: indexPath) as! FeedIssueCell
-                viewController?.issue = currCell.myIssue
+                viewController?.issueID = currCell.myIssue.getID()
             }
         }
     }
@@ -95,7 +91,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //#warning Incomplete implementation, return the number of rows
-        return issueIDS.count
+        return myIssueList.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -106,79 +102,34 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
 
          //Configure the cell...
-        let obj = myIssueDict[issueIDS[indexPath.row]]!
+        let obj = myIssueList[indexPath.row]
         
         cell.setIssue(issue: obj)
         cell.issueName.text = obj.getTitle()
         cell.issueDescription.text = obj.getDescription()
         cell.issueLocation.text = obj.getLocation()
-        cell.issueImage.image = UIImage(named: obj.getIssueImage())
+        if obj.getIssueImage() != ""  {
+            cell.issueImage.image = UIImage(named: obj.getIssueImage())
+        }
         cell.issueUpvotes.text = String(obj.getUpVotes())
         cell.issueFavorites.text = String(obj.getFavorites())
         cell.userName.text = "Temporary Name"
-        cell.userImage.image = UIImage(named:"photo.jpg")
-        cell.locationImage.image = UIImage(named:"locicon")
-    
+        if let userImage = UIImage(named: "photo-1"){
+            cell.userImage.image = userImage
+        }
+        
         return cell
     }
     
     @IBAction func didTapMenu(_ sender: UIButton) {
         self.openMenu()
-        print("tapped menu")
     }
     
-
-    
     @objc func swipePanAction(sender: UIScreenEdgePanGestureRecognizer) {
-        
-        
+
         if sender.state == UIGestureRecognizer.State.ended {
             self.openMenu()
         }
-    
-        // retrieve the current state of the gesture
-        /*if sender.state == UIGestureRecognizer.State.began {
-            
-            // if the user has just started dragging, make sure view for dimming effect is hidden well
-        }
-        
-        else if (sender.state == UIGestureRecognizer.State.changed) {
-            // retrieve the amount viewMenu has been dragged
-            let translationX = sender.translation(in: sender.view).x
-            
-            if -constraintMenuWidth + translationX > 0 {
-                
-                // viewMenu fully dragged out
-                transition.move = constraintMenuWidth
-                print("number 1")
-                //fully black - viewBlack.alpha = maxBlackViewAlpha
-            }
-            else if translationX < 0 {
-                // viewMenu fully dragged in
-                transition.move = 0
-                print("number 2")
-                //no black - viewBlack.alpha = 0
-            } else {
-                
-                // viewMenu is being dragged somewhere between min and max amount
-                transition.move = translationX
-                print("number 3")
-                //let ratio = translationX / constraintMenuWidth.constant
-                //blackness ratio - let alphaValue = ratio * maxBlackViewAlpha
-                //viewBlack.alpha = alphaValue
-            }
-        }
-        else {
-            // if the menu was dragged less than half of it's width, close it. Otherwise, open it.
-            if transition.move < constraintMenuWidth / 2 {
-                topView?.removeFromSuperview()
-                
-            }
-            else {
-                self.openMenu()
-                print("opened")
-            }
-        }*/
         
     }
     
@@ -198,13 +149,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             
             nextViewController.selectedIndex = 2
             self.present(nextViewController, animated:false, completion:nil)
-          
-        case .settings:
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            guard let settingsViewController = storyBoard.instantiateViewController(withIdentifier: "settings") as? UITableViewController else {
-                return
-            }
-            self.present(settingsViewController, animated:false, completion:nil)
         
         default:
             break

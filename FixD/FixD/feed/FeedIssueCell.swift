@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Apollo
 
 class FeedIssueCell: UITableViewCell {
 
@@ -33,7 +34,6 @@ class FeedIssueCell: UITableViewCell {
     var myIssue: IssueClass!
 
     override func layoutSubviews() {
-        
         super.layoutSubviews()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(like(_:)))
@@ -41,7 +41,6 @@ class FeedIssueCell: UITableViewCell {
         
         let favoriteTap = UITapGestureRecognizer(target: self, action: #selector(favorite(_:)))
         starView.addGestureRecognizer(favoriteTap)
-    
     }
 
     override func awakeFromNib() {
@@ -58,7 +57,7 @@ class FeedIssueCell: UITableViewCell {
     }
 
     @objc func like(_ sender: Any) {
-        myIssue.addUpVote()
+        self.myIssue.addLike(id: Int(self.myIssue.getID())!)
         issueUpvotes.text = String(myIssue.getUpVotes())
         if (myIssue.getUpVoteState()){
             upVoteButton.setImage(UIImage(named: "filled heart"), for: .normal)
@@ -72,7 +71,7 @@ class FeedIssueCell: UITableViewCell {
     }
     
     @IBAction func favorite(_ sender: Any) {
-        myIssue.addFavorites()
+        self.myIssue.addFavorites(id: Int(self.myIssue.getID())!)
         issueFavorites.text = String(myIssue.getFavorites())
         if (myIssue.getFavoritesState()){
             favoritesButton.setImage(UIImage(named: "filled star"), for: .normal)
@@ -80,12 +79,6 @@ class FeedIssueCell: UITableViewCell {
             favoritesButton.setImage(UIImage(named: "star"), for: .normal)
         }
     }
-
-//    private func getIssueData() {
-//        IssueLoader().getData() { issueData in
-//            self.myIssues = issueData
-//        }
-//    }
     
 }
 

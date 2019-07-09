@@ -11,6 +11,9 @@ import iOSDropDown
 
 class NewIssueFMDViewController: UIViewController {
     
+    
+    var myIssue = IssueClass()
+    
     var dex:Int = 0
     var locationOption:String = ""
     var cont:Bool = true
@@ -54,6 +57,7 @@ class NewIssueFMDViewController: UIViewController {
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if firstBuildingDropDown.text != "Please select" && firstFloorDropDown.text != "Please select" && firstRoomDropDown.text != "Please select" && requestDropDown.text != "Please select" && sameDropDown.text != "Please select" {
+            myIssue.defineEAMParamsP1(your_building: firstBuildingDropDown.text!, your_floor: firstFloorDropDown.text!, your_room: firstRoomDropDown.text!, request_for: requestDropDown.text!)
             return true
         }
         createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
@@ -63,16 +67,14 @@ class NewIssueFMDViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FMDissue" {
             let viewController = segue.destination as? NewIssueFMDPage2ViewController
-            
             if locationOption == "yes" {
                 viewController?.same = true
                 viewController?.buildingText = firstBuildingDropDown.text!
                 viewController?.floorText = firstFloorDropDown.text!
                 viewController?.roomText = firstRoomDropDown.text!
             }
-            
             viewController?.serviceList = serviceOptions[dex]
-            
+            viewController?.myIssue = myIssue
         }
     }
     
