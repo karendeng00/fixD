@@ -186,9 +186,14 @@ class IssueClass {
         pinned = !pinned
     }
     
-    func addComment(comment:String){
+    func addComment(comment:String, issueId:String, userId:Int){
         myListOfComments.append(comment)
         myComments = myComments + 1
+        apollo.perform(mutation: CreateCommentMutation(body: comment, userId: userId, issueId: Int(issueId)!)) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+        }
     }
     
     func addImage(image:UIImage) {

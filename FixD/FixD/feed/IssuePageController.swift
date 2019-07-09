@@ -312,7 +312,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func updateComments() {
         if commentTextField.hasText {
-            myIssue.addComment(comment: commentTextField.text!)
+            myIssue.addComment(comment: commentTextField.text!, issueId: myIssue.getID(), userId: myIssue.getUserId())
             commentTextField.text = ""
             comments = myIssue.getListOfComments()
             commentView.reloadData()
