@@ -16,7 +16,7 @@ class MapFunctionsViewController: UIViewController {
     var topView: UIView?
     private let locationManager = CLLocationManager()
     private var currentCoord: CLLocationCoordinate2D?
-    private var myIssues: [Int:IssueClass] = [:]
+    private var myIssueList: [IssueClass] = []
     
     @IBOutlet weak var myMapView: MKMapView!
     
@@ -102,7 +102,7 @@ class MapFunctionsViewController: UIViewController {
     
     //Adding Location of issues to Map
     private func setUpIssuesOnMap() {
-        for issue in myIssues.values {
+        for issue in myIssueList {
             let loc = issue.getLocation()
             let geoCoder = CLGeocoder()
             geoCoder.geocodeAddressString(loc) { (placemarks, error) -> Void in
@@ -111,10 +111,25 @@ class MapFunctionsViewController: UIViewController {
                         let issueAnnotation = IssueAnnotation(coordinate: coordinate)
                         issueAnnotation.title = issue.getTitle()
                         issueAnnotation.imageName = issue.getIssueImage()
+                        issueAnnotation.issueID = issue.getID()
                         self.myMapView.addAnnotation(issueAnnotation)
                     }
                 }
             }
+        }
+    }
+    
+    func resizedImage(image: UIImage, for size: CGSize) -> UIImage? {
+        let renderer = UIGraphicsImageRenderer(size: size)
+        return renderer.image { (context) in
+            image.draw(in: CGRect(origin: .zero, size: size))
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is IssuePageController {
+            let viewController = segue.destination as? IssuePageController
+            viewController?.issueID = (myMapView.selectedAnnotations[0] as! IssueAnnotation).issueID!
         }
     }
     
@@ -136,7 +151,7 @@ extension MapFunctionsViewController: UIViewControllerTransitioningDelegate {
     
     private func getIssueData() {
         IssueLoader().getData() { issueData in
-            self.myIssues = issueData
+            self.myIssueList = issueData
             self.setUpCurrentLocation()
         }
     }
@@ -170,7 +185,6 @@ extension MapFunctionsViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !annotation.isKind(of: MKUserLocation.self) else {
-            print("User Location Clicked")
             return nil
         }
         var annotationView: MKAnnotationView?
@@ -180,13 +194,17 @@ extension MapFunctionsViewController: MKMapViewDelegate {
         if let markerAnnotationView = annotationView as? MKMarkerAnnotationView{
             markerAnnotationView.animatesWhenAdded = true
             markerAnnotationView.canShowCallout = true
-            if let imagePath = (markerAnnotationView.annotation as! IssueAnnotation).imageName{
-                if let image = UIImage(named: imagePath){
-                    markerAnnotationView.detailCalloutAccessoryView = UIImageView(image: image)
-                }else {
-                    let image = UIImage(named: "NoImage")
-                    markerAnnotationView.detailCalloutAccessoryView = UIImageView(image: image)
-                }
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+            let scaleFactor = UIScreen.main.scale
+            let scale = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+            let size = imageView.bounds.size.applying(scale)
+            if let imagePath = (markerAnnotationView.annotation as! IssueAnnotation).imageName, imagePath != ""{
+                let image = resizedImage(image: UIImage(named: imagePath)!, for: size)
+                imageView.image = image
+                markerAnnotationView.detailCalloutAccessoryView = imageView
+            }else {
+                let image = UIImage(named: "NoImage")
+                markerAnnotationView.detailCalloutAccessoryView = UIImageView(image: image)
             }
             let rightButton = UIButton(type: .detailDisclosure)
             markerAnnotationView.rightCalloutAccessoryView = rightButton
@@ -195,7 +213,9 @@ extension MapFunctionsViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
+        if let annotation = view.annotation, annotation.isKind(of: IssueAnnotation.self) {
+            performSegue(withIdentifier: "MapToIssuePage", sender: self)
+        }
     }
     
 }

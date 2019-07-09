@@ -10,6 +10,9 @@ import UIKit
 
 class SubmissionViewController: UIViewController {
 
+    @IBOutlet weak var FundCodeField: UITextField!
+    @IBOutlet weak var EmailButton: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

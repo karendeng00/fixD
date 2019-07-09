@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Apollo
 
 class IssueClass {
     
@@ -59,6 +60,8 @@ class IssueClass {
     private var myImages: Int = 0
     private var myListOfComments: Array<String> = Array()
     private var myListOfImages: Array<UIImage> = Array()
+    
+    private let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
     
     
     //For Loading
@@ -137,11 +140,21 @@ class IssueClass {
     
     
     
-    func addUpVote(){
+    func addLike(id: Int){
         if upvoted{
-            myUpVotes -= 1
+            apollo.perform(mutation: DeleteLikeFromIssueMutation(id:id)) { (result, error) in
+                if let err = error as? GraphQLHTTPResponseError {
+                    print(err.response.statusCode)
+                }
+                self.myUpVotes -= 1
+            }
         }else {
-            myUpVotes += 1
+            apollo.perform(mutation: AddLikeToIssueMutation(id:id)) { (result, error) in
+                if let err = error as? GraphQLHTTPResponseError {
+                    print(err.response.statusCode)
+                }
+                self.myUpVotes += 1
+            }
         }
         upvoted = !upvoted
     }
@@ -154,11 +167,21 @@ class IssueClass {
         return pinned
     }
     
-    func addFavorites(){
+    func addFavorites(id: Int){
         if pinned {
-            myFavorites -= 1
+            apollo.perform(mutation: DeleteFavoriteFromIssueMutation(id: id)) { (result, error) in
+                if let err = error as? GraphQLHTTPResponseError {
+                    print(err.response.statusCode)
+                }
+                self.myFavorites -= 1
+            }
         }else {
-            myFavorites += 1
+            apollo.perform(mutation: AddFavoriteToIssueMutation(id: id)) { (result, error) in
+                if let err = error as? GraphQLHTTPResponseError {
+                    print(err.response.statusCode)
+                }
+                self.myFavorites += 1
+            }
         }
         pinned = !pinned
     }

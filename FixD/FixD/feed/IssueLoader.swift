@@ -10,15 +10,11 @@ import Foundation
 import Apollo
 
 class IssueLoader {
-
-    private let myURL:String = "http://localhost:3000/json"
-    private var myIssueDictionary: [Int: IssueClass] = [:]
     
     let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
-
     
-    
-    func getData(completionHandler: @escaping (Dictionary<Int, IssueClass>) -> ()) {
+    func getData(completionHandler: @escaping (Array<IssueClass>) -> ()) {
+        var myIssueList: Array<IssueClass> = []
         
         let allIssues = AllIssuesQuery()
         apollo.fetch(query: allIssues) { (result, error) in
@@ -27,21 +23,18 @@ class IssueLoader {
             }
             let issues = result?.data?.allIssues
             for issue in issues! {
-                let i = IssueClass(
+                myIssueList.append(IssueClass(
                     issueID: issue.id,
-                    title: issue.title,
+                    title: issue.title!,
                     description: issue.description,
-                    location: issue.location,
-                    issueImage: issue.image,
-                    user_id: issue.userId,
-                    upVotes: 000,
-                    favorites: 000)
-                let index = Int(i.getID())!
-                self.myIssueDictionary[index] = i
+                    location: issue.location!,
+                    issueImage: issue.image!,
+                    user_id: issue.userId!,
+                    upVotes: issue.likes!,
+                    favorites: issue.favorites!))
             }
-            //anonymous function call
             DispatchQueue.main.async {
-                completionHandler(self.myIssueDictionary)
+                completionHandler(myIssueList)
             }
         }
     }

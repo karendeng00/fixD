@@ -1,0 +1,95 @@
+query AllIssues {
+    allIssues {
+        id
+        title
+        description
+        location
+        image
+        userId
+        likes
+        favorites
+    }
+}
+
+query IssueById($id: Int!) {
+    issueById(id: $id) {
+        id
+        title
+        description
+        location
+        image
+        userId
+        likes
+        favorites
+    }
+}
+
+query IssuesByType($type: String!) {
+    issuesByType(type: $type) {
+        id
+        title
+        description
+        location
+        image
+        userId
+        likes
+        favorites
+    }
+}
+
+query IssuesByUser($userId: Int!){
+    issuesByUser(userId: $userId){
+        id
+        title
+        description
+        location
+        image
+        userId
+        likes
+        favorites
+    }
+}
+
+query CommentById($id: Int!){
+    commentById(id: $id){
+        body
+        userId
+        issueId
+    }
+}
+
+query CommentsByIssue($issueId: Int!){
+    commentsByIssue(issueId: $issueId){
+        body
+        userId
+        issueId
+    }
+}
+
+mutation AddLikeToIssue($id: Int!){
+    addLikeToIssue(id: $id){
+        id
+        likes
+    }
+}
+
+mutation AddFavoriteToIssue($id: Int!){
+    addFavoriteToIssue(id: $id){
+        id
+        favorites
+    }
+}
+
+mutation DeleteLikeFromIssue($id: Int!){
+    deleteLikeFromIssue(id: $id){
+        id
+        likes
+    }
+}
+
+mutation DeleteFavoriteFromIssue($id: Int!){
+    deleteFavoriteFromIssue(id: $id){
+        id
+        favorites
+    }
+}

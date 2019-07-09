@@ -13,8 +13,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     let transition = SlideInTransition()
     var topView: UIView?
     let myCellIndentifier = "IssueCell"
-    var myIssueDict:[Int: IssueClass] = [:]
-    var issueIDS:[Int] = []
+    var myIssueList:[IssueClass] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,8 +53,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     func getIssueData() {
         IssueLoader().getData() { issueData in
-            self.myIssueDict = issueData
-            self.issueIDS = Array(self.myIssueDict.keys)
+            self.myIssueList = issueData
             self.tableView.reloadData()
         }
     }
@@ -82,7 +80,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             let viewController = segue.destination as? IssuePageController
             if let indexPath = feedTable.indexPathForSelectedRow{
                 let currCell = feedTable.cellForRow(at: indexPath) as! FeedIssueCell
-                viewController?.issue = currCell.myIssue
+                viewController?.issueID = currCell.myIssue.getID()
             }
         }
     }
@@ -93,7 +91,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //#warning Incomplete implementation, return the number of rows
-        return issueIDS.count
+        return myIssueList.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -104,28 +102,28 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
 
          //Configure the cell...
-        let obj = myIssueDict[issueIDS[indexPath.row]]!
+        let obj = myIssueList[indexPath.row]
         
         cell.setIssue(issue: obj)
         cell.issueName.text = obj.getTitle()
         cell.issueDescription.text = obj.getDescription()
         cell.issueLocation.text = obj.getLocation()
-        cell.issueImage.image = UIImage(named: obj.getIssueImage())
+        if obj.getIssueImage() != ""  {
+            cell.issueImage.image = UIImage(named: obj.getIssueImage())
+        }
         cell.issueUpvotes.text = String(obj.getUpVotes())
         cell.issueFavorites.text = String(obj.getFavorites())
         cell.userName.text = "Temporary Name"
-        cell.userImage.image = UIImage(named:"photo.jpg")
-        cell.locationImage.image = UIImage(named:"locicon")
-    
+        if let userImage = UIImage(named: "photo-1"){
+            cell.userImage.image = userImage
+        }
+        
         return cell
     }
     
     @IBAction func didTapMenu(_ sender: UIButton) {
         self.openMenu()
-        print("tapped menu")
     }
-    
-
     
     @objc func swipePanAction(sender: UIScreenEdgePanGestureRecognizer) {
 
