@@ -43,6 +43,7 @@
 		F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */; };
 		F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
 		FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */; };
+		FF43815522D3CFB900C23DD1 /* IssueById.graphql in Resources */ = {isa = PBXBuildFile; fileRef = FF43815422D3CFB900C23DD1 /* IssueById.graphql */; };
 		FF95139722CA8EEA00B94CB2 /* NewIssuePTSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95139622CA8EEA00B94CB2 /* NewIssuePTSViewController.swift */; };
 		FF95139922CA98E600B94CB2 /* IssueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95139822CA98E600B94CB2 /* IssueVC.swift */; };
 		FFB2C5A222A968A300BC11ED /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -110,6 +111,7 @@
 		F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		F5EE5DB822CA8EBD00F89735 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueGeneralInfoViewController.swift; sourceTree = "<group>"; };
+		FF43815422D3CFB900C23DD1 /* IssueById.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = IssueById.graphql; sourceTree = "<group>"; };
 		FF95139622CA8EEA00B94CB2 /* NewIssuePTSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssuePTSViewController.swift; sourceTree = "<group>"; };
 		FF95139822CA98E600B94CB2 /* IssueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueVC.swift; sourceTree = "<group>"; };
 		FFE35B1722C12E730087FC64 /* NewIssueFMDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFMDViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				B4085C1022A850A500A24525 /* LaunchScreen.storyboard */,
 				B4085C1322A850A500A24525 /* Info.plist */,
 				B44EED3F22D39D16004C1627 /* AllIssues.graphql */,
+				FF43815422D3CFB900C23DD1 /* IssueById.graphql */,
 			);
 			path = FixD;
 			sourceTree = "<group>";
@@ -281,7 +284,6 @@
 			buildConfigurationList = B4085C1622A850A500A24525 /* Build configuration list for PBXNativeTarget "FixD" */;
 			buildPhases = (
 				96CA8C87215101829297E082 /* [CP] Check Pods Manifest.lock */,
-				B48713EF22CBDFD000380D34 /* Generate Apollo GraphQL API */,
 				B4085C0022A850A400A24525 /* Sources */,
 				B4085C0122A850A400A24525 /* Frameworks */,
 				B4085C0222A850A400A24525 /* Resources */,
@@ -340,6 +342,7 @@
 				B4085C0F22A850A500A24525 /* Assets.xcassets in Resources */,
 				22775BD122CBC4E000130E12 /* README.md in Resources */,
 				B44EED4022D39D16004C1627 /* AllIssues.graphql in Resources */,
+				FF43815522D3CFB900C23DD1 /* IssueById.graphql in Resources */,
 				B4085C0D22A850A500A24525 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,24 +388,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
-		B48713EF22CBDFD000380D34 /* Generate Apollo GraphQL API */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Generate Apollo GraphQL API";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "APOLLO_FRAMEWORK_PATH=\"$(eval find $FRAMEWORK_SEARCH_PATHS -name \"Apollo.framework\" -maxdepth 1)\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\necho \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\nexit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/check-and-run-apollo-cli.sh codegen:generate --queries=\"$(find . -name '*.graphql')\" --schema=schema.json API.swift\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
