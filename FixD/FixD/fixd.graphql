@@ -6,6 +6,8 @@ query AllIssues {
         location
         image
         userId
+        likes
+        favorites
     }
 }
 
@@ -17,6 +19,8 @@ query IssueById($id: Int!) {
         location
         image
         userId
+        likes
+        favorites
     }
 }
 
@@ -28,6 +32,8 @@ query IssuesByType($type: String!) {
         location
         image
         userId
+        likes
+        favorites
     }
 }
 
@@ -39,6 +45,8 @@ query IssuesByUser($userId: Int!){
         location
         image
         userId
+        likes
+        favorites
     }
 }
 
@@ -58,5 +66,30 @@ query CommentsByIssue($issueId: Int!){
     }
 }
 
+mutation AddLikeToIssue($id: Int!){
+    addLikeToIssue(id: $id){
+        id
+        likes
+    }
+}
 
+mutation AddFavoriteToIssue($id: Int!){
+    addFavoriteToIssue(id: $id){
+        id
+        favorites
+    }
+}
 
+mutation DeleteLikeFromIssue($id: Int!){
+    deleteLikeFromIssue(id: $id){
+        id
+        likes
+    }
+}
+
+mutation DeleteFavoriteFromIssue($id: Int!){
+    deleteFavoriteFromIssue(id: $id){
+        id
+        favorites
+    }
+}
