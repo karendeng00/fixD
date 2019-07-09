@@ -55,8 +55,8 @@ class IssueClass {
     private var myFundCode = ""
     
     private var myFavorites: Int = 0
-    private var myUpVotes: Int = 0
-    private var myComments: Int = 0
+    public var myLikes: Int = 0
+    public var myComments: Int = 0
     private var myImages: Int = 0
     private var myListOfComments: Array<String> = Array()
     private var myListOfImages: Array<UIImage> = Array()
@@ -65,7 +65,7 @@ class IssueClass {
     
     
     //For Loading
-    init(issueID:String, title:String, description:String, location:String, issueImage:String, user_id:Int, upVotes: Int, favorites: Int) {
+    init(issueID:String, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int) {
         self.myIssueID = issueID
         self.myTitle = title
         self.myLocation = location
@@ -73,7 +73,7 @@ class IssueClass {
         self.myIssueImage = issueImage
         self.myUserID = user_id
         self.myFavorites = favorites
-        self.myUpVotes = upVotes
+        self.myLikes = likes
         self.myComments = myListOfComments.count
         self.myImages = myListOfImages.count
     }
@@ -93,14 +93,14 @@ class IssueClass {
     init() {}
     
     //For ?
-    init(title:String, description:String, location:String, issueImage:String, user_id:Int, upVotes: Int, favorites: Int) {
+    init(title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int) {
         self.myTitle = title
         self.myLocation = location
         self.myDescription = description
         self.myIssueImage = issueImage
         self.myUserID = user_id
         self.myFavorites = favorites
-        self.myUpVotes = upVotes
+        self.myLikes = likes
         self.myComments = myListOfComments.count
     }
     
@@ -140,20 +140,20 @@ class IssueClass {
     
     
     
-    func addLike(id: Int){
+    func checkLiked(id: Int){
         if upvoted{
+            self.myLikes -= 1
             apollo.perform(mutation: DeleteLikeFromIssueMutation(id:id)) { (result, error) in
                 if let err = error as? GraphQLHTTPResponseError {
                     print(err.response.statusCode)
                 }
-                self.myUpVotes -= 1
             }
         }else {
+            self.myLikes += 1
             apollo.perform(mutation: AddLikeToIssueMutation(id:id)) { (result, error) in
                 if let err = error as? GraphQLHTTPResponseError {
                     print(err.response.statusCode)
                 }
-                self.myUpVotes += 1
             }
         }
         upvoted = !upvoted
@@ -167,28 +167,33 @@ class IssueClass {
         return pinned
     }
     
-    func addFavorites(id: Int){
+    func checkFavorited(id: Int){
         if pinned {
+            self.myFavorites -= 1
             apollo.perform(mutation: DeleteFavoriteFromIssueMutation(id: id)) { (result, error) in
                 if let err = error as? GraphQLHTTPResponseError {
                     print(err.response.statusCode)
                 }
-                self.myFavorites -= 1
             }
         }else {
+            self.myFavorites += 1
             apollo.perform(mutation: AddFavoriteToIssueMutation(id: id)) { (result, error) in
                 if let err = error as? GraphQLHTTPResponseError {
                     print(err.response.statusCode)
                 }
-                self.myFavorites += 1
             }
         }
         pinned = !pinned
     }
     
-    func addComment(comment:String){
+    func addComment(comment:String, issueId:String, userId:Int){
         myListOfComments.append(comment)
         myComments = myComments + 1
+        apollo.perform(mutation: CreateCommentMutation(body: comment, userId: userId, issueId: Int(issueId)!)) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+        }
     }
     
     func addImage(image:UIImage) {
@@ -201,7 +206,7 @@ class IssueClass {
     }
     
     func getUpVotes() -> Int {
-        return myUpVotes
+        return myLikes
     }
     
     func getNumberOfComments() -> Int {
@@ -226,6 +231,10 @@ class IssueClass {
     
     func getID() -> String {
         return myIssueID
+    }
+    
+    func getUserId() -> Int {
+        return myUserID
     }
     
     func getName() ->String {

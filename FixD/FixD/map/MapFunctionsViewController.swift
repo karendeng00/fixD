@@ -119,6 +119,13 @@ class MapFunctionsViewController: UIViewController {
         }
     }
     
+    func resizedImage(image: UIImage, for size: CGSize) -> UIImage? {
+        let renderer = UIGraphicsImageRenderer(size: size)
+        return renderer.image { (context) in
+            image.draw(in: CGRect(origin: .zero, size: size))
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is IssuePageController {
             let viewController = segue.destination as? IssuePageController
@@ -187,9 +194,14 @@ extension MapFunctionsViewController: MKMapViewDelegate {
         if let markerAnnotationView = annotationView as? MKMarkerAnnotationView{
             markerAnnotationView.animatesWhenAdded = true
             markerAnnotationView.canShowCallout = true
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+            let scaleFactor = UIScreen.main.scale
+            let scale = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+            let size = imageView.bounds.size.applying(scale)
             if let imagePath = (markerAnnotationView.annotation as! IssueAnnotation).imageName, imagePath != ""{
-                let image = UIImage(named: imagePath)
-                markerAnnotationView.detailCalloutAccessoryView = UIImageView(image: image)
+                let image = resizedImage(image: UIImage(named: imagePath)!, for: size)
+                imageView.image = image
+                markerAnnotationView.detailCalloutAccessoryView = imageView
             }else {
                 let image = UIImage(named: "NoImage")
                 markerAnnotationView.detailCalloutAccessoryView = UIImageView(image: image)

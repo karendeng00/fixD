@@ -795,6 +795,99 @@ public final class CommentsByIssueQuery: GraphQLQuery {
   }
 }
 
+public final class CreateCommentMutation: GraphQLMutation {
+  public let operationDefinition =
+    "mutation CreateComment($body: String!, $userId: Int!, $issueId: Int!) {\n  createComment(body: $body, userId: $userId, issueId: $issueId) {\n    __typename\n    id\n    body\n  }\n}"
+
+  public var body: String
+  public var userId: Int
+  public var issueId: Int
+
+  public init(body: String, userId: Int, issueId: Int) {
+    self.body = body
+    self.userId = userId
+    self.issueId = issueId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["body": body, "userId": userId, "issueId": issueId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("createComment", arguments: ["body": GraphQLVariable("body"), "userId": GraphQLVariable("userId"), "issueId": GraphQLVariable("issueId")], type: .nonNull(.object(CreateComment.selections))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(createComment: CreateComment) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "createComment": createComment.resultMap])
+    }
+
+    public var createComment: CreateComment {
+      get {
+        return CreateComment(unsafeResultMap: resultMap["createComment"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "createComment")
+      }
+    }
+
+    public struct CreateComment: GraphQLSelectionSet {
+      public static let possibleTypes = ["Comment"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("body", type: .nonNull(.scalar(String.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID, body: String) {
+        self.init(unsafeResultMap: ["__typename": "Comment", "id": id, "body": body])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var body: String {
+        get {
+          return resultMap["body"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "body")
+        }
+      }
+    }
+  }
+}
+
 public final class AddLikeToIssueMutation: GraphQLMutation {
   public let operationDefinition =
     "mutation AddLikeToIssue($id: Int!) {\n  addLikeToIssue(id: $id) {\n    __typename\n    id\n    likes\n  }\n}"

@@ -30,7 +30,7 @@ class IssueLoader {
                     location: issue.location!,
                     issueImage: issue.image!,
                     user_id: issue.userId!,
-                    upVotes: issue.likes!,
+                    likes: issue.likes!,
                     favorites: issue.favorites!))
             }
             DispatchQueue.main.async {
