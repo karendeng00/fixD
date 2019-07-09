@@ -16,7 +16,7 @@ class MapFunctionsViewController: UIViewController {
     var topView: UIView?
     private let locationManager = CLLocationManager()
     private var currentCoord: CLLocationCoordinate2D?
-    private var myIssues: [Int:IssueClass] = [:]
+    private var myIssueList: [IssueClass] = []
     
     @IBOutlet weak var myMapView: MKMapView!
     
@@ -102,7 +102,7 @@ class MapFunctionsViewController: UIViewController {
     
     //Adding Location of issues to Map
     private func setUpIssuesOnMap() {
-        for issue in myIssues.values {
+        for issue in myIssueList {
             let loc = issue.getLocation()
             let geoCoder = CLGeocoder()
             geoCoder.geocodeAddressString(loc) { (placemarks, error) -> Void in
@@ -136,7 +136,7 @@ extension MapFunctionsViewController: UIViewControllerTransitioningDelegate {
     
     private func getIssueData() {
         IssueLoader().getData() { issueData in
-            self.myIssues = issueData
+            self.myIssueList = issueData
             self.setUpCurrentLocation()
         }
     }

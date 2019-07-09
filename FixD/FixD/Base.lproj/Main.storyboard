@@ -1039,7 +1039,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gM-AM-xPv">
-                                                    <rect key="frame" x="15" y="89.5" width="399" height="2"/>
+                                                    <rect key="frame" x="15" y="90" width="399" height="2"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="2" id="Ub3-3I-48s"/>
