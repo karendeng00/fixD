@@ -81,7 +81,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" translatesAutoresizingMaskIntoConstraints="NO" id="HLT-TQ-nkf">
-                                                    <rect key="frame" x="12" y="12" width="36.000000000000014" height="36"/>
+                                                    <rect key="frame" x="12" y="12" width="36" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="36" id="Dc2-OX-o2U"/>
                                                         <constraint firstAttribute="height" constant="36" id="ZvR-MK-QOf"/>
@@ -700,7 +700,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" translatesAutoresizingMaskIntoConstraints="NO" id="hLi-Xm-ORf">
-                                    <rect key="frame" x="12" y="39" width="75.000000000000014" height="75"/>
+                                    <rect key="frame" x="12" y="39" width="75" height="75"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="75" id="NMG-YZ-esa"/>
                                         <constraint firstAttribute="height" constant="75" id="yOk-Te-dPT"/>
@@ -871,7 +871,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filter" translatesAutoresizingMaskIntoConstraints="NO" id="P2i-BP-dd9">
-                                                    <rect key="frame" x="15" y="36" width="30.000000000000114" height="20"/>
+                                                    <rect key="frame" x="15" y="36" width="30" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="79F-hK-RFg"/>
                                                         <constraint firstAttribute="width" constant="30" id="HtF-VW-8wN"/>
@@ -1503,7 +1503,7 @@
                                                 <constraint firstAttribute="height" constant="60" id="n4G-xB-eB0"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wy3-n7-zjb">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wy3-n7-zjb">
                                             <rect key="frame" x="304" y="30" width="90" height="127"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="90" id="Enk-La-5v6"/>
