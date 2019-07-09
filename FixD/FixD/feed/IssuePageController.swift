@@ -265,7 +265,9 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             self.myIssue = issue
             self.issueLabel.text = issue.getTitle()
             self.descriptionLabel.text = issue.getDescription()
-            self.issueImage.image = UIImage(named: issue.getIssueImage())
+            if issue.getIssueImage() != ""{
+                self.issueImage.image = UIImage(named: issue.getIssueImage())
+            }
             self.locationLabel.text = issue.getLocation()
             self.profileImage.image = UIImage(named: "photo")
             self.comments = issue.getListOfComments()

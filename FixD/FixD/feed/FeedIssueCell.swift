@@ -33,7 +33,6 @@ class FeedIssueCell: UITableViewCell {
     var myIssue: IssueClass!
 
     override func layoutSubviews() {
-        
         super.layoutSubviews()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(like(_:)))

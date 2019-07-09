@@ -110,22 +110,22 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         cell.issueName.text = obj.getTitle()
         cell.issueDescription.text = obj.getDescription()
         cell.issueLocation.text = obj.getLocation()
-        cell.issueImage.image = UIImage(named: obj.getIssueImage())
+        if obj.getIssueImage() != ""  {
+            cell.issueImage.image = UIImage(named: obj.getIssueImage())
+        }
         cell.issueUpvotes.text = String(obj.getUpVotes())
         cell.issueFavorites.text = String(obj.getFavorites())
         cell.userName.text = "Temporary Name"
-        cell.userImage.image = UIImage(named:"photo.jpg")
-        cell.locationImage.image = UIImage(named:"locicon")
-    
+        if let userImage = UIImage(named: "photo-1"){
+            cell.userImage.image = userImage
+        }
+        
         return cell
     }
     
     @IBAction func didTapMenu(_ sender: UIButton) {
         self.openMenu()
-        print("tapped menu")
     }
-    
-
     
     @objc func swipePanAction(sender: UIScreenEdgePanGestureRecognizer) {
 

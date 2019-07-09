@@ -111,10 +111,18 @@ class MapFunctionsViewController: UIViewController {
                         let issueAnnotation = IssueAnnotation(coordinate: coordinate)
                         issueAnnotation.title = issue.getTitle()
                         issueAnnotation.imageName = issue.getIssueImage()
+                        issueAnnotation.issueID = issue.getID()
                         self.myMapView.addAnnotation(issueAnnotation)
                     }
                 }
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is IssuePageController {
+            let viewController = segue.destination as? IssuePageController
+            viewController?.issueID = (myMapView.selectedAnnotations[0] as! IssueAnnotation).issueID!
         }
     }
     
@@ -170,7 +178,6 @@ extension MapFunctionsViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !annotation.isKind(of: MKUserLocation.self) else {
-            print("User Location Clicked")
             return nil
         }
         var annotationView: MKAnnotationView?
@@ -180,13 +187,12 @@ extension MapFunctionsViewController: MKMapViewDelegate {
         if let markerAnnotationView = annotationView as? MKMarkerAnnotationView{
             markerAnnotationView.animatesWhenAdded = true
             markerAnnotationView.canShowCallout = true
-            if let imagePath = (markerAnnotationView.annotation as! IssueAnnotation).imageName{
-                if let image = UIImage(named: imagePath){
-                    markerAnnotationView.detailCalloutAccessoryView = UIImageView(image: image)
-                }else {
-                    let image = UIImage(named: "NoImage")
-                    markerAnnotationView.detailCalloutAccessoryView = UIImageView(image: image)
-                }
+            if let imagePath = (markerAnnotationView.annotation as! IssueAnnotation).imageName, imagePath != ""{
+                let image = UIImage(named: imagePath)
+                markerAnnotationView.detailCalloutAccessoryView = UIImageView(image: image)
+            }else {
+                let image = UIImage(named: "NoImage")
+                markerAnnotationView.detailCalloutAccessoryView = UIImageView(image: image)
             }
             let rightButton = UIButton(type: .detailDisclosure)
             markerAnnotationView.rightCalloutAccessoryView = rightButton
@@ -195,7 +201,9 @@ extension MapFunctionsViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
+        if let annotation = view.annotation, annotation.isKind(of: IssueAnnotation.self) {
+            performSegue(withIdentifier: "MapToIssuePage", sender: self)
+        }
     }
     
 }

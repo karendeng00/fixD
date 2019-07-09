@@ -1039,7 +1039,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gM-AM-xPv">
-                                                    <rect key="frame" x="15" y="89.5" width="399" height="2"/>
+                                                    <rect key="frame" x="15" y="90" width="399" height="2"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="2" id="Ub3-3I-48s"/>
@@ -1522,7 +1522,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D5Q-AW-2Sp">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locicon" translatesAutoresizingMaskIntoConstraints="NO" id="D5Q-AW-2Sp">
                                             <rect key="frame" x="20" y="144" width="21" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="z50-qs-SXR"/>
@@ -1804,6 +1804,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="myMapView" destination="hRe-if-55u" id="hhM-n0-b3K"/>
+                        <segue destination="j16-qw-gvl" kind="show" identifier="MapToIssuePage" id="XJh-kQ-Znd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19E-Iw-vKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3946,7 +3947,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="v3b-J1-vTz"/>
-        <segue reference="elw-hr-S50"/>
-        <segue reference="tAk-x9-Ry1"/>
+        <segue reference="0BR-N4-qAY"/>
+        <segue reference="XJh-kQ-Znd"/>
     </inferredMetricsTieBreakers>
 </document>
