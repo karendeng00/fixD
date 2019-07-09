@@ -448,7 +448,7 @@
         <!--Navigation Controller-->
         <scene sceneID="eHe-HY-xJh">
             <objects>
-                <navigationController id="90s-8g-5aR" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="nav" id="90s-8g-5aR" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eBd-qn-Gg0">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -464,7 +464,7 @@
         <!--Login Screen-->
         <scene sceneID="tne-QT-ifo">
             <objects>
-                <viewController title="Login Screen" id="BYZ-38-t0p" customClass="LoginScreenController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login" title="Login Screen" id="BYZ-38-t0p" customClass="LoginScreenController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -502,7 +502,6 @@
                                 <state key="normal" title="DUKE login"/>
                                 <connections>
                                     <action selector="loginButton:" destination="BYZ-38-t0p" eventType="touchUpInside" id="lDA-c4-PJM"/>
-                                    <segue destination="lCW-Mi-AyH" kind="show" id="B1D-WC-omU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arh-RN-Dvn">
@@ -1039,7 +1038,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gM-AM-xPv">
-                                                    <rect key="frame" x="15" y="89.5" width="399" height="2"/>
+                                                    <rect key="frame" x="15" y="90" width="399" height="2"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="2" id="Ub3-3I-48s"/>

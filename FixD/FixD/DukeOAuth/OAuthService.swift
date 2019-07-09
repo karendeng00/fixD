@@ -63,6 +63,8 @@ class OAuthService {
             CATransaction.setCompletionBlock({
                 shibController.loginShib() { success in
                     // Return the success to the calling application
+                    print("THIS IS")
+                    print(success)
                     completionHandler(success)
                 }
             })

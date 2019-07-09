@@ -15,39 +15,52 @@ class LoginScreenController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         oAuthService = OAuthService.shared
+        
     }
 
+    
+    
     @IBAction func loginButton(_ sender: UIButton) {
+        //oAuthService?.logout()
+        //print("yay")
+        let nav = self.navigationController
+        
         oAuthService?.setClientName(oAuthClientName: "wearduke")
         if oAuthService!.isAuthenticated() {
-            print("Login - about to refresh tokens")
-            oAuthService?.refreshToken(navController: self.navigationController!) {
-                success, statusCode in
-
-                //TODO: Handle errors?
-
+            print ("Login")
+            oAuthService?.refreshToken(navController: nav!) { success, statusCode in
                 if success {
-                    UserDefaults.standard.set(true, forKey: "LoggedIn") //TEMP
-                    self.navigationController?.dismiss(animated:true, completion: nil)
-                } else {
-                    self.performSegue(withIdentifier: "loginFailed", sender: sender)
+                    UserDefaults.standard.set(true, forKey: "LoggedIn")
+                    print ("SUCCESS")
+                    DispatchQueue.main.async {
+                        let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "tab") as? UITabBarController
+                        self.present(tabVC!, animated: true, completion: nil)
+                    }
                 }
             }
         }
         else if let navController = navigationController {
-            print("Login - about to authenticate")
-            oAuthService?.authenticate(navController: navController) { success in
+            print ("Log in")
+            oAuthService?.authenticate(navController: navController) {success in
                 if success {
-                    print("Login - success")
-                    UserDefaults.standard.set(true, forKey: "LoggedIn") //Temp
-                    self.navigationController?.dismiss(animated:true, completion: nil)
+                    print ("LOGIN SUCCESS")
+                    //self.navigationController?.dismiss(animated:true, completion: nil)
+                    //self.navigationController?.dismiss(animated: true, completion: nil)
+                    //self.performSegue(withIdentifier: "showMainFeed", sender: sender)
+                    DispatchQueue.main.async {
+                        let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "tab") as? UITabBarController
+                        self.present(tabVC!, animated: false, completion: nil)
+                    }
+                    
                 } else {
-                    print("Login - failed")
-                    self.performSegue(withIdentifier: "loginFailed", sender: sender)
+                    print ("LOGIN FAILED")
                 }
-                
             }
+            
         }
+        
+        
+
     }
     
 }
