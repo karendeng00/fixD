@@ -340,6 +340,7 @@
 				B4085C1222A850A500A24525 /* LaunchScreen.storyboard in Resources */,
 				B48713F322CBE12B00380D34 /* schema.json in Resources */,
 				B4085C0F22A850A500A24525 /* Assets.xcassets in Resources */,
+				FFD6795222BACD8100FE4C2F /* Podfile in Resources */,
 				22775BD122CBC4E000130E12 /* README.md in Resources */,
 				B44EED4022D39D16004C1627 /* fixd.graphql in Resources */,
 				B4085C0D22A850A500A24525 /* Main.storyboard in Resources */,
