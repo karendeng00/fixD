@@ -13,8 +13,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     let transition = SlideInTransition()
     var topView: UIView?
     let myCellIndentifier = "IssueCell"
-    var myIssueDict:[Int: IssueClass] = [:]
-    var issueIDS:[Int] = []
+    var myIssueList:[IssueClass] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,8 +53,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     func getIssueData() {
         IssueLoader().getData() { issueData in
-            self.myIssueDict = issueData
-            self.issueIDS = Array(self.myIssueDict.keys)
+            self.myIssueList = issueData
             self.tableView.reloadData()
         }
     }
@@ -93,7 +91,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //#warning Incomplete implementation, return the number of rows
-        return issueIDS.count
+        return myIssueList.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -104,7 +102,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
 
          //Configure the cell...
-        let obj = myIssueDict[issueIDS[indexPath.row]]!
+        let obj = myIssueList[indexPath.row]
         
         cell.setIssue(issue: obj)
         cell.issueName.text = obj.getTitle()

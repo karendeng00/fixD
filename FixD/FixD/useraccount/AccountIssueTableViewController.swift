@@ -11,8 +11,7 @@ import UIKit
 class AccountIssueTableViewController: UITableViewController {
 
     let myCellIndentifier = "IssueCell"
-    var myIssueDict:[Int: IssueClass] = [:]
-    var issueIDS:[Int] = []
+    var myIssueList:[IssueClass] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +29,13 @@ class AccountIssueTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return issueIDS.count
+        return myIssueList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell", for: indexPath) as! FeedIssueCell
         
-        let obj = myIssueDict[issueIDS[indexPath.row]]!
+        let obj = myIssueList[indexPath.row]
         
         cell.setIssue(issue: obj)
         cell.issueName.text = obj.getTitle()
@@ -71,8 +70,7 @@ class AccountIssueTableViewController: UITableViewController {
     
     func getIssueData() {
         IssueLoader().getData() { issueData in
-            self.myIssueDict = issueData
-            self.issueIDS = Array(self.myIssueDict.keys)
+            self.myIssueList = issueData
             self.tableView.reloadData()
         }
     }

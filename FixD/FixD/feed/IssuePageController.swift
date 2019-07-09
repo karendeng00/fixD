@@ -195,7 +195,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             likeView.backgroundColor = white
             likeView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
-            myIssue.addUpVote()
+            myIssue.addLike(id: Int(myIssue.getID())!)
             if (myIssue.getUpVoteState()){
                 likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
             } else {
@@ -217,7 +217,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             favView.backgroundColor = white
             favView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
-            myIssue.addFavorites()
+            myIssue.addFavorites(id: Int(myIssue.getID())!)
             if (myIssue.getFavoritesState()){
                 favButton.setImage(UIImage(named: "filled star"), for: .normal)
             }else {
@@ -260,8 +260,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
                                    location: i?.location ?? "",
                                    issueImage: i?.image ?? "",
                                    user_id: (i?.userId!)!,
-                                   upVotes: 000,
-                                   favorites: 000) //FIXME
+                                   upVotes: (i?.likes!)!,
+                                   favorites: (i?.favorites!)!)
             self.myIssue = issue
             self.issueLabel.text = issue.getTitle()
             self.descriptionLabel.text = issue.getDescription()
@@ -272,7 +272,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             self.profileImage.image = UIImage(named: "photo")
             self.comments = issue.getListOfComments()
             self.images = issue.getListOfImages()
-            self.likeAndFavoriteAmountLabel.text = ""
+            self.likeAndFavoriteAmountLabel.text = "\(issue.getUpVotes()) likes, \(issue.getFavorites()) favorites" 
         }
         configureTapGesture()
     }
