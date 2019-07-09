@@ -82,7 +82,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             let viewController = segue.destination as? IssuePageController
             if let indexPath = feedTable.indexPathForSelectedRow{
                 let currCell = feedTable.cellForRow(at: indexPath) as! FeedIssueCell
-                viewController?.issue = currCell.myIssue
+                viewController?.issueID = currCell.myIssue.getID()
             }
         }
     }

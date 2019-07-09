@@ -29,11 +29,11 @@ class IssueLoader {
             for issue in issues! {
                 let i = IssueClass(
                     issueID: issue.id,
-                    title: issue.title,
-                    description: issue.description,
-                    location: issue.location,
-                    issueImage: issue.image,
-                    user_id: issue.userId,
+                    title: issue.title!,
+                    description: issue.description!,
+                    location: issue.location!,
+                    issueImage: issue.image!,
+                    user_id: issue.userId!,
                     upVotes: 000,
                     favorites: 000)
                 let index = Int(i.getID())!
