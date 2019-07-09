@@ -17,10 +17,16 @@ class AccountIssueTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.refreshControl = UIRefreshControl()
+        refreshControl!.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
+        
         getIssueData()
     }
 
-    // MARK: - Table view data source
+    @objc func refresh(_ sender: Any) {
+        getIssueData()
+        self.refreshControl!.endRefreshing()
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -73,9 +79,12 @@ class AccountIssueTableViewController: UITableViewController {
     
     func getIssueData() {
         IssueLoader().getData() { issueData in
-            for issue in issueData {
+            self.myUserIssuesList = Array()
+            let issues:[IssueClass] = issueData
+            for issue in issues {
                 if (issue.getUserId() == self.THIS_USER) {
                     self.myUserIssuesList.append(issue)
+                    
                 }
             }
             self.tableView.reloadData()
