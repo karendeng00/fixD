@@ -81,7 +81,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" translatesAutoresizingMaskIntoConstraints="NO" id="HLT-TQ-nkf">
-                                                    <rect key="frame" x="12" y="12" width="36" height="36"/>
+                                                    <rect key="frame" x="12" y="12" width="36.000000000000014" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="36" id="Dc2-OX-o2U"/>
                                                         <constraint firstAttribute="height" constant="36" id="ZvR-MK-QOf"/>
@@ -707,7 +707,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" translatesAutoresizingMaskIntoConstraints="NO" id="hLi-Xm-ORf">
-                                    <rect key="frame" x="12" y="39" width="75" height="75"/>
+                                    <rect key="frame" x="12" y="39" width="75.000000000000014" height="75"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="75" id="NMG-YZ-esa"/>
                                         <constraint firstAttribute="height" constant="75" id="yOk-Te-dPT"/>
@@ -878,7 +878,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filter" translatesAutoresizingMaskIntoConstraints="NO" id="P2i-BP-dd9">
-                                                    <rect key="frame" x="15" y="36" width="30" height="20"/>
+                                                    <rect key="frame" x="15" y="36" width="30.000000000000114" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="79F-hK-RFg"/>
                                                         <constraint firstAttribute="width" constant="30" id="HtF-VW-8wN"/>
@@ -3783,6 +3783,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDW-Jc-0uk">
                                 <rect key="frame" x="189" y="466" width="37" height="30"/>
                                 <state key="normal" title="Done"/>
+                                <connections>
+                                    <segue destination="lCW-Mi-AyH" kind="show" id="bh6-B7-Tz5"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3994,6 +3997,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="v3b-J1-vTz"/>
         <segue reference="0BR-N4-qAY"/>
+        <segue reference="bh6-B7-Tz5"/>
         <segue reference="XJh-kQ-Znd"/>
     </inferredMetricsTieBreakers>
 </document>

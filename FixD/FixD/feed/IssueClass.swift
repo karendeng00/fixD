@@ -338,35 +338,45 @@ class IssueClass {
     
     
     func buildIssue() {
-        let params = buildParams(type:myType)
-        let url = URL(string: "http://localhost:3000/createIssueMobile")! //change the url
-        //create the session object
-        let session = URLSession.shared
-        //now create the URLRequest object using the url object
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST" //set http method as POST
-        request.httpBody = try! JSONSerialization.data(withJSONObject: params, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        //create dataTask using the session object to send data to the server
-        let task = session.dataTask(with: request, completionHandler: { data, response, error in
-            guard error == nil else {
-                return
+        apollo.perform(mutation: CreateIssueMutation(description: "description test", image: "image test", location: "location test", userId: 1, title: "title test", type: "HrlIssue", likes: 0, favorites: 0, email: "email test", phone: "phone test", alternatePhone: "alt phone test", group: "group test", urgency: "urgency test", sensitiveInfo: "sensitive info test", campus: "campus test", area: "area test", specificLocation: "specific location test", roomNumber: "room number test", serviceAnimal: "service animal test", impact: true, yourBuilding: "your building test", yourFloor: "your floor test", yourRoom: "your room test", requestType: "request type test", issueBuilding: "issue building test", issueFloor: "issue floor test", issueRoom: "issue room test", serviceType: "service type test", fundCode: "fund code test", topic: "topic test", name: "name test")) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print("Error: ", err.response.statusCode)
             }
-            guard let data = data else {
-                return
+            else {
+                print("success")
             }
-            do {
-                //create json object from data
-                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                    print(json)
-                }
-            } catch let error {
-                print(error.localizedDescription)
-            }
-        })
-        task.resume()
+        }
+        
+//        let params = buildParams(type:myType)
+//        let url = URL(string: "http://localhost:3000/createIssueMobile")! //change the url
+//        //create the session object
+//        let session = URLSession.shared
+//        //now create the URLRequest object using the url object
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST" //set http method as POST
+//        request.httpBody = try! JSONSerialization.data(withJSONObject: params, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.addValue("application/json", forHTTPHeaderField: "Accept")
+//
+//        //create dataTask using the session object to send data to the server
+//        let task = session.dataTask(with: request, completionHandler: { data, response, error in
+//            guard error == nil else {
+//                return
+//            }
+//            guard let data = data else {
+//                return
+//            }
+//            do {
+//                //create json object from data
+//                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+//                    print(json)
+//                }
+//            } catch let error {
+//                print(error.localizedDescription)
+//            }
+//        })
+//        task.resume()
     }
     
     private func buildParams(type:String) -> [String:Any] {
