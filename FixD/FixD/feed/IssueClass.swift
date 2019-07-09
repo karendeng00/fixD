@@ -228,6 +228,10 @@ class IssueClass {
         return myIssueID
     }
     
+    func getUserId() -> Int {
+        return myUserID
+    }
+    
     func getName() ->String {
         return myName
     }
