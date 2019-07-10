@@ -199,7 +199,7 @@ extension MapFunctionsViewController: MKMapViewDelegate {
             let scale = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
             let size = imageView.bounds.size.applying(scale)
             if let imagePath = (markerAnnotationView.annotation as! IssueAnnotation).imageName, imagePath != ""{
-                let image = resizedImage(image: UIImage(named: imagePath)!, for: size)
+                let image = resizedImage(image: UIImage(named: imagePath) ?? UIImage(named: "NoImage")!, for: size)
                 imageView.image = image
                 markerAnnotationView.detailCalloutAccessoryView = imageView
             }else {
