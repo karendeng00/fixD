@@ -79,6 +79,11 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
         guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "tab") as? UITabBarController else {
             return
         }
+        
+        guard let logOutController = storyBoard.instantiateViewController(withIdentifier: "login") as? UIViewController else {
+            return
+        }
+        
         switch menuType {
         case .home:
             nextViewController.selectedIndex = 0
@@ -86,6 +91,9 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
         case .map:
             nextViewController.selectedIndex = 1
             self.present(nextViewController, animated:false, completion:nil)            
+        case .logout:
+            let navigationController = UINavigationController(rootViewController: logOutController)
+            self.present(navigationController, animated:false, completion: nil)
             
             
         default:

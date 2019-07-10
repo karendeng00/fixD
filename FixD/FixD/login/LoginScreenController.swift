@@ -15,14 +15,18 @@ class LoginScreenController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         oAuthService = OAuthService.shared
-        
-    }
+        UserDefaults.standard.set(false, forKey: "LoggedIn")
 
+
+        if(oAuthService!.isAuthenticated()) {
+            oAuthService?.logout()
+        }
+    }
     
     
     @IBAction func loginButton(_ sender: UIButton) {
         //oAuthService?.logout()
-        //print("yay")
+        print("yay")
         let nav = self.navigationController
         
         oAuthService?.setClientName(oAuthClientName: "wearduke")
@@ -44,6 +48,7 @@ class LoginScreenController: UIViewController {
             oAuthService?.authenticate(navController: navController) {success in
                 if success {
                     print ("LOGIN SUCCESS")
+                    UserDefaults.standard.set(true, forKey: "LoggedIn")
                     //self.navigationController?.dismiss(animated:true, completion: nil)
                     //self.navigationController?.dismiss(animated: true, completion: nil)
                     //self.performSegue(withIdentifier: "showMainFeed", sender: sender)

@@ -210,6 +210,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "tab") as? UITabBarController else {
             return
         }
+        
+        guard let logOutController = storyBoard.instantiateViewController(withIdentifier: "login") as? UIViewController else {
+            return
+        }
+        
+        
         switch menuType {
         case .map:
             
@@ -220,7 +226,11 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             
             nextViewController.selectedIndex = 2
             self.present(nextViewController, animated:false, completion:nil)
-        
+            
+        case .logout:
+            let navigationController = UINavigationController(rootViewController: logOutController)
+            self.present(navigationController, animated:false, completion: nil)
+            
         default:
             break
         }
