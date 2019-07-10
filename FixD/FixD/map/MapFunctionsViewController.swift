@@ -150,7 +150,7 @@ extension MapFunctionsViewController: UIViewControllerTransitioningDelegate {
     }
     
     private func getIssueData() {
-        IssueLoader().getData() { issueData in
+        NetworkAPI().getListOfIssues() { issueData in
             self.myIssueList = issueData
             self.setUpCurrentLocation()
         }

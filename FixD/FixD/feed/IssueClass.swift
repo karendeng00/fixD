@@ -55,17 +55,15 @@ class IssueClass {
     private var myFundCode = ""
     
     private var myFavorites: Int = 0
-    private var myUpVotes: Int = 0
-    private var myComments: Int = 0
-    private var myImages: Int = 0
-    private var myListOfComments: Array<String> = Array()
+    public var myLikes: Int = 0
+    private var myListOfComments: [String] = []
     private var myListOfImages: Array<UIImage> = Array()
     
     private let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
     
     
     //For Loading
-    init(issueID:String, title:String, description:String, location:String, issueImage:String, user_id:Int, upVotes: Int, favorites: Int) {
+    init(issueID:String, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int) {
         self.myIssueID = issueID
         self.myTitle = title
         self.myLocation = location
@@ -73,9 +71,10 @@ class IssueClass {
         self.myIssueImage = issueImage
         self.myUserID = user_id
         self.myFavorites = favorites
-        self.myUpVotes = upVotes
-        self.myComments = myListOfComments.count
-        self.myImages = myListOfImages.count
+        self.myLikes = likes
+        NetworkAPI().getListOfComments(id: Int(issueID)!){ comments in
+            self.myListOfComments = comments
+        }
     }
     
     //For Basic Initialization
@@ -86,22 +85,20 @@ class IssueClass {
         self.myAltPhone = altPhone
         self.myTitle = title
         self.myDescription = description
-        self.myComments = myListOfComments.count
     }
     
     //Empty Object constructor
     init() {}
     
     //For ?
-    init(title:String, description:String, location:String, issueImage:String, user_id:Int, upVotes: Int, favorites: Int) {
+    init(title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int) {
         self.myTitle = title
         self.myLocation = location
         self.myDescription = description
         self.myIssueImage = issueImage
         self.myUserID = user_id
         self.myFavorites = favorites
-        self.myUpVotes = upVotes
-        self.myComments = myListOfComments.count
+        self.myLikes = likes
     }
     
     //Set type of the Issue (SN, HRL, Dining, PT, EAM)
@@ -140,20 +137,20 @@ class IssueClass {
     
     
     
-    func addLike(id: Int){
+    func checkLiked(id: Int){
         if upvoted{
+            self.myLikes -= 1
             apollo.perform(mutation: DeleteLikeFromIssueMutation(id:id)) { (result, error) in
                 if let err = error as? GraphQLHTTPResponseError {
                     print(err.response.statusCode)
                 }
-                self.myUpVotes -= 1
             }
         }else {
+            self.myLikes += 1
             apollo.perform(mutation: AddLikeToIssueMutation(id:id)) { (result, error) in
                 if let err = error as? GraphQLHTTPResponseError {
                     print(err.response.statusCode)
                 }
-                self.myUpVotes += 1
             }
         }
         upvoted = !upvoted
@@ -167,33 +164,36 @@ class IssueClass {
         return pinned
     }
     
-    func addFavorites(id: Int){
+    func checkFavorited(id: Int){
         if pinned {
+            self.myFavorites -= 1
             apollo.perform(mutation: DeleteFavoriteFromIssueMutation(id: id)) { (result, error) in
                 if let err = error as? GraphQLHTTPResponseError {
                     print(err.response.statusCode)
                 }
-                self.myFavorites -= 1
             }
         }else {
+            self.myFavorites += 1
             apollo.perform(mutation: AddFavoriteToIssueMutation(id: id)) { (result, error) in
                 if let err = error as? GraphQLHTTPResponseError {
                     print(err.response.statusCode)
                 }
-                self.myFavorites += 1
             }
         }
         pinned = !pinned
     }
     
-    func addComment(comment:String){
+    func addComment(comment:String, issueId:String, userId:Int){
         myListOfComments.append(comment)
-        myComments = myComments + 1
+        apollo.perform(mutation: CreateCommentMutation(body: comment, userId: userId, issueId: Int(issueId)!)) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+        }
     }
     
     func addImage(image:UIImage) {
         myListOfImages.append(image)
-        myImages = myImages + 1
     }
     
     func getFavorites() -> Int {
@@ -201,16 +201,17 @@ class IssueClass {
     }
     
     func getUpVotes() -> Int {
-        return myUpVotes
+        return myLikes
     }
     
     func getNumberOfComments() -> Int {
-        return myComments
+        return myListOfComments.count
     }
     
     func getNumberOfImages() -> Int {
-        return myImages
+        return myListOfImages.count
     }
+
     
     func getListOfComments() -> Array<String> {
         return myListOfComments
@@ -226,6 +227,10 @@ class IssueClass {
     
     func getID() -> String {
         return myIssueID
+    }
+    
+    func getUserId() -> Int {
+        return myUserID
     }
     
     func getName() ->String {
@@ -338,35 +343,45 @@ class IssueClass {
     
     
     func buildIssue() {
-        let params = buildParams(type:myType)
-        let url = URL(string: "http://localhost:3000/createIssueMobile")! //change the url
-        //create the session object
-        let session = URLSession.shared
-        //now create the URLRequest object using the url object
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST" //set http method as POST
-        request.httpBody = try! JSONSerialization.data(withJSONObject: params, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        //create dataTask using the session object to send data to the server
-        let task = session.dataTask(with: request, completionHandler: { data, response, error in
-            guard error == nil else {
-                return
+        apollo.perform(mutation: CreateIssueMutation(description: "description test", image: "image test", location: "location test", userId: 1, title: "title test", type: "HrlIssue", likes: 0, favorites: 0, email: "email test", phone: "phone test", alternatePhone: "alt phone test", group: "group test", urgency: "urgency test", sensitiveInfo: "sensitive info test", campus: "campus test", area: "area test", specificLocation: "specific location test", roomNumber: "room number test", serviceAnimal: "service animal test", impact: true, yourBuilding: "your building test", yourFloor: "your floor test", yourRoom: "your room test", requestType: "request type test", issueBuilding: "issue building test", issueFloor: "issue floor test", issueRoom: "issue room test", serviceType: "service type test", fundCode: "fund code test", topic: "topic test", name: "name test")) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print("Error: ", err.response.statusCode)
             }
-            guard let data = data else {
-                return
+            else {
+                print("success")
             }
-            do {
-                //create json object from data
-                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                    print(json)
-                }
-            } catch let error {
-                print(error.localizedDescription)
-            }
-        })
-        task.resume()
+        }
+        
+//        let params = buildParams(type:myType)
+//        let url = URL(string: "http://localhost:3000/createIssueMobile")! //change the url
+//        //create the session object
+//        let session = URLSession.shared
+//        //now create the URLRequest object using the url object
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST" //set http method as POST
+//        request.httpBody = try! JSONSerialization.data(withJSONObject: params, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.addValue("application/json", forHTTPHeaderField: "Accept")
+//
+//        //create dataTask using the session object to send data to the server
+//        let task = session.dataTask(with: request, completionHandler: { data, response, error in
+//            guard error == nil else {
+//                return
+//            }
+//            guard let data = data else {
+//                return
+//            }
+//            do {
+//                //create json object from data
+//                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+//                    print(json)
+//                }
+//            } catch let error {
+//                print(error.localizedDescription)
+//            }
+//        })
+//        task.resume()
     }
     
     private func buildParams(type:String) -> [String:Any] {

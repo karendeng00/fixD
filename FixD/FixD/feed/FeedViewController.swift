@@ -52,18 +52,13 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     }
     
     func getIssueData() {
-        IssueLoader().getData() { issueData in
+        NetworkAPI().getListOfIssues() { issueData in
             self.myIssueList = issueData
             self.tableView.reloadData()
         }
     }
     
-    /*override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // this will turn on `masksToBounds` just before showing the cell
-        cell.layer.cornerRadius = 10
-        cell.layer.masksToBounds = true
-    }*/
-    
+
     @objc func refresh(_ sender: Any) {
         getIssueData()
         self.refreshControl!.endRefreshing()
@@ -102,7 +97,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
 
          //Configure the cell...
-        let obj = myIssueList[indexPath.row]
+        let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
         
         cell.setIssue(issue: obj)
         cell.issueName.text = obj.getTitle()
