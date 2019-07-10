@@ -52,7 +52,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     }
     
     func getIssueData() {
-        IssueLoader().getData() { issueData in
+        NetworkAPI().getListOfIssues() { issueData in
             self.myIssueList = issueData
             self.tableView.reloadData()
         }

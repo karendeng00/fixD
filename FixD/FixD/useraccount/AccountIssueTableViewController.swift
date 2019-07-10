@@ -78,7 +78,7 @@ class AccountIssueTableViewController: UITableViewController {
     }
     
     func getIssueData() {
-        IssueLoader().getData() { issueData in
+        NetworkAPI().getListOfIssues() { issueData in
             self.myUserIssuesList = Array()
             let issues:[IssueClass] = issueData
             for issue in issues {

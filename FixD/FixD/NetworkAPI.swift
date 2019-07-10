@@ -10,30 +10,70 @@ import Foundation
 import UIKit
 import Apollo
 
-let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
 
-func getListOfIssues(completionHandler: @escaping (Array<IssueClass>) -> ()) {
-    var myIssueList: Array<IssueClass> = []
+class NetworkAPI {
+
+    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
+
+    func getListOfIssues(completionHandler: @escaping (Array<IssueClass>) -> ()) {
+        var myIssueList: Array<IssueClass> = []
+        apollo.fetch(query: AllIssuesQuery()) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+            let issues = result?.data?.allIssues
+            for issue in issues! {
+                myIssueList.append(IssueClass(
+                    issueID: issue.id,
+                    title: issue.title!,
+                    description: issue.description,
+                    location: issue.location!,
+                    issueImage: issue.image!,
+                    user_id: issue.userId!,
+                    likes: issue.likes!,
+                    favorites: issue.favorites!))
+            }
+            DispatchQueue.main.async {
+                completionHandler(myIssueList)
+            }
+        }
+    }
     
-    let allIssues = AllIssuesQuery()
-    apollo.fetch(query: allIssues) { (result, error) in
-        if let err = error as? GraphQLHTTPResponseError {
-            print(err.response.statusCode)
+    func getIssueById(id: Int, completionHandler: @escaping (IssueClass) -> ()) {
+        apollo.fetch(query: IssueByIdQuery(id: Int(id))) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+            let i = result?.data?.issueById
+            let issue = IssueClass(issueID: i!.id,
+                                   title: (i?.title!)!,
+                                   description: i?.description ?? "",
+                                   location: i?.location ?? "",
+                                   issueImage: i?.image ?? "",
+                                   user_id: (i?.userId!)!,
+                                   likes: (i?.likes!)!,
+                                   favorites: (i?.favorites!)!)
+            DispatchQueue.main.async {
+                completionHandler(issue)
+            }
         }
-        let issues = result?.data?.allIssues
-        for issue in issues! {
-            myIssueList.append(IssueClass(
-                issueID: issue.id,
-                title: issue.title!,
-                description: issue.description,
-                location: issue.location!,
-                issueImage: issue.image!,
-                user_id: issue.userId!,
-                likes: issue.likes!,
-                favorites: issue.favorites!))
+    
+    }
+    
+    func getListOfComments(id: Int, completionHandler: @escaping (Array<String>) -> ()) {
+        var list:Array<String> = []
+        self.apollo.fetch(query: CommentsByIssueQuery(issueId: id)) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+            let result = result?.data?.commentsByIssue
+            for comment in result! {
+                list.append(comment.body)
+            }
+            DispatchQueue.main.async {
+                completionHandler(list)
+            }
         }
-        DispatchQueue.main.async {
-            completionHandler(myIssueList)
-        }
+
     }
 }

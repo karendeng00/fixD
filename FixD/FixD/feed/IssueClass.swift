@@ -56,9 +56,7 @@ class IssueClass {
     
     private var myFavorites: Int = 0
     public var myLikes: Int = 0
-    public var myComments: Int = 0
-    private var myImages: Int = 0
-    private var myListOfComments: Array<String> = Array()
+    private var myListOfComments: [String] = []
     private var myListOfImages: Array<UIImage> = Array()
     
     private let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
@@ -74,8 +72,9 @@ class IssueClass {
         self.myUserID = user_id
         self.myFavorites = favorites
         self.myLikes = likes
-        self.myComments = myListOfComments.count
-        self.myImages = myListOfImages.count
+        NetworkAPI().getListOfComments(id: Int(issueID)!){ comments in
+            self.myListOfComments = comments
+        }
     }
     
     //For Basic Initialization
@@ -86,7 +85,6 @@ class IssueClass {
         self.myAltPhone = altPhone
         self.myTitle = title
         self.myDescription = description
-        self.myComments = myListOfComments.count
     }
     
     //Empty Object constructor
@@ -101,7 +99,6 @@ class IssueClass {
         self.myUserID = user_id
         self.myFavorites = favorites
         self.myLikes = likes
-        self.myComments = myListOfComments.count
     }
     
     //Set type of the Issue (SN, HRL, Dining, PT, EAM)
@@ -188,7 +185,6 @@ class IssueClass {
     
     func addComment(comment:String, issueId:String, userId:Int){
         myListOfComments.append(comment)
-        myComments = myComments + 1
         apollo.perform(mutation: CreateCommentMutation(body: comment, userId: userId, issueId: Int(issueId)!)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
@@ -198,7 +194,6 @@ class IssueClass {
     
     func addImage(image:UIImage) {
         myListOfImages.append(image)
-        myImages = myImages + 1
     }
     
     func getFavorites() -> Int {
@@ -210,12 +205,13 @@ class IssueClass {
     }
     
     func getNumberOfComments() -> Int {
-        return myComments
+        return myListOfComments.count
     }
     
     func getNumberOfImages() -> Int {
-        return myImages
+        return myListOfImages.count
     }
+
     
     func getListOfComments() -> Array<String> {
         return myListOfComments

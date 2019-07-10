@@ -241,23 +241,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-
-    
     func loadIssue() {
-        let issueQuery = IssueByIdQuery(id: Int(issueID) ?? 0)
-        apollo.fetch(query: issueQuery) { (result, error) in
-            if let err = error as? GraphQLHTTPResponseError {
-                print(err.response.statusCode)
-            }
-            let i = result?.data?.issueById
-            let issue = IssueClass(issueID: i!.id,
-                                   title: (i?.title!)!,
-                                   description: i?.description ?? "",
-                                   location: i?.location ?? "",
-                                   issueImage: i?.image ?? "",
-                                   user_id: (i?.userId!)!,
-                                   likes: (i?.likes!)!,
-                                   favorites: (i?.favorites!)!)
+        NetworkAPI().getIssueById(id: (Int(issueID))!) { issue in
             self.myIssue = issue
             self.issueLabel.text = issue.getTitle()
             self.descriptionLabel.text = issue.getDescription()
@@ -268,7 +253,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             self.profileImage.image = UIImage(named: "photo")
             self.comments = issue.getListOfComments()
             self.images = issue.getListOfImages()
-            self.likeAndFavoriteAmountLabel.text = "\(issue.getUpVotes()) likes, \(issue.getFavorites()) favorites" 
+            self.likeAndFavoriteAmountLabel.text = "\(issue.getUpVotes()) likes, \(issue.getFavorites()) favorites"
         }
         configureTapGesture()
     }
