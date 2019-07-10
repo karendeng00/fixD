@@ -19,9 +19,9 @@ enum MenuType: Int {
     case location2
     case category
     case category2
+    case logout
 }
 
-import UIKit
 import MapKit
 
 class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
@@ -141,7 +141,15 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
         
             self.tableView.reloadData()
         }
+        
+        if(indexPath.row == 10) {
+            dismiss(animated: true)
+            self.didTapMenuType!(menuType)
+        }
+        
     }
+    
+    
  
     //if check == false, collapsed
     //if check == true, expand

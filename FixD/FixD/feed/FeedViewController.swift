@@ -139,6 +139,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "tab") as? UITabBarController else {
             return
         }
+        
+        guard let logOutController = storyBoard.instantiateViewController(withIdentifier: "login") as? UIViewController else {
+            return
+        }
+        
+        
         switch menuType {
         case .map:
             
@@ -149,7 +155,19 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             
             nextViewController.selectedIndex = 2
             self.present(nextViewController, animated:false, completion:nil)
-        
+            
+        case .logout:
+            let navigationController = UINavigationController(rootViewController: logOutController)
+            
+//            self.present(logOutController.navigationController!, animated:true, completion: nil)
+            //self.dismiss(animated: false, completion: nil)
+            //self.present(logOutController, animated:false, completion:nil)
+            
+//
+//            self.navigationController!.view.removeFromSuperview()
+            //let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            //appDelegate.window?.rootViewController = logOutController.navigationController
+            self.present(navigationController, animated:false, completion: nil)
         default:
             break
         }
