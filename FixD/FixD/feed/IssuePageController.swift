@@ -35,7 +35,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var comView: UIView!
     @IBOutlet weak var sendView: UIView!
     
-    
     @IBOutlet var views: [UIView]!
     
     @IBOutlet weak var cameraView: UIView!
@@ -60,7 +59,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var commentImage: UIImageView!
    
-    
     var comments:[String] = []
     var images:[UIImage] = []
     var issueID:String = "0"
@@ -70,8 +68,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let white = UIColor(cgColor: CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])!)
     let granite = UIColor(red: 181/255.0, green: 181/255.0, blue: 181/255.0, alpha: 0.5)
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,7 +93,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         issueImage.layer.shadowOffset = CGSize(width: -1, height: 1)
         issueImage.layer.shadowOpacity = 0.2
         
-
         let longLike = UILongPressGestureRecognizer(target: self, action: #selector(longL(_:)))
         longLike.minimumPressDuration = 0
         likeView.addGestureRecognizer(longLike)
@@ -121,7 +116,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         let longSend = UILongPressGestureRecognizer(target: self, action: #selector(send(_:)))
         longSend.minimumPressDuration = 0
         sendView.addGestureRecognizer(longSend)
-        
     }
     
     deinit {
@@ -135,15 +129,11 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             tempImg = image
             hasImage = true
-            
-        }
-        else {
+        }else {
             print("error")
         }
-       
         self.dismiss(animated: true, completion: nil)
         updateComments()
-        
     }
     
     @objc func longCam(_ gestureRecognizer: UILongPressGestureRecognizer) {
@@ -241,6 +231,11 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    fileprivate func scrollToBottom() {
+        let indexPath = NSIndexPath(item: self.comments.count-1, section: 0)
+        self.commentView.scrollToRow(at: indexPath as IndexPath, at: UITableView.ScrollPosition.bottom, animated: false)
+    }
+    
     func loadIssue() {
         NetworkAPI().getIssueById(id: (Int(issueID))!) { issue in
             self.myIssue = issue
@@ -251,14 +246,17 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             self.locationLabel.text = issue.getLocation()
             self.profileImage.image = UIImage(named: "photo")
-            self.comments = issue.getListOfComments()
+            NetworkAPI().getListOfComments(id: Int(self.issueID)!) { comments in
+                self.comments = comments
+                self.commentView.reloadData()
+                self.scrollToBottom()
+            }
             self.images = issue.getListOfImages()
             self.likeAndFavoriteAmountLabel.text = "\(issue.getUpVotes()) likes, \(issue.getFavorites()) favorites"
         }
         configureTapGesture()
     }
 
-    
     @objc func send(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .ended {
             sendView.backgroundColor = white
@@ -271,7 +269,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             sendView.backgroundColor = granite
             sendView.layer.shadowOffset = CGSize(width: -10, height: 10)
         }
-
     }
     
     private func configureTapGesture(){
@@ -300,7 +297,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             myIssue.addComment(comment: commentTextField.text!, issueId: myIssue.getID(), userId: myIssue.getUserId())
             commentTextField.text = ""
             comments = myIssue.getListOfComments()
-            commentView.reloadData()
         }
         if hasImage == true {
             myIssue.addImage(image: tempImg!)
@@ -310,6 +306,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             myIssue.addImage(image: UIImage())
         }
         images = myIssue.getListOfImages()
+        commentView.reloadData()
+        scrollToBottom()
     }
     
     func listenForNotifications() {
@@ -330,7 +328,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath) as! textCommentCell
         cell.commentLabel.text = comments[indexPath.row]
         cell.userLabel.text = "-Name"
-        cell.commentPic.image = images[indexPath.row]
+        //cell.commentPic.image = images[indexPath.row]
         return cell
     }
     
