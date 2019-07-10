@@ -1246,7 +1246,7 @@ public final class DeleteFavoriteFromIssueMutation: GraphQLMutation {
 
 public final class CreateIssueMutation: GraphQLMutation {
   public let operationDefinition =
-    "mutation CreateIssue($description: String, $image: String, $location: String, $userId: Int!, $title: String!, $type: String!, $likes: Int!, $favorites: Int!, $email: String, $phone: String, $alternatePhone: String, $group: String, $urgency: String, $sensitiveInfo: String, $campus: String, $area: String, $specificLocation: String, $roomNumber: String, $serviceAnimal: String, $impact: Boolean, $yourBuilding: String, $yourFloor: String, $yourRoom: String, $requestType: String, $issueBuilding: String, $issueFloor: String, $issueRoom: String, $serviceType: String, $fundCode: String, $topic: String, $name: String) {\n  createIssue(description: $description, image: $image, location: $location, userId: $userId, title: $title, type: $type, likes: $likes, favorites: $favorites, email: $email, phone: $phone, alternatePhone: $alternatePhone, group: $group, urgency: $urgency, sensitiveInfo: $sensitiveInfo, campus: $campus, area: $area, specificLocation: $specificLocation, roomNumber: $roomNumber, serviceAnimal: $serviceAnimal, impact: $impact, yourBuilding: $yourBuilding, yourFloor: $yourFloor, yourRoom: $yourRoom, requestType: $requestType, issueBuilding: $issueBuilding, issueFloor: $issueFloor, issueRoom: $issueRoom, serviceType: $serviceType, fundCode: $fundCode, topic: $topic, name: $name) {\n    __typename\n    id\n  }\n}"
+    "mutation CreateIssue($description: String, $image: String, $location: String, $userId: Int!, $title: String!, $type: String!, $likes: Int!, $favorites: Int!, $email: String, $phone: String, $alternatePhone: String, $group: String, $urgency: String, $sensitiveInfo: String, $campus: String, $area: String, $specificLocation: String, $roomNumber: String, $serviceAnimal: Boolean, $impact: String, $yourBuilding: String, $yourFloor: String, $yourRoom: String, $requestType: String, $issueBuilding: String, $issueFloor: String, $issueRoom: String, $serviceType: String, $fundCode: String, $topic: String, $name: String) {\n  createIssue(description: $description, image: $image, location: $location, userId: $userId, title: $title, type: $type, likes: $likes, favorites: $favorites, email: $email, phone: $phone, alternatePhone: $alternatePhone, group: $group, urgency: $urgency, sensitiveInfo: $sensitiveInfo, campus: $campus, area: $area, specificLocation: $specificLocation, roomNumber: $roomNumber, serviceAnimal: $serviceAnimal, impact: $impact, yourBuilding: $yourBuilding, yourFloor: $yourFloor, yourRoom: $yourRoom, requestType: $requestType, issueBuilding: $issueBuilding, issueFloor: $issueFloor, issueRoom: $issueRoom, serviceType: $serviceType, fundCode: $fundCode, topic: $topic, name: $name) {\n    __typename\n    id\n  }\n}"
 
   public var description: String?
   public var image: String?
@@ -1266,8 +1266,8 @@ public final class CreateIssueMutation: GraphQLMutation {
   public var area: String?
   public var specificLocation: String?
   public var roomNumber: String?
-  public var serviceAnimal: String?
-  public var impact: Bool?
+  public var serviceAnimal: Bool?
+  public var impact: String?
   public var yourBuilding: String?
   public var yourFloor: String?
   public var yourRoom: String?
@@ -1280,7 +1280,7 @@ public final class CreateIssueMutation: GraphQLMutation {
   public var topic: String?
   public var name: String?
 
-  public init(description: String? = nil, image: String? = nil, location: String? = nil, userId: Int, title: String, type: String, likes: Int, favorites: Int, email: String? = nil, phone: String? = nil, alternatePhone: String? = nil, group: String? = nil, urgency: String? = nil, sensitiveInfo: String? = nil, campus: String? = nil, area: String? = nil, specificLocation: String? = nil, roomNumber: String? = nil, serviceAnimal: String? = nil, impact: Bool? = nil, yourBuilding: String? = nil, yourFloor: String? = nil, yourRoom: String? = nil, requestType: String? = nil, issueBuilding: String? = nil, issueFloor: String? = nil, issueRoom: String? = nil, serviceType: String? = nil, fundCode: String? = nil, topic: String? = nil, name: String? = nil) {
+  public init(description: String? = nil, image: String? = nil, location: String? = nil, userId: Int, title: String, type: String, likes: Int, favorites: Int, email: String? = nil, phone: String? = nil, alternatePhone: String? = nil, group: String? = nil, urgency: String? = nil, sensitiveInfo: String? = nil, campus: String? = nil, area: String? = nil, specificLocation: String? = nil, roomNumber: String? = nil, serviceAnimal: Bool? = nil, impact: String? = nil, yourBuilding: String? = nil, yourFloor: String? = nil, yourRoom: String? = nil, requestType: String? = nil, issueBuilding: String? = nil, issueFloor: String? = nil, issueRoom: String? = nil, serviceType: String? = nil, fundCode: String? = nil, topic: String? = nil, name: String? = nil) {
     self.description = description
     self.image = image
     self.location = location
