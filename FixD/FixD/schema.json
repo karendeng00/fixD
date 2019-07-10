@@ -1268,7 +1268,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "SCALAR",
-                                    "name": "String",
+                                    "name": "Boolean",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -1278,7 +1278,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "SCALAR",
-                                    "name": "Boolean",
+                                    "name": "String",
                                     "ofType": null
                                 },
                                 "defaultValue": null
