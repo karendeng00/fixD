@@ -158,16 +158,8 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             
         case .logout:
             let navigationController = UINavigationController(rootViewController: logOutController)
-            
-//            self.present(logOutController.navigationController!, animated:true, completion: nil)
-            //self.dismiss(animated: false, completion: nil)
-            //self.present(logOutController, animated:false, completion:nil)
-            
-//
-//            self.navigationController!.view.removeFromSuperview()
-            //let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            //appDelegate.window?.rootViewController = logOutController.navigationController
             self.present(navigationController, animated:false, completion: nil)
+            
         default:
             break
         }
