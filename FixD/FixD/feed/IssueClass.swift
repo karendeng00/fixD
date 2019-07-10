@@ -348,7 +348,7 @@ class IssueClass {
     
     func buildIssue() {
         
-        apollo.perform(mutation: CreateIssueMutation(description: myDescription, image: "", location: myLocation, userId: 1, title: myTitle, type: myType, likes: 0, favorites: 0, email: myEmail, phone: myPhone, alternatePhone: myAltPhone, group: "", urgency: myUrgency, sensitiveInfo: mySensitiveInfo, campus: myCampus, area: myArea, specificLocation: mySpecificLocation, roomNumber: myRoom, serviceAnimal: myAnimal, impact: myImpact, yourBuilding: "your building test", yourFloor: "your floor test", yourRoom: "your room test", requestType: "request type test", issueBuilding: "issue building test", issueFloor: "issue floor test", issueRoom: "issue room test", serviceType: "service type test", fundCode: "fund code test", topic: "topic test", name: "name test")) { (result, error) in
+        apollo.perform(mutation: CreateIssueMutation(description: myDescription, image: myIssueImage, location: myLocation, userId: 1, title: myTitle, type: myType, likes: 0, favorites: 0, email: myEmail, phone: myPhone, alternatePhone: myAltPhone, group: "", urgency: myUrgency, sensitiveInfo: mySensitiveInfo, campus: myCampus, area: myArea, specificLocation: mySpecificLocation, roomNumber: myRoom, serviceAnimal: myAnimal, impact: myImpact, yourBuilding: myBuildingFacilities, yourFloor: myFloorFacilities, yourRoom: myRoomFacilities, requestType: myRequestFor, issueBuilding: myBuildingService, issueFloor: myFloorService, issueRoom: myRoomService, serviceType: myServiceType, fundCode: myFundCode, topic: "", name: myName)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print("Error: ", err.response.statusCode)
             }

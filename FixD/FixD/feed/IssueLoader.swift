@@ -31,7 +31,8 @@ class IssueLoader {
                     issueImage: issue.image!,
                     user_id: issue.userId!,
                     likes: issue.likes!,
-                    favorites: issue.favorites!))
+                    favorites: issue.favorites!
+                ))
             }
             DispatchQueue.main.async {
                 completionHandler(myIssueList)
