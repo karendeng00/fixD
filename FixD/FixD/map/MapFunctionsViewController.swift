@@ -63,6 +63,11 @@ class MapFunctionsViewController: UIViewController {
         guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "tab") as? UITabBarController else {
             return
         }
+        
+        guard let logOutController = storyBoard.instantiateViewController(withIdentifier: "login") as? UIViewController else {
+            return
+        }
+        
         switch menuType {
         case .home:
             nextViewController.selectedIndex = 0
@@ -70,6 +75,12 @@ class MapFunctionsViewController: UIViewController {
         case .account:
             nextViewController.selectedIndex = 2
             self.present(nextViewController, animated:false, completion:nil)
+            
+        case .logout:
+            
+            let navigationController = UINavigationController(rootViewController: logOutController)
+            self.present(navigationController, animated:false, completion: nil)
+            
         default:
             break
         }
@@ -199,7 +210,7 @@ extension MapFunctionsViewController: MKMapViewDelegate {
             let scale = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
             let size = imageView.bounds.size.applying(scale)
             if let imagePath = (markerAnnotationView.annotation as! IssueAnnotation).imageName, imagePath != ""{
-                let image = resizedImage(image: UIImage(named: imagePath)!, for: size)
+                let image = resizedImage(image: UIImage(named: imagePath) ?? UIImage(named: "NoImage")!, for: size)
                 imageView.image = image
                 markerAnnotationView.detailCalloutAccessoryView = imageView
             }else {

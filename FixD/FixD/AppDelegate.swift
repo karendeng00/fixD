@@ -16,10 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        print(UserDefaults.standard.bool(forKey: "LoggedIn"))
+        print("Logged In = \(UserDefaults.standard.bool(forKey: "LoggedIn"))")
         
         if (UserDefaults.standard.bool(forKey: "LoggedIn") == true) {
-            
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "tab")
             

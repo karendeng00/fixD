@@ -61,7 +61,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
    
     var comments:[String] = []
     var images:[UIImage] = []
-    var issueID:String = "0"
+    var issueID:Int = 0
     var myIssue = IssueClass()
     var tempImg: UIImage?
     var hasImage = false
@@ -181,7 +181,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             likeView.backgroundColor = white
             likeView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
-            myIssue.checkLiked(id: Int(myIssue.getID())!)
+            myIssue.checkLiked(id: myIssue.getID())
             if (myIssue.getUpVoteState()){
                 likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
@@ -202,7 +202,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             favView.backgroundColor = white
             favView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
-            myIssue.checkFavorited(id: Int(myIssue.getID())!)
+            myIssue.checkFavorited(id: myIssue.getID())
             if (myIssue.getFavoritesState()){
                 likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 favButton.setImage(UIImage(named: "filled star"), for: .normal)
@@ -237,7 +237,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func loadIssue() {
-        NetworkAPI().getIssueById(id: (Int(issueID))!) { issue in
+        NetworkAPI().getIssueById(id: issueID) { issue in
             self.myIssue = issue
             self.issueLabel.text = issue.getTitle()
             self.descriptionLabel.text = issue.getDescription()

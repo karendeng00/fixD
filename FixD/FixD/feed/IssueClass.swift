@@ -12,7 +12,7 @@ import Apollo
 
 class IssueClass {
     
-    private var myIssueID:String = "0"
+    private var myIssueID:Int = 0
     
     
     private var myName:String = ""
@@ -63,7 +63,7 @@ class IssueClass {
     
     
     //For Loading
-    init(issueID:String, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int) {
+    init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int) {
         self.myIssueID = issueID
         self.myTitle = title
         self.myLocation = location
@@ -72,7 +72,7 @@ class IssueClass {
         self.myUserID = user_id
         self.myFavorites = favorites
         self.myLikes = likes
-        NetworkAPI().getListOfComments(id: Int(issueID)!){ comments in
+        NetworkAPI().getListOfComments(id: issueID){ comments in
             self.myListOfComments = comments
         }
     }
@@ -183,9 +183,9 @@ class IssueClass {
         pinned = !pinned
     }
     
-    func addComment(comment:String, issueId:String, userId:Int){
+    func addComment(comment:String, issueId:Int, userId:Int){
         myListOfComments.append(comment)
-        apollo.perform(mutation: CreateCommentMutation(body: comment, userId: userId, issueId: Int(issueId)!)) { (result, error) in
+        apollo.perform(mutation: CreateCommentMutation(body: comment, userId: userId, issueId: issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
             }
@@ -221,11 +221,11 @@ class IssueClass {
         return myListOfImages
     }
     
-    func setID(id:String) {
+    func setID(id:Int) {
         self.myIssueID = id
     }
     
-    func getID() -> String {
+    func getID() -> Int {
         return myIssueID
     }
     
@@ -342,103 +342,7 @@ class IssueClass {
     }
     
     
-    func buildIssue() {
-        
-        apollo.perform(mutation: CreateIssueMutation(description: "description test", image: "image test", location: "location test", userId: 1, title: "title test", type: "HrlIssue", likes: 0, favorites: 0, email: "email test", phone: "phone test", alternatePhone: "alt phone test", group: "group test", urgency: "urgency test", sensitiveInfo: "sensitive info test", campus: "campus test", area: "area test", specificLocation: "specific location test", roomNumber: "room number test", serviceAnimal: "service animal test", impact: true, yourBuilding: "your building test", yourFloor: "your floor test", yourRoom: "your room test", requestType: "request type test", issueBuilding: "issue building test", issueFloor: "issue floor test", issueRoom: "issue room test", serviceType: "service type test", fundCode: "fund code test", topic: "topic test", name: "name test")) { (result, error) in
-            if let err = error as? GraphQLHTTPResponseError {
-                print("Error: ", err.response.statusCode)
-            }
-            else {
-                print("success")
-            }
-        }
-        
-//        let params = buildParams(type:myType)
-//        let url = URL(string: "http://localhost:3000/createIssueMobile")! //change the url
-//        //create the session object
-//        let session = URLSession.shared
-//        //now create the URLRequest object using the url object
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "POST" //set http method as POST
-//        request.httpBody = try! JSONSerialization.data(withJSONObject: params, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.addValue("application/json", forHTTPHeaderField: "Accept")
-//
-//        //create dataTask using the session object to send data to the server
-//        let task = session.dataTask(with: request, completionHandler: { data, response, error in
-//            guard error == nil else {
-//                return
-//            }
-//            guard let data = data else {
-//                return
-//            }
-//            do {
-//                //create json object from data
-//                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-//                    print(json)
-//                }
-//            } catch let error {
-//                print(error.localizedDescription)
-//            }
-//        })
-//        task.resume()
-    }
     
-    private func buildParams(type:String) -> [String:Any] {
-        if myType == "SnIssue" {
-            return ["title": self.getTitle(),
-                          "description": self.getDescription(),
-                          "name": self.getName(),
-                          "type": self.getType(),
-                          "email": self.getEmail(),
-                          "phone": self.getPhone(),
-                          "alternate_phone": self.getAltPhone(),
-                          "urgency": self.getUrgency(),
-                          "impact": self.getImpact(),
-                          "sensitive_info": self.getSensitiveInfo(),
-                          "user_id": 1]
-                as [String: Any]
-        }
-        else if myType == "HrlIssue" {
-            return ["title": self.getTitle(),
-                    "description": self.getDescription(),
-                    "name": self.getName(),
-                    "type": self.getType(),
-                    "email": self.getEmail(),
-                    "phone": self.getPhone(),
-                    "alternate_phone": self.getAltPhone(),
-                    "campus": self.getCampus(),
-                    "area": self.getArea(),
-                    "specific_location": self.getSpecificLocation(),
-                    "room_number": self.getRoom(),
-                    "service_animal": self.getAnimal(),
-                    "user_id": 1]
-                as [String: Any]
-        }
-        else if myType == "EamIssue" {
-            return ["title": self.getTitle(),
-                    "description": self.getDescription(),
-                    "name": self.getName(),
-                    "type": self.getType(),
-                    "email": self.getEmail(),
-                    "phone": self.getPhone(),
-                    "alternate_phone": self.getAltPhone(),
-                    "your_building": self.getBuildingFacilities(),
-                    "your_floor": self.getFloorFacilities(),
-                    "your_room": self.getRoomFacilities(),
-                    "request_type": self.getRequestFor(),
-                    "issue_building": self.getBuildingService(),
-                    "issue_floor": self.getFloorService(),
-                    "issue_room": self.getRoomService(),
-                    "service_type": self.getServiceType(),
-                    "fund_code": self.getFundCode(),
-                    "user_id": 1]
-                as [String: Any]
-        }
-        else {
-            return ["Error":"Error"] //should never reach this part of the code
-        }
-    }
         
 }
 

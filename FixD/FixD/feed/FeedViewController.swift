@@ -8,6 +8,82 @@
 
 import UIKit
 
+class FeedIssueCell: UITableViewCell {
+    
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    
+    @IBOutlet weak var issueName: UILabel!
+    @IBOutlet weak var issueDescription: UILabel!
+    @IBOutlet weak var issueLocation: UILabel!
+    @IBOutlet weak var issueImage: UIImageView!
+    @IBOutlet weak var issueDate: UILabel!
+    
+    @IBOutlet weak var locationImage: UIImageView!
+    @IBOutlet weak var issueUpvotes: UILabel!
+    @IBOutlet weak var issueFavorites: UILabel!
+    
+    @IBOutlet weak var likeView: UIView!
+    @IBOutlet weak var starView: UIView!
+    @IBOutlet weak var commentView: UIView!
+    
+    @IBOutlet weak var upVoteButton: UIButton!
+    @IBOutlet weak var favoritesButton: UIButton!
+    
+    var myIssue: IssueClass!
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(like(_:)))
+        likeView.addGestureRecognizer(tap)
+        
+        let favoriteTap = UITapGestureRecognizer(target: self, action: #selector(favorite(_:)))
+        starView.addGestureRecognizer(favoriteTap)
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        //getIssueData()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    func setIssue(issue: IssueClass){
+        myIssue = issue
+    }
+    
+    @objc func like(_ sender: Any) {
+        self.myIssue.checkLiked(id: self.myIssue.getID())
+        self.issueUpvotes.text = String(self.myIssue.getUpVotes())
+        if (myIssue.getUpVoteState()){
+            upVoteButton.setImage(UIImage(named: "filled heart"), for: .normal)
+        }else {
+            upVoteButton.setImage(UIImage(named: "heart-1"), for: .normal)
+        }
+    }
+    
+    @IBAction func upVote(_ sender: Any) {
+        like(sender)
+    }
+    
+    @IBAction func favorite(_ sender: Any) {
+        self.myIssue.checkFavorited(id: self.myIssue.getID())
+        
+        self.issueFavorites.text = String(self.myIssue.getFavorites())
+        if (myIssue.getFavoritesState()){
+            favoritesButton.setImage(UIImage(named: "filled star"), for: .normal)
+        }else {
+            favoritesButton.setImage(UIImage(named: "star"), for: .normal)
+        }
+    }
+    
+}
+
+
+
 class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, UIViewControllerTransitioningDelegate{
     
     let transition = SlideInTransition()
@@ -153,16 +229,8 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             
         case .logout:
             let navigationController = UINavigationController(rootViewController: logOutController)
-            
-//            self.present(logOutController.navigationController!, animated:true, completion: nil)
-            //self.dismiss(animated: false, completion: nil)
-            //self.present(logOutController, animated:false, completion:nil)
-            
-//
-//            self.navigationController!.view.removeFromSuperview()
-            //let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            //appDelegate.window?.rootViewController = logOutController.navigationController
             self.present(navigationController, animated:false, completion: nil)
+            
         default:
             break
         }

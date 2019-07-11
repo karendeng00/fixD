@@ -14,13 +14,15 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
     @IBOutlet weak var myAccountName: UILabel!
     @IBOutlet weak var myAccountImage: UIImageView!
     
+    var myUser:UserProfile?
+    
     let transition = SlideInTransition()
     var topView: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        myAccountName.text = "Larry The Lobster"
-        myAccountPosition.text = "Lifeguard"
+        myUser = LoginScreenController().myUser
+        setUpUser(user: myUser ?? UserProfile(id: 0, name: "Blue Devil", netid: "00000", image: "blue devil", phone: "000-000-0000"))
         
         let menuBtn = UIButton(type: .custom)
         menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 15, height: 15)
@@ -39,6 +41,12 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
         leftPanSwipe.edges = .left
         leftPanSwipe.delegate = self
         self.view.addGestureRecognizer(leftPanSwipe)
+    }
+    
+    func setUpUser(user: UserProfile) {
+        myAccountImage.image = UIImage(named:myUser?.userImage ?? "photo.jpg")
+        myAccountName.text = myUser?.userName
+        myAccountPosition.text = "Student"
     }
     
     @IBAction func tapMenu(_ sender: UIButton) {
@@ -78,6 +86,11 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
         guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "tab") as? UITabBarController else {
             return
         }
+        
+        guard let logOutController = storyBoard.instantiateViewController(withIdentifier: "login") as? UIViewController else {
+            return
+        }
+        
         switch menuType {
         case .home:
             nextViewController.selectedIndex = 0
@@ -85,6 +98,9 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
         case .map:
             nextViewController.selectedIndex = 1
             self.present(nextViewController, animated:false, completion:nil)            
+        case .logout:
+            let navigationController = UINavigationController(rootViewController: logOutController)
+            self.present(navigationController, animated:false, completion: nil)
             
             
         default:
