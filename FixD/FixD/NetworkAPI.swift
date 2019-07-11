@@ -101,6 +101,22 @@ class NetworkAPI {
         
     }
     
+    func getUserById(id: Int, completionHandler: @escaping (UserProfile) -> ()) {
+        var user:UserProfile?
+        self.apollo.fetch(query: UserByIdQuery(id: id)) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+            if let u = result?.data?.userById {
+                user = UserProfile(id: Int(u.id)!, name: (u.name!), netid: u.netid, image: u.picture!, phone: u.phone!)
+                DispatchQueue.main.async {
+                    completionHandler(user!)
+                }
+            }
+        }
+        
+    }
+    
     func buildIssue(issue :IssueClass) {
         apollo.perform(mutation: CreateIssueMutation(description: issue.getDescription(), image: issue.getIssueImage(), location: issue.getLocation(), userId: 1, title: issue.getTitle(), type: issue.getType(), likes: 0, favorites: 0, email: issue.getEmail(), phone: issue.getPhone(), alternatePhone: issue.getAltPhone(), group: "", urgency: issue.getUrgency(), sensitiveInfo: issue.getSensitiveInfo(), campus: issue.getCampus(), area: issue.getArea(), specificLocation: issue.getSpecificLocation(), roomNumber: issue.getRoom(), serviceAnimal: issue.getAnimal(), impact: issue.getImpact(), yourBuilding: issue.getBuildingFacilities(), yourFloor: issue.getFloorFacilities(), yourRoom: issue.getRoomFacilities(), requestType: issue.getRequestFor(), issueBuilding: issue.getBuildingService(), issueFloor: issue.getFloorService(), issueRoom: issue.getRoomService(), serviceType: issue.getServiceType(), fundCode: issue.getFundCode(), topic: "", name: issue.getName())) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
