@@ -188,6 +188,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         NetworkAPI().getUserById(id: obj.getID()) { user in
             cell.userName.text = user.userName
             cell.userImage.image = UIImage(named: user.userImage)
+            self.tableView.reloadData()
         }
         cell.issueDate.text = obj.getIssueDate()
         cell.issueTime.text = obj.getIssueTime()
