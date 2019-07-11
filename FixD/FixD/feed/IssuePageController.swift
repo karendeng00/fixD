@@ -249,7 +249,9 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             NetworkAPI().getListOfComments(id: Int(self.issueID)!) { comments in
                 self.comments = comments
                 self.commentView.reloadData()
-                self.scrollToBottom()
+                if self.comments.count > 0{
+                    self.scrollToBottom()
+                }
             }
             self.images = issue.getListOfImages()
             self.likeAndFavoriteAmountLabel.text = "\(issue.getUpVotes()) likes, \(issue.getFavorites()) favorites"

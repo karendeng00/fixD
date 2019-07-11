@@ -19,9 +19,8 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        myAccountImage.image = UIImage(named:"blue devil.jpg")
-        //myAccountName.text = UILabel
-        //myAccountPosition.text = UILabel
+        myAccountName.text = "Larry The Lobster"
+        myAccountPosition.text = "Lifeguard"
         
         let menuBtn = UIButton(type: .custom)
         menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 15, height: 15)
@@ -104,17 +103,5 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
         transition.isPresenting = false
         return transition
     }
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
