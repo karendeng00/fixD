@@ -32,7 +32,8 @@ class NetworkAPI {
                         user_id: issue.userId!,
                         likes: issue.likes!,
                         favorites: issue.favorites!,
-                        dateNtime: issue.createdAt!))
+                        dateNtime: issue.createdAt!,
+                        type: issue.type!))
                 }
                 DispatchQueue.main.async {
                     completionHandler(myIssueList)
@@ -62,6 +63,7 @@ class NetworkAPI {
             }
         }
     }
+
     
     func getListOfComments(id: Int, completionHandler: @escaping (Array<String>) -> ()) {
         var list:Array<String> = []
@@ -102,15 +104,15 @@ class NetworkAPI {
     }
     
     func getUserById(id: Int, completionHandler: @escaping (UserProfile) -> ()) {
-        var user:UserProfile?
+        var user = UserProfile.account
         self.apollo.fetch(query: UserByIdQuery(id: id)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
             }
             if let u = result?.data?.userById {
-                user = UserProfile(id: Int(u.id)!, name: (u.name!), netid: u.netid, image: u.picture!, phone: u.phone!)
+                user.setUp(id: Int(u.id)!, name: (u.name!), netid: u.netid, image: u.picture!, phone: u.phone!)
                 DispatchQueue.main.async {
-                    completionHandler(user!)
+                    completionHandler(user)
                 }
             }
         }

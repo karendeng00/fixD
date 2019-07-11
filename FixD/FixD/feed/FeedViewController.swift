@@ -94,6 +94,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
         //Get Issue Data for Feed
         getIssueData()
@@ -125,6 +126,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         
         // Add Refresh Control to Table View
         refreshControl!.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
+        
     
     }
     
@@ -132,8 +134,14 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         NetworkAPI().getListOfIssues() { issueData in
             self.myIssueList = issueData
             self.tableView.reloadData()
+
+        
+            print(self.myIssueList[0].getServiceType())
+            print(self.myIssueList[0].getTitle())
+        print("please work")
         }
     }
+        
     
 
     @objc func refresh(_ sender: Any) {
@@ -172,9 +180,15 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
-
+        
+        
          //Configure the cell...
         let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
+        
+        if (UserDefaults.standard.bool(forKey: "checkOIT") && obj.getServiceType() == ("SnIssue")) {
+            cell.isHidden = true
+        }
+        
         
         cell.setIssue(issue: obj)
         cell.issueName.text = obj.getTitle()

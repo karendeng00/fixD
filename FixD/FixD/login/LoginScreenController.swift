@@ -40,7 +40,7 @@ class LoginScreenController: UIViewController {
     @IBAction func loginButton(_ sender: UIButton) {
         let nav = self.navigationController
         
-        oAuthService?.setClientName(oAuthClientName: "wearduke")
+        oAuthService?.setClientName(oAuthClientName: "dukeissuereporting")
         if oAuthService!.isAuthenticated() {
             print ("Login")
             oAuthService?.refreshToken(navController: nav!) { success, statusCode in

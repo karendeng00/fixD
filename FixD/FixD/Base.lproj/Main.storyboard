@@ -81,7 +81,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" translatesAutoresizingMaskIntoConstraints="NO" id="HLT-TQ-nkf">
-                                                    <rect key="frame" x="12" y="12" width="36" height="36"/>
+                                                    <rect key="frame" x="12" y="12" width="36.000000000000014" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="36" id="Dc2-OX-o2U"/>
                                                         <constraint firstAttribute="height" constant="36" id="ZvR-MK-QOf"/>
@@ -699,7 +699,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" translatesAutoresizingMaskIntoConstraints="NO" id="hLi-Xm-ORf">
-                                    <rect key="frame" x="12" y="39" width="75" height="75"/>
+                                    <rect key="frame" x="12" y="39" width="75.000000000000014" height="75"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="75" id="NMG-YZ-esa"/>
                                         <constraint firstAttribute="height" constant="75" id="yOk-Te-dPT"/>
@@ -870,7 +870,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filter" translatesAutoresizingMaskIntoConstraints="NO" id="P2i-BP-dd9">
-                                                    <rect key="frame" x="15" y="36" width="30" height="20"/>
+                                                    <rect key="frame" x="15" y="36" width="30.000000000000114" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="79F-hK-RFg"/>
                                                         <constraint firstAttribute="width" constant="30" id="HtF-VW-8wN"/>
@@ -1059,7 +1059,7 @@
                                         <rect key="frame" x="0.0" y="868" width="414" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HgH-2Z-BMj" id="atp-Rw-FKC">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="91.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="92"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I7c-vq-6mg">
@@ -1107,7 +1107,7 @@
                                         <rect key="frame" x="0.0" y="960" width="414" height="163"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nlB-aX-C1u" id="aaG-fY-UFx">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="162.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="153"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UUC-dM-GfO">
@@ -1219,7 +1219,7 @@
                                         <rect key="frame" x="0.0" y="1123" width="414" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bKq-nQ-iRJ" id="zMM-sf-15B">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="91.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="92"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qMp-AF-pex">
@@ -1266,9 +1266,13 @@
                     <connections>
                         <outlet property="categoryArrow" destination="siS-BI-STZ" id="3BN-nt-4Gv"/>
                         <outlet property="categoryOptions" destination="aaG-fY-UFx" id="fhN-LQ-i0r"/>
+                        <outlet property="facilitiesButton" destination="j9V-i8-bea" id="6ls-mx-H2x"/>
                         <outlet property="filterImage" destination="VpF-bw-R5S" id="YvF-Qc-j53"/>
+                        <outlet property="hrlButton" destination="Tmq-F4-ReU" id="mXN-IG-yKp"/>
                         <outlet property="location" destination="4Ts-Ss-hsC" id="APb-pX-d00"/>
                         <outlet property="locationArrow" destination="NJm-oN-3UR" id="boX-uK-iYp"/>
+                        <outlet property="oitButton" destination="C1q-Ey-sbm" id="7sl-qv-4xD"/>
+                        <outlet property="parkingButton" destination="Ng0-nM-cto" id="scU-3p-cQX"/>
                         <outletCollection property="filterOptions" destination="atp-Rw-FKC" collectionClass="NSMutableArray" id="Vz9-X7-ctY"/>
                         <outletCollection property="filterOptions" destination="zbr-uP-sVK" collectionClass="NSMutableArray" id="ax1-19-JhN"/>
                         <outletCollection property="filterOptions" destination="M0h-Cz-JDC" collectionClass="NSMutableArray" id="ndW-o1-IWh"/>

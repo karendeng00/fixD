@@ -4,7 +4,7 @@ import Apollo
 
 public final class AllIssuesQuery: GraphQLQuery {
   public let operationDefinition =
-    "query AllIssues {\n  allIssues {\n    __typename\n    id\n    title\n    description\n    location\n    image\n    userId\n    likes\n    favorites\n    createdAt\n  }\n}"
+    "query AllIssues {\n  allIssues {\n    __typename\n    id\n    title\n    description\n    location\n    image\n    userId\n    likes\n    favorites\n    createdAt\n    type\n  }\n}"
 
   public init() {
   }
@@ -50,6 +50,7 @@ public final class AllIssuesQuery: GraphQLQuery {
         GraphQLField("likes", type: .scalar(Int.self)),
         GraphQLField("favorites", type: .scalar(Int.self)),
         GraphQLField("createdAt", type: .scalar(String.self)),
+        GraphQLField("type", type: .scalar(String.self)),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -58,8 +59,8 @@ public final class AllIssuesQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, title: String? = nil, description: String, location: String? = nil, image: String? = nil, userId: Int? = nil, likes: Int? = nil, favorites: Int? = nil, createdAt: String? = nil) {
-        self.init(unsafeResultMap: ["__typename": "Issue", "id": id, "title": title, "description": description, "location": location, "image": image, "userId": userId, "likes": likes, "favorites": favorites, "createdAt": createdAt])
+      public init(id: GraphQLID, title: String? = nil, description: String, location: String? = nil, image: String? = nil, userId: Int? = nil, likes: Int? = nil, favorites: Int? = nil, createdAt: String? = nil, type: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "Issue", "id": id, "title": title, "description": description, "location": location, "image": image, "userId": userId, "likes": likes, "favorites": favorites, "createdAt": createdAt, "type": type])
       }
 
       public var __typename: String {
@@ -151,13 +152,22 @@ public final class AllIssuesQuery: GraphQLQuery {
           resultMap.updateValue(newValue, forKey: "createdAt")
         }
       }
+
+      public var type: String? {
+        get {
+          return resultMap["type"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "type")
+        }
+      }
     }
   }
 }
 
 public final class IssueByIdQuery: GraphQLQuery {
   public let operationDefinition =
-    "query IssueById($id: Int!) {\n  issueById(id: $id) {\n    __typename\n    id\n    title\n    description\n    location\n    image\n    userId\n    likes\n    favorites\n    createdAt\n  }\n}"
+    "query IssueById($id: Int!) {\n  issueById(id: $id) {\n    __typename\n    id\n    title\n    description\n    location\n    image\n    userId\n    likes\n    favorites\n    createdAt\n    type\n  }\n}"
 
   public var id: Int
 
@@ -210,6 +220,7 @@ public final class IssueByIdQuery: GraphQLQuery {
         GraphQLField("likes", type: .scalar(Int.self)),
         GraphQLField("favorites", type: .scalar(Int.self)),
         GraphQLField("createdAt", type: .scalar(String.self)),
+        GraphQLField("type", type: .scalar(String.self)),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -218,8 +229,8 @@ public final class IssueByIdQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, title: String? = nil, description: String, location: String? = nil, image: String? = nil, userId: Int? = nil, likes: Int? = nil, favorites: Int? = nil, createdAt: String? = nil) {
-        self.init(unsafeResultMap: ["__typename": "Issue", "id": id, "title": title, "description": description, "location": location, "image": image, "userId": userId, "likes": likes, "favorites": favorites, "createdAt": createdAt])
+      public init(id: GraphQLID, title: String? = nil, description: String, location: String? = nil, image: String? = nil, userId: Int? = nil, likes: Int? = nil, favorites: Int? = nil, createdAt: String? = nil, type: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "Issue", "id": id, "title": title, "description": description, "location": location, "image": image, "userId": userId, "likes": likes, "favorites": favorites, "createdAt": createdAt, "type": type])
       }
 
       public var __typename: String {
@@ -311,13 +322,22 @@ public final class IssueByIdQuery: GraphQLQuery {
           resultMap.updateValue(newValue, forKey: "createdAt")
         }
       }
+
+      public var type: String? {
+        get {
+          return resultMap["type"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "type")
+        }
+      }
     }
   }
 }
 
 public final class IssuesByTypeQuery: GraphQLQuery {
   public let operationDefinition =
-    "query IssuesByType($type: String!) {\n  issuesByType(type: $type) {\n    __typename\n    id\n    title\n    description\n    location\n    image\n    userId\n    likes\n    favorites\n    createdAt\n  }\n}"
+    "query IssuesByType($type: String!) {\n  issuesByType(type: $type) {\n    __typename\n    id\n    title\n    description\n    location\n    image\n    userId\n    likes\n    favorites\n    createdAt\n    type\n  }\n}"
 
   public var type: String
 
@@ -370,6 +390,7 @@ public final class IssuesByTypeQuery: GraphQLQuery {
         GraphQLField("likes", type: .scalar(Int.self)),
         GraphQLField("favorites", type: .scalar(Int.self)),
         GraphQLField("createdAt", type: .scalar(String.self)),
+        GraphQLField("type", type: .scalar(String.self)),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -378,8 +399,8 @@ public final class IssuesByTypeQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, title: String? = nil, description: String, location: String? = nil, image: String? = nil, userId: Int? = nil, likes: Int? = nil, favorites: Int? = nil, createdAt: String? = nil) {
-        self.init(unsafeResultMap: ["__typename": "Issue", "id": id, "title": title, "description": description, "location": location, "image": image, "userId": userId, "likes": likes, "favorites": favorites, "createdAt": createdAt])
+      public init(id: GraphQLID, title: String? = nil, description: String, location: String? = nil, image: String? = nil, userId: Int? = nil, likes: Int? = nil, favorites: Int? = nil, createdAt: String? = nil, type: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "Issue", "id": id, "title": title, "description": description, "location": location, "image": image, "userId": userId, "likes": likes, "favorites": favorites, "createdAt": createdAt, "type": type])
       }
 
       public var __typename: String {
@@ -471,13 +492,22 @@ public final class IssuesByTypeQuery: GraphQLQuery {
           resultMap.updateValue(newValue, forKey: "createdAt")
         }
       }
+
+      public var type: String? {
+        get {
+          return resultMap["type"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "type")
+        }
+      }
     }
   }
 }
 
 public final class IssuesByUserQuery: GraphQLQuery {
   public let operationDefinition =
-    "query IssuesByUser($userId: Int!) {\n  issuesByUser(userId: $userId) {\n    __typename\n    id\n    title\n    description\n    location\n    image\n    userId\n    likes\n    favorites\n    createdAt\n  }\n}"
+    "query IssuesByUser($userId: Int!) {\n  issuesByUser(userId: $userId) {\n    __typename\n    id\n    title\n    description\n    location\n    image\n    userId\n    likes\n    favorites\n    createdAt\n    type\n  }\n}"
 
   public var userId: Int
 
@@ -530,6 +560,7 @@ public final class IssuesByUserQuery: GraphQLQuery {
         GraphQLField("likes", type: .scalar(Int.self)),
         GraphQLField("favorites", type: .scalar(Int.self)),
         GraphQLField("createdAt", type: .scalar(String.self)),
+        GraphQLField("type", type: .scalar(String.self)),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -538,8 +569,8 @@ public final class IssuesByUserQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, title: String? = nil, description: String, location: String? = nil, image: String? = nil, userId: Int? = nil, likes: Int? = nil, favorites: Int? = nil, createdAt: String? = nil) {
-        self.init(unsafeResultMap: ["__typename": "Issue", "id": id, "title": title, "description": description, "location": location, "image": image, "userId": userId, "likes": likes, "favorites": favorites, "createdAt": createdAt])
+      public init(id: GraphQLID, title: String? = nil, description: String, location: String? = nil, image: String? = nil, userId: Int? = nil, likes: Int? = nil, favorites: Int? = nil, createdAt: String? = nil, type: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "Issue", "id": id, "title": title, "description": description, "location": location, "image": image, "userId": userId, "likes": likes, "favorites": favorites, "createdAt": createdAt, "type": type])
       }
 
       public var __typename: String {
@@ -629,6 +660,15 @@ public final class IssuesByUserQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "createdAt")
+        }
+      }
+
+      public var type: String? {
+        get {
+          return resultMap["type"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "type")
         }
       }
     }
