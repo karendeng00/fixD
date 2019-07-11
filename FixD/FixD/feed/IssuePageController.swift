@@ -28,7 +28,7 @@ class textCommentCell: UITableViewCell{
 
 class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
-    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
+    let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
     
     @IBOutlet weak var likeView: UIView!
     @IBOutlet weak var favView: UIView!

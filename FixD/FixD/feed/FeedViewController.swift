@@ -17,6 +17,7 @@ class FeedIssueCell: UITableViewCell {
     @IBOutlet weak var issueDescription: UILabel!
     @IBOutlet weak var issueLocation: UILabel!
     @IBOutlet weak var issueImage: UIImageView!
+    @IBOutlet weak var issueTime: UILabel!
     @IBOutlet weak var issueDate: UILabel!
     
     @IBOutlet weak var locationImage: UIImageView!
@@ -184,10 +185,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         }
         cell.issueUpvotes.text = String(obj.getUpVotes())
         cell.issueFavorites.text = String(obj.getFavorites())
-        cell.userName.text = "Temporary Name"
-        if let userImage = UIImage(named: "photo-1"){
-            cell.userImage.image = userImage
+        NetworkAPI().getUserById(id: obj.getID()) { user in
+            cell.userName.text = user.userName
+            cell.userImage.image = UIImage(named: user.userImage)
         }
+        cell.issueDate.text = obj.getIssueDate()
+        cell.issueTime.text = obj.getIssueTime()
         
         return cell
     }
