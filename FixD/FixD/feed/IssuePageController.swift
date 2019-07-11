@@ -246,7 +246,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             self.locationLabel.text = issue.getLocation()
             self.profileImage.image = UIImage(named: "photo")
-            NetworkAPI().getListOfComments(id: Int(self.issueID)!) { comments in
+            NetworkAPI().getListOfComments(id: Int(self.issueID)) { comments in
                 self.comments = comments
                 self.commentView.reloadData()
                 if self.comments.count > 0{

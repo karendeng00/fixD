@@ -7,10 +7,12 @@
 //
 
 import Foundation
-
+import Apollo
 
 class UserProfile {
 
+    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
+    
     var userId:Int = 0
     var userName:String = ""
     var userNetId:String = ""
@@ -18,9 +20,12 @@ class UserProfile {
     var userPhone:String = ""
     var newUser:Bool = false
     
+    static let account = UserProfile()
 
+    private init(){}
+    
     //In the future, connect to the database
-    init(id:Int, name:String, netid:String, image:String, phone:String) {
+    func setUp(id:Int, name:String, netid:String, image:String, phone:String) {
         self.userId = id
         self.userName = name
         self.userNetId = netid
@@ -28,12 +33,16 @@ class UserProfile {
         self.userPhone = phone
     }
     
-    init(newUser: Bool){
-        self.newUser = newUser
-    }
-    
-    func isNewUser() -> Bool {
-        return newUser
+    func newUser(name: String, netid: String, phone: String, picture: String) {
+        var id = 0
+        apollo.perform(mutation: CreateUserMutation(name: name, netid: netid, phone: phone, picture: picture))  { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+            let u = result?.data?.createUser
+            id = Int(u!.id)!
+        }
+        self.setUp(id: id, name: name, netid: netid, image: picture, phone: phone)
     }
     
     func getNetId() -> String {

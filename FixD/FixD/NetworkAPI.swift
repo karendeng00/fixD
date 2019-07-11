@@ -76,36 +76,23 @@ class NetworkAPI {
 
     }
     
-    func getUserByNetId(netid: String, completionHandler: @escaping (UserProfile) -> ()) {
-        var user:UserProfile?
+    func getUserByNetId(netid: String, completionHandler: @escaping (Bool) -> ()) {
+        let user = UserProfile.account
         self.apollo.fetch(query: UserByNetIdQuery(netid: netid)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
             }
             if let u = result?.data?.userByNetId {
-                user = UserProfile(id: Int(u.id)!, name: u.name!, netid: u.netid, image: u.picture!, phone: u.phone!)
+                user.setUp(id: Int(u.id)!, name: u.name!, netid: u.netid, image: u.picture!, phone: u.phone!)
                 DispatchQueue.main.async {
-                    completionHandler(user!)
+                    completionHandler(false)
                 }
             } else {
                 DispatchQueue.main.async {
-                    completionHandler(UserProfile(newUser: true))
+                    completionHandler(true)
                 }
             }
         }
-        
-    }
-    
-    func newUser(name:String, netid:String, phone:String, picture:String) -> UserProfile {
-        var id = 0
-        apollo.perform(mutation: CreateUserMutation(name: name, netid: netid, phone: phone, picture: picture))  { (result, error) in
-            if let err = error as? GraphQLHTTPResponseError {
-                print(err.response.statusCode)
-            }
-            let u = result?.data?.createUser
-            id = Int(u!.id)!
-        }
-        return UserProfile(id: id, name: name, netid: netid, image: picture, phone: phone)
         
     }
     

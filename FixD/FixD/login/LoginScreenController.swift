@@ -11,7 +11,7 @@ import UIKit
 class LoginScreenController: UIViewController {
 
     var oAuthService: OAuthService?
-    var myUser:UserProfile?
+    var myUser = UserProfile.account
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +28,11 @@ class LoginScreenController: UIViewController {
     
     
     private func loadUserOrMakeNewOne() {
-        NetworkAPI().getUserByNetId(netid: "aam79") { user in
-            self.myUser = user
-            if self.myUser?.isNewUser() == true {
+        NetworkAPI().getUserByNetId(netid: "aam79") { result in
+            if result == true {
                 print("new")
-                self.myUser = NetworkAPI().newUser(name: "NAME2", netid: "NETID", phone: "PHONE", picture: "PICTURE")
+                self.myUser.newUser(name: "NAME2", netid: "NETID", phone: "PHONE", picture: "photo")
             }
-            
         }
     }
     
