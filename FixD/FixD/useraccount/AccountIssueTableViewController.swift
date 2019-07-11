@@ -11,14 +11,22 @@ import UIKit
 class AccountIssueTableViewController: UITableViewController {
 
     let myCellIndentifier = "IssueCell"
-    var myIssueList:[IssueClass] = []
+    var myUserIssuesList:[IssueClass] = []
+    
+    let THIS_USER = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //getIssueData()
+        self.refreshControl = UIRefreshControl()
+        refreshControl!.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
+        
+        getIssueData()
     }
 
-    // MARK: - Table view data source
+    @objc func refresh(_ sender: Any) {
+        getIssueData()
+        self.refreshControl!.endRefreshing()
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -29,13 +37,14 @@ class AccountIssueTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myIssueList.count
+        return myUserIssuesList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell", for: indexPath) as! FeedIssueCell
         
-        let obj = myIssueList[indexPath.row]
+        
+        let obj = myUserIssuesList[indexPath.row]
         
         cell.setIssue(issue: obj)
         cell.issueName.text = obj.getTitle()
@@ -69,8 +78,15 @@ class AccountIssueTableViewController: UITableViewController {
     }
     
     func getIssueData() {
-        IssueLoader().getData() { issueData in
-            self.myIssueList = issueData
+        NetworkAPI().getListOfIssues() { issueData in
+            self.myUserIssuesList = Array()
+            let issues:[IssueClass] = issueData
+            for issue in issues {
+                if (issue.getUserId() == self.THIS_USER) {
+                    self.myUserIssuesList.append(issue)
+                    
+                }
+            }
             self.tableView.reloadData()
         }
     }

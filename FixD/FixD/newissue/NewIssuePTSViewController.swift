@@ -13,6 +13,8 @@ class NewIssuePTSViewController: UIViewController {
 
     @IBOutlet weak var topicDropDown: DropDown!
     
+    var myIssue:IssueClass = IssueClass()
+    
     let topicList = ["Transit", "Parking", "Enforcement", "Special Events", "Other"]
     
     override func viewDidLoad() {
@@ -26,6 +28,7 @@ class NewIssuePTSViewController: UIViewController {
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if topicDropDown.text != "Please select" {
+            NetworkAPI().buildIssue(issue: myIssue)
             return true
         }
         createAlert(title: "Selections Missing", message: "Please fill in missing selections.")

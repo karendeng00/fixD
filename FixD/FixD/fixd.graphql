@@ -66,6 +66,32 @@ query CommentsByIssue($issueId: Int!){
     }
 }
 
+query UserByNetId($netid: String!){
+    userByNetId(netid: $netid){
+        name
+        netid
+        phone
+        picture
+    }
+}
+
+mutation CreateUser($name: String!, $netid: String!, $phone: String!, $picture: String!){
+    createUser(name: $name, netid: $netid, phone: $phone, picture: $picture){
+        id
+        name
+        netid
+        phone
+        picture
+    }
+}
+
+mutation CreateComment($body: String!, $userId: Int!, $issueId: Int!){
+    createComment(body: $body, userId: $userId, issueId: $issueId){
+        id
+        body
+    }
+}
+
 mutation AddLikeToIssue($id: Int!){
     addLikeToIssue(id: $id){
         id
@@ -92,4 +118,12 @@ mutation DeleteFavoriteFromIssue($id: Int!){
         id
         favorites
     }
+}
+
+mutation CreateIssue(
+    $description: String, $image: String, $location: String, $userId: Int!, $title: String!, $type: String!, $likes: Int!, $favorites: Int!, $email: String, $phone: String, $alternatePhone: String, $group: String, $urgency: String, $sensitiveInfo: String, $campus: String, $area: String, $specificLocation: String, $roomNumber: String, $serviceAnimal: Boolean, $impact: String, $yourBuilding: String, $yourFloor: String, $yourRoom: String, $requestType: String, $issueBuilding: String, $issueFloor: String, $issueRoom: String, $serviceType: String, $fundCode: String, $topic: String, $name: String){
+        createIssue(
+            description: $description, image: $image, location: $location, userId: $userId, title: $title, type: $type, likes: $likes, favorites: $favorites, email: $email, phone: $phone, alternatePhone: $alternatePhone, group: $group, urgency: $urgency, sensitiveInfo: $sensitiveInfo, campus: $campus, area: $area, specificLocation: $specificLocation, roomNumber: $roomNumber, serviceAnimal: $serviceAnimal, impact: $impact, yourBuilding: $yourBuilding, yourFloor: $yourFloor, yourRoom: $yourRoom, requestType: $requestType, issueBuilding: $issueBuilding, issueFloor: $issueFloor, issueRoom: $issueRoom, serviceType: $serviceType, fundCode: $fundCode, topic: $topic, name: $name){
+                id
+            }
 }

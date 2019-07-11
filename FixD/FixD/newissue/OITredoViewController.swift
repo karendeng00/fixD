@@ -59,7 +59,7 @@ class OITredoViewController: UIViewController, UITextViewDelegate, UINavigationC
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if urgencyDropDown.text != "Please select" && impactDropDown.text != "Please select" {
             myIssue.defineServiceNowParams(urgency: urgencyDropDown.text!, impact: impactDropDown.text!, sensitive_info: sensitiveInfo.text!)
-            myIssue.buildIssue()
+            NetworkAPI().buildIssue(issue: myIssue)
             return true
         }
         createAlert(title: "Selections Missing", message: "Please fill in missing selections.")

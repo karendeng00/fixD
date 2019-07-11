@@ -152,7 +152,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             cameraView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
-                print("yep")
                 let imagePicker = UIImagePickerController()
                 imagePicker.delegate = self
                 imagePicker.sourceType = UIImagePickerController.SourceType.camera
@@ -165,8 +164,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             cameraView.backgroundColor = granite
             cameraView.layer.shadowOffset = CGSize(width: -10, height: 10)
         }
-        
-        
     }
     
     
@@ -190,37 +187,37 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @objc func longL(_ gestureRecognizer: UILongPressGestureRecognizer) {
-    
         if gestureRecognizer.state == .ended {
             likeView.backgroundColor = white
             likeView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
-            myIssue.addLike(id: Int(myIssue.getID())!)
+            myIssue.checkLiked(id: Int(myIssue.getID())!)
             if (myIssue.getUpVoteState()){
+                likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
             } else {
+                likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 likeButton.setImage(UIImage(named: "heart-1"), for: .normal)
             }
-            
         }
             
         else {
             likeView.backgroundColor = granite
             likeView.layer.shadowOffset = CGSize(width: -10, height: 10)
         }
-        
     }
     
     @objc func longF(_ gestureRecognizer: UILongPressGestureRecognizer) {
-        
         if gestureRecognizer.state == .ended {
             favView.backgroundColor = white
             favView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
-            myIssue.addFavorites(id: Int(myIssue.getID())!)
+            myIssue.checkFavorited(id: Int(myIssue.getID())!)
             if (myIssue.getFavoritesState()){
+                likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 favButton.setImage(UIImage(named: "filled star"), for: .normal)
             }else {
+                likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 favButton.setImage(UIImage(named: "star"), for: .normal)
             }
         }
@@ -233,7 +230,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     @objc func longC(_ gestureRecognizer: UILongPressGestureRecognizer) {
-        
         if gestureRecognizer.state == .ended {
             comView.backgroundColor = white
             comView.layer.shadowOffset = CGSize(width: -1, height: 1)
@@ -245,23 +241,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-
-    
     func loadIssue() {
-        let issueQuery = IssueByIdQuery(id: Int(issueID) ?? 0)
-        apollo.fetch(query: issueQuery) { (result, error) in
-            if let err = error as? GraphQLHTTPResponseError {
-                print(err.response.statusCode)
-            }
-            let i = result?.data?.issueById
-            let issue = IssueClass(issueID: i!.id,
-                                   title: (i?.title!)!,
-                                   description: i?.description ?? "",
-                                   location: i?.location ?? "",
-                                   issueImage: i?.image ?? "",
-                                   user_id: (i?.userId!)!,
-                                   upVotes: (i?.likes!)!,
-                                   favorites: (i?.favorites!)!)
+        NetworkAPI().getIssueById(id: (Int(issueID))!) { issue in
             self.myIssue = issue
             self.issueLabel.text = issue.getTitle()
             self.descriptionLabel.text = issue.getDescription()
@@ -272,7 +253,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             self.profileImage.image = UIImage(named: "photo")
             self.comments = issue.getListOfComments()
             self.images = issue.getListOfImages()
-            self.likeAndFavoriteAmountLabel.text = "\(issue.getUpVotes()) likes, \(issue.getFavorites()) favorites" 
+            self.likeAndFavoriteAmountLabel.text = "\(issue.getUpVotes()) likes, \(issue.getFavorites()) favorites"
         }
         configureTapGesture()
     }
@@ -316,7 +297,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func updateComments() {
         if commentTextField.hasText {
-            myIssue.addComment(comment: commentTextField.text!)
+            myIssue.addComment(comment: commentTextField.text!, issueId: myIssue.getID(), userId: myIssue.getUserId())
             commentTextField.text = ""
             comments = myIssue.getListOfComments()
             commentView.reloadData()

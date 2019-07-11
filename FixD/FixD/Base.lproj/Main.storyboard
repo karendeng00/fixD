@@ -3136,6 +3136,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDW-Jc-0uk">
                                 <rect key="frame" x="189" y="466" width="37" height="30"/>
                                 <state key="normal" title="Done"/>
+                                <connections>
+                                    <segue destination="lCW-Mi-AyH" kind="show" id="bh6-B7-Tz5"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3346,6 +3349,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="v3b-J1-vTz"/>
+        <segue reference="0BR-N4-qAY"/>
+        <segue reference="bh6-B7-Tz5"/>
+        <segue reference="XJh-kQ-Znd"/>
         <segue reference="elw-hr-S50"/>
         <segue reference="tAk-x9-Ry1"/>
     </inferredMetricsTieBreakers>
