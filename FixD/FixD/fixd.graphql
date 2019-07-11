@@ -66,6 +66,25 @@ query CommentsByIssue($issueId: Int!){
     }
 }
 
+query UserByNetId($netid: String!){
+    userByNetId(netid: $netid){
+        name
+        netid
+        phone
+        picture
+    }
+}
+
+mutation CreateUser($name: String!, $netid: String!, $phone: String!, $picture: String!){
+    createUser(name: $name, netid: $netid, phone: $phone, picture: $picture){
+        id
+        name
+        netid
+        phone
+        picture
+    }
+}
+
 mutation CreateComment($body: String!, $userId: Int!, $issueId: Int!){
     createComment(body: $body, userId: $userId, issueId: $issueId){
         id

@@ -76,4 +76,45 @@ class NetworkAPI {
         }
 
     }
+    
+    func getUserByNetId(netid: String, completionHandler: @escaping (UserProfile) -> ()) {
+        var user:UserProfile?
+        self.apollo.fetch(query: UserByNetIdQuery(netid: netid)) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+            if let u = result?.data?.userByNetId {
+                user = UserProfile(name: u.name!, netid: u.netid, image: u.picture!, phone: u.phone!)
+                DispatchQueue.main.async {
+                    completionHandler(user!)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completionHandler(UserProfile(newUser: true))
+                }
+            }
+        }
+        
+    }
+    
+    func newUser(name:String, netid:String, phone:String, picture:String) -> UserProfile {
+        apollo.perform(mutation: CreateUserMutation(name: name, netid: netid, phone: phone, picture: picture))  { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+        }
+        return UserProfile(name: name, netid: netid, image: picture, phone: phone)
+        
+    }
+    
+    func buildIssue(issue :IssueClass) {
+        apollo.perform(mutation: CreateIssueMutation(description: issue.getDescription(), image: issue.getIssueImage(), location: issue.getLocation(), userId: 1, title: issue.getTitle(), type: issue.getType(), likes: 0, favorites: 0, email: issue.getEmail(), phone: issue.getPhone(), alternatePhone: issue.getAltPhone(), group: "", urgency: issue.getUrgency(), sensitiveInfo: issue.getSensitiveInfo(), campus: issue.getCampus(), area: issue.getArea(), specificLocation: issue.getSpecificLocation(), roomNumber: issue.getRoom(), serviceAnimal: issue.getAnimal(), impact: issue.getImpact(), yourBuilding: issue.getBuildingFacilities(), yourFloor: issue.getFloorFacilities(), yourRoom: issue.getRoomFacilities(), requestType: issue.getRequestFor(), issueBuilding: issue.getBuildingService(), issueFloor: issue.getFloorService(), issueRoom: issue.getRoomService(), serviceType: issue.getServiceType(), fundCode: issue.getFundCode(), topic: "", name: issue.getName())) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print("Error: ", err.response.statusCode)
+            }
+            else {
+                print("success")
+            }
+        }
+    }
 }

@@ -27,7 +27,6 @@
 		B4B1DBF922AAE02A005EFFA9 /* ScreenPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */; };
 		B4CA2D1622D3D12F00BC6189 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CA2D1522D3D12E00BC6189 /* API.swift */; };
 		B4EC7FCC22B16906001711BC /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FC822B16906001711BC /* SettingsTableViewController.swift */; };
-		B4EC7FCD22B16906001711BC /* FixDAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FC922B16906001711BC /* FixDAccount.swift */; };
 		B4EC7FCE22B16906001711BC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FCA22B16906001711BC /* AccountViewController.swift */; };
 		B4EC7FCF22B16906001711BC /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FCB22B16906001711BC /* SettingsTableViewCell.swift */; };
 		B4EC7FD122B16964001711BC /* LoginScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD022B16963001711BC /* LoginScreenController.swift */; };
@@ -91,7 +90,6 @@
 		B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPageViewController.swift; sourceTree = "<group>"; };
 		B4CA2D1522D3D12E00BC6189 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		B4EC7FC822B16906001711BC /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		B4EC7FC922B16906001711BC /* FixDAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixDAccount.swift; sourceTree = "<group>"; };
 		B4EC7FCA22B16906001711BC /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		B4EC7FCB22B16906001711BC /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		B4EC7FD022B16963001711BC /* LoginScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenController.swift; sourceTree = "<group>"; };
@@ -201,7 +199,6 @@
 			children = (
 				2299A35322B18E07000BD0F6 /* ContactUsViewController.swift */,
 				B4EC7FD522B16E69001711BC /* AccountIssueTableViewController.swift */,
-				B4EC7FC922B16906001711BC /* FixDAccount.swift */,
 				B4EC7FCA22B16906001711BC /* AccountViewController.swift */,
 				B4EC7FCB22B16906001711BC /* SettingsTableViewCell.swift */,
 				B4EC7FC822B16906001711BC /* SettingsTableViewController.swift */,
@@ -438,7 +435,6 @@
 				FFB2C5A622A9785500BC11ED /* (null) in Sources */,
 				B4ED4D3F22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
-				B4EC7FCD22B16906001711BC /* FixDAccount.swift in Sources */,
 				B4EC7FD722B16E69001711BC /* AccountIssueTableViewController.swift in Sources */,
 				FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */,
 				B4EC7FCC22B16906001711BC /* SettingsTableViewController.swift in Sources */,

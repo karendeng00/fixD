@@ -11,6 +11,7 @@ import UIKit
 class LoginScreenController: UIViewController {
 
     var oAuthService: OAuthService?
+    var myUser:UserProfile?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +22,23 @@ class LoginScreenController: UIViewController {
         if(oAuthService!.isAuthenticated()) {
             oAuthService?.logout()
         }
+        
+        loadUserOrMakeNewOne()
+    }
+    
+    
+    private func loadUserOrMakeNewOne() {
+        NetworkAPI().getUserByNetId(netid: "aam79") { user in
+            self.myUser = user
+            if self.myUser?.isNewUser() == true {
+                print("new")
+                self.myUser = NetworkAPI().newUser(name: "NAME2", netid: "NETID", phone: "PHONE", picture: "PICTURE")
+            }
+        }
     }
     
     
     @IBAction func loginButton(_ sender: UIButton) {
-        //oAuthService?.logout()
-        print("yay")
         let nav = self.navigationController
         
         oAuthService?.setClientName(oAuthClientName: "wearduke")
@@ -67,5 +79,7 @@ class LoginScreenController: UIViewController {
         
 
     }
+    
+    
     
 }
