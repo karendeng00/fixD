@@ -26,10 +26,12 @@ class IssueClass {
     private var upvoted = false
     private var pinned = false
     
-//    private let myUser:UserProfile
+
     private var myUserID:Int = 0
     private var myType:String = ""
-    
+
+    private var myDate:String = ""
+    private var myTime:String = ""
     
     //Service Now Params
     private var myUrgency:String = ""
@@ -59,11 +61,11 @@ class IssueClass {
     private var myListOfComments: [String] = []
     private var myListOfImages: Array<UIImage> = Array()
     
-    private let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
+    private let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
     
     
     //For Loading
-    init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int) {
+    init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int, dateNtime:String) {
         self.myIssueID = issueID
         self.myTitle = title
         self.myLocation = location
@@ -75,6 +77,7 @@ class IssueClass {
         NetworkAPI().getListOfComments(id: issueID){ comments in
             self.myListOfComments = comments
         }
+        setUpDateAndTime(s: dateNtime)
     }
     
     //For Basic Initialization
@@ -135,7 +138,18 @@ class IssueClass {
         self.myFundCode = fund_code
     }
     
-    
+    func setUpDateAndTime(s: String) {
+        var list = s.split(separator: " ")
+        
+        //Setting date in DD/MM/YY format
+        var date = String(list[0]).split(separator: "-")
+        var year = Array(String(date[0]))
+        self.myDate = "\(String(date[1]))/\(String(date[2]))/\(String(year[2]))\(String(year[3]))"
+        
+        //Removing the seconds to the time
+        var time = String(list[1]).split(separator: ":")
+        self.myTime = "\(String(time[0])):\(String(time[1]))"
+    }
     
     func checkLiked(id: Int){
         if upvoted{
@@ -247,6 +261,14 @@ class IssueClass {
     
     func getAltPhone() ->String {
         return myAltPhone
+    }
+    
+    func getIssueDate() -> String {
+        return myDate
+    }
+    
+    func getIssueTime() -> String {
+        return myTime
     }
     
     func getUrgency() -> String {

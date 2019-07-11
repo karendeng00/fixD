@@ -1527,19 +1527,19 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Printer Missing Ink" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ft6-AR-VRI">
-                                            <rect key="frame" x="95" y="30" width="149" height="21"/>
+                                            <rect key="frame" x="95" y="30" width="158.5" height="21"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="06/24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKM-ll-wq7">
-                                            <rect key="frame" x="260" y="49.5" width="29" height="12"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:39" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKM-ll-wq7">
+                                            <rect key="frame" x="262" y="49.5" width="27" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="1:39 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ck1-5k-Jaq">
-                                            <rect key="frame" x="250" y="34.5" width="39" height="12"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="06/24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ck1-5k-Jaq">
+                                            <rect key="frame" x="259.5" y="34.5" width="29.5" height="12"/>
                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="10"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1693,12 +1693,13 @@
                                 <connections>
                                     <outlet property="commentView" destination="zHE-gZ-ukF" id="Koj-Ev-obC"/>
                                     <outlet property="favoritesButton" destination="wJa-Oi-VVo" id="2NI-2K-6WM"/>
-                                    <outlet property="issueDate" destination="ck1-5k-Jaq" id="PV3-f3-XYn"/>
+                                    <outlet property="issueDate" destination="ck1-5k-Jaq" id="x3Q-a5-mpo"/>
                                     <outlet property="issueDescription" destination="Oia-Ku-rL9" id="oTL-QN-ffy"/>
                                     <outlet property="issueFavorites" destination="0Oa-3L-5Oq" id="7ub-gx-bmQ"/>
                                     <outlet property="issueImage" destination="Wy3-n7-zjb" id="Dgs-OB-vc9"/>
                                     <outlet property="issueLocation" destination="FIk-Yn-r9Z" id="U5o-zj-IyT"/>
                                     <outlet property="issueName" destination="ft6-AR-VRI" id="Rl9-qx-avi"/>
+                                    <outlet property="issueTime" destination="lKM-ll-wq7" id="aTb-7v-b9o"/>
                                     <outlet property="issueUpvotes" destination="R6a-Lj-SV1" id="s1J-Sm-XlF"/>
                                     <outlet property="likeView" destination="YF9-x0-P5e" id="FE0-8h-c0N"/>
                                     <outlet property="locationImage" destination="D5Q-AW-2Sp" id="fL0-Ef-mYq"/>

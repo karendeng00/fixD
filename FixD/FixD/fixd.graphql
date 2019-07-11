@@ -8,6 +8,7 @@ query AllIssues {
         userId
         likes
         favorites
+        createdAt
     }
 }
 
@@ -21,6 +22,7 @@ query IssueById($id: Int!) {
         userId
         likes
         favorites
+        createdAt
     }
 }
 
@@ -34,6 +36,7 @@ query IssuesByType($type: String!) {
         userId
         likes
         favorites
+        createdAt
     }
 }
 
@@ -47,6 +50,7 @@ query IssuesByUser($userId: Int!){
         userId
         likes
         favorites
+        createdAt
     }
 }
 
@@ -55,6 +59,7 @@ query CommentById($id: Int!){
         body
         userId
         issueId
+        createdAt
     }
 }
 
@@ -63,6 +68,7 @@ query CommentsByIssue($issueId: Int!){
         body
         userId
         issueId
+        createdAt
     }
 }
 
@@ -74,6 +80,16 @@ query UserByNetId($netid: String!){
         phone
         picture
     }
+}
+
+query UserById($id: Int!){
+userById(id: $id){
+id
+name
+netid
+phone
+picture
+}
 }
 
 mutation CreateUser($name: String!, $netid: String!, $phone: String!, $picture: String!){
