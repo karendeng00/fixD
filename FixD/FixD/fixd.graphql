@@ -8,6 +8,7 @@ query AllIssues {
         userId
         likes
         favorites
+        type
     }
 }
 
@@ -21,6 +22,7 @@ query IssueById($id: Int!) {
         userId
         likes
         favorites
+        type
     }
 }
 
@@ -34,6 +36,7 @@ query IssuesByType($type: String!) {
         userId
         likes
         favorites
+        type
     }
 }
 
@@ -47,6 +50,7 @@ query IssuesByUser($userId: Int!){
         userId
         likes
         favorites
+        type
     }
 }
 

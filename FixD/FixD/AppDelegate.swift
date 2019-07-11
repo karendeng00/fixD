@@ -19,6 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("Logged In = \(UserDefaults.standard.bool(forKey: "LoggedIn"))")
         
+        UserDefaults.standard.set(false, forKey: "checkFacilities")
+        UserDefaults.standard.set(false, forKey: "checkHRL")
+        UserDefaults.standard.set(false, forKey: "checkOIT")
+        UserDefaults.standard.set(false, forKey: "checkParking")
+
+        
         if (UserDefaults.standard.bool(forKey: "LoggedIn") == true) {
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "tab")

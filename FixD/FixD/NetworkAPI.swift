@@ -31,7 +31,8 @@ class NetworkAPI {
                     issueImage: issue.image!,
                     user_id: issue.userId!,
                     likes: issue.likes!,
-                    favorites: issue.favorites!))
+                    favorites: issue.favorites!,
+                    type: issue.type!))
             }
             DispatchQueue.main.async {
                 completionHandler(myIssueList)
@@ -59,6 +60,7 @@ class NetworkAPI {
         }
     
     }
+
     
     func getListOfComments(id: Int, completionHandler: @escaping (Array<String>) -> ()) {
         var list:Array<String> = []

@@ -41,13 +41,20 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
     //location
     @IBOutlet weak var location: UIView!
     @IBOutlet weak var locationArrow: UIImageView!
-
+    
+    //category buttons
+    @IBOutlet weak var facilitiesButton: UIButton!
+    @IBOutlet weak var hrlButton: UIButton!
+    @IBOutlet weak var parkingButton: UIButton!
+    @IBOutlet weak var oitButton: UIButton!
+    
+    
     var check = false
     var checkCategory = false
-    var checkFacilities = false
-    var checkHRL = false
-    var checkParking = false
-    var checkOIT = false
+    var checkFacilities = UserDefaults.standard.bool(forKey: "checkFacilities")
+    var checkHRL = UserDefaults.standard.bool(forKey: "checkHRL")
+    var checkParking = UserDefaults.standard.bool(forKey: "checkParking")
+    var checkOIT = UserDefaults.standard.bool(forKey: "checkOIT")
     var checkLoc = false
     var height = 60.0
     
@@ -70,26 +77,28 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
         self.view.addGestureRecognizer(leftSwipe)
         
         NotificationCenter.default.addObserver(self, selector: #selector(timeToGo(_:)), name: NSNotification.Name("tapOutBBY"), object: nil)
+        
+        facilitiesButton.setImage(UIImage(named: "box\(!checkFacilities)"), for: .normal)
     }
 
     @IBAction func facilities(_ sender: UIButton) {
         sender.setImage(UIImage(named: "box\(checkFacilities)"), for: .normal)
-        checkFacilities = !checkFacilities
+        UserDefaults.standard.set(!checkFacilities, forKey: "checkFacilities")
     }
     
     @IBAction func hrl(_ sender: UIButton) {
         sender.setImage(UIImage(named: "box\(checkHRL)"), for: .normal)
-        checkHRL = !checkHRL
+        UserDefaults.standard.set(!checkHRL, forKey: "checkFacilities")
     }
     
     @IBAction func parking(_ sender: UIButton) {
         sender.setImage(UIImage(named: "box\(checkParking)"), for: .normal)
-        checkParking = !checkParking
+        UserDefaults.standard.set(!checkParking, forKey: "checkFacilities")
     }
     
     @IBAction func oit(_ sender: UIButton) {
         sender.setImage(UIImage(named: "box\(checkOIT)"), for: .normal)
-        checkOIT = !checkOIT
+        UserDefaults.standard.set(!checkOIT, forKey: "checkFacilities")
     }
     
     @objc func timeToGo(_ notification:Notification) {

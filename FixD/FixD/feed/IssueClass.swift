@@ -77,6 +77,22 @@ class IssueClass {
         }
     }
     
+    //not sure why we don't have type
+    init(issueID:String, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int, type: String) {
+        self.myIssueID = issueID
+        self.myTitle = title
+        self.myLocation = location
+        self.myDescription = description
+        self.myIssueImage = issueImage
+        self.myUserID = user_id
+        self.myFavorites = favorites
+        self.myLikes = likes
+        self.myType = type
+        NetworkAPI().getListOfComments(id: Int(issueID)!){ comments in
+            self.myListOfComments = comments
+        }
+    }
+    
     //For Basic Initialization
     init(name:String, email:String, phone:String, altPhone:String, title:String, description:String){
         self.myName = name
@@ -100,6 +116,7 @@ class IssueClass {
         self.myFavorites = favorites
         self.myLikes = likes
     }
+
     
     //Set type of the Issue (SN, HRL, Dining, PT, EAM)
     func setType(type:String) {

@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "584291964.730209"
+            timestampString = "584570278.348014"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -118,7 +118,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "584291964.733555"
+            timestampString = "584570278.34843"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "80"
@@ -134,13 +134,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "584291964.734045"
+            timestampString = "584570278.348682"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "131"
             endingLineNumber = "131"
-            landmarkName = "IssuePageController"
-            landmarkType = "3">
+            landmarkName = "deinit"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -150,7 +150,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "584291964.7345001"
+            timestampString = "584570278.348928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "141"
@@ -166,13 +166,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "584291964.734936"
+            timestampString = "584570278.349169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "132"
             endingLineNumber = "132"
-            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
-            landmarkType = "7">
+            landmarkName = "IssuePageController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -182,7 +182,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "584291964.735378"
+            timestampString = "584570278.349401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
@@ -295,8 +295,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
             endingLineNumber = "59"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "authenticate(navController:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -311,8 +311,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "61"
             endingLineNumber = "61"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "authenticate(navController:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -327,8 +327,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
             endingLineNumber = "60"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "authenticate(navController:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -343,8 +343,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
             endingLineNumber = "63"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "authenticate(navController:completionHandler:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
@@ -391,8 +391,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
             endingLineNumber = "63"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "authenticate(navController:completionHandler:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
@@ -439,8 +439,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
             endingLineNumber = "71"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "authenticate(navController:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -455,8 +455,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "72"
             endingLineNumber = "72"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "authenticate(navController:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -471,8 +471,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
             endingLineNumber = "73"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "authenticate(navController:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -487,8 +487,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
             endingLineNumber = "66"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "authenticate(navController:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -503,8 +503,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
             endingLineNumber = "67"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "authenticate(navController:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -519,8 +519,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
             endingLineNumber = "68"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "authenticate(navController:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -690,12 +690,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/login/LoginScreenController.swift"
-            timestampString = "584469055.207103"
+            timestampString = "584570278.3499171"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "loginButton(_:)"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "loadUserOrMakeNewOne()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -706,12 +706,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/login/LoginScreenController.swift"
-            timestampString = "584469055.207158"
+            timestampString = "584570278.350188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "loginButton(_:)"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "loadUserOrMakeNewOne()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -745,22 +745,6 @@
                   offsetFromSymbolStart = "181">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FixD/login/LoginScreenController.swift"
-            timestampString = "584469055.207204"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
