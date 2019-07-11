@@ -34,6 +34,7 @@ class LoginScreenController: UIViewController {
                 print("new")
                 self.myUser = NetworkAPI().newUser(name: "NAME2", netid: "NETID", phone: "PHONE", picture: "PICTURE")
             }
+            
         }
     }
     

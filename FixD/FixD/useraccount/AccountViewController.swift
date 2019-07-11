@@ -14,14 +14,15 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
     @IBOutlet weak var myAccountName: UILabel!
     @IBOutlet weak var myAccountImage: UIImageView!
     
+    var myUser:UserProfile?
+    
     let transition = SlideInTransition()
     var topView: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        myAccountImage.image = UIImage(named:"blue devil.jpg")
-        //myAccountName.text = UILabel
-        //myAccountPosition.text = UILabel
+        myUser = LoginScreenController().myUser
+        setUpUser(user: myUser ?? UserProfile(id: 0, name: "Blue Devil", netid: "00000", image: "blue devil", phone: "000-000-0000"))
         
         let menuBtn = UIButton(type: .custom)
         menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 15, height: 15)
@@ -40,6 +41,12 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
         leftPanSwipe.edges = .left
         leftPanSwipe.delegate = self
         self.view.addGestureRecognizer(leftPanSwipe)
+    }
+    
+    func setUpUser(user: UserProfile) {
+        myAccountImage.image = UIImage(named:myUser?.userImage ?? "photo.jpg")
+        myAccountName.text = myUser?.userName
+        myAccountPosition.text = "Student"
     }
     
     @IBAction func tapMenu(_ sender: UIButton) {

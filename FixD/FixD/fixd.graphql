@@ -68,6 +68,7 @@ query CommentsByIssue($issueId: Int!){
 
 query UserByNetId($netid: String!){
     userByNetId(netid: $netid){
+        id
         name
         netid
         phone

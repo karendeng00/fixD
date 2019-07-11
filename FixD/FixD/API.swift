@@ -797,7 +797,7 @@ public final class CommentsByIssueQuery: GraphQLQuery {
 
 public final class UserByNetIdQuery: GraphQLQuery {
   public let operationDefinition =
-    "query UserByNetId($netid: String!) {\n  userByNetId(netid: $netid) {\n    __typename\n    name\n    netid\n    phone\n    picture\n  }\n}"
+    "query UserByNetId($netid: String!) {\n  userByNetId(netid: $netid) {\n    __typename\n    id\n    name\n    netid\n    phone\n    picture\n  }\n}"
 
   public var netid: String
 
@@ -841,6 +841,7 @@ public final class UserByNetIdQuery: GraphQLQuery {
 
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("name", type: .scalar(String.self)),
         GraphQLField("netid", type: .nonNull(.scalar(String.self))),
         GraphQLField("phone", type: .scalar(String.self)),
@@ -853,8 +854,8 @@ public final class UserByNetIdQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(name: String? = nil, netid: String, phone: String? = nil, picture: String? = nil) {
-        self.init(unsafeResultMap: ["__typename": "User", "name": name, "netid": netid, "phone": phone, "picture": picture])
+      public init(id: GraphQLID, name: String? = nil, netid: String, phone: String? = nil, picture: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "netid": netid, "phone": phone, "picture": picture])
       }
 
       public var __typename: String {
@@ -863,6 +864,15 @@ public final class UserByNetIdQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
         }
       }
 

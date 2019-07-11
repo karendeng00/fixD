@@ -12,7 +12,7 @@ import Apollo
 
 class IssueClass {
     
-    private var myIssueID:String = "0"
+    private var myIssueID:Int = 0
     
     
     private var myName:String = ""
@@ -63,7 +63,7 @@ class IssueClass {
     
     
     //For Loading
-    init(issueID:String, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int) {
+    init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int) {
         self.myIssueID = issueID
         self.myTitle = title
         self.myLocation = location
@@ -72,7 +72,7 @@ class IssueClass {
         self.myUserID = user_id
         self.myFavorites = favorites
         self.myLikes = likes
-        NetworkAPI().getListOfComments(id: Int(issueID)!){ comments in
+        NetworkAPI().getListOfComments(id: issueID){ comments in
             self.myListOfComments = comments
         }
     }
@@ -183,9 +183,9 @@ class IssueClass {
         pinned = !pinned
     }
     
-    func addComment(comment:String, issueId:String, userId:Int){
+    func addComment(comment:String, issueId:Int, userId:Int){
         myListOfComments.append(comment)
-        apollo.perform(mutation: CreateCommentMutation(body: comment, userId: userId, issueId: Int(issueId)!)) { (result, error) in
+        apollo.perform(mutation: CreateCommentMutation(body: comment, userId: userId, issueId: issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
             }
@@ -221,11 +221,11 @@ class IssueClass {
         return myListOfImages
     }
     
-    func setID(id:String) {
+    func setID(id:Int) {
         self.myIssueID = id
     }
     
-    func getID() -> String {
+    func getID() -> Int {
         return myIssueID
     }
     

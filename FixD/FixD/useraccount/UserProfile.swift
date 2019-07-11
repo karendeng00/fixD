@@ -20,7 +20,8 @@ class UserProfile {
     
 
     //In the future, connect to the database
-    init(name:String, netid:String, image:String, phone:String) {
+    init(id:Int, name:String, netid:String, image:String, phone:String) {
+        self.userId = id
         self.userName = name
         self.userNetId = netid
         self.userImage = image

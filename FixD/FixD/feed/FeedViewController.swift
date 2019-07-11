@@ -56,7 +56,7 @@ class FeedIssueCell: UITableViewCell {
     }
     
     @objc func like(_ sender: Any) {
-        self.myIssue.checkLiked(id: Int(self.myIssue.getID())!)
+        self.myIssue.checkLiked(id: self.myIssue.getID())
         self.issueUpvotes.text = String(self.myIssue.getUpVotes())
         if (myIssue.getUpVoteState()){
             upVoteButton.setImage(UIImage(named: "filled heart"), for: .normal)
@@ -70,7 +70,7 @@ class FeedIssueCell: UITableViewCell {
     }
     
     @IBAction func favorite(_ sender: Any) {
-        self.myIssue.checkFavorited(id: Int(self.myIssue.getID())!)
+        self.myIssue.checkFavorited(id: self.myIssue.getID())
         
         self.issueFavorites.text = String(self.myIssue.getFavorites())
         if (myIssue.getFavoritesState()){
