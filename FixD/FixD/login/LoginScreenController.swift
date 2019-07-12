@@ -13,6 +13,14 @@ class LoginScreenController: UIViewController {
     var oAuthService: OAuthService?
     var myUser = UserProfile.account
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .black
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         oAuthService = OAuthService.shared
@@ -24,11 +32,6 @@ class LoginScreenController: UIViewController {
         }
         
         loadUserOrMakeNewOne()
-    }
-    
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
     
     private func loadUserOrMakeNewOne() {

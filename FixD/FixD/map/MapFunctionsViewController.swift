@@ -20,6 +20,14 @@ class MapFunctionsViewController: UIViewController {
     
     @IBOutlet weak var myMapView: MKMapView!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .black
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         myMapView.delegate = self

@@ -92,9 +92,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     let myCellIndentifier = "IssueCell"
     var myIssueList:[IssueClass] = []
     
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .black
     }
     
     override func viewDidLoad() {

@@ -19,6 +19,14 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
     let transition = SlideInTransition()
     var topView: UIView?
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .black
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUser()
