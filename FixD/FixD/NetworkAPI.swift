@@ -23,6 +23,12 @@ class NetworkAPI {
             }
             if let issues = result?.data?.allIssues {
                 for issue in issues {
+                    var listOfComments:[CommentsClass] = []
+                    if let comments = issue.comments {
+                        for comment in comments {
+                            listOfComments.append(CommentsClass(body: comment.body, userId: comment.userId, issueId: comment.issueId, name: issue.user.name!, image: issue.user.picture ?? ""))
+                        }
+                    }
                     myIssueList.append(IssueClass(
                         issueID: Int(issue.id)!,
                         title: issue.title!,
@@ -33,6 +39,9 @@ class NetworkAPI {
                         likes: issue.likes!,
                         favorites: issue.favorites!,
                         dateNtime: issue.createdAt!,
+                        comments: listOfComments,
+                        userName: issue.user.name!,
+                        userImage: issue.user.picture ?? "",
                         type: issue.type!))
                 }
                 DispatchQueue.main.async {
@@ -48,6 +57,12 @@ class NetworkAPI {
                 print(err.response.statusCode)
             }
             if let i = result?.data?.issueById {
+                var listOfComments:[CommentsClass] = []
+                if let comments = i.comments {
+                    for comment in comments {
+                        listOfComments.append(CommentsClass(body: comment.body, userId: comment.userId, issueId: comment.issueId, name: i.user.name!, image: i.user.picture ?? ""))
+                    }
+                }
                 let issue = IssueClass(issueID: Int(i.id)!,
                                        title: (i.title!),
                                        description: i.description,
@@ -56,7 +71,11 @@ class NetworkAPI {
                                        user_id: (i.userId!),
                                        likes: (i.likes!),
                                        favorites: (i.favorites!),
-                                       dateNtime: (i.createdAt!))
+                                       dateNtime: (i.createdAt!),
+                                       comments: listOfComments,
+                                       userName: i.user.name!,
+                                       userImage: i.user.picture ?? "",
+                                       type: i.type!)
                 DispatchQueue.main.async {
                     completionHandler(issue)
                 }
@@ -64,24 +83,6 @@ class NetworkAPI {
         }
     }
 
-    
-    func getListOfComments(id: Int, completionHandler: @escaping (Array<String>) -> ()) {
-        var list:Array<String> = []
-        self.apollo.fetch(query: CommentsByIssueQuery(issueId: id)) { (result, error) in
-            if let err = error as? GraphQLHTTPResponseError {
-                print(err.response.statusCode)
-            }
-            if let result = result?.data?.commentsByIssue {
-                for comment in result {
-                    list.append(comment.body)
-                }
-                DispatchQueue.main.async {
-                    completionHandler(list)
-                }
-            }
-        }
-
-    }
     
     func getUserByNetId(netid: String, completionHandler: @escaping (Bool) -> ()) {
         let user = UserProfile.account

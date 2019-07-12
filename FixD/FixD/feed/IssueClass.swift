@@ -15,6 +15,9 @@ class IssueClass {
     private var myIssueID:Int = 0
     
     
+    var myUserName:String = ""
+    var myUserImage:String = ""
+    
     private var myName:String = ""
     private var myEmail:String = ""
     private var myPhone:String = ""
@@ -58,14 +61,14 @@ class IssueClass {
     
     private var myFavorites: Int = 0
     public var myLikes: Int = 0
-    private var myListOfComments: [String] = []
+    private var myComments: [CommentsClass] = []
     private var myListOfImages: Array<UIImage> = Array()
     
     private let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
     
     
     //For Loading
-    init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int, dateNtime:String) {
+    init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int, dateNtime:String, comments: [CommentsClass], userName:String, userImage: String, type: String) {
         self.myIssueID = issueID
         self.myTitle = title
         self.myLocation = location
@@ -74,26 +77,11 @@ class IssueClass {
         self.myUserID = user_id
         self.myFavorites = favorites
         self.myLikes = likes
-        NetworkAPI().getListOfComments(id: issueID){ comments in
-            self.myListOfComments = comments
-        }
         setUpDateAndTime(s: dateNtime)
-    }
-    
-    //not sure why we don't have type
-    init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int, dateNtime:String, type: String) {
-        self.myIssueID = issueID
-        self.myTitle = title
-        self.myLocation = location
-        self.myDescription = description
-        self.myIssueImage = issueImage
-        self.myUserID = user_id
-        self.myFavorites = favorites
-        self.myLikes = likes
+        self.myComments = comments
+        self.myUserName = userName
+        self.myUserImage = userImage
         self.myType = type
-        NetworkAPI().getListOfComments(id: Int(issueID)){ comments in
-            self.myListOfComments = comments
-        }
     }
     
     //For Basic Initialization
@@ -214,8 +202,8 @@ class IssueClass {
         pinned = !pinned
     }
     
-    func addComment(comment:String, issueId:Int, userId:Int){
-        myListOfComments.append(comment)
+    func addComment(comment:String, issueId:Int, userId:Int, user_name: String, user_image: String){
+        myComments.append(CommentsClass(body: comment, userId: userId, issueId: issueId, name: user_name, image: user_image))
         apollo.perform(mutation: CreateCommentMutation(body: comment, userId: userId, issueId: issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
@@ -236,7 +224,7 @@ class IssueClass {
     }
     
     func getNumberOfComments() -> Int {
-        return myListOfComments.count
+        return myComments.count
     }
     
     func getNumberOfImages() -> Int {
@@ -244,8 +232,8 @@ class IssueClass {
     }
 
     
-    func getListOfComments() -> Array<String> {
-        return myListOfComments
+    func getListOfComments() -> Array<CommentsClass> {
+        return myComments
     }
     
     func getListOfImages() -> Array<UIImage> {
