@@ -63,7 +63,8 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        
         
         tableView.estimatedRowHeight = 60.0;
         tableView.rowHeight = UITableView.automaticDimension
@@ -84,25 +85,28 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
         sender.setImage(UIImage(named: "box\(checkFacilities)"), for: .normal)
         UserDefaults.standard.set(!checkFacilities, forKey: "checkFacilities")
         checkFacilities = !checkFacilities
-
+        NotificationCenter.default.post(name: NSNotification.Name("CHECK"), object: nil)
     }
     
     @IBAction func hrl(_ sender: UIButton) {
         sender.setImage(UIImage(named: "box\(checkHRL)"), for: .normal)
         UserDefaults.standard.set(!checkHRL, forKey: "checkHRL")
         checkHRL = !checkHRL
+        NotificationCenter.default.post(name: NSNotification.Name("CHECK"), object: nil)
     }
     
     @IBAction func parking(_ sender: UIButton) {
         sender.setImage(UIImage(named: "box\(checkParking)"), for: .normal)
         UserDefaults.standard.set(!checkParking, forKey: "checkParking")
         checkParking = !checkParking
+        NotificationCenter.default.post(name: NSNotification.Name("CHECK"), object: nil)
     }
     
     @IBAction func oit(_ sender: UIButton) {
         sender.setImage(UIImage(named: "box\(checkOIT)"), for: .normal)
         UserDefaults.standard.set(!checkOIT, forKey: "checkOIT")
         checkOIT = !checkOIT
+        NotificationCenter.default.post(name: NSNotification.Name("CHECK"), object: nil)
     }
     
     @objc func timeToGo(_ notification:Notification) {

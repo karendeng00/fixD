@@ -21,7 +21,13 @@ class MapFunctionsViewController: UIViewController {
     @IBOutlet weak var myMapView: MKMapView!
     
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
+        
+         NotificationCenter.default.addObserver(self, selector: #selector(reload(_:)), name: NSNotification.Name("CHECK"), object: nil)
+        
+        
         myMapView.delegate = self
         myMapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: NSStringFromClass(IssueAnnotation.self))
         getIssueData()
@@ -41,6 +47,10 @@ class MapFunctionsViewController: UIViewController {
     
     @IBAction func tapMenu(_ sender: UIButton) {
         self.openMenu()
+    }
+    
+    @objc func reload(_ sender: Any) {
+        self.setUpIssuesOnMap()
     }
     
     func openMenu() {
@@ -114,16 +124,24 @@ class MapFunctionsViewController: UIViewController {
     //Adding Location of issues to Map
     private func setUpIssuesOnMap() {
         for issue in myIssueList {
-            let loc = issue.getLocation()
-            let geoCoder = CLGeocoder()
-            geoCoder.geocodeAddressString(loc) { (placemarks, error) -> Void in
-                if let pMark = placemarks?.first {
-                    if let coordinate = pMark.location?.coordinate{
-                        let issueAnnotation = IssueAnnotation(coordinate: coordinate)
-                        issueAnnotation.title = issue.getTitle()
-                        issueAnnotation.imageName = issue.getIssueImage()
-                        issueAnnotation.issueID = issue.getID()
-                        self.myMapView.addAnnotation(issueAnnotation)
+            
+            var oit = UserDefaults.standard.bool(forKey: "checkOIT") && issue.getType() == ("SnIssue")
+            var park = UserDefaults.standard.bool(forKey: "checkParking") && issue.getType() == ("PtIssue")
+            var fac = UserDefaults.standard.bool(forKey: "checkFacilities") && issue.getType() == ("EamIssue")
+            var hrl = UserDefaults.standard.bool(forKey: "checkHRL") && issue.getType() == ("HrlIssue")
+            
+            if (!(oit || park || hrl || fac)) {
+                let loc = issue.getLocation()
+                let geoCoder = CLGeocoder()
+                geoCoder.geocodeAddressString(loc) { (placemarks, error) -> Void in
+                    if let pMark = placemarks?.first {
+                        if let coordinate = pMark.location?.coordinate{
+                            let issueAnnotation = IssueAnnotation(coordinate: coordinate)
+                            issueAnnotation.title = issue.getTitle()
+                            issueAnnotation.imageName = issue.getIssueImage()
+                            issueAnnotation.issueID = issue.getID()
+                            self.myMapView.addAnnotation(issueAnnotation)
+                        }
                     }
                 }
             }
