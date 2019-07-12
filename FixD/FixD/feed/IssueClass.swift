@@ -58,14 +58,14 @@ class IssueClass {
     
     private var myFavorites: Int = 0
     public var myLikes: Int = 0
-    private var myListOfComments: [String] = []
+    private var myComments: [CommentsClass] = []
     private var myListOfImages: Array<UIImage> = Array()
     
     private let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
     
     
     //For Loading
-    init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int, dateNtime:String) {
+    init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int, dateNtime:String, comments: [CommentsClass]) {
         self.myIssueID = issueID
         self.myTitle = title
         self.myLocation = location
@@ -74,10 +74,8 @@ class IssueClass {
         self.myUserID = user_id
         self.myFavorites = favorites
         self.myLikes = likes
-        NetworkAPI().getListOfComments(id: issueID){ comments in
-            self.myListOfComments = comments
-        }
         setUpDateAndTime(s: dateNtime)
+        self.myComments = comments
     }
     
     //For Basic Initialization
@@ -198,7 +196,7 @@ class IssueClass {
     }
     
     func addComment(comment:String, issueId:Int, userId:Int){
-        myListOfComments.append(comment)
+        myComments.append(CommentsClass(body: comment, userId: userId, issueId: issueId))
         apollo.perform(mutation: CreateCommentMutation(body: comment, userId: userId, issueId: issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
@@ -219,7 +217,7 @@ class IssueClass {
     }
     
     func getNumberOfComments() -> Int {
-        return myListOfComments.count
+        return myComments.count
     }
     
     func getNumberOfImages() -> Int {
@@ -227,8 +225,8 @@ class IssueClass {
     }
 
     
-    func getListOfComments() -> Array<String> {
-        return myListOfComments
+    func getListOfComments() -> Array<CommentsClass> {
+        return myComments
     }
     
     func getListOfImages() -> Array<UIImage> {

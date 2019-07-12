@@ -109,6 +109,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="commentImage" destination="HLT-TQ-nkf" id="oM6-3m-2Jo"/>
                                             <outlet property="commentLabel" destination="Dcj-9L-956" id="Cyb-7H-rxi"/>
                                             <outlet property="commentPic" destination="b7E-EW-zZg" id="LkH-Iz-Zb8"/>
                                             <outlet property="userLabel" destination="In9-5o-18J" id="wuj-wr-VeS"/>
@@ -431,7 +432,9 @@
                         <outlet property="locationLabel" destination="EX2-5F-IZZ" id="riQ-o6-fDh"/>
                         <outlet property="profileImage" destination="8jX-UA-Lv0" id="ErM-v7-fhB"/>
                         <outlet property="sendView" destination="gPJ-Ct-UiG" id="vKS-Ph-oEn"/>
+                        <outlet property="timeLabel" destination="ZMG-1P-i0t" id="tF3-i2-AUF"/>
                         <outlet property="upvotesLabel" destination="RRd-pl-aiV" id="4SR-xk-X16"/>
+                        <outlet property="userNameLabel" destination="y21-aO-Sdj" id="dLd-NT-L8i"/>
                         <outletCollection property="views" destination="hD8-Mu-Ysd" collectionClass="NSMutableArray" id="ZJJ-j4-Prc"/>
                         <outletCollection property="views" destination="zEq-Ei-cvq" collectionClass="NSMutableArray" id="7qm-HU-eVU"/>
                         <outletCollection property="views" destination="U09-nq-yj0" collectionClass="NSMutableArray" id="KSw-1Z-1OD"/>

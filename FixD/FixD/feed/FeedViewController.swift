@@ -180,19 +180,15 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         cell.issueName.text = obj.getTitle()
         cell.issueDescription.text = obj.getDescription()
         cell.issueLocation.text = obj.getLocation()
-        if obj.getIssueImage() != ""  {
-            cell.issueImage.image = UIImage(named: obj.getIssueImage())
-        }
+        cell.issueImage.image = UIImage(named: obj.getIssueImage())
         cell.issueUpvotes.text = String(obj.getUpVotes())
         cell.issueFavorites.text = String(obj.getFavorites())
-        NetworkAPI().getUserById(id: obj.getID()) { user in
+        NetworkAPI().getUserById(id: obj.getUserId()) { user in
             cell.userName.text = user.userName
             cell.userImage.image = UIImage(named: user.userImage)
-            self.tableView.reloadData()
         }
         cell.issueDate.text = obj.getIssueDate()
         cell.issueTime.text = obj.getIssueTime()
-        
         return cell
     }
     

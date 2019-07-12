@@ -13,7 +13,7 @@ class textCommentCell: UITableViewCell{
     
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var userLabel: UILabel!
-    
+    @IBOutlet weak var commentImage: UIImageView!
     @IBOutlet weak var commentPic: UIImageView!
     
     override func awakeFromNib() {
@@ -45,21 +45,22 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var favButton: UIButton!
     @IBOutlet weak var comButton: UIButton!
     
+    
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var issueLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var issueImage: UIImageView!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var commentView: UITableView!
     @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var upvotesLabel: UILabel!
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var likeAndFavoriteAmountLabel: UILabel!
-    
-    @IBOutlet weak var commentImage: UIImageView!
    
-    var comments:[String] = []
+    var comments:[CommentsClass] = []
     var images:[UIImage] = []
     var issueID:Int = 0
     var myIssue = IssueClass()
@@ -246,14 +247,17 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             self.locationLabel.text = issue.getLocation()
             self.profileImage.image = UIImage(named: "photo")
-            NetworkAPI().getListOfComments(id: Int(self.issueID)) { comments in
-                self.comments = comments
-                self.commentView.reloadData()
-                if self.comments.count > 0{
-                    self.scrollToBottom()
-                }
+            self.timeLabel.text = issue.getIssueTime()
+            self.dateLabel.text = issue.getIssueDate()
+            NetworkAPI().getUserById(id: issue.getUserId()){ user in
+                self.userNameLabel.text = user.userName
+                self.profileImage.image = UIImage(named: user.userImage)
             }
-            self.images = issue.getListOfImages()
+            self.comments = issue.getListOfComments()
+            self.commentView.reloadData()
+            if self.comments.count > 0{
+                self.scrollToBottom()
+            }
             self.likeAndFavoriteAmountLabel.text = "\(issue.getUpVotes()) likes, \(issue.getFavorites()) favorites"
         }
         configureTapGesture()
@@ -299,6 +303,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             myIssue.addComment(comment: commentTextField.text!, issueId: myIssue.getID(), userId: myIssue.getUserId())
             commentTextField.text = ""
             comments = myIssue.getListOfComments()
+            commentView.reloadData()
         }
         if hasImage == true {
             myIssue.addImage(image: tempImg!)
@@ -328,9 +333,9 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath) as! textCommentCell
-        cell.commentLabel.text = comments[indexPath.row]
-        cell.userLabel.text = "-Name"
-        //cell.commentPic.image = images[indexPath.row]
+        cell.commentLabel.text = comments[indexPath.row].myBody
+        cell.userLabel.text = comments[indexPath.row].myUserName
+//        cell.commentPic.image = UIImage(named: comments[indexPath.row].myUserImage)
         return cell
     }
     
