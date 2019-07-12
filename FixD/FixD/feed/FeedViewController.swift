@@ -100,6 +100,9 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("I LOADED")
+    
+        
         //Get Issue Data for Feed
         getIssueData()
 
@@ -138,6 +141,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         NetworkAPI().getListOfIssues() { issueData in
             self.myIssueList = issueData
             self.tableView.reloadData()
+
+        
+            print(self.myIssueList[0].getType())
+            print(self.myIssueList[0].getMyDate())
+            print(self.myIssueList[0].getTitle())
+        print("please work")
         }
     }
         
@@ -184,9 +193,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
          //Configure the cell...
         let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
         
-        if (UserDefaults.standard.bool(forKey: "checkOIT") && obj.getServiceType() == ("SnIssue")) {
+        if (UserDefaults.standard.bool(forKey: "checkOIT") && obj.getType   () == ("SnIssue")) {
+            print("THIS IS HAPPENING")
             cell.isHidden = true
         }
+        
+        print("THIS IS NOT HAPPENING?")
         
         
         cell.setIssue(issue: obj)

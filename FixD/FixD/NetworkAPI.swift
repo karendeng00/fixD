@@ -43,7 +43,11 @@ class NetworkAPI {
                         userName: issue.user.name!,
                         userImage: issue.user.picture ?? "",
                         type: issue.type!))
+
                 }
+                
+                
+                
                 DispatchQueue.main.async {
                     completionHandler(myIssueList)
                 }

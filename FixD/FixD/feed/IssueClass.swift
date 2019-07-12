@@ -363,6 +363,10 @@ class IssueClass {
 //    func getUser() -> UserProfile {
 //        return myUser
 //    }
+    
+    func getMyDate() -> String {
+        return myDate
+    }
 
     func getLocation() -> String {
         return myLocation
