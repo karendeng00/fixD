@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "584570278.348014"
+            timestampString = "584639057.528814"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -118,7 +118,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "584570278.34843"
+            timestampString = "584639057.531629"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "80"
@@ -134,12 +134,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "584570278.348682"
+            timestampString = "584639057.53201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "131"
             endingLineNumber = "131"
-            landmarkName = "deinit"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -150,12 +150,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "584570278.348928"
+            timestampString = "584639057.532359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "141"
             endingLineNumber = "141"
-            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkName = "longCam(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -166,13 +166,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "584570278.349169"
+            timestampString = "584639057.532667"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "132"
             endingLineNumber = "132"
-            landmarkName = "IssuePageController"
-            landmarkType = "3">
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -182,7 +182,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "584570278.349401"
+            timestampString = "584639057.532966"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
@@ -198,11 +198,11 @@
                   moduleName = "FixD"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/feed/IssuePageController.swift"
-                  timestampString = "584467474.169584"
+                  timestampString = "584639058.173528"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "39"
-                  endingLineNumber = "39"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
                   offsetFromSymbolStart = "114">
                </Location>
                <Location
@@ -213,11 +213,11 @@
                   moduleName = "FixD"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/feed/IssuePageController.swift"
-                  timestampString = "584467474.171865"
+                  timestampString = "584639058.175585"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "39"
-                  endingLineNumber = "39"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
                   offsetFromSymbolStart = "128">
                </Location>
                <Location
@@ -228,7 +228,7 @@
                   moduleName = "FixD"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/feed/IssuePageController.swift"
-                  timestampString = "584467474.174242"
+                  timestampString = "584639058.177335"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -243,11 +243,11 @@
                   moduleName = "FixD"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/feed/IssuePageController.swift"
-                  timestampString = "584467474.176232"
+                  timestampString = "584639058.1792099"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "39"
-                  endingLineNumber = "39"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
                   offsetFromSymbolStart = "4">
                </Location>
                <Location
@@ -258,11 +258,11 @@
                   moduleName = "FixD"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/feed/IssuePageController.swift"
-                  timestampString = "584467474.1785491"
+                  timestampString = "584639058.180954"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "39"
-                  endingLineNumber = "39"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
                   offsetFromSymbolStart = "952">
                </Location>
                <Location
@@ -273,11 +273,11 @@
                   moduleName = "FixD"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/feed/IssuePageController.swift"
-                  timestampString = "584467474.181669"
+                  timestampString = "584639058.182791"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "39"
-                  endingLineNumber = "39"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
                   offsetFromSymbolStart = "902">
                </Location>
             </Locations>
@@ -354,7 +354,7 @@
                   moduleName = "FixD"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/DukeOAuth/OAuthService.swift"
-                  timestampString = "584467474.195613"
+                  timestampString = "584639058.193464"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "63"
@@ -369,7 +369,7 @@
                   moduleName = "FixD"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/DukeOAuth/OAuthService.swift"
-                  timestampString = "584467474.197775"
+                  timestampString = "584639058.195212"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "64"
@@ -402,7 +402,7 @@
                   moduleName = "FixD"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/DukeOAuth/OAuthService.swift"
-                  timestampString = "584467474.205093"
+                  timestampString = "584639058.2001539"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "63"
@@ -417,7 +417,7 @@
                   moduleName = "FixD"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/DukeOAuth/OAuthService.swift"
-                  timestampString = "584467474.207666"
+                  timestampString = "584639058.20178"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "64"
@@ -594,7 +594,7 @@
                   moduleName = "FixD"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/DukeOAuth/ShibAuthViewController.swift"
-                  timestampString = "584467474.229146"
+                  timestampString = "584639058.222046"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "89"
@@ -609,7 +609,7 @@
                   moduleName = "FixD"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/DukeOAuth/ShibAuthViewController.swift"
-                  timestampString = "584467474.232042"
+                  timestampString = "584639058.226096"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "89"
@@ -690,7 +690,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/login/LoginScreenController.swift"
-            timestampString = "584570278.3499171"
+            timestampString = "584639057.533783"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"
@@ -706,45 +706,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/login/LoginScreenController.swift"
-            timestampString = "584570278.350188"
+            timestampString = "584639057.534178"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
             endingLineNumber = "37"
             landmarkName = "loadUserOrMakeNewOne()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FixD.LoginScreenController.loginButton(__C.UIButton) -&gt; ()"
-                  moduleName = "FixD"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/login/LoginScreenController.swift"
-                  timestampString = "584467474.258653"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "1006">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool, Swift.Int) -&gt; () in FixD.LoginScreenController.loginButton(__C.UIButton) -&gt; ()"
-                  moduleName = "FixD"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/karendeng/Documents/Code+/fixd/FixD/FixD/login/LoginScreenController.swift"
-                  timestampString = "584467474.260615"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "181">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FixD/feed/IssuePageController.swift"
+            timestampString = "584639057.535062"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
+            landmarkName = "handleTap()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

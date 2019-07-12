@@ -34,7 +34,11 @@ class NetworkAPI {
                         favorites: issue.favorites!,
                         dateNtime: issue.createdAt!,
                         type: issue.type!))
+
                 }
+                
+                
+                
                 DispatchQueue.main.async {
                     completionHandler(myIssueList)
                 }
@@ -56,7 +60,8 @@ class NetworkAPI {
                                        user_id: (i.userId!),
                                        likes: (i.likes!),
                                        favorites: (i.favorites!),
-                                       dateNtime: (i.createdAt!))
+                                       dateNtime: (i.createdAt!),
+                                       type: i.type!)
                 DispatchQueue.main.async {
                     completionHandler(issue)
                 }

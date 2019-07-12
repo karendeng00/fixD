@@ -83,21 +83,26 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
     @IBAction func facilities(_ sender: UIButton) {
         sender.setImage(UIImage(named: "box\(checkFacilities)"), for: .normal)
         UserDefaults.standard.set(!checkFacilities, forKey: "checkFacilities")
+        checkFacilities = !checkFacilities
+
     }
     
     @IBAction func hrl(_ sender: UIButton) {
         sender.setImage(UIImage(named: "box\(checkHRL)"), for: .normal)
-        UserDefaults.standard.set(!checkHRL, forKey: "checkFacilities")
+        UserDefaults.standard.set(!checkHRL, forKey: "checkHRL")
+        checkHRL = !checkHRL
     }
     
     @IBAction func parking(_ sender: UIButton) {
         sender.setImage(UIImage(named: "box\(checkParking)"), for: .normal)
-        UserDefaults.standard.set(!checkParking, forKey: "checkFacilities")
+        UserDefaults.standard.set(!checkParking, forKey: "checkParking")
+        checkParking = !checkParking
     }
     
     @IBAction func oit(_ sender: UIButton) {
         sender.setImage(UIImage(named: "box\(checkOIT)"), for: .normal)
-        UserDefaults.standard.set(!checkOIT, forKey: "checkFacilities")
+        UserDefaults.standard.set(!checkOIT, forKey: "checkOIT")
+        checkOIT = !checkOIT
     }
     
     @objc func timeToGo(_ notification:Notification) {

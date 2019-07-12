@@ -63,23 +63,6 @@ class IssueClass {
     
     private let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
     
-    
-    //For Loading
-    init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int, dateNtime:String) {
-        self.myIssueID = issueID
-        self.myTitle = title
-        self.myLocation = location
-        self.myDescription = description
-        self.myIssueImage = issueImage
-        self.myUserID = user_id
-        self.myFavorites = favorites
-        self.myLikes = likes
-        NetworkAPI().getListOfComments(id: issueID){ comments in
-            self.myListOfComments = comments
-        }
-        setUpDateAndTime(s: dateNtime)
-    }
-    
     //not sure why we don't have type
     init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int, dateNtime:String, type: String) {
         self.myIssueID = issueID
@@ -94,6 +77,8 @@ class IssueClass {
         NetworkAPI().getListOfComments(id: Int(issueID)){ comments in
             self.myListOfComments = comments
         }
+        
+        setUpDateAndTime(s: dateNtime)
     }
     
     //For Basic Initialization
@@ -375,6 +360,10 @@ class IssueClass {
 //    func getUser() -> UserProfile {
 //        return myUser
 //    }
+    
+    func getMyDate() -> String {
+        return myDate
+    }
 
     func getLocation() -> String {
         return myLocation
