@@ -14,7 +14,6 @@ class IssueClass {
     
     private var myIssueID:Int = 0
     
-    
     private var myName:String = ""
     private var myEmail:String = ""
     private var myPhone:String = ""

@@ -140,14 +140,8 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     func getIssueData() {
         NetworkAPI().getListOfIssues() { issueData in
             self.myIssueList = issueData
-            
             self.tableView.reloadData()
-
         
-            print(self.myIssueList[0].getType())
-            print(self.myIssueList[0].getMyDate())
-            print(self.myIssueList[0].getTitle())
-        print("please work")
         }
     }
         
@@ -186,18 +180,19 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
         
+        var all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL")
         var oit = UserDefaults.standard.bool(forKey: "checkOIT") && obj.getType() == ("SnIssue")
         var park = UserDefaults.standard.bool(forKey: "checkParking") && obj.getType() == ("PtIssue")
         var fac = UserDefaults.standard.bool(forKey: "checkFacilities") && obj.getType() == ("EamIssue")
         var hrl = UserDefaults.standard.bool(forKey: "checkHRL") && obj.getType() == ("HrlIssue")
         
         
-        if (oit || park || fac || hrl) {
-            return 0
+        if (all || oit || park || fac ||  hrl) {
+            return 210
         }
     
         
-        return 210
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
