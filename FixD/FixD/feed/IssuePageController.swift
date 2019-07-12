@@ -332,6 +332,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath) as! textCommentCell
         cell.commentLabel.text = comments[indexPath.row].myBody
         cell.userLabel.text = comments[indexPath.row].myUserName
+        cell.commentImage.image = UIImage(named:comments[indexPath.row].myUserImage)
         return cell
     }
     
