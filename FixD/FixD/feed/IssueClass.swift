@@ -15,6 +15,9 @@ class IssueClass {
     private var myIssueID:Int = 0
     
     
+    var myUserName:String = ""
+    var myUserImage:String = ""
+    
     private var myName:String = ""
     private var myEmail:String = ""
     private var myPhone:String = ""
@@ -65,7 +68,7 @@ class IssueClass {
     
     
     //For Loading
-    init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int, dateNtime:String, comments: [CommentsClass]) {
+    init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int, dateNtime:String, comments: [CommentsClass], userName:String, userImage: String) {
         self.myIssueID = issueID
         self.myTitle = title
         self.myLocation = location
@@ -76,6 +79,8 @@ class IssueClass {
         self.myLikes = likes
         setUpDateAndTime(s: dateNtime)
         self.myComments = comments
+        self.myUserName = userName
+        self.myUserImage = userImage
     }
     
     //For Basic Initialization
@@ -195,8 +200,8 @@ class IssueClass {
         pinned = !pinned
     }
     
-    func addComment(comment:String, issueId:Int, userId:Int){
-        myComments.append(CommentsClass(body: comment, userId: userId, issueId: issueId))
+    func addComment(comment:String, issueId:Int, userId:Int, user_name: String, user_image: String){
+        myComments.append(CommentsClass(body: comment, userId: userId, issueId: issueId, name: user_name, image: user_image))
         apollo.perform(mutation: CreateCommentMutation(body: comment, userId: userId, issueId: issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)

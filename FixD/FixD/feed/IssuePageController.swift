@@ -77,6 +77,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         commentView.dataSource = self
         loadIssue()
         
+        self.commentView.reloadData()
         //Code to set up and event listener
         listenForNotifications()
 
@@ -242,17 +243,13 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             self.myIssue = issue
             self.issueLabel.text = issue.getTitle()
             self.descriptionLabel.text = issue.getDescription()
-            if issue.getIssueImage() != ""{
-                self.issueImage.image = UIImage(named: issue.getIssueImage())
-            }
+            self.issueImage.image = UIImage(named: issue.getIssueImage())
             self.locationLabel.text = issue.getLocation()
             self.profileImage.image = UIImage(named: "photo")
             self.timeLabel.text = issue.getIssueTime()
             self.dateLabel.text = issue.getIssueDate()
-            NetworkAPI().getUserById(id: issue.getUserId()){ user in
-                self.userNameLabel.text = user.userName
-                self.profileImage.image = UIImage(named: user.userImage)
-            }
+            self.userNameLabel.text = issue.myUserName
+            self.profileImage.image = UIImage(named: issue.myUserImage)
             self.comments = issue.getListOfComments()
             self.commentView.reloadData()
             if self.comments.count > 0{
@@ -300,7 +297,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func updateComments() {
         if commentTextField.hasText {
-            myIssue.addComment(comment: commentTextField.text!, issueId: myIssue.getID(), userId: myIssue.getUserId())
+            myIssue.addComment(comment: commentTextField.text!, issueId: myIssue.getID(), userId: myIssue.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage)
             commentTextField.text = ""
             comments = myIssue.getListOfComments()
             commentView.reloadData()
@@ -335,7 +332,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath) as! textCommentCell
         cell.commentLabel.text = comments[indexPath.row].myBody
         cell.userLabel.text = comments[indexPath.row].myUserName
-//        cell.commentPic.image = UIImage(named: comments[indexPath.row].myUserImage)
         return cell
     }
     

@@ -15,23 +15,16 @@ class CommentsClass {
     var myIssueId: Int = 0
     var myUserName:String = ""
     var myUserImage:String = ""
-    var myUserNetId:String = ""
+//    var myUserNetId:String = ""
     
-    init(body:String, userId:Int, issueId:Int){
-        getUserInfo(userId: userId)
+    init(body:String, userId:Int, issueId:Int, name:String, image:String){
         self.myBody = body
         self.myUserID = userId
         self.myIssueId = issueId
+        self.myUserName = name
+//        self.myUserNetId = netid
+        self.myUserImage = image
     }
-    
-    private func getUserInfo(userId:Int) {
-        NetworkAPI().getUserById(id: userId) { user in
-            self.myUserName = user.userName
-            self.myUserImage = user.userImage
-            self.myUserNetId = user.userNetId
-        }
-    }
-    
     
     
 }
