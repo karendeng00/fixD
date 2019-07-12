@@ -104,7 +104,7 @@ class NetworkAPI {
     }
     
     func getUserById(id: Int, completionHandler: @escaping (UserProfile) -> ()) {
-        var user = UserProfile.account
+        let user = UserProfile.account
         self.apollo.fetch(query: UserByIdQuery(id: id)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)

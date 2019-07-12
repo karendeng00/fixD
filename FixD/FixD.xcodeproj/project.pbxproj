@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2243BDF622D8E44700714591 /* FeedNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243BDF522D8E44700714591 /* FeedNavController.swift */; };
+		2243BDF822D8E9B500714591 /* LoginNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243BDF722D8E9B500714591 /* LoginNavController.swift */; };
 		22740CEC22CD052D0011835E /* IssueAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22740CEB22CD052D0011835E /* IssueAnnotation.swift */; };
 		22775BCE22CBC4C400130E12 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22775BCD22CBC4C400130E12 /* OAuthService.swift */; };
 		22775BD122CBC4E000130E12 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 22775BCF22CBC4E000130E12 /* README.md */; };
@@ -67,6 +69,8 @@
 
 /* Begin PBXFileReference section */
 		0602A645D2AA86E5A338DE83 /* Pods-FixD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FixD.debug.xcconfig"; path = "Target Support Files/Pods-FixD/Pods-FixD.debug.xcconfig"; sourceTree = "<group>"; };
+		2243BDF522D8E44700714591 /* FeedNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNavController.swift; sourceTree = "<group>"; };
+		2243BDF722D8E9B500714591 /* LoginNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavController.swift; sourceTree = "<group>"; };
 		22740CEB22CD052D0011835E /* IssueAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAnnotation.swift; sourceTree = "<group>"; };
 		22775BCD22CBC4C400130E12 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthService.swift; sourceTree = "<group>"; };
 		22775BCF22CBC4E000130E12 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 				B4CA2D1522D3D12E00BC6189 /* API.swift */,
 				B48967EB22D645C600B565D0 /* NetworkAPI.swift */,
 				B4085C0B22A850A500A24525 /* Main.storyboard */,
+				2243BDF522D8E44700714591 /* FeedNavController.swift */,
 				B4085C0E22A850A500A24525 /* Assets.xcassets */,
 				B48713F222CBE12B00380D34 /* schema.json */,
 				B4085C1022A850A500A24525 /* LaunchScreen.storyboard */,
@@ -251,6 +256,7 @@
 			children = (
 				B4EC7FD022B16963001711BC /* LoginScreenController.swift */,
 				B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */,
+				2243BDF722D8E9B500714591 /* LoginNavController.swift */,
 			);
 			path = login;
 			sourceTree = "<group>";
@@ -406,6 +412,7 @@
 				FF95139922CA98E600B94CB2 /* IssueVC.swift in Sources */,
 				FFE35B1822C12E730087FC64 /* NewIssueFMDViewController.swift in Sources */,
 				B4ED4D3522AEB9C300E50272 /* UserProfile.swift in Sources */,
+				2243BDF622D8E44700714591 /* FeedNavController.swift in Sources */,
 				B4EC7FCF22B16906001711BC /* SettingsTableViewCell.swift in Sources */,
 				B4EC7FCE22B16906001711BC /* AccountViewController.swift in Sources */,
 				B4086CE322A956EE00B48EFF /* FeedViewController.swift in Sources */,
@@ -430,6 +437,7 @@
 				22775BD222CBC4E000130E12 /* ShibAuthViewController.swift in Sources */,
 				FFB2C5A222A968A300BC11ED /* (null) in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
+				2243BDF822D8E9B500714591 /* LoginNavController.swift in Sources */,
 				FFB2C5A822A97BB100BC11ED /* (null) in Sources */,
 				FFE35B1A22C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift in Sources */,
 				FFB2C5A622A9785500BC11ED /* (null) in Sources */,

@@ -92,9 +92,13 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     let myCellIndentifier = "IssueCell"
     var myIssueList:[IssueClass] = []
     
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         
         //Get Issue Data for Feed
         getIssueData()
@@ -106,7 +110,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         //creates menu button
         let menuBtn = UIButton(type: .custom)
         menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 15, height: 15)
-        menuBtn.setImage(UIImage(named:"menu"), for: .normal)
+        menuBtn.setImage(UIImage(named:"wMenu"), for: .normal)
         menuBtn.addTarget(self, action: #selector(didTapMenu(_:)), for: UIControl.Event.touchUpInside)
         
         let menuBarItem = UIBarButtonItem(customView: menuBtn)
@@ -134,11 +138,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         NetworkAPI().getListOfIssues() { issueData in
             self.myIssueList = issueData
             self.tableView.reloadData()
-
-        
-            print(self.myIssueList[0].getServiceType())
-            print(self.myIssueList[0].getTitle())
-        print("please work")
         }
     }
         

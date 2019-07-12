@@ -27,6 +27,10 @@ class LoginScreenController: UIViewController {
     }
     
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     private func loadUserOrMakeNewOne() {
         NetworkAPI().getUserByNetId(netid: "aam79") { result in
             if result == true {
@@ -35,7 +39,6 @@ class LoginScreenController: UIViewController {
             }
         }
     }
-    
     
     @IBAction func loginButton(_ sender: UIButton) {
         let nav = self.navigationController
@@ -67,16 +70,11 @@ class LoginScreenController: UIViewController {
                         let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "tab") as? UITabBarController
                         self.present(tabVC!, animated: false, completion: nil)
                     }
-                    
                 } else {
                     print ("LOGIN FAILED")
                 }
             }
-            
         }
-        
-        
-
     }
     
     
