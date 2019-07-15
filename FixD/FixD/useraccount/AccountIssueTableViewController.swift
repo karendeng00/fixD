@@ -13,7 +13,7 @@ class AccountIssueTableViewController: UITableViewController {
     let myCellIndentifier = "IssueCell"
     var myUserIssuesList:[IssueClass] = []
     
-    let THIS_USER = 3
+    let THIS_USER = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
