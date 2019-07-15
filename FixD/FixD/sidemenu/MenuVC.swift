@@ -28,6 +28,12 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
     
     let locationManager = CLLocationManager()
     
+    //issues I've...
+    
+    @IBOutlet weak var likeBox: UIImageView!
+    @IBOutlet weak var starredBox: UIImageView!
+    
+    
     //filter
     @IBOutlet weak var filterImage: UIImageView!
     @IBOutlet var filterOptions: [UIView]!
@@ -54,6 +60,8 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
     var checkHRL = UserDefaults.standard.bool(forKey: "checkHRL")
     var checkParking = UserDefaults.standard.bool(forKey: "checkParking")
     var checkOIT = UserDefaults.standard.bool(forKey: "checkOIT")
+    var checkLiked = UserDefaults.standard.bool(forKey: "liked")
+    var checkStarred = UserDefaults.standard.bool(forKey: "starred")
     var checkLoc = false
     var height = 60.0
     
@@ -64,9 +72,7 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        tableView.estimatedRowHeight = 60.0;
+    tableView.estimatedRowHeight = 60.0;
         tableView.rowHeight = UITableView.automaticDimension
         
         //swipe back in
@@ -82,6 +88,8 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
         hrlButton.setImage(UIImage(named: "box\(!checkHRL)"), for: .normal)
         parkingButton.setImage(UIImage(named: "box\(!checkParking)"), for: .normal)
         oitButton.setImage(UIImage(named: "box\(!checkOIT)"), for: .normal)
+        likeBox.image = UIImage(named: "box\(!checkLiked)")
+        starredBox.image = UIImage(named: "box\(!checkStarred)")
         
     }
 
@@ -145,6 +153,23 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
             }
             self.tableView.reloadData()
         }
+        
+        //issues I've liked
+        if(indexPath.row == 4) {
+            likeBox.image = UIImage(named: "box\(checkLiked)")
+            UserDefaults.standard.set(!checkLiked, forKey: "liked")
+            checkLiked = !checkLiked
+            NotificationCenter.default.post(name: NSNotification.Name("CHECK"), object: nil)
+        }
+        
+        if(indexPath.row == 5) {
+            starredBox.image = UIImage(named: "box\(checkStarred)")
+            UserDefaults.standard.set(!checkStarred, forKey: "starred")
+            checkStarred = !checkStarred
+            NotificationCenter.default.post(name: NSNotification.Name("CHECK"), object: nil)
+        }
+        
+        
         
         if(indexPath.row == 6) {
             locationArrow.image = UIImage(named: "arrow\(checkLoc)")
