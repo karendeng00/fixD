@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set(false, forKey: "checkHRL")
         UserDefaults.standard.set(false, forKey: "checkOIT")
         UserDefaults.standard.set(false, forKey: "checkParking")
+        UserDefaults.standard.set(false, forKey: "liked")
+        UserDefaults.standard.set(false, forKey: "starred")
 
         
         if (UserDefaults.standard.bool(forKey: "LoggedIn") == true) {
