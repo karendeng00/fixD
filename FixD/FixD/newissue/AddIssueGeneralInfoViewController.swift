@@ -32,6 +32,7 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTapGesture()
+        issueDescriptionText.text = "Type your description here."
     }
     
     @objc func handleTapOutside(){
