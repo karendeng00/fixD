@@ -297,7 +297,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func updateComments() {
         if commentTextField.hasText {
-            myIssue.addComment(comment: commentTextField.text!, issueId: myIssue.getID(), userId: myIssue.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage)
+            myIssue.addComment(comment: commentTextField.text!, image: "", issueId: myIssue.getID(), userId: myIssue.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage)
             commentTextField.text = ""
             comments = myIssue.getListOfComments()
             commentView.reloadData()
@@ -332,6 +332,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath) as! textCommentCell
         cell.commentLabel.text = comments[indexPath.row].myBody
         cell.userLabel.text = comments[indexPath.row].myUserName
+        cell.commentImage.image = UIImage(named:comments[indexPath.row].myUserImage)
         return cell
     }
     
