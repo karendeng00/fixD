@@ -186,6 +186,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        NetworkAPI().getUserById(id: 1) { user in } //DELETE THIS!!!!!!!!!!!
         NotificationCenter.default.addObserver(self, selector: #selector(reload(_:)), name: NSNotification.Name("CHECK"), object: nil)
         
         //Get Issue Data for Feed
@@ -299,10 +300,8 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         cell.issueImage.image = UIImage(named: obj.getIssueImage())
 //        cell.issueUpvotes.text = String(obj.getUpVotes())
 //        cell.issueFavorites.text = String(obj.getFavorites())
-        NetworkAPI().getUserById(id: obj.getUserId()) { user in
-            cell.userName.text = user.userName
-            cell.userImage.image = UIImage(named: user.userImage)
-        }
+        cell.userName.text = obj.myUserName
+        cell.userImage.image = UIImage(named: obj.myUserImage)
         cell.issueDate.text = obj.getIssueDate()
         cell.issueTime.text = obj.getIssueTime()
         return cell
