@@ -14,6 +14,7 @@ import Apollo
 class NetworkAPI {
 
     let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
+//    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
 
     func getListOfIssues(completionHandler: @escaping (Array<IssueClass>) -> ()) {
         var myIssueList: Array<IssueClass> = []
@@ -26,7 +27,7 @@ class NetworkAPI {
                     var listOfComments:[CommentsClass] = []
                     if let comments = issue.comments {
                         for comment in comments {
-                            listOfComments.append(CommentsClass(body: comment.body, userId: comment.userId, issueId: comment.issueId, name: issue.user.name!, image: issue.user.picture ?? ""))
+                            listOfComments.append(CommentsClass(body: comment.body ?? "", image: "", userId: comment.userId, issueId: comment.issueId, name: issue.user.name!, user_image: issue.user.picture ?? ""))
                         }
                     }
                     myIssueList.append(IssueClass(
@@ -64,7 +65,7 @@ class NetworkAPI {
                 var listOfComments:[CommentsClass] = []
                 if let comments = i.comments {
                     for comment in comments {
-                        listOfComments.append(CommentsClass(body: comment.body, userId: comment.userId, issueId: comment.issueId, name: i.user.name!, image: i.user.picture ?? ""))
+                        listOfComments.append(CommentsClass(body: comment.body ?? "", image: "", userId: comment.userId, issueId: comment.issueId, name: i.user.name!, user_image: i.user.picture ?? ""))
                     }
                 }
                 let issue = IssueClass(issueID: Int(i.id)!,
@@ -134,4 +135,45 @@ class NetworkAPI {
             }
         }
     }
+    
+    func createComment(comment:String, image:String, issueId:Int, userId:Int){
+        apollo.perform(mutation: CreateCommentMutation(body: comment, image: image, userId: userId, issueId: issueId)) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+        }
+    }
+
+    func addLike(issueId: Int) {
+        apollo.perform(mutation: AddLikeToIssueMutation(id:issueId)) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+        }
+    }
+    
+    func deleteLike(issueId: Int) {
+        apollo.perform(mutation: DeleteLikeFromIssueMutation(id:issueId)) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+        }
+    }
+    
+    func addFavorite(issueId: Int) {
+        apollo.perform(mutation: AddFavoriteToIssueMutation(id: issueId)) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+        }
+    }
+    
+    func deleteFavorite(issueId: Int) {
+        apollo.perform(mutation: DeleteFavoriteFromIssueMutation(id: issueId)) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+        }
+    }
+
 }

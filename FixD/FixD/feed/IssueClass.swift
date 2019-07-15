@@ -64,7 +64,6 @@ class IssueClass {
     private var myComments: [CommentsClass] = []
     private var myListOfImages: Array<UIImage> = Array()
     
-    private let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
     
     
     //For Loading
@@ -159,18 +158,10 @@ class IssueClass {
     func checkLiked(id: Int){
         if upvoted{
             self.myLikes -= 1
-            apollo.perform(mutation: DeleteLikeFromIssueMutation(id:id)) { (result, error) in
-                if let err = error as? GraphQLHTTPResponseError {
-                    print(err.response.statusCode)
-                }
-            }
+            NetworkAPI().deleteLike(issueId: id)
         }else {
             self.myLikes += 1
-            apollo.perform(mutation: AddLikeToIssueMutation(id:id)) { (result, error) in
-                if let err = error as? GraphQLHTTPResponseError {
-                    print(err.response.statusCode)
-                }
-            }
+            NetworkAPI().addLike(issueId: id)
         }
         upvoted = !upvoted
     }
@@ -186,29 +177,17 @@ class IssueClass {
     func checkFavorited(id: Int){
         if pinned {
             self.myFavorites -= 1
-            apollo.perform(mutation: DeleteFavoriteFromIssueMutation(id: id)) { (result, error) in
-                if let err = error as? GraphQLHTTPResponseError {
-                    print(err.response.statusCode)
-                }
-            }
+            NetworkAPI().deleteFavorite(issueId: id)
         }else {
             self.myFavorites += 1
-            apollo.perform(mutation: AddFavoriteToIssueMutation(id: id)) { (result, error) in
-                if let err = error as? GraphQLHTTPResponseError {
-                    print(err.response.statusCode)
-                }
-            }
+            NetworkAPI().addFavorite(issueId: id)
         }
         pinned = !pinned
     }
     
-    func addComment(comment:String, issueId:Int, userId:Int, user_name: String, user_image: String){
-        myComments.append(CommentsClass(body: comment, userId: userId, issueId: issueId, name: user_name, image: user_image))
-        apollo.perform(mutation: CreateCommentMutation(body: comment, userId: userId, issueId: issueId)) { (result, error) in
-            if let err = error as? GraphQLHTTPResponseError {
-                print(err.response.statusCode)
-            }
-        }
+    func addComment(comment:String, image:String, issueId:Int, userId:Int, user_name: String, user_image: String){
+        myComments.append(CommentsClass(body: comment, image: image, userId: userId, issueId: issueId, name: user_name, user_image: user_image))
+        NetworkAPI().createComment(comment: comment, image: image, issueId: issueId, userId: userId)
     }
     
     func addImage(image:UIImage) {

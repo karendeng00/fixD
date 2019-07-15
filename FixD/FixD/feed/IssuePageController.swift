@@ -297,7 +297,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func updateComments() {
         if commentTextField.hasText {
-            myIssue.addComment(comment: commentTextField.text!, issueId: myIssue.getID(), userId: myIssue.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage)
+            myIssue.addComment(comment: commentTextField.text!, image: "", issueId: myIssue.getID(), userId: myIssue.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage)
             commentTextField.text = ""
             comments = myIssue.getListOfComments()
             commentView.reloadData()
