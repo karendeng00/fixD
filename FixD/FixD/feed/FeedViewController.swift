@@ -40,6 +40,7 @@ class FeedIssueCell: UITableViewCell {
     
     let white = UIColor(cgColor: CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])!)
     let granite = UIColor(red: 181/255.0, green: 181/255.0, blue: 181/255.0, alpha: 0.5)
+    let dukeblue = UIColor(red: 0/255.0, green: 83/255.0, blue: 155/255.0, alpha: 0.5)
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -69,8 +70,6 @@ class FeedIssueCell: UITableViewCell {
         let longCom = UILongPressGestureRecognizer(target: self, action: #selector(longC(_:)))
         longCom.minimumPressDuration = 0
         commentView.addGestureRecognizer(longCom)
-    
-    
     }
     
     @objc func longL(_ gestureRecognizer: UILongPressGestureRecognizer) {
