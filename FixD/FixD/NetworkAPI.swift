@@ -14,6 +14,7 @@ import Apollo
 class NetworkAPI {
 
     let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
+//    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
 
     func getListOfIssues(completionHandler: @escaping (Array<IssueClass>) -> ()) {
         var myIssueList: Array<IssueClass> = []
@@ -23,6 +24,12 @@ class NetworkAPI {
             }
             if let issues = result?.data?.allIssues {
                 for issue in issues {
+                    var listOfComments:[CommentsClass] = []
+                    if let comments = issue.comments {
+                        for comment in comments {
+                            listOfComments.append(CommentsClass(body: comment.body ?? "", image: "", userId: comment.userId, issueId: comment.issueId, name: issue.user.name!, user_image: issue.user.picture ?? ""))
+                        }
+                    }
                     myIssueList.append(IssueClass(
                         issueID: Int(issue.id)!,
                         title: issue.title!,
@@ -33,6 +40,9 @@ class NetworkAPI {
                         likes: issue.likes!,
                         favorites: issue.favorites!,
                         dateNtime: issue.createdAt!,
+                        comments: listOfComments,
+                        userName: issue.user.name!,
+                        userImage: issue.user.picture ?? "",
                         type: issue.type!))
 
                 }
@@ -52,6 +62,12 @@ class NetworkAPI {
                 print(err.response.statusCode)
             }
             if let i = result?.data?.issueById {
+                var listOfComments:[CommentsClass] = []
+                if let comments = i.comments {
+                    for comment in comments {
+                        listOfComments.append(CommentsClass(body: comment.body ?? "", image: "", userId: comment.userId, issueId: comment.issueId, name: i.user.name!, user_image: i.user.picture ?? ""))
+                    }
+                }
                 let issue = IssueClass(issueID: Int(i.id)!,
                                        title: (i.title!),
                                        description: i.description,
@@ -61,6 +77,9 @@ class NetworkAPI {
                                        likes: (i.likes!),
                                        favorites: (i.favorites!),
                                        dateNtime: (i.createdAt!),
+                                       comments: listOfComments,
+                                       userName: i.user.name!,
+                                       userImage: i.user.picture ?? "",
                                        type: i.type!)
                 DispatchQueue.main.async {
                     completionHandler(issue)
@@ -69,24 +88,6 @@ class NetworkAPI {
         }
     }
 
-    
-    func getListOfComments(id: Int, completionHandler: @escaping (Array<String>) -> ()) {
-        var list:Array<String> = []
-        self.apollo.fetch(query: CommentsByIssueQuery(issueId: id)) { (result, error) in
-            if let err = error as? GraphQLHTTPResponseError {
-                print(err.response.statusCode)
-            }
-            if let result = result?.data?.commentsByIssue {
-                for comment in result {
-                    list.append(comment.body)
-                }
-                DispatchQueue.main.async {
-                    completionHandler(list)
-                }
-            }
-        }
-
-    }
     
     func getUserByNetId(netid: String, completionHandler: @escaping (Bool) -> ()) {
         let user = UserProfile.account
@@ -109,7 +110,7 @@ class NetworkAPI {
     }
     
     func getUserById(id: Int, completionHandler: @escaping (UserProfile) -> ()) {
-        var user = UserProfile.account
+        let user = UserProfile.account
         self.apollo.fetch(query: UserByIdQuery(id: id)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
@@ -134,4 +135,45 @@ class NetworkAPI {
             }
         }
     }
+    
+    func createComment(comment:String, image:String, issueId:Int, userId:Int){
+        apollo.perform(mutation: CreateCommentMutation(body: comment, image: image, userId: userId, issueId: issueId)) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+        }
+    }
+
+    func addLike(issueId: Int) {
+        apollo.perform(mutation: AddLikeToIssueMutation(id:issueId)) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+        }
+    }
+    
+    func deleteLike(issueId: Int) {
+        apollo.perform(mutation: DeleteLikeFromIssueMutation(id:issueId)) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+        }
+    }
+    
+    func addFavorite(issueId: Int) {
+        apollo.perform(mutation: AddFavoriteToIssueMutation(id: issueId)) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+        }
+    }
+    
+    func deleteFavorite(issueId: Int) {
+        apollo.perform(mutation: DeleteFavoriteFromIssueMutation(id: issueId)) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+        }
+    }
+
 }

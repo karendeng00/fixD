@@ -178,7 +178,7 @@ class OAuthService {
             KeychainWrapper.standard.set(tokens.data.accessToken, forKey: ACCESS_TOKEN_KEY)
             KeychainWrapper.standard.set(tokens.data.sessionToken, forKey: SESSION_TOKEN_KEY)
         } catch let error {
-            //            print("error=\(error)")
+            print("error=\(error)")
         }
     }
     

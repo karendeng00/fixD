@@ -20,6 +20,14 @@ class MapFunctionsViewController: UIViewController {
     
     @IBOutlet weak var myMapView: MKMapView!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .black
+    }
+    
     override func viewDidLoad() {
         
         
@@ -34,7 +42,7 @@ class MapFunctionsViewController: UIViewController {
         //creates menu button
         let menuBtn = UIButton(type: .custom)
         menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 15, height: 15)
-        menuBtn.setImage(UIImage(named:"menu"), for: .normal)
+        menuBtn.setImage(UIImage(named:"wMenu"), for: .normal)
         menuBtn.addTarget(self, action: #selector(tapMenu(_:)), for: UIControl.Event.touchUpInside)
         
         let menuBarItem = UIBarButtonItem(customView: menuBtn)

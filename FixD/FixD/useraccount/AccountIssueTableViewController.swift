@@ -13,7 +13,7 @@ class AccountIssueTableViewController: UITableViewController {
     let myCellIndentifier = "IssueCell"
     var myUserIssuesList:[IssueClass] = []
     
-    let THIS_USER = 3
+    let THIS_USER = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,8 +53,8 @@ class AccountIssueTableViewController: UITableViewController {
         cell.issueImage.image = UIImage(named: obj.getIssueImage())
         //cell.issueUpvotes.text = String(obj.getUpVotes())
         //cell.issueFavorites.text = String(obj.getFavorites())
-//        cell.userName.text = obj.getUser().userName
-//        cell.userImage.image = UIImage(named:obj.getUser().userImage)
+        cell.userName.text = obj.myUserName
+        cell.userImage.image = UIImage(named: obj.myUserImage)
         cell.locationImage.image = UIImage(named:"locicon")
         
         return cell

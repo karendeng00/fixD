@@ -19,12 +19,20 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
     let transition = SlideInTransition()
     var topView: UIView?
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .black
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUser()
         let menuBtn = UIButton(type: .custom)
         menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 15, height: 15)
-        menuBtn.setImage(UIImage(named:"menu"), for: .normal)
+        menuBtn.setImage(UIImage(named:"wMenu"), for: .normal)
         menuBtn.addTarget(self, action: #selector(tapMenu(_:)), for: UIControl.Event.touchUpInside)
         
         let menuBarItem = UIBarButtonItem(customView: menuBtn)

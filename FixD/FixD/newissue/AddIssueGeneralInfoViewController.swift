@@ -32,6 +32,7 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTapGesture()
+        issueDescriptionText.text = "One of the computers in the Link Classroom 5 has a broken screen. Nothing shows up when I turn it on. The computer is located in the back row closest to the door."
     }
     
     @objc func handleTapOutside(){

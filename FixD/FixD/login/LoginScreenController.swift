@@ -13,6 +13,14 @@ class LoginScreenController: UIViewController {
     var oAuthService: OAuthService?
     var myUser = UserProfile.account
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .black
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         oAuthService = OAuthService.shared
@@ -23,9 +31,10 @@ class LoginScreenController: UIViewController {
             oAuthService?.logout()
         }
         
+        print("Getting User")
         loadUserOrMakeNewOne()
+        print("Got User")
     }
-    
     
     private func loadUserOrMakeNewOne() {
         NetworkAPI().getUserByNetId(netid: "aam79") { result in
@@ -35,7 +44,6 @@ class LoginScreenController: UIViewController {
             }
         }
     }
-    
     
     @IBAction func loginButton(_ sender: UIButton) {
         let nav = self.navigationController
@@ -67,16 +75,11 @@ class LoginScreenController: UIViewController {
                         let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "tab") as? UITabBarController
                         self.present(tabVC!, animated: false, completion: nil)
                     }
-                    
                 } else {
                     print ("LOGIN FAILED")
                 }
             }
-            
         }
-        
-        
-
     }
     
     

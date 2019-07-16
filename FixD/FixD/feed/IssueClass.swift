@@ -14,6 +14,10 @@ class IssueClass {
     
     private var myIssueID:Int = 0
     
+    
+    var myUserName:String = ""
+    var myUserImage:String = ""
+    
     private var myName:String = ""
     private var myEmail:String = ""
     private var myPhone:String = ""
@@ -57,13 +61,13 @@ class IssueClass {
     
     private var myFavorites: Int = 0
     public var myLikes: Int = 0
-    private var myListOfComments: [String] = []
+    private var myComments: [CommentsClass] = []
     private var myListOfImages: Array<UIImage> = Array()
     
-    private let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
     
-    //not sure why we don't have type
-    init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int, dateNtime:String, type: String) {
+    
+    //For Loading
+    init(issueID:Int, title:String, description:String, location:String, issueImage:String, user_id:Int, likes: Int, favorites: Int, dateNtime:String, comments: [CommentsClass], userName:String, userImage: String, type: String) {
         self.myIssueID = issueID
         self.myTitle = title
         self.myLocation = location
@@ -72,12 +76,11 @@ class IssueClass {
         self.myUserID = user_id
         self.myFavorites = favorites
         self.myLikes = likes
-        self.myType = type
-        NetworkAPI().getListOfComments(id: Int(issueID)){ comments in
-            self.myListOfComments = comments
-        }
-        
         setUpDateAndTime(s: dateNtime)
+        self.myComments = comments
+        self.myUserName = userName
+        self.myUserImage = userImage
+        self.myType = type
     }
     
     //For Basic Initialization
@@ -155,18 +158,10 @@ class IssueClass {
     func checkLiked(id: Int){
         if upvoted{
             self.myLikes -= 1
-            apollo.perform(mutation: DeleteLikeFromIssueMutation(id:id)) { (result, error) in
-                if let err = error as? GraphQLHTTPResponseError {
-                    print(err.response.statusCode)
-                }
-            }
+            NetworkAPI().deleteLike(issueId: id)
         }else {
             self.myLikes += 1
-            apollo.perform(mutation: AddLikeToIssueMutation(id:id)) { (result, error) in
-                if let err = error as? GraphQLHTTPResponseError {
-                    print(err.response.statusCode)
-                }
-            }
+            NetworkAPI().addLike(issueId: id)
         }
         upvoted = !upvoted
     }
@@ -182,29 +177,17 @@ class IssueClass {
     func checkFavorited(id: Int){
         if pinned {
             self.myFavorites -= 1
-            apollo.perform(mutation: DeleteFavoriteFromIssueMutation(id: id)) { (result, error) in
-                if let err = error as? GraphQLHTTPResponseError {
-                    print(err.response.statusCode)
-                }
-            }
+            NetworkAPI().deleteFavorite(issueId: id)
         }else {
             self.myFavorites += 1
-            apollo.perform(mutation: AddFavoriteToIssueMutation(id: id)) { (result, error) in
-                if let err = error as? GraphQLHTTPResponseError {
-                    print(err.response.statusCode)
-                }
-            }
+            NetworkAPI().addFavorite(issueId: id)
         }
         pinned = !pinned
     }
     
-    func addComment(comment:String, issueId:Int, userId:Int){
-        myListOfComments.append(comment)
-        apollo.perform(mutation: CreateCommentMutation(body: comment, userId: userId, issueId: issueId)) { (result, error) in
-            if let err = error as? GraphQLHTTPResponseError {
-                print(err.response.statusCode)
-            }
-        }
+    func addComment(comment:String, image:String, issueId:Int, userId:Int, user_name: String, user_image: String){
+        myComments.append(CommentsClass(body: comment, image: image, userId: userId, issueId: issueId, name: user_name, user_image: user_image))
+        NetworkAPI().createComment(comment: comment, image: image, issueId: issueId, userId: userId)
     }
     
     func addImage(image:UIImage) {
@@ -220,7 +203,7 @@ class IssueClass {
     }
     
     func getNumberOfComments() -> Int {
-        return myListOfComments.count
+        return myComments.count
     }
     
     func getNumberOfImages() -> Int {
@@ -228,8 +211,8 @@ class IssueClass {
     }
 
     
-    func getListOfComments() -> Array<String> {
-        return myListOfComments
+    func getListOfComments() -> Array<CommentsClass> {
+        return myComments
     }
     
     func getListOfImages() -> Array<UIImage> {

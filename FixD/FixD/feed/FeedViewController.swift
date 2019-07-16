@@ -174,9 +174,18 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     let myCellIndentifier = "IssueCell"
     var myIssueList:[IssueClass] = []
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .black
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        NetworkAPI().getUserById(id: 1) { user in } //DELETE THIS!!!!!!!!!!!
         NotificationCenter.default.addObserver(self, selector: #selector(reload(_:)), name: NSNotification.Name("CHECK"), object: nil)
         
         //Get Issue Data for Feed
@@ -189,7 +198,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         //creates menu button
         let menuBtn = UIButton(type: .custom)
         menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 15, height: 15)
-        menuBtn.setImage(UIImage(named:"menu"), for: .normal)
+        menuBtn.setImage(UIImage(named:"wMenu"), for: .normal)
         menuBtn.addTarget(self, action: #selector(didTapMenu(_:)), for: UIControl.Event.touchUpInside)
         
         let menuBarItem = UIBarButtonItem(customView: menuBtn)
@@ -287,18 +296,13 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         cell.issueName.text = obj.getTitle()
         cell.issueDescription.text = obj.getDescription()
         cell.issueLocation.text = obj.getLocation()
-        if obj.getIssueImage() != ""  {
-            cell.issueImage.image = UIImage(named: obj.getIssueImage())
-        }
-        //cell.issueUpvotes.text = String(obj.getUpVotes())
-        //cell.issueFavorites.text = String(obj.getFavorites())
-        NetworkAPI().getUserById(id: obj.getID()) { user in
-            cell.userName.text = user.userName
-            cell.userImage.image = UIImage(named: user.userImage)
-        }
+        cell.issueImage.image = UIImage(named: obj.getIssueImage())
+//        cell.issueUpvotes.text = String(obj.getUpVotes())
+//        cell.issueFavorites.text = String(obj.getFavorites())
+        cell.userName.text = obj.myUserName
+        cell.userImage.image = UIImage(named: obj.myUserImage)
         cell.issueDate.text = obj.getIssueDate()
         cell.issueTime.text = obj.getIssueTime()
-        
         return cell
     }
     

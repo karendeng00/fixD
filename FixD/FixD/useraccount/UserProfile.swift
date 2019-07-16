@@ -11,7 +11,7 @@ import Apollo
 
 class UserProfile {
 
-    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
+    let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
     
     var userId:Int = 0
     var userName:String = ""
