@@ -2164,6 +2164,7 @@
                                 <segment title="Issues I've Reported"/>
                                 <segment title="Issues I've Starred"/>
                             </segments>
+                            <color key="tintColor" red="0.0012998840538784862" green="0.13096660375595093" blue="0.41092148423194885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="selectorChanged:" destination="8um-IF-ytT" eventType="valueChanged" id="iFi-3q-coJ"/>
                             </connections>
