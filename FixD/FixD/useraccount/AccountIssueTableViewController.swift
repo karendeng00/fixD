@@ -12,8 +12,15 @@ class AccountIssueTableViewController: UITableViewController {
 
     let myCellIndentifier = "IssueCell"
     var myUserIssuesList:[IssueClass] = []
+    var issuesReportedList:[IssueClass] = []
+    var issuesStarredList:[IssueClass] = []
+    var listFlag = true
+    
+    @IBOutlet weak var issueSelector: UISegmentedControl!
     
     let THIS_USER = 1
+    
+    var issuesList:[IssueClass] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +28,7 @@ class AccountIssueTableViewController: UITableViewController {
         refreshControl!.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
         
         getIssueData()
+        //list = myUserIssuesList
     }
 
     @objc func refresh(_ sender: Any) {
@@ -37,14 +45,14 @@ class AccountIssueTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myUserIssuesList.count
+        return issuesList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell", for: indexPath) as! FeedIssueCell
         
-        
-        let obj = myUserIssuesList[indexPath.row]
+        //let obj = myUserIssuesList[indexPath.row]
+        let obj = issuesList[indexPath.row]
         
         cell.setIssue(issue: obj)
         cell.issueName.text = obj.getTitle()
@@ -56,7 +64,6 @@ class AccountIssueTableViewController: UITableViewController {
         cell.userName.text = obj.myUserName
         cell.userImage.image = UIImage(named:obj.myUserImage)
         cell.locationImage.image = UIImage(named:"locicon")
-        
         return cell
     }
     
@@ -79,14 +86,41 @@ class AccountIssueTableViewController: UITableViewController {
     
     func getIssueData() {
         NetworkAPI().getListOfIssues() { issueData in
-            self.myUserIssuesList = Array()
+            self.resetLists()
             let issues:[IssueClass] = issueData
             for issue in issues {
-                if (issue.getUserId() == self.THIS_USER) {
-                    self.myUserIssuesList.append(issue)
+                if issue.getUserId() == self.THIS_USER && self.listFlag == true {
+                    self.issuesReportedList.append(issue)
+                    self.issuesList = self.issuesReportedList
+                }
+                if issue.getUserId() != self.THIS_USER && self.listFlag == false {
+                    self.issuesStarredList.append(issue)
+                    self.issuesList = self.issuesStarredList
                 }
             }
             self.tableView.reloadData()
         }
     }
+    
+    @IBAction func selectorChanged(_ sender: Any) {
+        switch issueSelector.selectedSegmentIndex {
+        case 0:
+            print("Issues I've Reported has been selected")
+            listFlag = true
+            self.getIssueData()
+        case 1:
+            print("Issues I've Starred has been selected.")
+            listFlag = false
+            self.getIssueData()
+        default:
+            break
+        }
+    }
+    
+    private func resetLists() {
+        self.issuesReportedList = Array()
+        self.issuesStarredList = Array()
+        self.issuesList = Array()
+    }
+    
 }

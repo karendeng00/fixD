@@ -33,6 +33,7 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         setUpTapGesture()
         issueDescriptionText.text = "Type your description here."
+        createAlert(title: "Is this an emergency?", message: "If this is an emergency, please call 911 or contact Duke Police.")
     }
     
     @objc func handleTapOutside(){
