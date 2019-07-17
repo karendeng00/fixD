@@ -1496,9 +1496,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="QbZ-Vt-k5D">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="JKy-it-l91" id="LKR-iZ-qhG"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IssueCell" rowHeight="217" id="Krf-dQ-DQx" customClass="FeedIssueCell" customModule="FixD" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="217"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="217"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Krf-dQ-DQx" id="fOH-Yv-g0W">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="216.5"/>
@@ -1750,11 +1758,21 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="feedSearchBar" destination="QbZ-Vt-k5D" id="tUM-fM-mGy"/>
                         <outlet property="feedTable" destination="R5e-Nd-bzm" id="Fd9-Lb-mF6"/>
+                        <outlet property="searchDisplayController" destination="cjo-n2-siu" id="czr-9y-6f3"/>
                         <segue destination="j16-qw-gvl" kind="show" identifier="ShowIssuePage" id="tAk-x9-Ry1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2g-Tz-eln" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="cjo-n2-siu">
+                    <connections>
+                        <outlet property="delegate" destination="JKy-it-l91" id="aWI-g5-GCV"/>
+                        <outlet property="searchContentsController" destination="JKy-it-l91" id="sz0-FU-vQ3"/>
+                        <outlet property="searchResultsDataSource" destination="JKy-it-l91" id="bab-Uu-Mpg"/>
+                        <outlet property="searchResultsDelegate" destination="JKy-it-l91" id="Sif-rI-BQ5"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1647.826086956522" y="-1049.3303571428571"/>
         </scene>
@@ -3589,7 +3607,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="v3b-J1-vTz"/>
-        <segue reference="0BR-N4-qAY"/>
-        <segue reference="XJh-kQ-Znd"/>
+        <segue reference="elw-hr-S50"/>
+        <segue reference="tAk-x9-Ry1"/>
     </inferredMetricsTieBreakers>
 </document>
