@@ -35,6 +35,8 @@ class NetworkAPI {
         //Fetch the DUID
         self.apollo.fetch(query: GetDuidQuery(), cachePolicy: .fetchIgnoringCacheData) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
             print((result?.data?.getDuid)!)
             DispatchQueue.main.async{
                 completionHandler((result?.data?.getDuid)!)
