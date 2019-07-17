@@ -2573,6 +2573,87 @@ public final class UserByIdQuery: GraphQLQuery {
   }
 }
 
+public final class GetUserInfoQuery: GraphQLQuery {
+  public let operationDefinition =
+    "query GetUserInfo($duid: String!) {\n  getUserInfo(duid: $duid)\n}"
+
+  public var duid: String
+
+  public init(duid: String) {
+    self.duid = duid
+  }
+
+  public var variables: GraphQLMap? {
+    return ["duid": duid]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("getUserInfo", arguments: ["duid": GraphQLVariable("duid")], type: .nonNull(.list(.nonNull(.scalar(String.self))))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(getUserInfo: [String]) {
+      self.init(unsafeResultMap: ["__typename": "Query", "getUserInfo": getUserInfo])
+    }
+
+    /// Get User info from IDMS through Kong
+    /// 
+    /// Order: NetId, DUID, Name
+    public var getUserInfo: [String] {
+      get {
+        return resultMap["getUserInfo"]! as! [String]
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "getUserInfo")
+      }
+    }
+  }
+}
+
+public final class GetDuidQuery: GraphQLQuery {
+  public let operationDefinition =
+    "query GetDuid {\n  getDuid\n}"
+
+  public init() {
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("getDuid", type: .nonNull(.scalar(String.self))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(getDuid: String) {
+      self.init(unsafeResultMap: ["__typename": "Query", "getDuid": getDuid])
+    }
+
+    /// Get UniqueId from Kong
+    public var getDuid: String {
+      get {
+        return resultMap["getDuid"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "getDuid")
+      }
+    }
+  }
+}
+
 public final class CreateUserMutation: GraphQLMutation {
   public let operationDefinition =
     "mutation CreateUser($name: String!, $netid: String!, $phone: String!, $picture: String!) {\n  createUser(name: $name, netid: $netid, phone: $phone, picture: $picture) {\n    __typename\n    id\n    name\n    netid\n    phone\n    picture\n  }\n}"

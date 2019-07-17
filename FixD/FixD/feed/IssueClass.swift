@@ -339,10 +339,6 @@ class IssueClass {
         return myIssueImage
     }
     
-//    func getUser() -> UserProfile {
-//        return myUser
-//    }
-    
     func getMyDate() -> String {
         return myDate
     }

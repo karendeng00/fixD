@@ -13,9 +13,70 @@ import Apollo
 
 class NetworkAPI {
 
-    let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
-//    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
+    
+    //    let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
+    //    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
+    
+    let apollo: ApolloClient = {
+        var token = OAuthService.shared.getAccessToken() ?? ""
+        print(token)
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = ["Authorization": "Bearer \(token)", "Content-Type": "application/json"]
+        let kongURL = "https://events-attendance-backend.api-test.oit.duke.edu/graphql"
+        let url = URL(string: kongURL)!
+        return ApolloClient(networkTransport: HTTPNetworkTransport(url: url, configuration: configuration))
+    }()
 
+    
+    // This method fetches information from IDMS to populate user. If the user already exists
+    // in the system, then the user is loaded. Otherwise, a new user is created with the
+    // information loaded from IDMS. The method instantiantes a singleton UserAccount.
+    func getUserDuid(nav: UINavigationController, completionHandler: @escaping (String) -> Void) {
+        //Fetch the DUID
+        self.apollo.fetch(query: GetDuidQuery(), cachePolicy: .fetchIgnoringCacheData) { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+            print((result?.data?.getDuid)!)
+            DispatchQueue.main.async{
+                completionHandler((result?.data?.getDuid)!)
+            }
+        }
+    }
+    
+    //This method checks for e
+    func fetchUserData(nav: UINavigationController, completionHandler: @escaping ([String]) -> Void){
+        getUserDuid(nav: nav) { duid in
+        // Get the User info (comes back as a String array).
+            self.apollo.fetch(query: GetUserInfoQuery(duid: duid)) { (result, error) in
+                if let err = error as? GraphQLHTTPResponseError {
+                    print(err.response.statusCode)
+                }
+                DispatchQueue.main.async{
+                    completionHandler((result?.data?.getUserInfo)!) // catch errors
+                }
+            }
+        }
+    }
+            
+    func setUpUser(nav: UINavigationController) {
+        let user = UserAccount.account
+        fetchUserData(nav: nav) { info in
+            // Use netID to check if user exists
+            self.apollo.fetch(query: UserByNetIdQuery(netid: info[0])) { (result, error) in
+                if let err = error as? GraphQLHTTPResponseError {
+                    print (err.response.statusCode)
+                }
+                // If user exists, instantiate User with info
+                if let u = result?.data?.userByNetId {
+                    user.setUp(id: Int(u.id)!, duid: info[1], netid: u.netid, name: u.name!, phone: u.phone ?? "", picture: u.picture ?? "")
+                }
+                // If user does not exist, create a new User and instantiate
+                else {
+                    user.newUser(duid:info[1], netid: info[0], name: info[2] , phone: "", picture: "")
+                }
+            }
+        }
+    }
+    
     func getListOfIssues(completionHandler: @escaping (Array<IssueClass>) -> ()) {
         var myIssueList: Array<IssueClass> = []
         apollo.fetch(query: AllIssuesQuery()) { (result, error) in
@@ -44,11 +105,7 @@ class NetworkAPI {
                         userName: issue.user.name!,
                         userImage: issue.user.picture ?? "",
                         type: issue.type!))
-
                 }
-                
-                
-                
                 DispatchQueue.main.async {
                     completionHandler(myIssueList)
                 }
@@ -89,36 +146,14 @@ class NetworkAPI {
     }
 
     
-    func getUserByNetId(netid: String, completionHandler: @escaping (Bool) -> ()) {
-        let user = UserProfile.account
-        self.apollo.fetch(query: UserByNetIdQuery(netid: netid)) { (result, error) in
-            if let err = error as? GraphQLHTTPResponseError {
-                print(err.response.statusCode)
-            }
-            if let u = result?.data?.userByNetId {
-                user.setUp(id: Int(u.id)!, name: u.name!, netid: u.netid, image: u.picture!, phone: u.phone!)
-                DispatchQueue.main.async {
-                    completionHandler(false)
-                }
-            } else {
-                DispatchQueue.main.async {
-                    completionHandler(true)
-                }
-            }
-        }
-        
-    }
-    
-    func getUserById(id: Int, completionHandler: @escaping (UserProfile) -> ()) {
-        let user = UserProfile.account
+    func getUserById(id: Int, completionHandler: @escaping (UserClass) -> ()) {
         self.apollo.fetch(query: UserByIdQuery(id: id)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
             }
             if let u = result?.data?.userById {
-                user.setUp(id: Int(u.id)!, name: (u.name!), netid: u.netid, image: u.picture!, phone: u.phone!)
                 DispatchQueue.main.async {
-                    completionHandler(user)
+                    completionHandler(UserClass(id: Int(u.id)!, name: (u.name!), netid: u.netid, image: u.picture!, phone: u.phone!))
                 }
             }
         }
@@ -140,6 +175,17 @@ class NetworkAPI {
         apollo.perform(mutation: CreateCommentMutation(body: comment, image: image, userId: userId, issueId: issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
+            }
+        }
+    }
+    
+    func createUser(name: String, netid: String, phone: String, picture: String, completionHandler: @escaping (Int) -> ()){
+        apollo.perform(mutation: CreateUserMutation(name: name, netid: netid, phone: phone, picture: picture))  { (result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+            DispatchQueue.main.async {
+                completionHandler(Int((result?.data?.createUser.id)!)!)
             }
         }
     }

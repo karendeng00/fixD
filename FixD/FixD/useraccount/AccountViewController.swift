@@ -14,7 +14,7 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
     @IBOutlet weak var myAccountName: UILabel!
     @IBOutlet weak var myAccountImage: UIImageView!
     
-    var myUser = UserProfile.account
+    var myUser = UserAccount.account
     
     let transition = SlideInTransition()
     var topView: UIView?
@@ -76,7 +76,6 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
         menuVC.didTapMenuType = {
             menuType in
             self.transitionToNew(menuType)
-            
         }
         
         menuVC.modalPresentationStyle = .overCurrentContext

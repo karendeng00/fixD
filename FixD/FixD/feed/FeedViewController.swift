@@ -12,6 +12,13 @@ class FeedIssueCell: UITableViewCell {
     
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
+    
+    @IBOutlet weak var starButton: UIButton!
+    
+    @IBOutlet weak var comButton: UIButton!
+    
+    @IBOutlet var views: [UIView]!
     
     @IBOutlet weak var issueName: UILabel!
     @IBOutlet weak var issueDescription: UILabel!
@@ -21,8 +28,6 @@ class FeedIssueCell: UITableViewCell {
     @IBOutlet weak var issueDate: UILabel!
     
     @IBOutlet weak var locationImage: UIImageView!
-    @IBOutlet weak var issueUpvotes: UILabel!
-    @IBOutlet weak var issueFavorites: UILabel!
     
     @IBOutlet weak var likeView: UIView!
     @IBOutlet weak var starView: UIView!
@@ -33,6 +38,9 @@ class FeedIssueCell: UITableViewCell {
     
     var myIssue: IssueClass!
     
+    let white = UIColor(cgColor: CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])!)
+    let granite = UIColor(red: 181/255.0, green: 181/255.0, blue: 181/255.0, alpha: 0.5)
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -41,6 +49,82 @@ class FeedIssueCell: UITableViewCell {
         
         let favoriteTap = UITapGestureRecognizer(target: self, action: #selector(favorite(_:)))
         starView.addGestureRecognizer(favoriteTap)
+        
+        for v in views {
+            v.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])
+            v.layer.masksToBounds = false
+            v.layer.cornerRadius = 2.0
+            v.layer.shadowOffset = CGSize(width: -1.5, height: 1.5)
+            v.layer.shadowOpacity = 0.22
+        }
+        
+        let longLike = UILongPressGestureRecognizer(target: self, action: #selector(longL(_:)))
+        longLike.minimumPressDuration = 0
+        likeView.addGestureRecognizer(longLike)
+        
+        let longFav = UILongPressGestureRecognizer(target: self, action: #selector(longF(_:)))
+        longFav.minimumPressDuration = 0
+        starView.addGestureRecognizer(longFav)
+        
+        let longCom = UILongPressGestureRecognizer(target: self, action: #selector(longC(_:)))
+        longCom.minimumPressDuration = 0
+        commentView.addGestureRecognizer(longCom)
+    
+    
+    }
+    
+    @objc func longL(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state == .ended {
+            likeView.backgroundColor = white
+            likeView.layer.shadowOffset = CGSize(width: -1, height: 1)
+            
+            myIssue.checkLiked(id: myIssue.getID())
+            if (myIssue.getUpVoteState()){
+                //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
+                likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
+            } else {
+                //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
+                likeButton.setImage(UIImage(named: "heart-1"), for: .normal)
+            }
+        }
+            
+        else {
+            likeView.backgroundColor = granite
+            likeView.layer.shadowOffset = CGSize(width: -10, height: 10)
+        }
+    }
+    
+    @objc func longF(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state == .ended {
+            starView.backgroundColor = white
+            starView.layer.shadowOffset = CGSize(width: -1, height: 1)
+            
+            myIssue.checkFavorited(id: myIssue.getID())
+            if (myIssue.getFavoritesState()){
+                //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
+                starButton.setImage(UIImage(named: "filled star"), for: .normal)
+            }else {
+                //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
+                starButton.setImage(UIImage(named: "star"), for: .normal)
+            }
+        }
+        else {
+            starView.backgroundColor = granite
+            starView.layer.shadowOffset = CGSize(width: -10, height: 10)
+        }
+        
+    }
+    
+    @objc func longC(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state == .ended {
+            commentView.backgroundColor = white
+            commentView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        }
+        else {
+            commentView.backgroundColor = granite
+            commentView.layer.shadowOffset = CGSize(width: -10, height: 10)
+        }
+        
     }
     
     override func awakeFromNib() {
@@ -58,7 +142,7 @@ class FeedIssueCell: UITableViewCell {
     
     @objc func like(_ sender: Any) {
         self.myIssue.checkLiked(id: self.myIssue.getID())
-        self.issueUpvotes.text = String(self.myIssue.getUpVotes())
+        //self.issueUpvotes.text = String(self.myIssue.getUpVotes())
         if (myIssue.getUpVoteState()){
             upVoteButton.setImage(UIImage(named: "filled heart"), for: .normal)
         }else {
@@ -73,7 +157,7 @@ class FeedIssueCell: UITableViewCell {
     @IBAction func favorite(_ sender: Any) {
         self.myIssue.checkFavorited(id: self.myIssue.getID())
         
-        self.issueFavorites.text = String(self.myIssue.getFavorites())
+        //self.issueFavorites.text = String(self.myIssue.getFavorites())
         if (myIssue.getFavoritesState()){
             favoritesButton.setImage(UIImage(named: "filled star"), for: .normal)
         }else {
@@ -82,7 +166,6 @@ class FeedIssueCell: UITableViewCell {
     }
     
 }
-
 
 
 class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, UIViewControllerTransitioningDelegate{
@@ -103,12 +186,10 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("I LOADED")
-    
         NotificationCenter.default.addObserver(self, selector: #selector(reload(_:)), name: NSNotification.Name("CHECK"), object: nil)
         
-        //Get Issue Data for Feed
-        getIssueData()
+        NetworkAPI().setUpUser(nav: self.navigationController!) //Move this?
+        getIssueData() //Get Issue Data for Feed
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -126,7 +207,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 23)
         currHeight?.isActive = true
         self.navigationItem.leftBarButtonItem = menuBarItem
-    
         
         
         //puts in left pan swipe gesture
@@ -138,7 +218,8 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         // Add Refresh Control to Table View
         refreshControl!.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
         
-    
+        
+        
     }
     
     @objc func reload(_ sender: Any) {
@@ -149,10 +230,9 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         NetworkAPI().getListOfIssues() { issueData in
             self.myIssueList = issueData
             self.tableView.reloadData()
-        
         }
     }
-        
+
     
 
     @objc func refresh(_ sender: Any) {
@@ -175,7 +255,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             }
         }
     }
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -188,6 +268,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
         
+        
         var all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL")
         var oit = UserDefaults.standard.bool(forKey: "checkOIT") && obj.getType() == ("SnIssue")
         var park = UserDefaults.standard.bool(forKey: "checkParking") && obj.getType() == ("PtIssue")
@@ -198,7 +279,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         if (all || oit || park || fac ||  hrl) {
             return 210
         }
-    
+        
         
         return 0
     }
@@ -216,12 +297,10 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         cell.issueDescription.text = obj.getDescription()
         cell.issueLocation.text = obj.getLocation()
         cell.issueImage.image = UIImage(named: obj.getIssueImage())
-        cell.issueUpvotes.text = String(obj.getUpVotes())
-        cell.issueFavorites.text = String(obj.getFavorites())
-        NetworkAPI().getUserById(id: obj.getUserId()) { user in
-            cell.userName.text = user.userName
-            cell.userImage.image = UIImage(named: user.userImage)
-        }
+//        cell.issueUpvotes.text = String(obj.getUpVotes())
+//        cell.issueFavorites.text = String(obj.getFavorites())
+        cell.userName.text = obj.myUserName
+        cell.userImage.image = UIImage(named: obj.myUserImage)
         cell.issueDate.text = obj.getIssueDate()
         cell.issueTime.text = obj.getIssueTime()
         return cell

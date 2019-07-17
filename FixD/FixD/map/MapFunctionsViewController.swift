@@ -96,9 +96,9 @@ class MapFunctionsViewController: UIViewController {
             self.present(nextViewController, animated:false, completion:nil)
             
         case .logout:
-            
             let navigationController = UINavigationController(rootViewController: logOutController)
             self.present(navigationController, animated:false, completion: nil)
+            
             
         default:
             break

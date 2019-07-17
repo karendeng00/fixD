@@ -16,21 +16,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        print("Logged In = \(UserDefaults.standard.bool(forKey: "LoggedIn"))")
+        
+//        print("Logged In = \(UserDefaults.standard.bool(forKey: "LoggedIn"))")
         
         UserDefaults.standard.set(false, forKey: "checkFacilities")
         UserDefaults.standard.set(false, forKey: "checkHRL")
         UserDefaults.standard.set(false, forKey: "checkOIT")
         UserDefaults.standard.set(false, forKey: "checkParking")
+        UserDefaults.standard.set(false, forKey: "liked")
+        UserDefaults.standard.set(false, forKey: "starred")
 
-        if (UserDefaults.standard.bool(forKey: "LoggedIn") == true) {
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: "tab")
-            
-            vc.modalTransitionStyle = .crossDissolve
-            window!.rootViewController = vc
-            window!.makeKeyAndVisible()
-        }
+//        if (UserDefaults.standard.bool(forKey: "LoggedIn") == true) {
+//            let sb = UIStoryboard(name: "Main", bundle: nil)
+//            let vc = sb.instantiateViewController(withIdentifier: "tab")
+//            
+//            vc.modalTransitionStyle = .crossDissolve
+//            window!.rootViewController = vc
+//            window!.makeKeyAndVisible()
+//        }
         
         //Changes the appearance of the Navigation Bar
         let navBarAppearance = UINavigationBar.appearance()

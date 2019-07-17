@@ -11,7 +11,7 @@ import UIKit
 class LoginScreenController: UIViewController {
 
     var oAuthService: OAuthService?
-    var myUser = UserProfile.account
+    var myUser = UserAccount.account
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -24,35 +24,32 @@ class LoginScreenController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         oAuthService = OAuthService.shared
-        UserDefaults.standard.set(false, forKey: "LoggedIn")
 
-
-        if(oAuthService!.isAuthenticated()) {
-            oAuthService?.logout()
-        }
-        
-        loadUserOrMakeNewOne()
-    }
-    
-    private func loadUserOrMakeNewOne() {
-        NetworkAPI().getUserByNetId(netid: "aam79") { result in
-            if result == true {
-                print("new")
-                self.myUser.newUser(name: "NAME2", netid: "NETID", phone: "PHONE", picture: "photo")
+        let nav = self.navigationController
+        if oAuthService!.isAuthenticated() {
+            oAuthService?.refreshToken(navController: nav!) { success, statusCode in
+                if success {
+                    UserDefaults.standard.set(true, forKey: "LoggedIn")
+                    print ("Token Refreshed - success")
+                    DispatchQueue.main.async {
+                        let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "tab") as? UITabBarController
+                        self.present(tabVC!, animated: true, completion: nil)
+                    }
+                }
             }
         }
     }
+    
     
     @IBAction func loginButton(_ sender: UIButton) {
         let nav = self.navigationController
         
         oAuthService?.setClientName(oAuthClientName: "dukeissuereporting")
         if oAuthService!.isAuthenticated() {
-            print ("Login")
             oAuthService?.refreshToken(navController: nav!) { success, statusCode in
                 if success {
                     UserDefaults.standard.set(true, forKey: "LoggedIn")
-                    print ("SUCCESS")
+                    print ("Token Refreshed - success")
                     DispatchQueue.main.async {
                         let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "tab") as? UITabBarController
                         self.present(tabVC!, animated: true, completion: nil)
@@ -61,10 +58,9 @@ class LoginScreenController: UIViewController {
             }
         }
         else if let navController = navigationController {
-            print ("Log in")
             oAuthService?.authenticate(navController: navController) {success in
                 if success {
-                    print ("LOGIN SUCCESS")
+                    print ("Login - success")
                     UserDefaults.standard.set(true, forKey: "LoggedIn")
                     //self.navigationController?.dismiss(animated:true, completion: nil)
                     //self.navigationController?.dismiss(animated: true, completion: nil)
