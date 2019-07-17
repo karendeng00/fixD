@@ -19,6 +19,7 @@ class UserAccount{
     var userImage:String = ""
     var userPhone:String = ""
     var newUser:Bool = false
+    var listOfLikeIssues:[String] = []
     
     static let account = UserAccount()
 

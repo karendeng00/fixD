@@ -188,7 +188,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         
         NotificationCenter.default.addObserver(self, selector: #selector(reload(_:)), name: NSNotification.Name("CHECK"), object: nil)
         
-        NetworkAPI().setUpUser(nav: self.navigationController!) //Move this?
+//        NetworkAPI().setUpUser(nav: self.navigationController!) //Move this?
         getIssueData() //Get Issue Data for Feed
 
         self.tableView.delegate = self
