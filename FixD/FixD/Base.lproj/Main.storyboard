@@ -2606,7 +2606,7 @@
             <objects>
                 <viewController id="GiZ-ID-eWp" customClass="AddIssueGeneralInfoViewController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Duz-5V-alh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e8x-p5-4qN">
@@ -3489,7 +3489,6 @@
         <image name="star-1" width="170" height="170"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iWa-e7-teW"/>
         <segue reference="v3b-J1-vTz"/>
         <segue reference="elw-hr-S50"/>
         <segue reference="tAk-x9-Ry1"/>
