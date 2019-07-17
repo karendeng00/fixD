@@ -31,7 +31,9 @@ class LoginScreenController: UIViewController {
             oAuthService?.logout()
         }
         
+        print("Getting User")
         loadUserOrMakeNewOne()
+        print("Got User")
     }
     
     private func loadUserOrMakeNewOne() {

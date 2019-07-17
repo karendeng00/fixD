@@ -62,7 +62,7 @@ class AccountIssueTableViewController: UITableViewController {
         //cell.issueUpvotes.text = String(obj.getUpVotes())
         //cell.issueFavorites.text = String(obj.getFavorites())
         cell.userName.text = obj.myUserName
-        cell.userImage.image = UIImage(named:obj.myUserImage)
+        cell.userImage.image = UIImage(named: obj.myUserImage)
         cell.locationImage.image = UIImage(named:"locicon")
         return cell
     }
@@ -71,6 +71,19 @@ class AccountIssueTableViewController: UITableViewController {
         performSegue(withIdentifier: "ShowIssuePageFromAccount", sender: (Any).self)
     }
     
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let swipeAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+        }
+        swipeAction.backgroundColor = .red
+        
+        let configuration = UISwipeActionsConfiguration(actions: [swipeAction])
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        //<#code#>
+    }
     
     @IBOutlet var accountFeed: UITableView!
     

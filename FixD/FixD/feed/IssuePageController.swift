@@ -288,10 +288,9 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             return
         }
         if notification.name == UIResponder.keyboardWillShowNotification  || notification.name == UIResponder.keyboardWillChangeFrameNotification{
-            view.frame.origin.y = -keyboardRect.height
+            view.frame.origin.y = -keyboardRect.height + 175
         }else {
-            view.frame.origin.y = 0
-            
+            view.frame.origin.y = 89
         }
     }
     
