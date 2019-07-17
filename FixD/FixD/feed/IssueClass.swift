@@ -14,7 +14,7 @@ class IssueClass {
     
     private var myIssueID:Int = 0
     
-    
+    //Common Parameters
     var myUserName:String = ""
     var myUserImage:String = ""
     
@@ -26,9 +26,8 @@ class IssueClass {
     private var myDescription:String = ""
     private var myLocation:String = ""
     private var myIssueImage:String = ""
-    private var upvoted = false
-    private var pinned = false
-    
+    private var liked = false
+    private var favorited = false
 
     private var myUserID:Int = 0
     private var myType:String = ""
@@ -156,33 +155,33 @@ class IssueClass {
     }
     
     func checkLiked(id: Int){
-        if upvoted{
+        if liked{
             self.myLikes -= 1
             NetworkAPI().deleteLike(issueId: id)
         }else {
             self.myLikes += 1
             NetworkAPI().addLike(issueId: id)
         }
-        upvoted = !upvoted
+        liked = !liked
     }
     
     func getUpVoteState() -> Bool {
-        return upvoted
+        return liked
     }
     
     func getFavoritesState() -> Bool {
-        return pinned
+        return favorited
     }
     
     func checkFavorited(id: Int){
-        if pinned {
+        if favorited {
             self.myFavorites -= 1
             NetworkAPI().deleteFavorite(issueId: id)
         }else {
             self.myFavorites += 1
             NetworkAPI().addFavorite(issueId: id)
         }
-        pinned = !pinned
+        favorited = !favorited
     }
     
     func addComment(comment:String, image:String, issueId:Int, userId:Int, user_name: String, user_image: String){

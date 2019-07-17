@@ -19,7 +19,8 @@ class UserProfile {
     var userImage:String = ""
     var userPhone:String = ""
     var newUser:Bool = false
-    
+    var listOfLikeIssues:[String] = []
+
     static let account = UserProfile()
 
     private init(){}

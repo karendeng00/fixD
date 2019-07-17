@@ -71,31 +71,34 @@ class AccountIssueTableViewController: UITableViewController {
         performSegue(withIdentifier: "ShowIssuePageFromAccount", sender: (Any).self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is IssuePageController {
+            let viewController = segue.destination as? IssuePageController
+            if let indexPath = tableView.indexPathForSelectedRow{
+                let currCell = tableView.cellForRow(at: indexPath) as! FeedIssueCell
+                viewController?.issueID = currCell.myIssue.getID()
+            }
+        }
+    }
+    
+    /**
+    * Code to delete the cell a table view cell
+    **/
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let swipeAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+            self.issuesList.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .bottom)
+            completionHandler(true)
         }
         swipeAction.backgroundColor = .red
-        
+        swipeAction.image = UIImage(named: "delete")
+
         let configuration = UISwipeActionsConfiguration(actions: [swipeAction])
         configuration.performsFirstActionWithFullSwipe = false
         return configuration
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        //<#code#>
-    }
-    
     @IBOutlet var accountFeed: UITableView!
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is IssuePageController {
-            let viewController = segue.destination as? IssuePageController
-            if let indexPath = self.tableView.indexPathForSelectedRow{
-                let currCell = self.tableView.cellForRow(at: indexPath) as! FeedIssueCell
-                viewController?.myIssue = currCell.myIssue
-            }
-        }
-    }
     
     func getIssueData() {
         NetworkAPI().getListOfIssues() { issueData in

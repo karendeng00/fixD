@@ -134,11 +134,11 @@ class MapFunctionsViewController: UIViewController {
     private func setUpIssuesOnMap() {
         for issue in myIssueList {
             
-            var all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL")
-            var oit = UserDefaults.standard.bool(forKey: "checkOIT") && issue.getType() == ("SnIssue")
-            var park = UserDefaults.standard.bool(forKey: "checkParking") && issue.getType() == ("PtIssue")
-            var fac = UserDefaults.standard.bool(forKey: "checkFacilities") && issue.getType() == ("EamIssue")
-            var hrl = UserDefaults.standard.bool(forKey: "checkHRL") && issue.getType() == ("HrlIssue")
+            let all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL")
+            let oit = UserDefaults.standard.bool(forKey: "checkOIT") && issue.getType() == ("SnIssue")
+            let park = UserDefaults.standard.bool(forKey: "checkParking") && issue.getType() == ("PtIssue")
+            let fac = UserDefaults.standard.bool(forKey: "checkFacilities") && issue.getType() == ("EamIssue")
+            let hrl = UserDefaults.standard.bool(forKey: "checkHRL") && issue.getType() == ("HrlIssue")
             
              if (all || oit || park || fac ||  hrl) {
                 print(issue.getTitle())
