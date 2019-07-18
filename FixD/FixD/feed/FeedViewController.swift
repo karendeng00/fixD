@@ -415,39 +415,14 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     }
     
     @IBOutlet weak var feedSearchBar: UISearchBar!
-    var feedSearchNames = [String]()
-    var feedSearchIssues = Set<IssueClass>()
-    var nameList = [String]()
+    var feedIssueList = Set<IssueClass>()
+    var feedSearchIssues = [IssueClass]()
     var searching = false
 
-    func editSearchResults(issueList: Array<IssueClass>) {
-        for item in issueList {
-            nameList.append(item.getTitle())
-        }
-    }
-
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        editSearchResults(issueList: myIssueList)
-        print("edited")
-    }
-
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        feedSearchNames = nameList.filter({$0.prefix(searchText.count) == searchText})
-        for item in myIssueList {
-            if feedSearchNames.contains(item.getTitle().lowercased()) {
-                feedSearchIssues.insert(item)
-            }
-            if !feedSearchNames.contains(item.getTitle().lowercased()) {
-                feedSearchIssues.remove(item)
-            }
-        }
+        feedSearchIssues = myIssueList.filter({$0.getTitle().prefix(searchText.count) == searchText})
         searching = true
         tableView.reloadData()
-        print("text changed")
-        print(feedSearchNames)
-        for issue in feedSearchIssues {
-            print(issue.getTitle())
-        }
     }
     
     
