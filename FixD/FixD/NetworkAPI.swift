@@ -13,7 +13,7 @@ import Apollo
 
 class NetworkAPI {
 
-    let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
+    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
 //    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
 
     func getListOfIssues(completionHandler: @escaping (Array<IssueClass>) -> ()) {
@@ -27,7 +27,7 @@ class NetworkAPI {
                     var listOfComments:[CommentsClass] = []
                     if let comments = issue.comments {
                         for comment in comments {
-                            listOfComments.append(CommentsClass(body: comment.body ?? "", image: "", userId: comment.userId, issueId: comment.issueId, name: issue.user.name!, user_image: issue.user.picture ?? ""))
+                            listOfComments.append(CommentsClass(body: comment.body ?? "", image: UIImage(), userId: comment.userId, issueId: comment.issueId, name: issue.user.name!, user_image: issue.user.picture ?? ""))
                         }
                     }
                     myIssueList.append(IssueClass(
@@ -44,7 +44,6 @@ class NetworkAPI {
                         userName: issue.user.name!,
                         userImage: issue.user.picture ?? "",
                         type: issue.type!))
-
                 }
                 
                 
@@ -65,7 +64,7 @@ class NetworkAPI {
                 var listOfComments:[CommentsClass] = []
                 if let comments = i.comments {
                     for comment in comments {
-                        listOfComments.append(CommentsClass(body: comment.body ?? "", image: "", userId: comment.userId, issueId: comment.issueId, name: i.user.name!, user_image: i.user.picture ?? ""))
+                        listOfComments.append(CommentsClass(body: comment.body ?? "", image: UIImage(), userId: comment.userId, issueId: comment.issueId, name: i.user.name!, user_image: i.user.picture ?? ""))
                     }
                 }
                 let issue = IssueClass(issueID: Int(i.id)!,

@@ -70,6 +70,7 @@ class FeedIssueCell: UITableViewCell {
         let longCom = UILongPressGestureRecognizer(target: self, action: #selector(longC(_:)))
         longCom.minimumPressDuration = 0
         commentView.addGestureRecognizer(longCom)
+        
     }
     
     @objc func longL(_ gestureRecognizer: UILongPressGestureRecognizer) {
@@ -157,6 +158,7 @@ class FeedIssueCell: UITableViewCell {
         self.myIssue.checkFavorited(id: self.myIssue.getID())
         
         //self.issueFavorites.text = String(self.myIssue.getFavorites())
+        //if favorited, it is a filled star
         if (myIssue.getFavoritesState()){
             favoritesButton.setImage(UIImage(named: "filled star"), for: .normal)
         }else {
@@ -223,6 +225,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     }
     
     @objc func reload(_ sender: Any) {
+        print("reloaded")
         self.tableView.reloadData()
     }
     
@@ -232,8 +235,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             self.tableView.reloadData()
         }
     }
-
-    
 
     @objc func refresh(_ sender: Any) {
         getIssueData()
@@ -268,18 +269,76 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
         
-        
-        var all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL")
+        var all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL") && !UserDefaults.standard.bool(forKey: "liked") && !UserDefaults.standard.bool(forKey: "starred")
+        var check = UserDefaults.standard.bool(forKey: "checkOIT") ||  UserDefaults.standard.bool(forKey: "checkParking") || UserDefaults.standard.bool(forKey: "checkFacilities") || UserDefaults.standard.bool(forKey: "checkHRL")
         var oit = UserDefaults.standard.bool(forKey: "checkOIT") && obj.getType() == ("SnIssue")
         var park = UserDefaults.standard.bool(forKey: "checkParking") && obj.getType() == ("PtIssue")
         var fac = UserDefaults.standard.bool(forKey: "checkFacilities") && obj.getType() == ("EamIssue")
         var hrl = UserDefaults.standard.bool(forKey: "checkHRL") && obj.getType() == ("HrlIssue")
+        var checkLike = UserDefaults.standard.bool(forKey: "liked")
+        var checkFav = UserDefaults.standard.bool(forKey: "starred")
+        var like = UserDefaults.standard.bool(forKey: "liked") && obj.getUpVoteState()
+        var fav = UserDefaults.standard.bool(forKey: "starred") && obj.getFavoritesState()
         
         
-        if (all || oit || park || fac ||  hrl) {
-            return 210
+        if(checkLike && checkFav && check) {
+            if(like && fav && (oit || park || fac || hrl)) {
+                return 210
+            }
+            else {
+                return 0
+            }
         }
         
+        if(checkLike && checkFav) {
+            if (like && fav) {
+                return 210
+            }
+            else {
+                return 0
+            }
+        }
+        
+        if(checkLike && check) {
+            if(like && (oit || park || fac || hrl)) {
+                return 210
+            }
+            else {
+                return 0
+            }
+        }
+        
+        if(checkFav && check) {
+            if(fav && (oit || park || fac || hrl)) {
+                return 210
+            }
+            else {
+                return 0
+            }
+        }
+        
+        
+        if (checkLike) {
+            if (like) {
+                return 210
+            }
+            else {
+                return 0
+            }
+        }
+        
+        if(checkFav) {
+            if (fav) {
+                return 210
+            }
+            else {
+                return 0
+            }
+        }
+        
+        if (all || oit || park || fac || hrl ) {
+            return 210
+        }
         
         return 0
     }
