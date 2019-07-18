@@ -11,7 +11,6 @@ import UIKit
 class LoginScreenController: UIViewController {
 
     var oAuthService: OAuthService?
-    var myUser = UserAccount.account
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -23,19 +22,14 @@ class LoginScreenController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         oAuthService = OAuthService.shared
-
-        let nav = self.navigationController
         if oAuthService!.isAuthenticated() {
-            oAuthService?.refreshToken(navController: nav!) { success, statusCode in
-                if success {
-                    UserDefaults.standard.set(true, forKey: "LoggedIn")
-                    print ("Token Refreshed - success")
-                    DispatchQueue.main.async {
-                        let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "tab") as? UITabBarController
-                        self.present(tabVC!, animated: true, completion: nil)
-                    }
-                }
+            UserDefaults.standard.set(true, forKey: "LoggedIn")
+            print ("Token Refreshed - success")
+            DispatchQueue.main.async {
+                let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "tab") as? UITabBarController
+                self.present(tabVC!, animated: true, completion: nil)
             }
         }
     }

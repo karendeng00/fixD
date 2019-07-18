@@ -41,6 +41,7 @@
 		B4ED4D3F22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3E22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift */; };
 		B4ED85FC22D8D388002E6D79 /* CommentsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED85FB22D8D388002E6D79 /* CommentsClass.swift */; };
 		B4ED85FE22DF5EB0002E6D79 /* UserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED85FD22DF5EB0002E6D79 /* UserClass.swift */; };
+		B4ED860022E0CCDB002E6D79 /* Apollo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED85FF22E0CCDB002E6D79 /* Apollo.swift */; };
 		F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */; };
 		F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
 		FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */; };
@@ -108,6 +109,7 @@
 		B4ED4D3E22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFromCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		B4ED85FB22D8D388002E6D79 /* CommentsClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsClass.swift; sourceTree = "<group>"; };
 		B4ED85FD22DF5EB0002E6D79 /* UserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserClass.swift; sourceTree = "<group>"; };
+		B4ED85FF22E0CCDB002E6D79 /* Apollo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apollo.swift; sourceTree = "<group>"; };
 		F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		F5EE5DB822CA8EBD00F89735 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
@@ -191,6 +193,7 @@
 				B4ED4D4322B034B500E50272 /* useraccount */,
 				B4ED4D4222B0348E00E50272 /* sidemenu */,
 				B4085C0722A850A400A24525 /* AppDelegate.swift */,
+				B4ED85FF22E0CCDB002E6D79 /* Apollo.swift */,
 				B4CA2D1522D3D12E00BC6189 /* API.swift */,
 				B48967EB22D645C600B565D0 /* NetworkAPI.swift */,
 				B4085C0B22A850A500A24525 /* Main.storyboard */,
@@ -452,6 +455,7 @@
 				B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
 				22775BD222CBC4E000130E12 /* ShibAuthViewController.swift in Sources */,
+				B4ED860022E0CCDB002E6D79 /* Apollo.swift in Sources */,
 				FFB2C5A222A968A300BC11ED /* (null) in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
 				FFB2C5A822A97BB100BC11ED /* (null) in Sources */,

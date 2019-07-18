@@ -12,21 +12,8 @@ import Apollo
 
 
 class NetworkAPI {
-
     
-    //    let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
-    //    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
-    
-    let apollo: ApolloClient = {
-        var token = OAuthService.shared.getAccessToken() ?? ""
-        print(token)
-        let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = ["Authorization": "Bearer \(token)", "Content-Type": "application/json"]
-        let kongURL = "https://events-attendance-backend.api-test.oit.duke.edu/graphql"
-        let url = URL(string: kongURL)!
-        return ApolloClient(networkTransport: HTTPNetworkTransport(url: url, configuration: configuration))
-    }()
-
+    let apollo = Apollo.client
     
     // This method fetches information from IDMS to populate user. If the user already exists
     // in the system, then the user is loaded. Otherwise, a new user is created with the

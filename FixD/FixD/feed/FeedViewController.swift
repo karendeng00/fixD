@@ -269,11 +269,11 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
         
         
-        var all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL")
-        var oit = UserDefaults.standard.bool(forKey: "checkOIT") && obj.getType() == ("SnIssue")
-        var park = UserDefaults.standard.bool(forKey: "checkParking") && obj.getType() == ("PtIssue")
-        var fac = UserDefaults.standard.bool(forKey: "checkFacilities") && obj.getType() == ("EamIssue")
-        var hrl = UserDefaults.standard.bool(forKey: "checkHRL") && obj.getType() == ("HrlIssue")
+        let all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL")
+        let oit = UserDefaults.standard.bool(forKey: "checkOIT") && obj.getType() == ("SnIssue")
+        let park = UserDefaults.standard.bool(forKey: "checkParking") && obj.getType() == ("PtIssue")
+        let fac = UserDefaults.standard.bool(forKey: "checkFacilities") && obj.getType() == ("EamIssue")
+        let hrl = UserDefaults.standard.bool(forKey: "checkHRL") && obj.getType() == ("HrlIssue")
         
         
         if (all || oit || park || fac ||  hrl) {

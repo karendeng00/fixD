@@ -9,7 +9,7 @@
 import Foundation
 
 
-// Note: THIS IS NOT THE SAME AS USERPROFILE. This only loads user information to display
+// Note: THIS IS NOT THE SAME AS UserAccount. This only loads user information to display
 // with Issues.
 class UserClass {
     
