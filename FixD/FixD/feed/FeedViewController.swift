@@ -420,9 +420,21 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     var searching = false
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        feedSearchIssues = myIssueList.filter({$0.getTitle().prefix(searchText.count) == searchText})
+        //feedSearchIssues = myIssueList.filter({$0.getTitle().prefix(searchText.count) == searchText})
+        feedSearchIssues = myIssueList.filter({( issue:IssueClass) -> Bool in
+            return issue.getTitle().lowercased().contains(searchText.lowercased())
+        })
         searching = true
         tableView.reloadData()
+        for item in feedSearchIssues {
+            print(item.getTitle())
+        }
+        
+        if searchText == "" {
+            searching = false
+            tableView.reloadData()
+        }
+        
     }
     
     
