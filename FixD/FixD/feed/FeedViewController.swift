@@ -168,12 +168,18 @@ class FeedIssueCell: UITableViewCell {
 }
 
 
-class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, UIViewControllerTransitioningDelegate, UISearchBarDelegate{
+class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, UIViewControllerTransitioningDelegate, UISearchBarDelegate, UISearchResultsUpdating {
     
     let transition = SlideInTransition()
     var topView: UIView?
     let myCellIndentifier = "IssueCell"
     var myIssueList:[IssueClass] = []
+    
+    var searchController = UISearchController()
+    var resultsController = UITableViewController()
+    var filteredIssueList:[IssueClass] = []
+    var nameList = [String]()
+    var filteredNameList = [String]()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -219,7 +225,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         // Add Refresh Control to Table View
         refreshControl!.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
         
+        searchController = UISearchController(searchResultsController: resultsController)
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.searchResultsUpdater = self
         
+        resultsController.tableView.delegate = self
+        resultsController.tableView.dataSource = self
         
     }
     
@@ -263,7 +274,16 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //#warning Incomplete implementation, return the number of rows
-        return myIssueList.count
+        //if searching {
+            //return feedSearchIssues.count
+        //} else {
+            //return myIssueList.count
+        //}
+        if tableView == resultsController.tableView {
+            return filteredNameList.count
+        } else {
+            return myIssueList.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -289,9 +309,8 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
         
          //Configure the cell...
-        if searching {
-            print(feedSearchIssues.count)
-            let obj = feedSearchIssues.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
+        if tableView == resultsController.tableView {
+            let obj = filteredIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
             cell.setIssue(issue: obj)
             cell.issueName.text = obj.getTitle()
             cell.issueDescription.text = obj.getDescription()
@@ -303,7 +322,24 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             cell.userImage.image = UIImage(named: obj.myUserImage)
             cell.issueDate.text = obj.getIssueDate()
             cell.issueTime.text = obj.getIssueTime()
-        } else {
+            cell.textLabel?.text = nameList[indexPath.row]
+        }
+        
+//        if searching {
+//            let obj = feedSearchIssues.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
+//            cell.setIssue(issue: obj)
+//            cell.issueName.text = obj.getTitle()
+//            cell.issueDescription.text = obj.getDescription()
+//            cell.issueLocation.text = obj.getLocation()
+//            cell.issueImage.image = UIImage(named: obj.getIssueImage())
+//            //        cell.issueUpvotes.text = String(obj.getUpVotes())
+//            //        cell.issueFavorites.text = String(obj.getFavorites())
+//            cell.userName.text = obj.myUserName
+//            cell.userImage.image = UIImage(named: obj.myUserImage)
+//            cell.issueDate.text = obj.getIssueDate()
+//            cell.issueTime.text = obj.getIssueTime()
+        //}
+    else {
             let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
             cell.setIssue(issue: obj)
             cell.issueName.text = obj.getTitle()
@@ -396,38 +432,50 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         return transition
     }
     
-    @IBOutlet weak var feedSearchBar: UISearchBar!
-    var feedSearchNames = [String]()
-    var feedSearchIssues = [IssueClass]()
-    var nameList = [String]()
-    var searching = false
-    
-    func editSearchResults(issueList: Array<IssueClass>) {
-        for item in issueList {
-            nameList.append(item.getTitle())
-        }
-    }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        editSearchResults(issueList: myIssueList)
-        print("edited")
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        feedSearchNames = nameList.filter({$0.prefix(searchText.count) == searchText})
-        for item in myIssueList {
-            if feedSearchNames.contains(item.getTitle()) {
-                feedSearchIssues.append(item)
+    //doubt this will work, pretty sure needs to be nameList.filter
+    func updateSearchResults(for searchController: UISearchController) {
+        filteredNameList = nameList.filter({ (nameList:String) -> Bool in
+            if nameList.contains(searchController.searchBar.text!) {
+                return true
+            } else {
+                return false
             }
-        }
-        searching = true
-        tableView.reloadData()
-        print("text changed")
-        print(feedSearchNames)
-        for issue in feedSearchIssues {
-            print(issue.getTitle())
-        }
+        })
+        resultsController.tableView.reloadData()
     }
+    
+//    @IBOutlet weak var feedSearchBar: UISearchBar!
+//    var feedSearchNames = [String]()
+//    var feedSearchIssues = [IssueClass]()
+//    var nameList = [String]()
+//    var searching = false
+//
+//    func editSearchResults(issueList: Array<IssueClass>) {
+//        for item in issueList {
+//            nameList.append(item.getTitle())
+//        }
+//    }
+//
+//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+//        editSearchResults(issueList: myIssueList)
+//        print("edited")
+//    }
+//
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        feedSearchNames = nameList.filter({$0.prefix(searchText.count) == searchText})
+//        for item in myIssueList {
+//            if feedSearchNames.contains(item.getTitle()) {
+//                feedSearchIssues.append(item)
+//            }
+//        }
+//        searching = true
+//        tableView.reloadData()
+//        print("text changed")
+//        print(feedSearchNames)
+//        for issue in feedSearchIssues {
+//            print(issue.getTitle())
+//        }
+//    }
     
     
 }

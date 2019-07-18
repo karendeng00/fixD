@@ -202,13 +202,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssueClass.swift"
-            timestampString = "584643815.0570869"
+            timestampString = "585163944.897769"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "340"
             endingLineNumber = "340"
-            landmarkName = "IssueClass"
-            landmarkType = "3">
+            landmarkName = "getIssueImage()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -218,7 +218,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/useraccount/AccountIssueTableViewController.swift"
-            timestampString = "585091985.948211"
+            timestampString = "585163944.897866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "54"
@@ -234,7 +234,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/useraccount/AccountIssueTableViewController.swift"
-            timestampString = "585091985.948329"
+            timestampString = "585163944.897928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
@@ -250,7 +250,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/useraccount/AccountIssueTableViewController.swift"
-            timestampString = "585091985.948397"
+            timestampString = "585163944.897982"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
@@ -266,7 +266,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/useraccount/AccountIssueTableViewController.swift"
-            timestampString = "585091985.948457"
+            timestampString = "585163944.898034"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
