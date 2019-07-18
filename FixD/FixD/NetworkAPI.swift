@@ -13,62 +13,100 @@ import Apollo
 
 class NetworkAPI {
     
-    let apollo = Apollo.client
-    
     // This method fetches information from IDMS to populate user. If the user already exists
     // in the system, then the user is loaded. Otherwise, a new user is created with the
     // information loaded from IDMS. The method instantiantes a singleton UserAccount.
-    func getUserDuid(nav: UINavigationController, completionHandler: @escaping (String) -> Void) {
-        //Fetch the DUID
-        self.apollo.fetch(query: GetDuidQuery(), cachePolicy: .fetchIgnoringCacheData) { (result, error) in
+    func getUserDuid(nav: UINavigationController, completionHandler: @escaping (_ duid: String?, _ error: String?) -> Void) {
+        Apollo().getClient().fetch(query: GetDuidQuery(), cachePolicy: .fetchIgnoringCacheData) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
-                print(err.response.statusCode)
-            }
-            print((result?.data?.getDuid)!)
-            DispatchQueue.main.async{
-                completionHandler((result?.data?.getDuid)!)
-            }
-        }
-    }
-    
-    //This method checks for e
-    func fetchUserData(nav: UINavigationController, completionHandler: @escaping ([String]) -> Void){
-        getUserDuid(nav: nav) { duid in
-        // Get the User info (comes back as a String array).
-            self.apollo.fetch(query: GetUserInfoQuery(duid: duid)) { (result, error) in
-                if let err = error as? GraphQLHTTPResponseError {
-                    print(err.response.statusCode)
+                switch (err.response.statusCode) {
+                    case 401:
+                        // The request was unauthorized due to a bad token, request a new OAuth token.
+                        OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                            if success {
+                                // We receieved a new token, try again.
+                                self.getUserDuid(nav: nav) { duid, error in
+                                    completionHandler(duid, error)
+                                }
+                            } else {
+                                // TODO: handle error
+                            }
+                        }
+                    case 403:
+                        print("403")
+                        // TODO: Handle not authorized (Forbidden) error
+                        let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+                        // self.showMessage(message: message)
+                    case 500...599:
+                        print("500")
+                        // TODO: handle GQL/Kong server error
+                    default:
+                        // Something else went wrong, get a new token and try again
+                        OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                            if success {
+                                self.getUserDuid(nav: nav) { duid, error in
+                                    completionHandler(duid, error)
+                                }
+                            } else {
+                                // TODO: handle error
+                            }
+                        }
                 }
+            }
+            else if let err = error as NSError?, err.domain == NSURLErrorDomain {
+                print("error NSE")
+                // TODO: Handle error
+                // let title = "Unexpected Error"
+                // let message = err.localizedDescription
+                // self.showMessage(message: ["title": title, "message": message])
+            }
+            else {
+                print((result?.data?.getDuid)!)
                 DispatchQueue.main.async{
-                    completionHandler((result?.data?.getUserInfo)!) // catch errors
+                    completionHandler((result?.data?.getDuid)!, nil)
                 }
-            }
         }
-    }
-            
-    func setUpUser(nav: UINavigationController) {
-        let user = UserAccount.account
-        fetchUserData(nav: nav) { info in
-            // Use netID to check if user exists
-            self.apollo.fetch(query: UserByNetIdQuery(netid: info[0])) { (result, error) in
-                if let err = error as? GraphQLHTTPResponseError {
-                    print (err.response.statusCode)
-                }
-                // If user exists, instantiate User with info
-                if let u = result?.data?.userByNetId {
-                    user.setUp(id: Int(u.id)!, duid: info[1], netid: u.netid, name: u.name!, phone: u.phone ?? "", picture: u.picture ?? "")
-                }
-                // If user does not exist, create a new User and instantiate
-                else {
-                    user.newUser(duid:info[1], netid: info[0], name: info[2] , phone: "", picture: "")
-                }
-            }
         }
     }
     
+//    //This method checks for e
+//    func fetchUserData(nav: UINavigationController, completionHandler: @escaping ([String]) -> Void){
+//        getUserDuid(nav: nav) { duid in
+//        // Get the User info (comes back as a String array).
+//            self.apollo.fetch(query: GetUserInfoQuery(duid: duid)) { (result, error) in
+//                if let err = error as? GraphQLHTTPResponseError {
+//                    print(err.response.statusCode)
+//                }
+//                DispatchQueue.main.async{
+//                    completionHandler((result?.data?.getUserInfo)!) // catch errors
+//                }
+//            }
+//        }
+//    }
+//
+//    func setUpUser(nav: UINavigationController) {
+//        let user = UserAccount.account
+//        fetchUserData(nav: nav) { info in
+//            // Use netID to check if user exists
+//            self.apollo.fetch(query: UserByNetIdQuery(netid: info[0])) { (result, error) in
+//                if let err = error as? GraphQLHTTPResponseError {
+//                    print (err.response.statusCode)
+//                }
+//                // If user exists, instantiate User with info
+//                if let u = result?.data?.userByNetId {
+//                    user.setUp(id: Int(u.id)!, duid: info[1], netid: u.netid, name: u.name!, phone: u.phone ?? "", picture: u.picture ?? "")
+//                }
+//                // If user does not exist, create a new User and instantiate
+//                else {
+//                    user.newUser(duid:info[1], netid: info[0], name: info[2] , phone: "", picture: "")
+//                }
+//            }
+//        }
+//    }
+//
     func getListOfIssues(completionHandler: @escaping (Array<IssueClass>) -> ()) {
         var myIssueList: Array<IssueClass> = []
-        apollo.fetch(query: AllIssuesQuery()) { (result, error) in
+        Apollo().getClient().fetch(query: AllIssuesQuery()) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
             }
@@ -103,7 +141,7 @@ class NetworkAPI {
     }
     
     func getIssueById(id: Int, completionHandler: @escaping (IssueClass) -> ()) {
-        apollo.fetch(query: IssueByIdQuery(id: Int(id))) { (result, error) in
+        Apollo().getClient().fetch(query: IssueByIdQuery(id: Int(id))) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
             }
@@ -136,7 +174,7 @@ class NetworkAPI {
 
     
     func getUserById(id: Int, completionHandler: @escaping (UserClass) -> ()) {
-        self.apollo.fetch(query: UserByIdQuery(id: id)) { (result, error) in
+        Apollo().getClient().fetch(query: UserByIdQuery(id: id)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
             }
@@ -150,7 +188,7 @@ class NetworkAPI {
     }
     
     func buildIssue(issue :IssueClass) {
-        apollo.perform(mutation: CreateIssueMutation(description: issue.getDescription(), image: issue.getIssueImage(), location: issue.getLocation(), userId: 1, title: issue.getTitle(), type: issue.getType(), likes: 0, favorites: 0, email: issue.getEmail(), phone: issue.getPhone(), alternatePhone: issue.getAltPhone(), group: "", urgency: issue.getUrgency(), sensitiveInfo: issue.getSensitiveInfo(), campus: issue.getCampus(), area: issue.getArea(), specificLocation: issue.getSpecificLocation(), roomNumber: issue.getRoom(), serviceAnimal: issue.getAnimal(), impact: issue.getImpact(), yourBuilding: issue.getBuildingFacilities(), yourFloor: issue.getFloorFacilities(), yourRoom: issue.getRoomFacilities(), requestType: issue.getRequestFor(), issueBuilding: issue.getBuildingService(), issueFloor: issue.getFloorService(), issueRoom: issue.getRoomService(), serviceType: issue.getServiceType(), fundCode: issue.getFundCode(), topic: "", name: issue.getName())) { (result, error) in
+        Apollo().getClient().perform(mutation: CreateIssueMutation(description: issue.getDescription(), image: issue.getIssueImage(), location: issue.getLocation(), userId: 1, title: issue.getTitle(), type: issue.getType(), likes: 0, favorites: 0, email: issue.getEmail(), phone: issue.getPhone(), alternatePhone: issue.getAltPhone(), group: "", urgency: issue.getUrgency(), sensitiveInfo: issue.getSensitiveInfo(), campus: issue.getCampus(), area: issue.getArea(), specificLocation: issue.getSpecificLocation(), roomNumber: issue.getRoom(), serviceAnimal: issue.getAnimal(), impact: issue.getImpact(), yourBuilding: issue.getBuildingFacilities(), yourFloor: issue.getFloorFacilities(), yourRoom: issue.getRoomFacilities(), requestType: issue.getRequestFor(), issueBuilding: issue.getBuildingService(), issueFloor: issue.getFloorService(), issueRoom: issue.getRoomService(), serviceType: issue.getServiceType(), fundCode: issue.getFundCode(), topic: "", name: issue.getName())) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print("Error: ", err.response.statusCode)
             }
@@ -161,7 +199,7 @@ class NetworkAPI {
     }
     
     func createComment(comment:String, image:String, issueId:Int, userId:Int){
-        apollo.perform(mutation: CreateCommentMutation(body: comment, image: image, userId: userId, issueId: issueId)) { (result, error) in
+        Apollo().getClient().perform(mutation: CreateCommentMutation(body: comment, image: image, userId: userId, issueId: issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
             }
@@ -169,7 +207,7 @@ class NetworkAPI {
     }
     
     func createUser(name: String, netid: String, phone: String, picture: String, completionHandler: @escaping (Int) -> ()){
-        apollo.perform(mutation: CreateUserMutation(name: name, netid: netid, phone: phone, picture: picture))  { (result, error) in
+        Apollo().getClient().perform(mutation: CreateUserMutation(name: name, netid: netid, phone: phone, picture: picture))  { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
             }
@@ -180,7 +218,7 @@ class NetworkAPI {
     }
 
     func addLike(issueId: Int) {
-        apollo.perform(mutation: AddLikeToIssueMutation(id:issueId)) { (result, error) in
+        Apollo().getClient().perform(mutation: AddLikeToIssueMutation(id:issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
             }
@@ -188,7 +226,7 @@ class NetworkAPI {
     }
     
     func deleteLike(issueId: Int) {
-        apollo.perform(mutation: DeleteLikeFromIssueMutation(id:issueId)) { (result, error) in
+        Apollo().getClient().perform(mutation: DeleteLikeFromIssueMutation(id:issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
             }
@@ -196,7 +234,7 @@ class NetworkAPI {
     }
     
     func addFavorite(issueId: Int) {
-        apollo.perform(mutation: AddFavoriteToIssueMutation(id: issueId)) { (result, error) in
+        Apollo().getClient().perform(mutation: AddFavoriteToIssueMutation(id: issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
             }
@@ -204,7 +242,7 @@ class NetworkAPI {
     }
     
     func deleteFavorite(issueId: Int) {
-        apollo.perform(mutation: DeleteFavoriteFromIssueMutation(id: issueId)) { (result, error) in
+        Apollo().getClient().perform(mutation: DeleteFavoriteFromIssueMutation(id: issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 print(err.response.statusCode)
             }
