@@ -13,8 +13,8 @@ import Apollo
 
 class NetworkAPI {
 
-    let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
-//    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
+//    let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
+    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
 
     func getListOfIssues(completionHandler: @escaping (Array<IssueClass>) -> ()) {
         var myIssueList: Array<IssueClass> = []

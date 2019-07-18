@@ -18,7 +18,7 @@ class AccountIssueTableViewController: UITableViewController {
     
     @IBOutlet weak var issueSelector: UISegmentedControl!
     
-    let THIS_USER = 1
+    let THIS_USER = 3
     
     var issuesList:[IssueClass] = []
     
