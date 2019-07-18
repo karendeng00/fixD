@@ -219,7 +219,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         // Add Refresh Control to Table View
         refreshControl!.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
         
-        
+        feedSearchBar.text = "Search issue by title"
         
     }
     
@@ -435,6 +435,10 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             tableView.reloadData()
         }
         
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        feedSearchBar.text = ""
     }
     
     
