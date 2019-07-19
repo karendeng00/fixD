@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import Apollo
 
 class textCommentCell: UITableViewCell{
     
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var userLabel: UILabel!
-    @IBOutlet weak var commentImage: UIImageView!
+    @IBOutlet weak var commentUserImage: UIImageView!
     @IBOutlet weak var commentPic: UIImageView!
     
     override func awakeFromNib() {
@@ -27,8 +26,6 @@ class textCommentCell: UITableViewCell{
 }
 
 class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
-    let apollo = ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!) //delete me
     
     @IBOutlet weak var likeView: UIView!
     @IBOutlet weak var favView: UIView!
@@ -329,7 +326,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath) as! textCommentCell
         cell.commentLabel.text = comments[indexPath.row].myBody
         cell.userLabel.text = comments[indexPath.row].myUserName
-        cell.commentImage.image = UIImage(named:comments[indexPath.row].myUserImage)
+        cell.commentUserImage.image = UIImage(named:comments[indexPath.row].myUserImage)
         return cell
     }
     

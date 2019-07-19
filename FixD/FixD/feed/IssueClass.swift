@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Apollo
 
 class IssueClass {
     
@@ -337,10 +336,6 @@ class IssueClass {
     func getIssueImage() -> String {
         return myIssueImage
     }
-    
-//    func getUser() -> UserProfile {
-//        return myUser
-//    }
     
     func getMyDate() -> String {
         return myDate

@@ -185,12 +185,11 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        NetworkAPI().getUserById(id: 1) { user in } //DELETE THIS!!!!!!!!!!!
+        
         NotificationCenter.default.addObserver(self, selector: #selector(reload(_:)), name: NSNotification.Name("CHECK"), object: nil)
         
-        //Get Issue Data for Feed
-        getIssueData()
+//        NetworkAPI().setUpUser(nav: self.navigationController!) //Move this?
+        getIssueData() //Get Issue Data for Feed
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -270,11 +269,11 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
         
         
-        var all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL")
-        var oit = UserDefaults.standard.bool(forKey: "checkOIT") && obj.getType() == ("SnIssue")
-        var park = UserDefaults.standard.bool(forKey: "checkParking") && obj.getType() == ("PtIssue")
-        var fac = UserDefaults.standard.bool(forKey: "checkFacilities") && obj.getType() == ("EamIssue")
-        var hrl = UserDefaults.standard.bool(forKey: "checkHRL") && obj.getType() == ("HrlIssue")
+        let all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL")
+        let oit = UserDefaults.standard.bool(forKey: "checkOIT") && obj.getType() == ("SnIssue")
+        let park = UserDefaults.standard.bool(forKey: "checkParking") && obj.getType() == ("PtIssue")
+        let fac = UserDefaults.standard.bool(forKey: "checkFacilities") && obj.getType() == ("EamIssue")
+        let hrl = UserDefaults.standard.bool(forKey: "checkHRL") && obj.getType() == ("HrlIssue")
         
         
         if (all || oit || park || fac ||  hrl) {

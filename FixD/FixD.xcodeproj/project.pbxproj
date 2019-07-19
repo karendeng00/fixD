@@ -34,12 +34,14 @@
 		B4EC7FD122B16964001711BC /* LoginScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD022B16963001711BC /* LoginScreenController.swift */; };
 		B4EC7FD722B16E69001711BC /* AccountIssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD522B16E69001711BC /* AccountIssueTableViewController.swift */; };
 		B4EC7FD922B18163001711BC /* NewIssueServiceNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD822B18163001711BC /* NewIssueServiceNowViewController.swift */; };
-		B4ED4D3522AEB9C300E50272 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3422AEB9C300E50272 /* UserProfile.swift */; };
+		B4ED4D3522AEB9C300E50272 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3422AEB9C300E50272 /* UserAccount.swift */; };
 		B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3622AED64F00E50272 /* MapFunctionsViewController.swift */; };
 		B4ED4D3922B003C900E50272 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3822B003C900E50272 /* InviteFriendsViewController.swift */; };
 		B4ED4D3D22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3C22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift */; };
 		B4ED4D3F22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3E22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift */; };
 		B4ED85FC22D8D388002E6D79 /* CommentsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED85FB22D8D388002E6D79 /* CommentsClass.swift */; };
+		B4ED85FE22DF5EB0002E6D79 /* UserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED85FD22DF5EB0002E6D79 /* UserClass.swift */; };
+		B4ED860022E0CCDB002E6D79 /* Apollo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED85FF22E0CCDB002E6D79 /* Apollo.swift */; };
 		F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */; };
 		F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
 		FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */; };
@@ -100,12 +102,14 @@
 		B4EC7FD022B16963001711BC /* LoginScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenController.swift; sourceTree = "<group>"; };
 		B4EC7FD522B16E69001711BC /* AccountIssueTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountIssueTableViewController.swift; sourceTree = "<group>"; };
 		B4EC7FD822B18163001711BC /* NewIssueServiceNowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueServiceNowViewController.swift; sourceTree = "<group>"; };
-		B4ED4D3422AEB9C300E50272 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		B4ED4D3422AEB9C300E50272 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		B4ED4D3622AED64F00E50272 /* MapFunctionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFunctionsViewController.swift; sourceTree = "<group>"; };
 		B4ED4D3822B003C900E50272 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
 		B4ED4D3C22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFromCategoryTableViewController.swift; sourceTree = "<group>"; };
 		B4ED4D3E22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFromCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		B4ED85FB22D8D388002E6D79 /* CommentsClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsClass.swift; sourceTree = "<group>"; };
+		B4ED85FD22DF5EB0002E6D79 /* UserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserClass.swift; sourceTree = "<group>"; };
+		B4ED85FF22E0CCDB002E6D79 /* Apollo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apollo.swift; sourceTree = "<group>"; };
 		F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		F5EE5DB822CA8EBD00F89735 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
@@ -189,6 +193,7 @@
 				B4ED4D4322B034B500E50272 /* useraccount */,
 				B4ED4D4222B0348E00E50272 /* sidemenu */,
 				B4085C0722A850A400A24525 /* AppDelegate.swift */,
+				B4ED85FF22E0CCDB002E6D79 /* Apollo.swift */,
 				B4CA2D1522D3D12E00BC6189 /* API.swift */,
 				B48967EB22D645C600B565D0 /* NetworkAPI.swift */,
 				B4085C0B22A850A500A24525 /* Main.storyboard */,
@@ -219,7 +224,8 @@
 				B4EC7FCB22B16906001711BC /* SettingsTableViewCell.swift */,
 				B4EC7FC822B16906001711BC /* SettingsTableViewController.swift */,
 				B4ED4D3822B003C900E50272 /* InviteFriendsViewController.swift */,
-				B4ED4D3422AEB9C300E50272 /* UserProfile.swift */,
+				B4ED4D3422AEB9C300E50272 /* UserAccount.swift */,
+				B4ED85FD22DF5EB0002E6D79 /* UserClass.swift */,
 			);
 			path = useraccount;
 			sourceTree = "<group>";
@@ -424,7 +430,7 @@
 				FFE35B2422C2AEB90087FC64 /* SubmissionViewController.swift in Sources */,
 				FF95139922CA98E600B94CB2 /* IssueVC.swift in Sources */,
 				FFE35B1822C12E730087FC64 /* NewIssueFMDViewController.swift in Sources */,
-				B4ED4D3522AEB9C300E50272 /* UserProfile.swift in Sources */,
+				B4ED4D3522AEB9C300E50272 /* UserAccount.swift in Sources */,
 				B4EC7FCF22B16906001711BC /* SettingsTableViewCell.swift in Sources */,
 				B4EC7FCE22B16906001711BC /* AccountViewController.swift in Sources */,
 				B4086CE322A956EE00B48EFF /* FeedViewController.swift in Sources */,
@@ -436,6 +442,7 @@
 				B4EC7FD922B18163001711BC /* NewIssueServiceNowViewController.swift in Sources */,
 				B4B1DBF922AAE02A005EFFA9 /* ScreenPageViewController.swift in Sources */,
 				B4ED4D3D22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift in Sources */,
+				B4ED85FE22DF5EB0002E6D79 /* UserClass.swift in Sources */,
 				FFE6EEA422C3BE8C00E2CBED /* HRLredoViewController.swift in Sources */,
 				B48967EC22D645C600B565D0 /* NetworkAPI.swift in Sources */,
 				2299A35422B18E07000BD0F6 /* ContactUsViewController.swift in Sources */,
@@ -448,6 +455,7 @@
 				B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
 				22775BD222CBC4E000130E12 /* ShibAuthViewController.swift in Sources */,
+				B4ED860022E0CCDB002E6D79 /* Apollo.swift in Sources */,
 				FFB2C5A222A968A300BC11ED /* (null) in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
 				FFB2C5A822A97BB100BC11ED /* (null) in Sources */,

@@ -114,9 +114,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="commentImage" destination="HLT-TQ-nkf" id="oM6-3m-2Jo"/>
                                             <outlet property="commentLabel" destination="Dcj-9L-956" id="Cyb-7H-rxi"/>
                                             <outlet property="commentPic" destination="b7E-EW-zZg" id="LkH-Iz-Zb8"/>
+                                            <outlet property="commentUserImage" destination="HLT-TQ-nkf" id="2En-7G-jjH"/>
                                             <outlet property="userLabel" destination="In9-5o-18J" id="wuj-wr-VeS"/>
                                         </connections>
                                     </tableViewCell>
@@ -3469,7 +3469,6 @@
                     <navigationItem key="navigationItem" title="OIT" id="KKL-Md-ESI">
                         <barButtonItem key="rightBarButtonItem" title="Submit" id="EkL-9i-Sfp">
                             <connections>
-                                <action selector="submitIssue:" destination="RgB-Xe-zGh" id="5NQ-rg-vuh"/>
                                 <segue destination="ise-Sj-vpN" kind="popoverPresentation" popoverAnchorBarButtonItem="EkL-9i-Sfp" id="v3b-J1-vTz">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
@@ -3516,6 +3515,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="iWa-e7-teW"/>
+        <segue reference="9lA-t5-3nB"/>
         <segue reference="v3b-J1-vTz"/>
         <segue reference="elw-hr-S50"/>
         <segue reference="tAk-x9-Ry1"/>
