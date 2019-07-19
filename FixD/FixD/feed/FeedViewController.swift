@@ -502,7 +502,10 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
+        feedSearchBar.text = "Search issue by title"
+        searching = false
+        tableView.reloadData()
+        feedSearchBar.resignFirstResponder()
     }
     
     

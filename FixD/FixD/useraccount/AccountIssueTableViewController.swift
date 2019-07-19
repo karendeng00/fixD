@@ -178,7 +178,7 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
         //filter
         searching = false
         tableView.reloadData()
-        issueSearchAndScope.text = ""
+        issueSearchAndScope.text = "Search issue by title"
         switch issueSearchAndScope.selectedScopeButtonIndex {
         case 0:
             print("Issues I've Reported has been selected")
@@ -224,6 +224,13 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         issueSearchAndScope.text = ""
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        issueSearchAndScope.text = "Search issue by title"
+        searching = false
+        tableView.reloadData()
+        issueSearchAndScope.resignFirstResponder()
     }
     
 }
