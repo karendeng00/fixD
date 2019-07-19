@@ -221,6 +221,10 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         
         feedSearchBar.text = "Search issue by title"
         
+        var contentOffset = tableView.contentOffset
+        contentOffset.y += feedSearchBar.frame.size.height
+        tableView.contentOffset = contentOffset
+        
     }
     
     @objc func reload(_ sender: Any) {
