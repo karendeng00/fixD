@@ -13,6 +13,9 @@ class Apollo {
     
     //    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
     
+    let fixd = "https://fixd-test.cloud.duke.edu/graphql"
+    let local = "http://localhost:3000/graphql"
+    
 //    func getClient() -> ApolloClient {
 //        let token = OAuthService.shared.getAccessToken() ?? ""
 //        print(token)
@@ -24,6 +27,6 @@ class Apollo {
 //    }
     
     func getClient() -> ApolloClient {
-        return ApolloClient(url: URL(string: "https://fixd-test.cloud.duke.edu/graphql")!)
+        return ApolloClient(url: URL(string: fixd)!)
     }
 }

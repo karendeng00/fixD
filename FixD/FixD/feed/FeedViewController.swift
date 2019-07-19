@@ -221,6 +221,10 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         
         feedSearchBar.text = "Search issue by title"
         
+        var contentOffset = tableView.contentOffset
+        contentOffset.y += feedSearchBar.frame.size.height
+        tableView.contentOffset = contentOffset
+        
     }
     
     @objc func reload(_ sender: Any) {
@@ -378,7 +382,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             cell.issueDate.text = obj.getIssueDate()
             cell.issueTime.text = obj.getIssueTime()
         }
-    else {
+        else {
             let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
             cell.setIssue(issue: obj)
             cell.issueName.text = obj.getTitle()
@@ -477,7 +481,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     var searching = false
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        //feedSearchIssues = myIssueList.filter({$0.getTitle().prefix(searchText.count) == searchText})
         feedSearchIssues = myIssueList.filter({( issue:IssueClass) -> Bool in
             return issue.getTitle().lowercased().contains(searchText.lowercased())
         })
@@ -496,6 +499,13 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         feedSearchBar.text = ""
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        feedSearchBar.text = "Search issue by title"
+        searching = false
+        tableView.reloadData()
+        feedSearchBar.resignFirstResponder()
     }
     
     
