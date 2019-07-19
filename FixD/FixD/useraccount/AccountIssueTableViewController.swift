@@ -14,6 +14,7 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
     var myUserIssuesList:[IssueClass] = []
     var issuesReportedList:[IssueClass] = []
     var issuesStarredList:[IssueClass] = []
+    var scopeList:[IssueClass] = []
     var listFlag = true
     
 //    @IBOutlet weak var issueSelector: UISegmentedControl!
@@ -50,25 +51,47 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return issuesList.count
+        if searching {
+            return accountSearchIssues.count
+        } else {
+            return scopeList.count
+        }
+//        return issuesList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell", for: indexPath) as! FeedIssueCell
         
         //let obj = myUserIssuesList[indexPath.row]
-        let obj = issuesList[indexPath.row]
+        //let obj = issuesList[indexPath.row]
+        if searching {
+            let obj = accountSearchIssues[indexPath.row]
+
+            cell.setIssue(issue: obj)
+            cell.issueName.text = obj.getTitle()
+            cell.issueDescription.text = obj.getDescription()
+            cell.issueLocation.text = obj.getLocation()
+            cell.issueImage.image = UIImage(named: obj.getIssueImage())
+            //cell.issueUpvotes.text = String(obj.getUpVotes())
+            //cell.issueFavorites.text = String(obj.getFavorites())
+            cell.userName.text = obj.myUserName
+    //        cell.userImage.image = UIImage(named: obj.myUserImage)
+            cell.locationImage.image = UIImage(named:"locicon")
+        } else {
+            let obj = scopeList[indexPath.row]
+            
+            cell.setIssue(issue: obj)
+            cell.issueName.text = obj.getTitle()
+            cell.issueDescription.text = obj.getDescription()
+            cell.issueLocation.text = obj.getLocation()
+            cell.issueImage.image = UIImage(named: obj.getIssueImage())
+            //cell.issueUpvotes.text = String(obj.getUpVotes())
+            //cell.issueFavorites.text = String(obj.getFavorites())
+            cell.userName.text = obj.myUserName
+            //        cell.userImage.image = UIImage(named: obj.myUserImage)
+            cell.locationImage.image = UIImage(named:"locicon")
+        }
         
-        cell.setIssue(issue: obj)
-        cell.issueName.text = obj.getTitle()
-        cell.issueDescription.text = obj.getDescription()
-        cell.issueLocation.text = obj.getLocation()
-        cell.issueImage.image = UIImage(named: obj.getIssueImage())
-        //cell.issueUpvotes.text = String(obj.getUpVotes())
-        //cell.issueFavorites.text = String(obj.getFavorites())
-        cell.userName.text = obj.myUserName
-//        cell.userImage.image = UIImage(named: obj.myUserImage)
-        cell.locationImage.image = UIImage(named:"locicon")
         return cell
     }
     
@@ -113,11 +136,13 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
             for issue in issues {
                 if issue.getUserId() == self.THIS_USER && self.listFlag == true {
                     self.issuesReportedList.append(issue)
-                    self.issuesList = self.issuesReportedList
+                    //self.issuesList = self.issuesReportedList
+                    self.scopeList = self.issuesReportedList
                 }
                 if issue.getUserId() != self.THIS_USER && self.listFlag == false {
                     self.issuesStarredList.append(issue)
-                    self.issuesList = self.issuesStarredList
+                    //self.issuesList = self.issuesStarredList
+                    self.scopeList = self.issuesStarredList
                 }
             }
             self.tableView.reloadData()
@@ -146,10 +171,14 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
             print("Issues I've Reported has been selected")
             listFlag = true
             self.getIssueData()
+            //scopeList = issuesReportedList
+            print(scopeList.count)
         case 1:
             print("Issues I've Starred has been selected.")
             listFlag = false
             self.getIssueData()
+            //scopeList = issuesStarredList
+            print(scopeList.count)
         default:
             break
         }
@@ -161,6 +190,29 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
         self.issuesList = Array()
     }
     
+    var accountIssueList = Set<IssueClass>()
+    var accountSearchIssues = [IssueClass]()
+    var searching = false
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        accountSearchIssues = scopeList.filter({( issue:IssueClass) -> Bool in
+            return issue.getTitle().lowercased().contains(searchText.lowercased())
+        })
+        searching = true
+        tableView.reloadData()
+        for item in accountSearchIssues {
+            print(item.getTitle())
+        }
+        
+        if searchText == "" {
+            searching = false
+            tableView.reloadData()
+        }
+        
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        issueSearchAndScope.text = ""
+    }
     
 }

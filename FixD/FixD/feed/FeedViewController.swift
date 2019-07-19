@@ -382,7 +382,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             cell.issueDate.text = obj.getIssueDate()
             cell.issueTime.text = obj.getIssueTime()
         }
-    else {
+        else {
             let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
             cell.setIssue(issue: obj)
             cell.issueName.text = obj.getTitle()
@@ -481,7 +481,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     var searching = false
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        //feedSearchIssues = myIssueList.filter({$0.getTitle().prefix(searchText.count) == searchText})
         feedSearchIssues = myIssueList.filter({( issue:IssueClass) -> Bool in
             return issue.getTitle().lowercased().contains(searchText.lowercased())
         })
