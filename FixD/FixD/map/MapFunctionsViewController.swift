@@ -12,6 +12,8 @@ import CoreLocation
 
 class MapFunctionsViewController: UIViewController {
     
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
+    
     let transition = SlideInTransition()
     var topView: UIView?
     private let locationManager = CLLocationManager()
@@ -39,6 +41,8 @@ class MapFunctionsViewController: UIViewController {
         myMapView.delegate = self
         myMapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: NSStringFromClass(IssueAnnotation.self))
         getIssueData()
+        
+        
         //creates menu button
         let menuBtn = UIButton(type: .custom)
         menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 15, height: 15)
@@ -173,6 +177,7 @@ class MapFunctionsViewController: UIViewController {
         }
     }
     
+
 }
 
 extension MapFunctionsViewController: UIViewControllerTransitioningDelegate {
@@ -256,6 +261,11 @@ extension MapFunctionsViewController: MKMapViewDelegate {
         if let annotation = view.annotation, annotation.isKind(of: IssueAnnotation.self) {
             performSegue(withIdentifier: "MapToIssuePage", sender: self)
         }
+    }
+    
+    @IBAction func refreshPress(_ sender: Any) {
+        getIssueData()
+        setUpIssuesOnMap()
     }
     
 }

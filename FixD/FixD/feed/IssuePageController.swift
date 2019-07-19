@@ -290,23 +290,35 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func updateComments() {
-        if commentTextField.hasText {
-            myIssue.addComment(comment: commentTextField.text!, image: "", issueId: myIssue.getID(), userId: myIssue.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage)
-            commentTextField.text = ""
-            comments = myIssue.getListOfComments()
-            commentView.reloadData()
-        }
+        
         if hasImage == true {
             myIssue.addImage(image: tempImg!)
+            upload()
+            
             hasImage = false
         }
         else {
-            myIssue.addImage(image: UIImage())
+            tempImg = UIImage()
+            myIssue.addImage(image: tempImg!)
+        }   
+        
+        if commentTextField.hasText {
+            myIssue.addComment(comment: commentTextField.text!, image: tempImg! , issueId: myIssue.getID(), userId: myIssue.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage)
         }
+        else {
+            myIssue.addComment(comment: "", image: tempImg! , issueId: myIssue.getID(), userId: myIssue.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage)
+        }
+        
+        commentTextField.text = ""
+        comments = myIssue.getListOfComments()
+        commentView.reloadData()
+        
         images = myIssue.getListOfImages()
         commentView.reloadData()
         scrollToBottom()
     }
+    
+    
     
     func listenForNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -327,6 +339,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.commentLabel.text = comments[indexPath.row].myBody
         cell.userLabel.text = comments[indexPath.row].myUserName
         cell.commentUserImage.image = UIImage(named:comments[indexPath.row].myUserImage)
+        cell.commentPic.image = comments[indexPath.row].myImage
         return cell
     }
     
@@ -334,4 +347,55 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         updateComments()
         view.endEditing(true)
     }
+    
+    func upload() {
+        guard let image = tempImg else { return  }
+        
+        let filename = "avatar.png"
+        
+        // generate boundary string using a unique per-app string
+        let boundary = UUID().uuidString
+
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        
+        // Set the URLRequest to POST and to the specified URL
+        var urlRequest = URLRequest(url: URL(string: "https://catbox.moe/user/api.php")!)
+        urlRequest.httpMethod = "POST"
+        
+        // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
+        // And the boundary is also set here
+        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        var data = Data()
+        
+        // Add the image data to the raw http request data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"fileToUpload\"; filename=\"\(filename)\"\r\n".data(using: .utf8)!)
+        data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
+        data.append(image.pngData()!)
+        
+        // End the raw http request data, note that there is 2 extra dash ("-") at the end, this is to indicate the end of the data
+        // According to the HTTP 1.1 specification https://tools.ietf.org/html/rfc7230
+        data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+        
+        // Send a POST request to the URL, with the data we created earlier
+        session.uploadTask(with: urlRequest, from: data, completionHandler: { responseData, response, error in
+            
+            if(error != nil){
+                print("\(error!.localizedDescription)")
+            }
+            
+            guard let responseData = responseData else {
+                print("no response data")
+                return
+            }
+            
+            if let responseString = String(data: responseData, encoding: .utf8) {
+                print("uploaded to: \(responseString)")
+            }
+        }).resume()
+    }
+    
 }

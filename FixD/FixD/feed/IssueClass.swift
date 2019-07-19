@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class IssueClass {
+class IssueClass: Equatable, Hashable {
     
     private var myIssueID:Int = 0
     
@@ -105,6 +105,17 @@ class IssueClass {
         self.myLikes = likes
     }
 
+    static func == (lhs: IssueClass, rhs: IssueClass) -> Bool {
+        return lhs.myIssueID == rhs.myIssueID
+    }
+    
+    static func != (lhs: IssueClass, rhs: IssueClass) -> Bool {
+        return lhs.myIssueID != rhs.myIssueID
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(myIssueID)
+    }
     
     //Set type of the Issue (SN, HRL, Dining, PT, EAM)
     func setType(type:String) {
@@ -183,9 +194,9 @@ class IssueClass {
         favorited = !favorited
     }
     
-    func addComment(comment:String, image:String, issueId:Int, userId:Int, user_name: String, user_image: String){
+    func addComment(comment:String, image: UIImage, issueId:Int, userId:Int, user_name: String, user_image: String){
         myComments.append(CommentsClass(body: comment, image: image, userId: userId, issueId: issueId, name: user_name, user_image: user_image))
-        NetworkAPI().createComment(comment: comment, image: image, issueId: issueId, userId: userId)
+        NetworkAPI().createComment(comment: comment, image: "path", issueId: issueId, userId: userId)
     }
     
     func addImage(image:UIImage) {
