@@ -27,6 +27,6 @@ class Apollo {
 //    }
     
     func getClient() -> ApolloClient {
-        return ApolloClient(url: URL(string: local)!)
+        return ApolloClient(url: URL(string: fixd)!)
     }
 }
