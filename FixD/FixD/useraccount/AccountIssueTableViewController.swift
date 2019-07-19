@@ -34,6 +34,7 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
         //list = myUserIssuesList
         
         issueSearchAndScope.scopeButtonTitles = ["Issues I've Favorited", "Issues I've Reported"]
+        issueSearchAndScope.text = "Search issue by title"
         
     }
 
@@ -137,12 +138,21 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
                 if issue.getUserId() == self.THIS_USER && self.listFlag == true {
                     self.issuesReportedList.append(issue)
                     //self.issuesList = self.issuesReportedList
-                    self.scopeList = self.issuesReportedList
+                    if self.searching {
+                        self.accountSearchIssues = self.issuesReportedList
+                    } else {
+                        self.scopeList = self.issuesReportedList
+                    }
                 }
                 if issue.getUserId() != self.THIS_USER && self.listFlag == false {
                     self.issuesStarredList.append(issue)
                     //self.issuesList = self.issuesStarredList
-                    self.scopeList = self.issuesStarredList
+                    //self.scopeList = self.issuesStarredList
+                    if self.searching {
+                        self.accountSearchIssues = self.issuesStarredList
+                    } else {
+                        self.scopeList = self.issuesStarredList
+                    }
                 }
             }
             self.tableView.reloadData()
@@ -166,18 +176,19 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         //filter
+        searching = false
+        tableView.reloadData()
+        issueSearchAndScope.text = ""
         switch issueSearchAndScope.selectedScopeButtonIndex {
         case 0:
             print("Issues I've Reported has been selected")
             listFlag = true
             self.getIssueData()
-            //scopeList = issuesReportedList
             print(scopeList.count)
         case 1:
             print("Issues I've Starred has been selected.")
             listFlag = false
             self.getIssueData()
-            //scopeList = issuesStarredList
             print(scopeList.count)
         default:
             break
