@@ -18,7 +18,7 @@ class AccountIssueTableViewController: UITableViewController {
     
     @IBOutlet weak var issueSelector: UISegmentedControl!
     
-    let THIS_USER = 3
+    let THIS_USER = 1
     
     var issuesList:[IssueClass] = []
     
@@ -62,7 +62,7 @@ class AccountIssueTableViewController: UITableViewController {
         //cell.issueUpvotes.text = String(obj.getUpVotes())
         //cell.issueFavorites.text = String(obj.getFavorites())
         cell.userName.text = obj.myUserName
-        cell.userImage.image = UIImage(named: obj.myUserImage)
+//        cell.userImage.image = UIImage(named: obj.myUserImage)
         cell.locationImage.image = UIImage(named:"locicon")
         return cell
     }
