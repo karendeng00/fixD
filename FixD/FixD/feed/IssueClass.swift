@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class IssueClass {
+class IssueClass: Equatable, Hashable {
     
     private var myIssueID:Int = 0
     
@@ -105,6 +105,17 @@ class IssueClass {
         self.myLikes = likes
     }
 
+    static func == (lhs: IssueClass, rhs: IssueClass) -> Bool {
+        return lhs.myIssueID == rhs.myIssueID
+    }
+    
+    static func != (lhs: IssueClass, rhs: IssueClass) -> Bool {
+        return lhs.myIssueID != rhs.myIssueID
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(myIssueID)
+    }
     
     //Set type of the Issue (SN, HRL, Dining, PT, EAM)
     func setType(type:String) {

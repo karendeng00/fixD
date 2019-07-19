@@ -168,7 +168,7 @@ class FeedIssueCell: UITableViewCell {
 }
 
 
-class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, UIViewControllerTransitioningDelegate{
+class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, UIViewControllerTransitioningDelegate, UISearchBarDelegate {
     
     let transition = SlideInTransition()
     var topView: UIView?
@@ -218,7 +218,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         // Add Refresh Control to Table View
         refreshControl!.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
         
-        
+        feedSearchBar.text = "Search issue by title"
         
     }
     
@@ -262,7 +262,11 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //#warning Incomplete implementation, return the number of rows
-        return myIssueList.count
+        if searching {
+            return feedSearchIssues.count
+        } else {
+            return myIssueList.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -288,22 +292,50 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
         
          //Configure the cell...
-        let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
-
+//            let obj = filteredIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
+//            cell.setIssue(issue: obj)
+//            cell.issueName.text = obj.getTitle()
+//            cell.issueDescription.text = obj.getDescription()
+//            cell.issueLocation.text = obj.getLocation()
+//            cell.issueImage.image = UIImage(named: obj.getIssueImage())
+//            //        cell.issueUpvotes.text = String(obj.getUpVotes())
+//            //        cell.issueFavorites.text = String(obj.getFavorites())
+//            cell.userName.text = obj.myUserName
+//            cell.userImage.image = UIImage(named: obj.myUserImage)
+//            cell.issueDate.text = obj.getIssueDate()
+//            cell.issueTime.text = obj.getIssueTime()
+//            cell.textLabel?.text = nameList[indexPath.row]
         
-        
-        cell.setIssue(issue: obj)
-        cell.issueName.text = obj.getTitle()
-        cell.issueDescription.text = obj.getDescription()
-        cell.issueLocation.text = obj.getLocation()
-        cell.issueImage.image = UIImage(named: obj.getIssueImage())
-//        cell.issueUpvotes.text = String(obj.getUpVotes())
-//        cell.issueFavorites.text = String(obj.getFavorites())
-        cell.userName.text = obj.myUserName
-        cell.userImage.image = UIImage(named: obj.myUserImage)
-        cell.issueDate.text = obj.getIssueDate()
-        cell.issueTime.text = obj.getIssueTime()
+        if searching {
+            let obj = feedSearchIssues.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
+            cell.setIssue(issue: obj)
+            cell.issueName.text = obj.getTitle()
+            cell.issueDescription.text = obj.getDescription()
+            cell.issueLocation.text = obj.getLocation()
+            cell.issueImage.image = UIImage(named: obj.getIssueImage())
+            //        cell.issueUpvotes.text = String(obj.getUpVotes())
+            //        cell.issueFavorites.text = String(obj.getFavorites())
+            cell.userName.text = obj.myUserName
+            cell.userImage.image = UIImage(named: obj.myUserImage)
+            cell.issueDate.text = obj.getIssueDate()
+            cell.issueTime.text = obj.getIssueTime()
+        }
+    else {
+            let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
+            cell.setIssue(issue: obj)
+            cell.issueName.text = obj.getTitle()
+            cell.issueDescription.text = obj.getDescription()
+            cell.issueLocation.text = obj.getLocation()
+            cell.issueImage.image = UIImage(named: obj.getIssueImage())
+            //        cell.issueUpvotes.text = String(obj.getUpVotes())
+            //        cell.issueFavorites.text = String(obj.getFavorites())
+            cell.userName.text = obj.myUserName
+            cell.userImage.image = UIImage(named: obj.myUserImage)
+            cell.issueDate.text = obj.getIssueDate()
+            cell.issueTime.text = obj.getIssueTime()
+        }
         return cell
+        
     }
     
     @IBAction func didTapMenu(_ sender: UIButton) {
@@ -380,5 +412,33 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         transition.isPresenting = false
         return transition
     }
+    
+    @IBOutlet weak var feedSearchBar: UISearchBar!
+    var feedIssueList = Set<IssueClass>()
+    var feedSearchIssues = [IssueClass]()
+    var searching = false
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //feedSearchIssues = myIssueList.filter({$0.getTitle().prefix(searchText.count) == searchText})
+        feedSearchIssues = myIssueList.filter({( issue:IssueClass) -> Bool in
+            return issue.getTitle().lowercased().contains(searchText.lowercased())
+        })
+        searching = true
+        tableView.reloadData()
+        for item in feedSearchIssues {
+            print(item.getTitle())
+        }
+        
+        if searchText == "" {
+            searching = false
+            tableView.reloadData()
+        }
+        
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        feedSearchBar.text = ""
+    }
+    
     
 }
