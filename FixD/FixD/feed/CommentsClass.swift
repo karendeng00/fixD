@@ -17,7 +17,7 @@ class CommentsClass {
     var myIssueId: Int = 0
     var myUserName:String = ""
     var myUserImage:String = ""
-//    var myUserNetId:String = ""
+
     
     init(body:String, image:UIImage, userId:Int, issueId:Int, name:String, user_image:String){
         self.myBody = body

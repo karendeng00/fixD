@@ -12,6 +12,8 @@ import CoreLocation
 
 class MapFunctionsViewController: UIViewController {
     
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
+    
     let transition = SlideInTransition()
     var topView: UIView?
     private let locationManager = CLLocationManager()
@@ -39,6 +41,8 @@ class MapFunctionsViewController: UIViewController {
         myMapView.delegate = self
         myMapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: NSStringFromClass(IssueAnnotation.self))
         getIssueData()
+        
+        
         //creates menu button
         let menuBtn = UIButton(type: .custom)
         menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 15, height: 15)
@@ -96,9 +100,9 @@ class MapFunctionsViewController: UIViewController {
             self.present(nextViewController, animated:false, completion:nil)
             
         case .logout:
-            
             let navigationController = UINavigationController(rootViewController: logOutController)
             self.present(navigationController, animated:false, completion: nil)
+            
             
         default:
             break
@@ -134,11 +138,11 @@ class MapFunctionsViewController: UIViewController {
     private func setUpIssuesOnMap() {
         for issue in myIssueList {
             
-            var all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL")
-            var oit = UserDefaults.standard.bool(forKey: "checkOIT") && issue.getType() == ("SnIssue")
-            var park = UserDefaults.standard.bool(forKey: "checkParking") && issue.getType() == ("PtIssue")
-            var fac = UserDefaults.standard.bool(forKey: "checkFacilities") && issue.getType() == ("EamIssue")
-            var hrl = UserDefaults.standard.bool(forKey: "checkHRL") && issue.getType() == ("HrlIssue")
+            let all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL")
+            let oit = UserDefaults.standard.bool(forKey: "checkOIT") && issue.getType() == ("SnIssue")
+            let park = UserDefaults.standard.bool(forKey: "checkParking") && issue.getType() == ("PtIssue")
+            let fac = UserDefaults.standard.bool(forKey: "checkFacilities") && issue.getType() == ("EamIssue")
+            let hrl = UserDefaults.standard.bool(forKey: "checkHRL") && issue.getType() == ("HrlIssue")
             
              if (all || oit || park || fac ||  hrl) {
                 print(issue.getTitle())
@@ -173,6 +177,7 @@ class MapFunctionsViewController: UIViewController {
         }
     }
     
+
 }
 
 extension MapFunctionsViewController: UIViewControllerTransitioningDelegate {
@@ -256,6 +261,11 @@ extension MapFunctionsViewController: MKMapViewDelegate {
         if let annotation = view.annotation, annotation.isKind(of: IssueAnnotation.self) {
             performSegue(withIdentifier: "MapToIssuePage", sender: self)
         }
+    }
+    
+    @IBAction func refreshPress(_ sender: Any) {
+        getIssueData()
+        setUpIssuesOnMap()
     }
     
 }

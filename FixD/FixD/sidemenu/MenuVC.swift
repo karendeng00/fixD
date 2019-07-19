@@ -191,6 +191,9 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
         
         if(indexPath.row == 10) {
             dismiss(animated: true)
+            if(OAuthService.shared.isAuthenticated()) {
+                OAuthService.shared.logout()
+            }
             self.didTapMenuType!(menuType)
         }
         

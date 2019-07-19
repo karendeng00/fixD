@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import Apollo
 
 class textCommentCell: UITableViewCell{
     
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var userLabel: UILabel!
-    @IBOutlet weak var commentImage: UIImageView!
+    @IBOutlet weak var commentUserImage: UIImageView!
     @IBOutlet weak var commentPic: UIImageView!
     
     override func awakeFromNib() {
@@ -27,8 +26,6 @@ class textCommentCell: UITableViewCell{
 }
 
 class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
-    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphiql")!) //delete me
     
     @IBOutlet weak var likeView: UIView!
     @IBOutlet weak var favView: UIView!
@@ -184,13 +181,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             likeView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
             myIssue.checkLiked(id: myIssue.getID())
-            if (myIssue.getUpVoteState()){
-                likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
-                likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
-            } else {
-                likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
-                likeButton.setImage(UIImage(named: "heart-1"), for: .normal)
-            }
+            changeLikeOrFavoriteButton(button: likeButton, state: myIssue.getUpVoteState(), imageOne: UIImage(named: "filled heart"), imageTwo: UIImage(named: "heart-1"))
         }
             
         else {
@@ -205,13 +196,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             favView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
             myIssue.checkFavorited(id: myIssue.getID())
-            if (myIssue.getFavoritesState()){
-                likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
-                favButton.setImage(UIImage(named: "filled star"), for: .normal)
-            }else {
-                likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
-                favButton.setImage(UIImage(named: "star"), for: .normal)
-            }
+            changeLikeOrFavoriteButton(button: favButton, state: myIssue.getFavoritesState(), imageOne: UIImage(named: "filled star"), imageTwo: UIImage(named: "star"))
         }
         else {
             favView.backgroundColor = granite
@@ -220,6 +205,15 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    fileprivate func changeLikeOrFavoriteButton(button: UIButton!, state: Bool, imageOne: UIImage?, imageTwo: UIImage?) {
+        if (state){
+            likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
+            button.setImage(imageOne, for: .normal)
+        }else {
+            likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
+            button.setImage(imageTwo, for: .normal)
+        }
+    }
     
     @objc func longC(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .ended {
@@ -255,7 +249,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             if self.comments.count > 0{
                 self.scrollToBottom()
             }
-            self.likeAndFavoriteAmountLabel.text = "\(issue.getUpVotes()) likes, \(issue.getFavorites()) favorites"
+            self.changeLikeOrFavoriteButton(button: self.likeButton, state: self.myIssue.getUpVoteState(), imageOne: UIImage(named: "filled heart"), imageTwo: UIImage(named: "heart-1"))
+            self.changeLikeOrFavoriteButton(button: self.favButton, state: self.myIssue.getFavoritesState(), imageOne: UIImage(named: "filled star"), imageTwo: UIImage(named: "star"))
         }
         configureTapGesture()
     }
@@ -290,7 +285,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         if notification.name == UIResponder.keyboardWillShowNotification  || notification.name == UIResponder.keyboardWillChangeFrameNotification{
             view.frame.origin.y = -keyboardRect.height + 175
         }else {
-            view.frame.origin.y = 87
+            view.frame.origin.y = 89
         }
     }
     
@@ -343,7 +338,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath) as! textCommentCell
         cell.commentLabel.text = comments[indexPath.row].myBody
         cell.userLabel.text = comments[indexPath.row].myUserName
-        cell.commentImage.image = UIImage(named:comments[indexPath.row].myUserImage)
+        cell.commentUserImage.image = UIImage(named:comments[indexPath.row].myUserImage)
         cell.commentPic.image = comments[indexPath.row].myImage
         return cell
     }
