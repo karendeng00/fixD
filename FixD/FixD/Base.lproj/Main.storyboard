@@ -96,7 +96,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Comments" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dcj-9L-956">
-                                                    <rect key="frame" x="54" y="30" width="268" height="22"/>
+                                                    <rect key="frame" x="54" y="30" width="280" height="24.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2163,21 +2163,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="519.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="RVG-ha-x1F">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="28"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Issues I've Reported"/>
-                                <segment title="Issues I've Starred"/>
-                            </segments>
-                            <color key="tintColor" red="0.0012998840538784862" green="0.13096660375595093" blue="0.41092148423194885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" showsScopeBar="YES" id="n5m-fL-lC9">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
                             <connections>
-                                <action selector="selectorChanged:" destination="8um-IF-ytT" eventType="valueChanged" id="iFi-3q-coJ"/>
+                                <outlet property="delegate" destination="8um-IF-ytT" id="JTP-cG-r9T"/>
                             </connections>
-                        </segmentedControl>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IssueCell" rowHeight="217" id="e0z-Em-jZg" customClass="FeedIssueCell" customModule="FixD" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="56" width="414" height="217"/>
+                                <rect key="frame" x="0.0" y="128" width="414" height="217"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e0z-Em-jZg" id="0u9-ht-4Gu">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="216.5"/>
@@ -2416,7 +2412,7 @@
                     </tableView>
                     <connections>
                         <outlet property="accountFeed" destination="eMb-gj-9Fd" id="VrX-yb-ZMO"/>
-                        <outlet property="issueSelector" destination="RVG-ha-x1F" id="rze-7d-xIJ"/>
+                        <outlet property="issueSearchAndScope" destination="n5m-fL-lC9" id="ydR-oW-uY6"/>
                         <segue destination="j16-qw-gvl" kind="show" identifier="ShowIssuePageFromAccount" id="aQc-FV-48w"/>
                     </connections>
                 </tableViewController>

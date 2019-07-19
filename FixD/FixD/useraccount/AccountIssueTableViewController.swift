@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountIssueTableViewController: UITableViewController {
+class AccountIssueTableViewController: UITableViewController, UISearchBarDelegate {
 
     let myCellIndentifier = "IssueCell"
     var myUserIssuesList:[IssueClass] = []
@@ -16,7 +16,9 @@ class AccountIssueTableViewController: UITableViewController {
     var issuesStarredList:[IssueClass] = []
     var listFlag = true
     
-    @IBOutlet weak var issueSelector: UISegmentedControl!
+//    @IBOutlet weak var issueSelector: UISegmentedControl!
+    @IBOutlet weak var issueSearchAndScope: UISearchBar!
+    
     
     let THIS_USER = 1
     
@@ -29,6 +31,9 @@ class AccountIssueTableViewController: UITableViewController {
         
         getIssueData()
         //list = myUserIssuesList
+        
+        issueSearchAndScope.scopeButtonTitles = ["Issues I've Favorited", "Issues I've Reported"]
+        
     }
 
     @objc func refresh(_ sender: Any) {
@@ -119,8 +124,24 @@ class AccountIssueTableViewController: UITableViewController {
         }
     }
     
-    @IBAction func selectorChanged(_ sender: Any) {
-        switch issueSelector.selectedSegmentIndex {
+//    @IBAction func selectorChanged(_ sender: Any) {
+//        switch issueSearchAndScope.selectedSegmentIndex {
+//        case 0:
+//            print("Issues I've Reported has been selected")
+//            listFlag = true
+//            self.getIssueData()
+//        case 1:
+//            print("Issues I've Starred has been selected.")
+//            listFlag = false
+//            self.getIssueData()
+//        default:
+//            break
+//        }
+//    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        //filter
+        switch issueSearchAndScope.selectedScopeButtonIndex {
         case 0:
             print("Issues I've Reported has been selected")
             listFlag = true
@@ -139,5 +160,7 @@ class AccountIssueTableViewController: UITableViewController {
         self.issuesStarredList = Array()
         self.issuesList = Array()
     }
+    
+    
     
 }
