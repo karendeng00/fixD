@@ -175,5 +175,13 @@ class NetworkAPI {
             }
         }
     }
+    
+    func deleteIssue(issueID: Int) {
+        apollo.perform(mutation: DeleteIssueMutation(id: issueID)) {(result, error) in
+            if let err = error as? GraphQLHTTPResponseError {
+                print(err.response.statusCode)
+            }
+        }
+    }
 
 }

@@ -86,6 +86,7 @@ class AccountIssueTableViewController: UITableViewController {
     **/
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let swipeAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+            NetworkAPI().deleteIssue(issueID: self.issuesList[indexPath.row].getID())
             self.issuesList.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .bottom)
             completionHandler(true)
