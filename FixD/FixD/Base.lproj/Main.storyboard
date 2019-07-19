@@ -23,11 +23,11 @@
             <objects>
                 <viewController id="j16-qw-gvl" customClass="IssuePageController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xjr-Mj-4FN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="519.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJV-py-2t9">
-                                <rect key="frame" x="24" y="425.5" width="36" height="36"/>
+                                <rect key="frame" x="24" y="665" width="36" height="36"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cameraIcon" translatesAutoresizingMaskIntoConstraints="NO" id="8c9-lC-dJx">
                                         <rect key="frame" x="6" y="6" width="24" height="24"/>
@@ -46,7 +46,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFZ-fL-20I">
-                                <rect key="frame" x="66" y="425.5" width="36" height="36"/>
+                                <rect key="frame" x="66" y="665" width="36" height="36"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photos" translatesAutoresizingMaskIntoConstraints="NO" id="1dN-Uz-DTo">
                                         <rect key="frame" x="6" y="6" width="24" height="24"/>
@@ -65,7 +65,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZCr-ds-qkn">
-                                <rect key="frame" x="30" y="395" width="354" height="6.5"/>
+                                <rect key="frame" x="30" y="351" width="354" height="290"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextCommentCell" rowHeight="83" id="grs-mx-Fph" customClass="textCommentCell" customModule="FixD" customModuleProvider="target">
@@ -123,7 +123,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fuc-Po-0gk">
-                                <rect key="frame" x="0.0" y="325" width="414" height="45"/>
+                                <rect key="frame" x="0.0" y="281" width="414" height="45"/>
                                 <subviews>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-Ei-cvq">
                                         <rect key="frame" x="15" y="0.0" width="126.5" height="45"/>
@@ -222,7 +222,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hD8-Mu-Ysd">
-                                <rect key="frame" x="10" y="59" width="394" height="251"/>
+                                <rect key="frame" x="10" y="15" width="394" height="251"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RyZ-vs-0vh">
                                         <rect key="frame" x="18" y="229" width="71" height="18"/>
@@ -362,13 +362,13 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Comment Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vTb-sv-7d4">
-                                <rect key="frame" x="108" y="428.5" width="234" height="30"/>
+                                <rect key="frame" x="108" y="668" width="234" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPJ-Ct-UiG">
-                                <rect key="frame" x="348" y="425.5" width="36" height="36"/>
+                                <rect key="frame" x="348" y="665" width="36" height="36"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="send" translatesAutoresizingMaskIntoConstraints="NO" id="ONZ-vL-NbX">
                                         <rect key="frame" x="6" y="6" width="24" height="24"/>
@@ -387,7 +387,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uME-Sh-oPh">
-                                <rect key="frame" x="15" y="385" width="384" height="2"/>
+                                <rect key="frame" x="15" y="341" width="384" height="2"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="shp-6j-Ker"/>
@@ -1498,7 +1498,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="dib-oR-q6K">
+                        <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="dib-oR-q6K">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
@@ -3626,6 +3626,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="v3b-J1-vTz"/>
         <segue reference="elw-hr-S50"/>
-        <segue reference="aQc-FV-48w"/>
+        <segue reference="tAk-x9-Ry1"/>
     </inferredMetricsTieBreakers>
 </document>

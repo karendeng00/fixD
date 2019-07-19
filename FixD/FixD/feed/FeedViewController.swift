@@ -501,5 +501,9 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         feedSearchBar.text = ""
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+    }
+    
     
 }
