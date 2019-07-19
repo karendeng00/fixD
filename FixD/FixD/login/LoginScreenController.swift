@@ -22,7 +22,6 @@ class LoginScreenController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nav = self.navigationController
         oAuthService = OAuthService.shared
         if oAuthService!.isAuthenticated() {
             UserDefaults.standard.set(true, forKey: "LoggedIn")
