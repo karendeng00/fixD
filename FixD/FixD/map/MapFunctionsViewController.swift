@@ -155,6 +155,7 @@ class MapFunctionsViewController: UIViewController {
                             issueAnnotation.title = issue.getTitle()
                             issueAnnotation.imageName = issue.getIssueImage()
                             issueAnnotation.issueID = issue.getID()
+                            issueAnnotation.type = issue.getType()
                             self.myMapView.addAnnotation(issueAnnotation)
                         }
                     }
@@ -239,6 +240,7 @@ extension MapFunctionsViewController: MKMapViewDelegate {
         if let markerAnnotationView = annotationView as? MKMarkerAnnotationView{
             markerAnnotationView.animatesWhenAdded = true
             markerAnnotationView.canShowCallout = true
+            setIssueColor(annotation: markerAnnotationView)
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
             let scaleFactor = UIScreen.main.scale
             let scale = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
@@ -260,6 +262,22 @@ extension MapFunctionsViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let annotation = view.annotation, annotation.isKind(of: IssueAnnotation.self) {
             performSegue(withIdentifier: "MapToIssuePage", sender: self)
+        }
+    }
+    
+    func setIssueColor(annotation: MKMarkerAnnotationView) {
+        let issueType = (annotation.annotation as! IssueAnnotation).type
+        if issueType == "SnIssue" {
+            annotation.markerTintColor = UIColor.blue
+        }
+        if issueType == "EamIssue" {
+            annotation.markerTintColor = UIColor.green
+        }
+        if issueType == "PtIssue" {
+            annotation.markerTintColor = UIColor.gray
+        }
+        if issueType == "HrlIssue" {
+            annotation.markerTintColor = UIColor.red
         }
     }
     
