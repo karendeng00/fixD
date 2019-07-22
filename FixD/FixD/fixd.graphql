@@ -224,7 +224,6 @@ query GetDuid {
     getDuid
 }
 
-
 mutation CreateUser($name: String!, $netid: String!, $phone: String!, $picture: String!){
     createUser(name: $name, netid: $netid, phone: $phone, picture: $picture){
         id

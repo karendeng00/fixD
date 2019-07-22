@@ -65,6 +65,10 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     var tempImg: UIImage?
     var hasImage = false
     
+    private var tabBarHeight:CGFloat = 0
+    private var navBarHeight:CGFloat = 0
+    private var statusBarHeight:CGFloat = 0
+    
     let white = UIColor(cgColor: CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])!)
     let granite = UIColor(red: 181/255.0, green: 181/255.0, blue: 181/255.0, alpha: 0.5)
     
@@ -74,6 +78,11 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         commentView.delegate = self
         commentView.dataSource = self
         loadIssue()
+        
+        tabBarHeight = tabBarController?.tabBar.bounds.size.height ?? 0
+        navBarHeight = navigationController?.navigationBar.bounds.size.height ?? 0
+        statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+        print("T: \(tabBarHeight)  N: \(navBarHeight)  S: \(statusBarHeight)")
         
         self.commentView.reloadData()
         //Code to set up and event listener
@@ -284,9 +293,9 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             return
         }
         if notification.name == UIResponder.keyboardWillShowNotification  || notification.name == UIResponder.keyboardWillChangeFrameNotification{
-            view.frame.origin.y = -keyboardRect.height + 175
+            view.frame.origin.y = -(keyboardRect.height - tabBarHeight - navBarHeight - statusBarHeight)
         }else {
-            view.frame.origin.y = 89
+            view.frame.origin.y = navBarHeight + statusBarHeight
         }
     }
     

@@ -26,7 +26,6 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
         issueTitleText.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AddIssueGeneralInfoViewController.handleTapOutside))
         view.addGestureRecognizer(tapGesture)
-        issueReportScrollView.addGestureRecognizer(tapGesture)
     }
     
     override func viewDidLoad() {
@@ -38,7 +37,6 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
     
     @objc func handleTapOutside(){
         view.endEditing(true)
-        issueReportScrollView.endEditing(true)
         issueDescriptionText.text = "Type your description here."
     }
     
@@ -60,7 +58,7 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if nameText.text != "" &&
-            nameText.text != "" && emailText.text != "" && phoneText.text != "" && emailText.text != "" && phoneText.text != "" && issueTitleText.text != "" && issueDescriptionText.text != "Type Your Description Here" {
+            nameText.text != "" && emailText.text != "" && phoneText.text != "" && emailText.text != "" && phoneText.text != "" && issueTitleText.text != "" && issueDescriptionText.text != "Type Your Description Here" && issueDescriptionText.text != "" {
             return true
         }
         createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
@@ -71,7 +69,14 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
 extension AddIssueGeneralInfoViewController: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        
+        let nextTag = textField.tag + 1
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
         return true
     }
     
