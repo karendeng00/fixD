@@ -14,8 +14,8 @@
 		22775BD122CBC4E000130E12 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 22775BCF22CBC4E000130E12 /* README.md */; };
 		22775BD222CBC4E000130E12 /* ShibAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22775BD022CBC4E000130E12 /* ShibAuthViewController.swift */; };
 		2299A35422B18E07000BD0F6 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299A35322B18E07000BD0F6 /* ContactUsViewController.swift */; };
+		22D496CC22E64F3400AFE99A /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 22D496CB22E64F3400AFE99A /* schema.json */; };
 		22E8AF6E22AEA70100194036 /* IssuePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8AF6D22AEA70100194036 /* IssuePageController.swift */; };
-		22F7DFAB22E20DDE00814204 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 22F7DFAA22E20DDE00814204 /* schema.json */; };
 		4D0E1B019D6EBD8681595E60 /* Pods_FixD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AA4C96F8C6571126F23B8AC /* Pods_FixD.framework */; };
 		B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4085C0722A850A400A24525 /* AppDelegate.swift */; };
 		B4085C0D22A850A500A24525 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4085C0B22A850A500A24525 /* Main.storyboard */; };
@@ -79,8 +79,8 @@
 		22775BCF22CBC4E000130E12 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		22775BD022CBC4E000130E12 /* ShibAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShibAuthViewController.swift; sourceTree = "<group>"; };
 		2299A35322B18E07000BD0F6 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
+		22D496CB22E64F3400AFE99A /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		22E8AF6D22AEA70100194036 /* IssuePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuePageController.swift; sourceTree = "<group>"; };
-		22F7DFAA22E20DDE00814204 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		2FA8AB52C72AF2A93F009963 /* Pods-FixD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FixD.release.xcconfig"; path = "Target Support Files/Pods-FixD/Pods-FixD.release.xcconfig"; sourceTree = "<group>"; };
 		5AA4C96F8C6571126F23B8AC /* Pods_FixD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FixD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4085C0422A850A400A24525 /* FixD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FixD.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,7 +198,7 @@
 				B48967EB22D645C600B565D0 /* NetworkAPI.swift */,
 				B4085C0B22A850A500A24525 /* Main.storyboard */,
 				B4085C0E22A850A500A24525 /* Assets.xcassets */,
-				22F7DFAA22E20DDE00814204 /* schema.json */,
+				22D496CB22E64F3400AFE99A /* schema.json */,
 				B4085C1022A850A500A24525 /* LaunchScreen.storyboard */,
 				B4085C1322A850A500A24525 /* Info.plist */,
 				B44EED3F22D39D16004C1627 /* fixd.graphql */,
@@ -353,7 +353,7 @@
 				B4085C0F22A850A500A24525 /* Assets.xcassets in Resources */,
 				22775BD122CBC4E000130E12 /* README.md in Resources */,
 				2243BDFA22D90B6600714591 /* Merriweather-Regular.ttf in Resources */,
-				22F7DFAB22E20DDE00814204 /* schema.json in Resources */,
+				22D496CC22E64F3400AFE99A /* schema.json in Resources */,
 				B44EED4022D39D16004C1627 /* fixd.graphql in Resources */,
 				2243BDFC22D90B8C00714591 /* OpenSans-Regular.ttf in Resources */,
 				B4085C0D22A850A500A24525 /* Main.storyboard in Resources */,
