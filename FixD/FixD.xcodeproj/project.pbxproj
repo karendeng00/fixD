@@ -24,6 +24,7 @@
 		B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4086CE822A95A7400B48EFF /* IssueClass.swift */; };
 		B428236E22E258CB00BD34EB /* NewIssueFromCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B428236D22E258CB00BD34EB /* NewIssueFromCategoryViewController.swift */; };
 		B42E2F1222CD180700F9DC9C /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42E2F1122CD180700F9DC9C /* MainTabViewController.swift */; };
+		B43E91F722E61E8300D30B12 /* LoadScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E91F622E61E8300D30B12 /* LoadScreenViewController.swift */; };
 		B44EED4022D39D16004C1627 /* fixd.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B44EED3F22D39D16004C1627 /* fixd.graphql */; };
 		B48713F322CBE12B00380D34 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B48713F222CBE12B00380D34 /* schema.json */; };
 		B48967EC22D645C600B565D0 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48967EB22D645C600B565D0 /* NetworkAPI.swift */; };
@@ -83,13 +84,14 @@
 		B4085C0422A850A400A24525 /* FixD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FixD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4085C0722A850A400A24525 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4085C0C22A850A500A24525 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B4085C0E22A850A500A24525 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B4085C0E22A850A500A24525 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = FixD/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		B4085C1122A850A500A24525 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4085C1322A850A500A24525 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4086CE222A956EE00B48EFF /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		B4086CE822A95A7400B48EFF /* IssueClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueClass.swift; sourceTree = "<group>"; };
 		B428236D22E258CB00BD34EB /* NewIssueFromCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFromCategoryViewController.swift; sourceTree = "<group>"; };
 		B42E2F1122CD180700F9DC9C /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
+		B43E91F622E61E8300D30B12 /* LoadScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScreenViewController.swift; sourceTree = "<group>"; };
 		B44EED3F22D39D16004C1627 /* fixd.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = fixd.graphql; sourceTree = "<group>"; };
 		B48713F222CBE12B00380D34 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		B48967EB22D645C600B565D0 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 			children = (
 				B4EC7FD022B16963001711BC /* LoginScreenController.swift */,
 				B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */,
+				B43E91F622E61E8300D30B12 /* LoadScreenViewController.swift */,
 			);
 			path = login;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				B4ED85FE22DF5EB0002E6D79 /* UserClass.swift in Sources */,
 				FFE6EEA422C3BE8C00E2CBED /* HRLredoViewController.swift in Sources */,
 				B48967EC22D645C600B565D0 /* NetworkAPI.swift in Sources */,
+				B43E91F722E61E8300D30B12 /* LoadScreenViewController.swift in Sources */,
 				2299A35422B18E07000BD0F6 /* ContactUsViewController.swift in Sources */,
 				B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */,
 				B42E2F1222CD180700F9DC9C /* MainTabViewController.swift in Sources */,

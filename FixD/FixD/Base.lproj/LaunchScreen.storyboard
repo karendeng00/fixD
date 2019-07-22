@@ -9,53 +9,30 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Merriweather-Regular.ttf">
-            <string>Merriweather-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P8u-9X-sL1">
-                                <rect key="frame" x="112" y="413.5" width="190" height="79"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fix'" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eus-Cq-Dx2">
-                                        <rect key="frame" x="0.0" y="0.0" width="111" height="79"/>
-                                        <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="66"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="duke" translatesAutoresizingMaskIntoConstraints="NO" id="kHq-uH-ggo">
-                                        <rect key="frame" x="111" y="0.0" width="79" height="79"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="79" id="BDe-yC-JEh"/>
-                                            <constraint firstAttribute="width" constant="79" id="OU1-hs-cLT"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fixdLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Aw3-Cb-V7c">
+                                <rect key="frame" x="76" y="366" width="263" height="165"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0039215686269999999" green="0.12941176469999999" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="P8u-9X-sL1" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="RFy-Uv-qos"/>
-                            <constraint firstItem="P8u-9X-sL1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="hwe-Wo-MqD"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
     <resources>
-        <image name="duke" width="675" height="675"/>
+        <image name="fixdLogo" width="324" height="200"/>
     </resources>
 </document>
