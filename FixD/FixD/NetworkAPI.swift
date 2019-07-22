@@ -173,7 +173,7 @@ class NetworkAPI {
                     }
                     // If user does not exist, create a new User and instantiate
                     else {
-                        user.newUser(duid:(userInfo?[1])!, netid: (userInfo?[0])!, name: (userInfo?[2])! , phone: "", picture: "")
+                        user.newUser(duid:(userInfo?[1])!, netid: (userInfo?[0])!, name: (userInfo?[2])! , phone: "", picture: "photo.jpg")
                     }
                 }
 

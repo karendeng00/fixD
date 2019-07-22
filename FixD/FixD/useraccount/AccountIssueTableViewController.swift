@@ -16,12 +16,10 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
     var issuesStarredList:[IssueClass] = []
     var scopeList:[IssueClass] = []
     var listFlag = true
+    let myUser = UserAccount.shared
     
 //    @IBOutlet weak var issueSelector: UISegmentedControl!
     @IBOutlet weak var issueSearchAndScope: UISearchBar!
-    
-    
-    let THIS_USER = 1
     
     var issuesList:[IssueClass] = []
     
@@ -136,7 +134,7 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
             self.resetLists()
             let issues:[IssueClass] = issueData
             for issue in issues {
-                if issue.getUserId() == self.THIS_USER && self.listFlag == true {
+                if issue.getUserId() == self.myUser.getUserId() && self.listFlag == true {
                     self.issuesReportedList.append(issue)
                     //self.issuesList = self.issuesReportedList
                     if self.searching {
@@ -145,7 +143,7 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
                         self.scopeList = self.issuesReportedList
                     }
                 }
-                if issue.getUserId() != self.THIS_USER && self.listFlag == false {
+                if issue.getUserId() != self.myUser.getUserId() && self.listFlag == false {
                     self.issuesStarredList.append(issue)
                     //self.issuesList = self.issuesStarredList
                     //self.scopeList = self.issuesStarredList

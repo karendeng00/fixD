@@ -61,6 +61,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     var images:[UIImage] = []
     var issueID:Int = 0
     var myIssue = IssueClass()
+    let myUser = UserAccount.shared
     var tempImg: UIImage?
     var hasImage = false
     
@@ -303,10 +304,10 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         }   
         
         if commentTextField.hasText {
-            myIssue.addComment(comment: commentTextField.text!, image: tempImg! , issueId: myIssue.getID(), userId: myIssue.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage)
+            myIssue.addComment(comment: commentTextField.text!, image: tempImg! , issueId: myIssue.getID(), userId: myUser.getUserId(), user_name: myUser.getUserName(), user_image: myUser.getUserImage())
         }
         else {
-            myIssue.addComment(comment: "", image: tempImg! , issueId: myIssue.getID(), userId: myIssue.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage)
+            myIssue.addComment(comment: "", image: tempImg! , issueId: myIssue.getID(), userId: myUser.getUserId(), user_name: myUser.getUserName(), user_image: myUser.getUserImage())
         }
         
         commentTextField.text = ""

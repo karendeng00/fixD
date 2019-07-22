@@ -27,7 +27,7 @@ class UserAccount{
     
     //In the future, connect to the database
     func setUp(id: Int, duid:String, netid:String, name:String, phone: String, picture: String) {
-        self.userId = 0
+        self.userId = id
         self.userDuid = duid
         self.userName = name
         self.userNetId = netid
@@ -45,5 +45,18 @@ class UserAccount{
     func getNetId() -> String {
         return userNetId
     }
+    
+    func getUserId() -> Int {
+        return userId
+    }
+    
+    func getUserName() -> String {
+        return userName
+    }
+    
+    func getUserImage() -> String {
+        return userImage
+    }
+
 }
 
