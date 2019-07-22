@@ -26,7 +26,6 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
         issueTitleText.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AddIssueGeneralInfoViewController.handleTapOutside))
         view.addGestureRecognizer(tapGesture)
-        issueReportScrollView.addGestureRecognizer(tapGesture)
     }
     
     override func viewDidLoad() {
@@ -38,7 +37,6 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
     
     @objc func handleTapOutside(){
         view.endEditing(true)
-        issueReportScrollView.endEditing(true)
         issueDescriptionText.text = "Type your description here."
     }
     

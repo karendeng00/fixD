@@ -36,6 +36,10 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
         issueSearchAndScope.scopeButtonTitles = ["Issues I've Favorited", "Issues I've Reported"]
         issueSearchAndScope.text = "Search issue by title"
         
+        var contentOffset = tableView.contentOffset
+        contentOffset.y += issueSearchAndScope.frame.size.height
+        tableView.contentOffset = contentOffset
+        
     }
 
     @objc func refresh(_ sender: Any) {
