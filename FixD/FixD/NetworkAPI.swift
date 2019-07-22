@@ -69,41 +69,118 @@ class NetworkAPI {
         }
     }
     
-//    //This method checks for e
-//    func fetchUserData(nav: UINavigationController, completionHandler: @escaping ([String]) -> Void){
-//        getUserDuid(nav: nav) { duid in
-//        // Get the User info (comes back as a String array).
-//            self.apollo.fetch(query: GetUserInfoQuery(duid: duid)) { (result, error) in
-//                if let err = error as? GraphQLHTTPResponseError {
-//                    print(err.response.statusCode)
-//                }
-//                DispatchQueue.main.async{
-//                    completionHandler((result?.data?.getUserInfo)!) // catch errors
-//                }
-//            }
-//        }
-//    }
-//
-//    func setUpUser(nav: UINavigationController) {
-//        let user = UserAccount.account
-//        fetchUserData(nav: nav) { info in
-//            // Use netID to check if user exists
-//            self.apollo.fetch(query: UserByNetIdQuery(netid: info[0])) { (result, error) in
-//                if let err = error as? GraphQLHTTPResponseError {
-//                    print (err.response.statusCode)
-//                }
-//                // If user exists, instantiate User with info
-//                if let u = result?.data?.userByNetId {
-//                    user.setUp(id: Int(u.id)!, duid: info[1], netid: u.netid, name: u.name!, phone: u.phone ?? "", picture: u.picture ?? "")
-//                }
-//                // If user does not exist, create a new User and instantiate
-//                else {
-//                    user.newUser(duid:info[1], netid: info[0], name: info[2] , phone: "", picture: "")
-//                }
-//            }
-//        }
-//    }
-//
+    //This method checks for e
+    func fetchUserData(nav: UINavigationController, completionHandler: @escaping (_ user: [String]?, _ error: String?) -> Void){
+        getUserDuid(nav: nav) { duid, error in
+        // Get the User info (comes back as a String array).
+            Apollo().getClient().fetch(query: GetUserInfoQuery(duid: duid ?? "00000")) { (result, error) in
+                if let err = error as? GraphQLHTTPResponseError {
+                    switch (err.response.statusCode) {
+                    case 401:
+                        // The request was unauthorized due to a bad token, request a new OAuth token.
+                        OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                            if success {
+                                // We receieved a new token, try again.
+                                self.fetchUserData(nav: nav) { user, error in
+                                    completionHandler(user, error)
+                                }
+                            } else {
+                                // TODO: handle error
+                            }
+                        }
+                    case 403:
+                        print("403")
+                        // TODO: Handle not authorized (Forbidden) error
+                        let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+                    // self.showMessage(message: message)
+                    case 500...599:
+                        print("500")
+                    // TODO: handle GQL/Kong server error
+                    default:
+                        // Something else went wrong, get a new token and try again
+                        OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                            if success {
+                                self.fetchUserData(nav: nav) { user, error in
+                                    completionHandler(user, error)
+                                }
+                            } else {
+                                // TODO: handle error
+                            }
+                        }
+                    }
+                }
+                else if let err = error as NSError?, err.domain == NSURLErrorDomain {
+                    print("error NSE")
+                    // TODO: Handle error
+                    // let title = "Unexpected Error"
+                    // let message = err.localizedDescription
+                    // self.showMessage(message: ["title": title, "message": message])
+                }
+                else {
+                    DispatchQueue.main.async{
+                        completionHandler((result?.data?.getUserInfo)!, nil) // catch errors
+                    }
+                }
+            }
+        }
+    }
+
+    func setUpUser(nav: UINavigationController){
+        let user = UserAccount.shared
+        fetchUserData(nav: nav) { userInfo, err in
+             // Get the User info (comes back as a String array).
+            Apollo().getClient().fetch(query: UserByNetIdQuery(netid: userInfo?[0] ?? "00000")) { (result, error) in
+                if let err = error as? GraphQLHTTPResponseError {
+                    switch (err.response.statusCode) {
+                    case 401:
+                        // The request was unauthorized due to a bad token, request a new OAuth token.
+                        OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                            if success {
+                                self.setUpUser(nav: nav)
+                            } else {
+                                // TODO: handle error
+                            }
+                        }
+                    case 403:
+                        print("403")
+                        // TODO: Handle not authorized (Forbidden) error
+                        let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+                    // self.showMessage(message: message)
+                    case 500...599:
+                        print("500")
+                    // TODO: handle GQL/Kong server error
+                    default:
+                        // Something else went wrong, get a new token and try again
+                        OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                            if success {
+                                self.setUpUser(nav: nav)
+                            } else {
+                                // TODO: handle error
+                            }
+                        }
+                    }
+                }
+                else if let err = error as NSError?, err.domain == NSURLErrorDomain {
+                    print("error NSE")
+                    // TODO: Handle error
+                    // let title = "Unexpected Error"
+                    // let message = err.localizedDescription
+                    // self.showMessage(message: ["title": title, "message": message])
+                }
+                else {
+                    if let u = result?.data?.userByNetId {
+                        user.setUp(id: Int(u.id)!, duid: (userInfo?[1])!, netid: u.netid, name: u.name!, phone: u.phone ?? "", picture: u.picture ?? "")
+                    }
+                    // If user does not exist, create a new User and instantiate
+                    else {
+                        user.newUser(duid:(userInfo?[1])!, netid: (userInfo?[0])!, name: (userInfo?[2])! , phone: "", picture: "")
+                    }
+                }
+
+            }
+        }
+    }
+
     func getListOfIssues(completionHandler: @escaping (Array<IssueClass>) -> ()) {
         var myIssueList: Array<IssueClass> = []
         Apollo().getClient().fetch(query: AllIssuesQuery()) { (result, error) in

@@ -14,14 +14,12 @@ class LoadScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         oAuthService = OAuthService.shared
         if oAuthService!.isAuthenticated() {
             UserDefaults.standard.set(true, forKey: "LoggedIn")
             DispatchQueue.main.async {
                 let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "tab") as? UITabBarController
                 self.present(tabVC!, animated: true, completion: nil)
-                //                NetworkAPI().getUserDuid(nav: nav!) { duid,error in }
             }
         }
         else {

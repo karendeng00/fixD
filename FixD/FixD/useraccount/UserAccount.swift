@@ -21,7 +21,7 @@ class UserAccount{
     var newUser:Bool = false
     var listOfLikeIssues:[String] = []
     
-    static let account = UserAccount()
+    static let shared = UserAccount()
 
     private init(){}
     
