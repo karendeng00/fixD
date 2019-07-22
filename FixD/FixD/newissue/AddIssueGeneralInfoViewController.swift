@@ -44,7 +44,7 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "IssueToSecondPage" {
-            let viewController = segue.destination as? NewIssueFromCategoryTableViewController
+            let viewController = segue.destination as? NewIssueFromCategoryViewController
             
             viewController?.myIssue = IssueClass(name: nameText.text!, email: emailText.text!, phone: phoneText.text!, altPhone: altPhoneText.text!, title: issueTitleText.text!, description: issueDescriptionText.text!)
         }

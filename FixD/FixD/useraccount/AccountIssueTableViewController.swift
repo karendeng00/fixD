@@ -119,6 +119,7 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
             self.issuesList.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .bottom)
             completionHandler(true)
+            
         }
         swipeAction.backgroundColor = .red
         swipeAction.image = UIImage(named: "delete")

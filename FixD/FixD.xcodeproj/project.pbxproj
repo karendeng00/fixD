@@ -15,7 +15,6 @@
 		22775BD222CBC4E000130E12 /* ShibAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22775BD022CBC4E000130E12 /* ShibAuthViewController.swift */; };
 		2299A35422B18E07000BD0F6 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299A35322B18E07000BD0F6 /* ContactUsViewController.swift */; };
 		22E8AF6E22AEA70100194036 /* IssuePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8AF6D22AEA70100194036 /* IssuePageController.swift */; };
-		22F7DFAB22E20DDE00814204 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 22F7DFAA22E20DDE00814204 /* schema.json */; };
 		4D0E1B019D6EBD8681595E60 /* Pods_FixD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AA4C96F8C6571126F23B8AC /* Pods_FixD.framework */; };
 		B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4085C0722A850A400A24525 /* AppDelegate.swift */; };
 		B4085C0D22A850A500A24525 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4085C0B22A850A500A24525 /* Main.storyboard */; };
@@ -23,8 +22,10 @@
 		B4085C1222A850A500A24525 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4085C1022A850A500A24525 /* LaunchScreen.storyboard */; };
 		B4086CE322A956EE00B48EFF /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4086CE222A956EE00B48EFF /* FeedViewController.swift */; };
 		B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4086CE822A95A7400B48EFF /* IssueClass.swift */; };
+		B428236E22E258CB00BD34EB /* NewIssueFromCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B428236D22E258CB00BD34EB /* NewIssueFromCategoryViewController.swift */; };
 		B42E2F1222CD180700F9DC9C /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42E2F1122CD180700F9DC9C /* MainTabViewController.swift */; };
 		B44EED4022D39D16004C1627 /* fixd.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B44EED3F22D39D16004C1627 /* fixd.graphql */; };
+		B48713F322CBE12B00380D34 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B48713F222CBE12B00380D34 /* schema.json */; };
 		B48967EC22D645C600B565D0 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48967EB22D645C600B565D0 /* NetworkAPI.swift */; };
 		B4B1DBF922AAE02A005EFFA9 /* ScreenPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */; };
 		B4CA2D1622D3D12F00BC6189 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CA2D1522D3D12E00BC6189 /* API.swift */; };
@@ -33,12 +34,9 @@
 		B4EC7FCF22B16906001711BC /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FCB22B16906001711BC /* SettingsTableViewCell.swift */; };
 		B4EC7FD122B16964001711BC /* LoginScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD022B16963001711BC /* LoginScreenController.swift */; };
 		B4EC7FD722B16E69001711BC /* AccountIssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD522B16E69001711BC /* AccountIssueTableViewController.swift */; };
-		B4EC7FD922B18163001711BC /* NewIssueServiceNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD822B18163001711BC /* NewIssueServiceNowViewController.swift */; };
 		B4ED4D3522AEB9C300E50272 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3422AEB9C300E50272 /* UserAccount.swift */; };
 		B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3622AED64F00E50272 /* MapFunctionsViewController.swift */; };
 		B4ED4D3922B003C900E50272 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3822B003C900E50272 /* InviteFriendsViewController.swift */; };
-		B4ED4D3D22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3C22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift */; };
-		B4ED4D3F22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED4D3E22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift */; };
 		B4ED85FC22D8D388002E6D79 /* CommentsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED85FB22D8D388002E6D79 /* CommentsClass.swift */; };
 		B4ED85FE22DF5EB0002E6D79 /* UserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED85FD22DF5EB0002E6D79 /* UserClass.swift */; };
 		B4ED860022E0CCDB002E6D79 /* Apollo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED85FF22E0CCDB002E6D79 /* Apollo.swift */; };
@@ -80,7 +78,6 @@
 		22775BD022CBC4E000130E12 /* ShibAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShibAuthViewController.swift; sourceTree = "<group>"; };
 		2299A35322B18E07000BD0F6 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		22E8AF6D22AEA70100194036 /* IssuePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuePageController.swift; sourceTree = "<group>"; };
-		22F7DFAA22E20DDE00814204 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		2FA8AB52C72AF2A93F009963 /* Pods-FixD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FixD.release.xcconfig"; path = "Target Support Files/Pods-FixD/Pods-FixD.release.xcconfig"; sourceTree = "<group>"; };
 		5AA4C96F8C6571126F23B8AC /* Pods_FixD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FixD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4085C0422A850A400A24525 /* FixD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FixD.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,8 +88,10 @@
 		B4085C1322A850A500A24525 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4086CE222A956EE00B48EFF /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		B4086CE822A95A7400B48EFF /* IssueClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueClass.swift; sourceTree = "<group>"; };
+		B428236D22E258CB00BD34EB /* NewIssueFromCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFromCategoryViewController.swift; sourceTree = "<group>"; };
 		B42E2F1122CD180700F9DC9C /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		B44EED3F22D39D16004C1627 /* fixd.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = fixd.graphql; sourceTree = "<group>"; };
+		B48713F222CBE12B00380D34 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		B48967EB22D645C600B565D0 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 		B4B1DBF822AAE02A005EFFA9 /* ScreenPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPageViewController.swift; sourceTree = "<group>"; };
 		B4CA2D1522D3D12E00BC6189 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -101,12 +100,9 @@
 		B4EC7FCB22B16906001711BC /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		B4EC7FD022B16963001711BC /* LoginScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenController.swift; sourceTree = "<group>"; };
 		B4EC7FD522B16E69001711BC /* AccountIssueTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountIssueTableViewController.swift; sourceTree = "<group>"; };
-		B4EC7FD822B18163001711BC /* NewIssueServiceNowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueServiceNowViewController.swift; sourceTree = "<group>"; };
 		B4ED4D3422AEB9C300E50272 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		B4ED4D3622AED64F00E50272 /* MapFunctionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFunctionsViewController.swift; sourceTree = "<group>"; };
 		B4ED4D3822B003C900E50272 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
-		B4ED4D3C22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFromCategoryTableViewController.swift; sourceTree = "<group>"; };
-		B4ED4D3E22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueFromCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		B4ED85FB22D8D388002E6D79 /* CommentsClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsClass.swift; sourceTree = "<group>"; };
 		B4ED85FD22DF5EB0002E6D79 /* UserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserClass.swift; sourceTree = "<group>"; };
 		B4ED85FF22E0CCDB002E6D79 /* Apollo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apollo.swift; sourceTree = "<group>"; };
@@ -198,7 +194,7 @@
 				B48967EB22D645C600B565D0 /* NetworkAPI.swift */,
 				B4085C0B22A850A500A24525 /* Main.storyboard */,
 				B4085C0E22A850A500A24525 /* Assets.xcassets */,
-				22F7DFAA22E20DDE00814204 /* schema.json */,
+				B48713F222CBE12B00380D34 /* schema.json */,
 				B4085C1022A850A500A24525 /* LaunchScreen.storyboard */,
 				B4085C1322A850A500A24525 /* Info.plist */,
 				B44EED3F22D39D16004C1627 /* fixd.graphql */,
@@ -245,10 +241,7 @@
 		B4ED4D4522B034F600E50272 /* newissue */ = {
 			isa = PBXGroup;
 			children = (
-				B4ED4D3C22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift */,
-				B4ED4D3E22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift */,
 				FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */,
-				B4EC7FD822B18163001711BC /* NewIssueServiceNowViewController.swift */,
 				FFE35B1722C12E730087FC64 /* NewIssueFMDViewController.swift */,
 				FFE35B1922C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift */,
 				FFE35B2322C2AEB90087FC64 /* SubmissionViewController.swift */,
@@ -256,6 +249,7 @@
 				FFE6EEA522C3D9DD00E2CBED /* OITredoViewController.swift */,
 				FF95139622CA8EEA00B94CB2 /* NewIssuePTSViewController.swift */,
 				FF95139822CA98E600B94CB2 /* IssueVC.swift */,
+				B428236D22E258CB00BD34EB /* NewIssueFromCategoryViewController.swift */,
 			);
 			path = newissue;
 			sourceTree = "<group>";
@@ -350,10 +344,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4085C1222A850A500A24525 /* LaunchScreen.storyboard in Resources */,
+				B48713F322CBE12B00380D34 /* schema.json in Resources */,
 				B4085C0F22A850A500A24525 /* Assets.xcassets in Resources */,
 				22775BD122CBC4E000130E12 /* README.md in Resources */,
 				2243BDFA22D90B6600714591 /* Merriweather-Regular.ttf in Resources */,
-				22F7DFAB22E20DDE00814204 /* schema.json in Resources */,
 				B44EED4022D39D16004C1627 /* fixd.graphql in Resources */,
 				2243BDFC22D90B8C00714591 /* OpenSans-Regular.ttf in Resources */,
 				B4085C0D22A850A500A24525 /* Main.storyboard in Resources */,
@@ -439,9 +433,7 @@
 				B4EC7FD122B16964001711BC /* LoginScreenController.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
 				F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */,
-				B4EC7FD922B18163001711BC /* NewIssueServiceNowViewController.swift in Sources */,
 				B4B1DBF922AAE02A005EFFA9 /* ScreenPageViewController.swift in Sources */,
-				B4ED4D3D22B01D1D00E50272 /* NewIssueFromCategoryTableViewController.swift in Sources */,
 				B4ED85FE22DF5EB0002E6D79 /* UserClass.swift in Sources */,
 				FFE6EEA422C3BE8C00E2CBED /* HRLredoViewController.swift in Sources */,
 				B48967EC22D645C600B565D0 /* NetworkAPI.swift in Sources */,
@@ -461,7 +453,7 @@
 				FFB2C5A822A97BB100BC11ED /* (null) in Sources */,
 				FFE35B1A22C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift in Sources */,
 				FFB2C5A622A9785500BC11ED /* (null) in Sources */,
-				B4ED4D3F22B0207300E50272 /* NewIssueFromCategoryTableViewCell.swift in Sources */,
+				B428236E22E258CB00BD34EB /* NewIssueFromCategoryViewController.swift in Sources */,
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
 				B4EC7FD722B16E69001711BC /* AccountIssueTableViewController.swift in Sources */,
 				FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */,
