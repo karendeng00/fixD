@@ -16,12 +16,10 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
     var issuesStarredList:[IssueClass] = []
     var scopeList:[IssueClass] = []
     var listFlag = true
+    let myUser = UserAccount.shared
     
 //    @IBOutlet weak var issueSelector: UISegmentedControl!
     @IBOutlet weak var issueSearchAndScope: UISearchBar!
-    
-    
-    let THIS_USER = 1
     
     var issuesList:[IssueClass] = []
     
@@ -118,11 +116,13 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
     * Code to delete the cell a table view cell
     **/
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let nav = self.storyboard?.instantiateViewController(withIdentifier: "sbProfNav") as? UINavigationController
         let swipeAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
-            NetworkAPI().deleteIssue(issueID: self.issuesList[indexPath.row].getID())
+            NetworkAPI().deleteIssue(nav:nav!, issueId: self.issuesList[indexPath.row].getID())
             self.issuesList.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .bottom)
             completionHandler(true)
+            
         }
         swipeAction.backgroundColor = .red
         swipeAction.image = UIImage(named: "delete")
@@ -135,11 +135,12 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
     @IBOutlet var accountFeed: UITableView!
     
     func getIssueData() {
-        NetworkAPI().getListOfIssues() { issueData in
+        let nav = self.storyboard?.instantiateViewController(withIdentifier: "sbProfNav") as? UINavigationController
+        NetworkAPI().getListOfIssues(nav: nav!) { issueData,error in
             self.resetLists()
             let issues:[IssueClass] = issueData
             for issue in issues {
-                if issue.getUserId() == self.THIS_USER && self.listFlag == true {
+                if issue.getUserId() == self.myUser.getUserId() && self.listFlag == true {
                     self.issuesReportedList.append(issue)
                     //self.issuesList = self.issuesReportedList
                     if self.searching {
@@ -148,7 +149,7 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
                         self.scopeList = self.issuesReportedList
                     }
                 }
-                if issue.getUserId() != self.THIS_USER && self.listFlag == false {
+                if issue.getUserId() != self.myUser.getUserId() && self.listFlag == false {
                     self.issuesStarredList.append(issue)
                     //self.issuesList = self.issuesStarredList
                     //self.scopeList = self.issuesStarredList

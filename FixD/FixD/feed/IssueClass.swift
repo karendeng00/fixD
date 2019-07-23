@@ -170,7 +170,7 @@ class IssueClass: Equatable, Hashable {
             NetworkAPI().deleteLike(issueId: id)
         }else {
             self.myLikes += 1
-            NetworkAPI().addLike(issueId: id)
+            NetworkAPI().addLike( issueId: id)
         }
         liked = !liked
     }
@@ -194,9 +194,9 @@ class IssueClass: Equatable, Hashable {
         favorited = !favorited
     }
     
-    func addComment(comment:String, image: UIImage, issueId:Int, userId:Int, user_name: String, user_image: String){
+    func addComment(comment:String, image: UIImage, issueId:Int, userId:Int, user_name: String, user_image: String, nav: UINavigationController){
         myComments.append(CommentsClass(body: comment, image: image, userId: userId, issueId: issueId, name: user_name, user_image: user_image))
-        NetworkAPI().createComment(comment: comment, image: "path", issueId: issueId, userId: userId)
+        NetworkAPI().createComment(comment: comment, image: "path", issueId: issueId, userId: userId, nav: nav)
     }
     
     func addImage(image:UIImage) {

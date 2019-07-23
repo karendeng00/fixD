@@ -24,6 +24,12 @@ query AllIssues {
             userId
             image
             createdAt
+            user {
+                id
+                name
+                picture
+                netid
+            }
         }
     }
 }
@@ -54,6 +60,12 @@ query IssueById($id: Int!) {
             userId
             image
             createdAt
+            user {
+                id
+                name
+                picture
+                netid
+            }
         }
     }
 }
@@ -84,6 +96,12 @@ query IssuesByType($type: String!) {
             userId
             image
             createdAt
+            user {
+                id
+                name
+                picture
+                netid
+            }
         }
     }
 }
@@ -114,6 +132,12 @@ query IssuesByUser($userId: Int!){
             userId
             image
             createdAt
+            user {
+                id
+                name
+                picture
+                netid
+            }
         }
     }
 }

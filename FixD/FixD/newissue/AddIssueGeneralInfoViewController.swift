@@ -18,6 +18,10 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var issueDescriptionText: UITextView!
     @IBOutlet weak var issueReportScrollView: UIScrollView!
     
+    private var tabBarHeight:CGFloat = 0
+    private var navBarHeight:CGFloat = 0
+    private var statusBarHeight:CGFloat = 0
+    
     fileprivate func setUpTapGesture() {
         nameText.delegate = self
         emailText.delegate = self
@@ -33,6 +37,19 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
         setUpTapGesture()
         issueDescriptionText.text = "Type your description here."
         createAlert(title: "Is this an emergency?", message: "If this is an emergency, please call 911 or contact Duke Police.")
+        
+        //Heights needed to adjust the screen for when the keyboard appears
+        tabBarHeight = tabBarController?.tabBar.bounds.size.height ?? 0
+        navBarHeight = navigationController?.navigationBar.bounds.size.height ?? 0
+        statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+        
+        listenForNotifications()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     @objc func handleTapOutside(){
@@ -42,7 +59,7 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "IssueToSecondPage" {
-            let viewController = segue.destination as? NewIssueFromCategoryTableViewController
+            let viewController = segue.destination as? NewIssueFromCategoryViewController
             
             viewController?.myIssue = IssueClass(name: nameText.text!, email: emailText.text!, phone: phoneText.text!, altPhone: altPhoneText.text!, title: issueTitleText.text!, description: issueDescriptionText.text!)
         }
@@ -63,6 +80,26 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
         }
         createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
         return false
+    }
+    
+    //Methods to listen for when the keyboard is called
+    func listenForNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    @objc func keyboardWillChange(notification: Notification){
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        if notification.name == UIResponder.keyboardWillShowNotification  || notification.name == UIResponder.keyboardWillChangeFrameNotification{
+            //When the keyboard appears, this is the value that the screens needs to be shifted up by.
+            view.frame.origin.y = -(keyboardRect.height - tabBarHeight - navBarHeight - statusBarHeight)
+        }else {
+            //When the keyboard is dismissed, the height needs to be reset to this value.
+            view.frame.origin.y = navBarHeight + statusBarHeight
+        }
     }
 }
 

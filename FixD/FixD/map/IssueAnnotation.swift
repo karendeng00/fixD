@@ -21,6 +21,8 @@ class IssueAnnotation: NSObject, MKAnnotation {
     
     var imageName: String?
     
+    var type: String?
+    
     init(coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate
         super.init()

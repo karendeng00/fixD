@@ -12,6 +12,7 @@ import MessageUI
 class InviteFriendsViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     
+    @IBOutlet weak var emailField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,7 @@ class InviteFriendsViewController: UIViewController, MFMailComposeViewController
         let mailComposer = MFMailComposeViewController()
         mailComposer.mailComposeDelegate = self
         
-        mailComposer.setToRecipients(["amezap12@gmail.com"])
+        mailComposer.setToRecipients([emailField.text ?? "Add Recipients Here"])
         mailComposer.setSubject("Invitation to Download Fix'D App!")
         mailComposer.setMessageBody("Your friend is inviting you to Download Fix'D App! Be able to report any issue on Duke Campus Now!", isHTML: false)
         

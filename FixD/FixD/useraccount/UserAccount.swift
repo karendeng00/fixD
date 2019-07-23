@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 // Note: THIS IS NOT THE SAME AS UserClass. This is the User that owns the account.
 // There exists only one version of this account.
 class UserAccount{
@@ -21,13 +21,13 @@ class UserAccount{
     var newUser:Bool = false
     var listOfLikeIssues:[String] = []
     
-    static let account = UserAccount()
+    static let shared = UserAccount()
 
     private init(){}
     
     //In the future, connect to the database
     func setUp(id: Int, duid:String, netid:String, name:String, phone: String, picture: String) {
-        self.userId = 0
+        self.userId = id
         self.userDuid = duid
         self.userName = name
         self.userNetId = netid
@@ -35,8 +35,8 @@ class UserAccount{
         self.userImage = picture
     }
     
-    func newUser(duid:String, netid: String, name: String, phone: String, picture: String){
-        NetworkAPI().createUser(name: name, netid: netid, phone: phone, picture: picture) { id in
+    func newUser(nav: UINavigationController, duid:String, netid: String, name: String, phone: String, picture: String){
+        NetworkAPI().createUser(nav: nav, name: name, netid: netid, phone: phone, picture: picture) { id,error in
             self.setUp(id: id, duid: duid, netid: netid, name: name, phone: phone, picture: picture)
         }
         
@@ -45,5 +45,18 @@ class UserAccount{
     func getNetId() -> String {
         return userNetId
     }
+    
+    func getUserId() -> Int {
+        return userId
+    }
+    
+    func getUserName() -> String {
+        return userName
+    }
+    
+    func getUserImage() -> String {
+        return userImage
+    }
+
 }
 

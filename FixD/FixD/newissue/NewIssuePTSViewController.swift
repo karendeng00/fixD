@@ -27,8 +27,9 @@ class NewIssuePTSViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        let nav = self.navigationController!
         if topicDropDown.text != "Please select" {
-            NetworkAPI().buildIssue(issue: myIssue)
+            NetworkAPI().buildIssue(issue: myIssue, nav: nav)
             return true
         }
         createAlert(title: "Selections Missing", message: "Please fill in missing selections.")

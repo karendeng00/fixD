@@ -38,8 +38,9 @@ class HRLredoViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        let nav = self.navigationController!
         if campusDropDown.text != "Please select" && areaDropDown.text != "Please select" && locationDropDown.text != "Please select" && serviceAnimalDropDown.text != "Please select" {
-            NetworkAPI().buildIssue(issue: myIssue)
+            NetworkAPI().buildIssue(issue: myIssue, nav: nav)
             return true
         }
         createAlert(title: "Selections Missing", message: "Please fill in missing selections.")

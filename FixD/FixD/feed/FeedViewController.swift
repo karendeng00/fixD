@@ -78,7 +78,7 @@ class FeedIssueCell: UITableViewCell {
             likeView.backgroundColor = white
             likeView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
-            myIssue.checkLiked(id: myIssue.getID())
+            myIssue.checkLiked(id: self.myIssue.getID())
             if (myIssue.getUpVoteState()){
                 //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
@@ -99,7 +99,7 @@ class FeedIssueCell: UITableViewCell {
             starView.backgroundColor = white
             starView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
-            myIssue.checkFavorited(id: myIssue.getID())
+            myIssue.checkFavorited(id: self.myIssue.getID())
             if (myIssue.getFavoritesState()){
                 //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 starButton.setImage(UIImage(named: "filled star"), for: .normal)
@@ -124,7 +124,6 @@ class FeedIssueCell: UITableViewCell {
             commentView.backgroundColor = granite
             commentView.layer.shadowOffset = CGSize(width: -10, height: 10)
         }
-        
     }
     
     override func awakeFromNib() {
@@ -141,7 +140,7 @@ class FeedIssueCell: UITableViewCell {
     }
     
     @objc func like(_ sender: Any) {
-        self.myIssue.checkLiked(id: self.myIssue.getID())
+        myIssue.checkLiked(id: self.myIssue.getID())
         //self.issueUpvotes.text = String(self.myIssue.getUpVotes())
         if (myIssue.getUpVoteState()){
             upVoteButton.setImage(UIImage(named: "filled heart"), for: .normal)
@@ -155,7 +154,7 @@ class FeedIssueCell: UITableViewCell {
     }
     
     @IBAction func favorite(_ sender: Any) {
-        self.myIssue.checkFavorited(id: self.myIssue.getID())
+        myIssue.checkFavorited(id: self.myIssue.getID())
         
         //self.issueFavorites.text = String(self.myIssue.getFavorites())
         //if favorited, it is a filled star
@@ -188,9 +187,9 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reload(_:)), name: NSNotification.Name("CHECK"), object: nil)
-        
-//        NetworkAPI().setUpUser(nav: self.navigationController!) //Move this?
         getIssueData() //Get Issue Data for Feed
+        NetworkAPI().setUpUser(nav: self.navigationController!)
+        
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -233,7 +232,8 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     }
     
     func getIssueData() {
-        NetworkAPI().getListOfIssues() { issueData in
+        let nav = self.navigationController!
+        NetworkAPI().getListOfIssues(nav: nav) { issueData, error  in
             self.myIssueList = issueData
             self.tableView.reloadData()
         }
@@ -287,7 +287,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         var like = UserDefaults.standard.bool(forKey: "liked") && obj.getUpVoteState()
         var fav = UserDefaults.standard.bool(forKey: "starred") && obj.getFavoritesState()
         
-        
         if(checkLike && checkFav && check) {
             if(like && fav && (oit || park || fac || hrl)) {
                 return 210
@@ -296,7 +295,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
                 return 0
             }
         }
-        
         if(checkLike && checkFav) {
             if (like && fav) {
                 return 210
@@ -305,7 +303,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
                 return 0
             }
         }
-        
         if(checkLike && check) {
             if(like && (oit || park || fac || hrl)) {
                 return 210
@@ -314,7 +311,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
                 return 0
             }
         }
-        
         if(checkFav && check) {
             if(fav && (oit || park || fac || hrl)) {
                 return 210
@@ -323,8 +319,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
                 return 0
             }
         }
-        
-        
         if (checkLike) {
             if (like) {
                 return 210
@@ -333,7 +327,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
                 return 0
             }
         }
-        
         if(checkFav) {
             if (fav) {
                 return 210
@@ -342,32 +335,14 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
                 return 0
             }
         }
-        
         if (all || oit || park || fac || hrl ) {
             return 210
         }
-        
         return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
-        
-         //Configure the cell...
-//            let obj = filteredIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
-//            cell.setIssue(issue: obj)
-//            cell.issueName.text = obj.getTitle()
-//            cell.issueDescription.text = obj.getDescription()
-//            cell.issueLocation.text = obj.getLocation()
-//            cell.issueImage.image = UIImage(named: obj.getIssueImage())
-//            //        cell.issueUpvotes.text = String(obj.getUpVotes())
-//            //        cell.issueFavorites.text = String(obj.getFavorites())
-//            cell.userName.text = obj.myUserName
-//            cell.userImage.image = UIImage(named: obj.myUserImage)
-//            cell.issueDate.text = obj.getIssueDate()
-//            cell.issueTime.text = obj.getIssueTime()
-//            cell.textLabel?.text = nameList[indexPath.row]
-        
         if searching {
             let obj = feedSearchIssues.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
             cell.setIssue(issue: obj)
@@ -397,7 +372,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             cell.issueTime.text = obj.getIssueTime()
         }
         return cell
-        
     }
     
     @IBAction func didTapMenu(_ sender: UIButton) {
@@ -405,11 +379,9 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     }
     
     @objc func swipePanAction(sender: UIScreenEdgePanGestureRecognizer) {
-
         if sender.state == UIGestureRecognizer.State.ended {
             self.openMenu()
         }
-        
     }
     
     //when you click a button on the side menu, it brings you to another page
@@ -418,27 +390,19 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "tab") as? UITabBarController else {
             return
         }
-        
         guard let logOutController = storyBoard.instantiateViewController(withIdentifier: "login") as? UIViewController else {
             return
         }
-        
-        
         switch menuType {
         case .map:
-            
             nextViewController.selectedIndex = 1
             self.present(nextViewController, animated:false, completion:nil)
-            
         case .account:
-            
             nextViewController.selectedIndex = 2
             self.present(nextViewController, animated:false, completion:nil)
-            
         case .logout:
             let navigationController = UINavigationController(rootViewController: logOutController)
             self.present(navigationController, animated:false, completion: nil)
-            
         default:
             break
         }
@@ -507,6 +471,5 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         tableView.reloadData()
         feedSearchBar.resignFirstResponder()
     }
-    
-    
+
 }
