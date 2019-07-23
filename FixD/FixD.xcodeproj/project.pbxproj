@@ -173,7 +173,6 @@
 		B4085C0622A850A400A24525 /* FixD */ = {
 			isa = PBXGroup;
 			children = (
-				B4ED85FF22E0CCDB002E6D79 /* Apollo.swift */,
 				B461C14222E794BD009D75D3 /* Fonts */,
 				22775BCC22CBC4A200130E12 /* DukeOAuth */,
 				B4ED4D4722B0353900E50272 /* login */,
@@ -184,6 +183,7 @@
 				B4ED4D4222B0348E00E50272 /* sidemenu */,
 				B4085C0722A850A400A24525 /* AppDelegate.swift */,
 				B4CA2D1522D3D12E00BC6189 /* API.swift */,
+				B4ED85FF22E0CCDB002E6D79 /* Apollo.swift */,
 				B48967EB22D645C600B565D0 /* NetworkAPI.swift */,
 				B4085C0B22A850A500A24525 /* Main.storyboard */,
 				B4085C0E22A850A500A24525 /* Assets.xcassets */,
