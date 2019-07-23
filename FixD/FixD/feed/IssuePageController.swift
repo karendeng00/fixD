@@ -78,10 +78,10 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         commentView.dataSource = self
         loadIssue()
         
+        //Heights needed to adjust the screen for when the keyboard appears
         tabBarHeight = tabBarController?.tabBar.bounds.size.height ?? 0
         navBarHeight = navigationController?.navigationBar.bounds.size.height ?? 0
         statusBarHeight = UIApplication.shared.statusBarFrame.size.height
-        print("T: \(tabBarHeight)  N: \(navBarHeight)  S: \(statusBarHeight)")
         
         self.commentView.reloadData()
         //Code to set up and event listener
@@ -292,8 +292,10 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             return
         }
         if notification.name == UIResponder.keyboardWillShowNotification  || notification.name == UIResponder.keyboardWillChangeFrameNotification{
+            //When the keyboard appears, this is the value that the screens needs to be shifted up by.
             view.frame.origin.y = -(keyboardRect.height - tabBarHeight - navBarHeight - statusBarHeight)
         }else {
+            //When the keyboard is dismissed, the height needs to be reset to this value.
             view.frame.origin.y = navBarHeight + statusBarHeight
         }
     }
@@ -327,8 +329,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         scrollToBottom()
     }
     
-    
-    
+    //Methods to listen for when the keyboard is called
     func listenForNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
