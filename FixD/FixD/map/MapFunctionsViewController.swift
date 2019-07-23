@@ -196,7 +196,8 @@ extension MapFunctionsViewController: UIViewControllerTransitioningDelegate {
     }
     
     private func getIssueData() {
-        NetworkAPI().getListOfIssues() { issueData in
+        let nav = self.navigationController!
+        NetworkAPI().getListOfIssues(nav: nav) { issueData, error in
             self.myIssueList = issueData
             self.setUpCurrentLocation()
         }

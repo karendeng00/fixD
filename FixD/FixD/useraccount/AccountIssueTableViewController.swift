@@ -116,8 +116,9 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
     * Code to delete the cell a table view cell
     **/
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let nav = self.storyboard?.instantiateViewController(withIdentifier: "sbProfNav") as? UINavigationController
         let swipeAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
-            NetworkAPI().deleteIssue(issueID: self.issuesList[indexPath.row].getID())
+            NetworkAPI().deleteIssue(nav:nav!, issueId: self.issuesList[indexPath.row].getID())
             self.issuesList.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .bottom)
             completionHandler(true)
@@ -134,7 +135,8 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
     @IBOutlet var accountFeed: UITableView!
     
     func getIssueData() {
-        NetworkAPI().getListOfIssues() { issueData in
+        let nav = self.storyboard?.instantiateViewController(withIdentifier: "sbProfNav") as? UINavigationController
+        NetworkAPI().getListOfIssues(nav: nav!) { issueData,error in
             self.resetLists()
             let issues:[IssueClass] = issueData
             for issue in issues {

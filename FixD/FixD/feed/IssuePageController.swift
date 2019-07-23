@@ -243,7 +243,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func loadIssue() {
-        NetworkAPI().getIssueById(id: issueID) { issue in
+        let nav = self.navigationController!
+        NetworkAPI().getIssueById(nav: nav, id: issueID) { issue,error in
             self.myIssue = issue
             self.issueLabel.text = issue.getTitle()
             self.descriptionLabel.text = issue.getDescription()
@@ -300,7 +301,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func updateComments() {
-        
+        let nav = self.navigationController!
         if hasImage == true {
             myIssue.addImage(image: tempImg!)
             upload()
@@ -313,10 +314,10 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         }   
         
         if commentTextField.hasText {
-            myIssue.addComment(comment: commentTextField.text!, image: tempImg! , issueId: myIssue.getID(), userId: myUser.getUserId(), user_name: myUser.getUserName(), user_image: myUser.getUserImage())
+            myIssue.addComment(comment: commentTextField.text!, image: tempImg! , issueId: myIssue.getID(), userId: myUser.getUserId(), user_name: myUser.getUserName(), user_image: myUser.getUserImage(), nav: nav)
         }
         else {
-            myIssue.addComment(comment: "", image: tempImg! , issueId: myIssue.getID(), userId: myUser.getUserId(), user_name: myUser.getUserName(), user_image: myUser.getUserImage())
+            myIssue.addComment(comment: "", image: tempImg! , issueId: myIssue.getID(), userId: myUser.getUserId(), user_name: myUser.getUserName(), user_image: myUser.getUserImage(), nav: nav)
         }
         
         commentTextField.text = ""
