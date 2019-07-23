@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2243BDFA22D90B6600714591 /* Merriweather-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2243BDF922D90B6600714591 /* Merriweather-Regular.ttf */; };
-		2243BDFC22D90B8C00714591 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2243BDFB22D90B8C00714591 /* OpenSans-Regular.ttf */; };
 		22740CEC22CD052D0011835E /* IssueAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22740CEB22CD052D0011835E /* IssueAnnotation.swift */; };
 		22775BCE22CBC4C400130E12 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22775BCD22CBC4C400130E12 /* OAuthService.swift */; };
 		22775BD122CBC4E000130E12 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 22775BCF22CBC4E000130E12 /* README.md */; };
@@ -41,6 +39,7 @@
 		B4ED85FC22D8D388002E6D79 /* CommentsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED85FB22D8D388002E6D79 /* CommentsClass.swift */; };
 		B4ED85FE22DF5EB0002E6D79 /* UserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED85FD22DF5EB0002E6D79 /* UserClass.swift */; };
 		B4ED860022E0CCDB002E6D79 /* Apollo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED85FF22E0CCDB002E6D79 /* Apollo.swift */; };
+		B4EC7FD922B18163001711BC /* NewIssueServiceNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC7FD822B18163001711BC /* NewIssueServiceNowViewController.swift */; };
 		F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */; };
 		F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
 		FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */; };
@@ -71,8 +70,6 @@
 
 /* Begin PBXFileReference section */
 		0602A645D2AA86E5A338DE83 /* Pods-FixD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FixD.debug.xcconfig"; path = "Target Support Files/Pods-FixD/Pods-FixD.debug.xcconfig"; sourceTree = "<group>"; };
-		2243BDF922D90B6600714591 /* Merriweather-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Regular.ttf"; sourceTree = "<group>"; };
-		2243BDFB22D90B8C00714591 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		22740CEB22CD052D0011835E /* IssueAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAnnotation.swift; sourceTree = "<group>"; };
 		22775BCD22CBC4C400130E12 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthService.swift; sourceTree = "<group>"; };
 		22775BCF22CBC4E000130E12 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -108,6 +105,7 @@
 		B4ED85FB22D8D388002E6D79 /* CommentsClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsClass.swift; sourceTree = "<group>"; };
 		B4ED85FD22DF5EB0002E6D79 /* UserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserClass.swift; sourceTree = "<group>"; };
 		B4ED85FF22E0CCDB002E6D79 /* Apollo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apollo.swift; sourceTree = "<group>"; };
+		B4EC7FD822B18163001711BC /* NewIssueServiceNowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueServiceNowViewController.swift; sourceTree = "<group>"; };
 		F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		F5EE5DB822CA8EBD00F89735 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
@@ -133,15 +131,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2243BDFD22D90DA300714591 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				2243BDFB22D90B8C00714591 /* OpenSans-Regular.ttf */,
-				2243BDF922D90B6600714591 /* Merriweather-Regular.ttf */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
 		22775BCC22CBC4A200130E12 /* DukeOAuth */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,7 +171,7 @@
 		B4085C0622A850A400A24525 /* FixD */ = {
 			isa = PBXGroup;
 			children = (
-				2243BDFD22D90DA300714591 /* Fonts */,
+				B4ED85FF22E0CCDB002E6D79 /* Apollo.swift */,
 				22775BCC22CBC4A200130E12 /* DukeOAuth */,
 				B4ED4D4722B0353900E50272 /* login */,
 				B4ED4D4622B0350800E50272 /* map */,
@@ -191,7 +180,6 @@
 				B4ED4D4322B034B500E50272 /* useraccount */,
 				B4ED4D4222B0348E00E50272 /* sidemenu */,
 				B4085C0722A850A400A24525 /* AppDelegate.swift */,
-				B4ED85FF22E0CCDB002E6D79 /* Apollo.swift */,
 				B4CA2D1522D3D12E00BC6189 /* API.swift */,
 				B48967EB22D645C600B565D0 /* NetworkAPI.swift */,
 				B4085C0B22A850A500A24525 /* Main.storyboard */,
@@ -216,14 +204,14 @@
 		B4ED4D4322B034B500E50272 /* useraccount */ = {
 			isa = PBXGroup;
 			children = (
+				B4ED4D3422AEB9C300E50272 /* UserAccount.swift */,
+				B4ED85FD22DF5EB0002E6D79 /* UserClass.swift */,
 				2299A35322B18E07000BD0F6 /* ContactUsViewController.swift */,
 				B4EC7FD522B16E69001711BC /* AccountIssueTableViewController.swift */,
 				B4EC7FCA22B16906001711BC /* AccountViewController.swift */,
 				B4EC7FCB22B16906001711BC /* SettingsTableViewCell.swift */,
 				B4EC7FC822B16906001711BC /* SettingsTableViewController.swift */,
 				B4ED4D3822B003C900E50272 /* InviteFriendsViewController.swift */,
-				B4ED4D3422AEB9C300E50272 /* UserAccount.swift */,
-				B4ED85FD22DF5EB0002E6D79 /* UserClass.swift */,
 			);
 			path = useraccount;
 			sourceTree = "<group>";
@@ -231,8 +219,8 @@
 		B4ED4D4422B034D800E50272 /* feed */ = {
 			isa = PBXGroup;
 			children = (
-				B4086CE222A956EE00B48EFF /* FeedViewController.swift */,
 				B4ED85FB22D8D388002E6D79 /* CommentsClass.swift */,
+				B4086CE222A956EE00B48EFF /* FeedViewController.swift */,
 				B4086CE822A95A7400B48EFF /* IssueClass.swift */,
 				22E8AF6D22AEA70100194036 /* IssuePageController.swift */,
 				B42E2F1122CD180700F9DC9C /* MainTabViewController.swift */,
@@ -352,7 +340,6 @@
 				2243BDFA22D90B6600714591 /* Merriweather-Regular.ttf in Resources */,
 				22D496CC22E64F3400AFE99A /* schema.json in Resources */,
 				B44EED4022D39D16004C1627 /* fixd.graphql in Resources */,
-				2243BDFC22D90B8C00714591 /* OpenSans-Regular.ttf in Resources */,
 				B4085C0D22A850A500A24525 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,10 +413,11 @@
 			files = (
 				FFE35B2422C2AEB90087FC64 /* SubmissionViewController.swift in Sources */,
 				FF95139922CA98E600B94CB2 /* IssueVC.swift in Sources */,
+				B4ED860022E0CCDB002E6D79 /* Apollo.swift in Sources */,
 				FFE35B1822C12E730087FC64 /* NewIssueFMDViewController.swift in Sources */,
-				B4ED4D3522AEB9C300E50272 /* UserAccount.swift in Sources */,
 				B4EC7FCF22B16906001711BC /* SettingsTableViewCell.swift in Sources */,
 				B4EC7FCE22B16906001711BC /* AccountViewController.swift in Sources */,
+				B4ED4D3522AEB9C300E50272 /* UserAccount.swift in Sources */,
 				B4086CE322A956EE00B48EFF /* FeedViewController.swift in Sources */,
 				22740CEC22CD052D0011835E /* IssueAnnotation.swift in Sources */,
 				22E8AF6E22AEA70100194036 /* IssuePageController.swift in Sources */,
@@ -437,21 +425,20 @@
 				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
 				F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */,
 				B4B1DBF922AAE02A005EFFA9 /* ScreenPageViewController.swift in Sources */,
-				B4ED85FE22DF5EB0002E6D79 /* UserClass.swift in Sources */,
 				FFE6EEA422C3BE8C00E2CBED /* HRLredoViewController.swift in Sources */,
 				B48967EC22D645C600B565D0 /* NetworkAPI.swift in Sources */,
 				B43E91F722E61E8300D30B12 /* LoadScreenViewController.swift in Sources */,
 				2299A35422B18E07000BD0F6 /* ContactUsViewController.swift in Sources */,
+				B4ED85FC22D8D388002E6D79 /* CommentsClass.swift in Sources */,
 				B4ED4D3722AED64F00E50272 /* MapFunctionsViewController.swift in Sources */,
 				B42E2F1222CD180700F9DC9C /* MainTabViewController.swift in Sources */,
-				B4ED85FC22D8D388002E6D79 /* CommentsClass.swift in Sources */,
 				B4CA2D1622D3D12F00BC6189 /* API.swift in Sources */,
 				22775BCE22CBC4C400130E12 /* OAuthService.swift in Sources */,
+				B4ED85FE22DF5EB0002E6D79 /* UserClass.swift in Sources */,
 				FFE6EEA622C3D9DD00E2CBED /* OITredoViewController.swift in Sources */,
 				B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
 				22775BD222CBC4E000130E12 /* ShibAuthViewController.swift in Sources */,
-				B4ED860022E0CCDB002E6D79 /* Apollo.swift in Sources */,
 				FFB2C5A222A968A300BC11ED /* (null) in Sources */,
 				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
 				FFB2C5A822A97BB100BC11ED /* (null) in Sources */,
