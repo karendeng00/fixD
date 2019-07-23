@@ -1954,16 +1954,16 @@
                                 <rect key="frame" x="0.0" y="-10" width="414" height="811"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="h3P-1k-TkB">
-                                        <rect key="frame" x="92.5" y="311" width="229.5" height="35"/>
+                                        <rect key="frame" x="92.5" y="311" width="229.5" height="25.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact us:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="05s-zJ-vns">
-                                                <rect key="frame" x="0.0" y="0.0" width="94.5" height="35"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="94.5" height="25.5"/>
                                                 <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rI9-HZ-Lu0">
-                                                <rect key="frame" x="114.5" y="0.0" width="115" height="35"/>
+                                                <rect key="frame" x="114.5" y="0.0" width="115" height="25.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="3Y5-lY-YY8"/>
                                                 </constraints>
@@ -1975,17 +1975,17 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="joI-Nl-Nxq">
-                                        <rect key="frame" x="109.5" y="391.5" width="195" height="25.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="joI-Nl-Nxq">
+                                        <rect key="frame" x="109.5" y="391.5" width="195" height="35"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXz-Zk-4Xt">
-                                                <rect key="frame" x="0.0" y="0.0" width="55" height="25.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXz-Zk-4Xt">
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="35"/>
                                                 <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="fixd@duke.edu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMR-Og-JUH">
-                                                <rect key="frame" x="75" y="0.0" width="120" height="25.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fixd@duke.edu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMR-Og-JUH">
+                                                <rect key="frame" x="75" y="0.0" width="120" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="Os9-kq-vbE"/>
                                                 </constraints>
@@ -2100,16 +2100,16 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="bzp-RX-2xy">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="bzp-RX-2xy">
                                         <rect key="frame" x="123.5" y="346.5" width="167" height="35"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Tel:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pqz-gF-GuP">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tel:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pqz-gF-GuP">
                                                 <rect key="frame" x="0.0" y="0.0" width="33" height="35"/>
                                                 <fontDescription key="fontDescription" name="Merriweather-Regular" family="Merriweather" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="000-000-0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCL-Oh-hsE">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000-000-0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCL-Oh-hsE">
                                                 <rect key="frame" x="52" y="0.0" width="115" height="35"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2825,11 +2825,11 @@
             <objects>
                 <viewController id="GiZ-ID-eWp" customClass="AddIssueGeneralInfoViewController" customModule="FixD" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Duz-5V-alh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JoU-oU-qpd">
-                                <rect key="frame" x="0.0" y="44" width="416" height="1019"/>
+                                <rect key="frame" x="0.0" y="0.0" width="416" height="892"/>
                                 <subviews>
                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6k4-EO-0nQ">
                                         <rect key="frame" x="20" y="237" width="376" height="30"/>
@@ -3728,6 +3728,7 @@
         <image name="user-1" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Php-oz-wdx"/>
         <segue reference="v3b-J1-vTz"/>
         <segue reference="elw-hr-S50"/>
         <segue reference="tAk-x9-Ry1"/>
