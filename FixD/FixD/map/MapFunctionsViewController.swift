@@ -148,7 +148,8 @@ class MapFunctionsViewController: UIViewController {
                 print(issue.getTitle())
                 let loc = issue.getLocation()
                 let geoCoder = CLGeocoder()
-                geoCoder.geocodeAddressString(loc) { (placemarks, error) -> Void in
+                let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: 36.001522, longitude: -78.938207), radius: 500, identifier: "Durham")
+                geoCoder.geocodeAddressString(loc, in: region) { (placemarks, error) -> Void in
                     if let pMark = placemarks?.first {
                         if let coordinate = pMark.location?.coordinate{
                             let issueAnnotation = IssueAnnotation(coordinate: coordinate)
