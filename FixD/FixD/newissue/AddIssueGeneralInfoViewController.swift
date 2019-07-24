@@ -43,13 +43,6 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
         navBarHeight = navigationController?.navigationBar.bounds.size.height ?? 0
         statusBarHeight = UIApplication.shared.statusBarFrame.size.height
         
-        listenForNotifications()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     @objc func handleTapOutside(){
@@ -81,26 +74,6 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
         createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
         return false
     }
-    
-    //Methods to listen for when the keyboard is called
-    func listenForNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-    }
-    
-    @objc func keyboardWillChange(notification: Notification){
-        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-            return
-        }
-        if notification.name == UIResponder.keyboardWillShowNotification  || notification.name == UIResponder.keyboardWillChangeFrameNotification{
-            //When the keyboard appears, this is the value that the screens needs to be shifted up by.
-            view.frame.origin.y = -(keyboardRect.height - tabBarHeight - navBarHeight - statusBarHeight)
-        }else {
-            //When the keyboard is dismissed, the height needs to be reset to this value.
-            view.frame.origin.y = navBarHeight + statusBarHeight
-        }
-    }
 }
 
 extension AddIssueGeneralInfoViewController: UITextFieldDelegate{
@@ -118,7 +91,7 @@ extension AddIssueGeneralInfoViewController: UITextFieldDelegate{
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-            issueDescriptionText.text = ""
+        issueDescriptionText.text = ""
     }
     
 }

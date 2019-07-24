@@ -251,12 +251,16 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     @IBOutlet var feedTable: UITableView!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is IssuePageController {
+        if segue.identifier == "ShowIssuePage" {
             let viewController = segue.destination as? IssuePageController
             if let indexPath = feedTable.indexPathForSelectedRow{
                 let currCell = feedTable.cellForRow(at: indexPath) as! FeedIssueCell
                 viewController?.issueID = currCell.myIssue.getID()
             }
+            print("issue selected")
+        }
+        if segue.identifier == "comSegue" {
+            print("comment button pressed")
         }
     }
 
@@ -438,6 +442,11 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         transition.isPresenting = false
         return transition
     }
+    
+    @IBAction func addComment(_ sender: Any) {
+        performSegue(withIdentifier: "comSegue", sender: self)
+    }
+    
     
     @IBOutlet weak var feedSearchBar: UISearchBar!
     var feedIssueList = Set<IssueClass>()
