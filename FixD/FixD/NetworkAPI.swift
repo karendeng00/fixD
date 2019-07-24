@@ -15,7 +15,7 @@ class NetworkAPI {
     
     let myUser = UserAccount.shared
     
-    func setUpUser(nav: UINavigationController){
+    func setUpUser(nav: UINavigationController, completionHandler: @escaping (_ user: Bool) -> Void){
         let user = UserAccount.shared
          // Get the User info (comes back as a String array).
         Apollo().getClient().fetch(query: GetUserInfoQuery()) { (result, error) in
@@ -25,7 +25,9 @@ class NetworkAPI {
                     // The request was unauthorized due to a bad token, request a new OAuth token.
                     OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
                         if success {
-                            self.setUpUser(nav: nav)
+                            self.setUpUser(nav: nav){ results in
+                                completionHandler(results)
+                            }
                         } else {
                             // TODO: handle error
                         }
@@ -42,7 +44,9 @@ class NetworkAPI {
                     // Something else went wrong, get a new token and try again
                     OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
                         if success {
-                            self.setUpUser(nav: nav)
+                            self.setUpUser(nav: nav) { results in
+                                completionHandler(results)
+                            }
                         } else {
                             // TODO: handle error
                         }
@@ -59,6 +63,7 @@ class NetworkAPI {
             else {
                 if let u = result?.data?.getUserInfo {
                     user.setUp(id: Int(u.id)!, duid: "", netid: u.netid, name: u.name!, phone: u.phone ?? "", picture: u.picture ?? "", myLikes: [], myFavorites: [])
+                    completionHandler(true)
                 }
                 print("USER LOADED")
             }
