@@ -2883,23 +2883,16 @@ public final class UserByIdQuery: GraphQLQuery {
 
 public final class GetUserInfoQuery: GraphQLQuery {
   public let operationDefinition =
-    "query GetUserInfo($duid: String!) {\n  getUserInfo(duid: $duid)\n}"
+    "query GetUserInfo {\n  getUserInfo {\n    __typename\n    id\n    name\n    netid\n    picture\n    phone\n  }\n}"
 
-  public var duid: String
-
-  public init(duid: String) {
-    self.duid = duid
-  }
-
-  public var variables: GraphQLMap? {
-    return ["duid": duid]
+  public init() {
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Query"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("getUserInfo", arguments: ["duid": GraphQLVariable("duid")], type: .nonNull(.list(.nonNull(.scalar(String.self))))),
+      GraphQLField("getUserInfo", type: .nonNull(.object(GetUserInfo.selections))),
     ]
 
     public private(set) var resultMap: ResultMap
@@ -2908,19 +2901,94 @@ public final class GetUserInfoQuery: GraphQLQuery {
       self.resultMap = unsafeResultMap
     }
 
-    public init(getUserInfo: [String]) {
-      self.init(unsafeResultMap: ["__typename": "Query", "getUserInfo": getUserInfo])
+    public init(getUserInfo: GetUserInfo) {
+      self.init(unsafeResultMap: ["__typename": "Query", "getUserInfo": getUserInfo.resultMap])
     }
 
     /// Get User info from IDMS through Kong
-    /// 
-    /// Order: NetId, DUID, Name
-    public var getUserInfo: [String] {
+    public var getUserInfo: GetUserInfo {
       get {
-        return resultMap["getUserInfo"]! as! [String]
+        return GetUserInfo(unsafeResultMap: resultMap["getUserInfo"]! as! ResultMap)
       }
       set {
-        resultMap.updateValue(newValue, forKey: "getUserInfo")
+        resultMap.updateValue(newValue.resultMap, forKey: "getUserInfo")
+      }
+    }
+
+    public struct GetUserInfo: GraphQLSelectionSet {
+      public static let possibleTypes = ["User"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("name", type: .scalar(String.self)),
+        GraphQLField("netid", type: .nonNull(.scalar(String.self))),
+        GraphQLField("picture", type: .scalar(String.self)),
+        GraphQLField("phone", type: .scalar(String.self)),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID, name: String? = nil, netid: String, picture: String? = nil, phone: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "netid": netid, "picture": picture, "phone": phone])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var name: String? {
+        get {
+          return resultMap["name"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "name")
+        }
+      }
+
+      public var netid: String {
+        get {
+          return resultMap["netid"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "netid")
+        }
+      }
+
+      public var picture: String? {
+        get {
+          return resultMap["picture"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "picture")
+        }
+      }
+
+      public var phone: String? {
+        get {
+          return resultMap["phone"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "phone")
+        }
       }
     }
   }
