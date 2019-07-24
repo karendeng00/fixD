@@ -244,8 +244,14 @@ query UserById($id: Int!){
     }
 }
 
-query GetUserInfo($duid:String!) {
-    getUserInfo(duid: $duid)
+query GetUserInfo {
+    getUserInfo{
+        id
+        name
+        netid
+        picture
+        phone
+    }
 }
 
 query GetDuid {

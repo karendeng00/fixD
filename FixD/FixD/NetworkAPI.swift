@@ -15,44 +15,38 @@ class NetworkAPI {
     
     let myUser = UserAccount.shared
     
-    // This method fetches information from IDMS to populate user. If the user already exists
-    // in the system, then the user is loaded. Otherwise, a new user is created with the
-    // information loaded from IDMS. The method instantiantes a singleton UserAccount.
-    func getUserDuid(nav: UINavigationController, completionHandler: @escaping (_ duid: String?, _ error: String?) -> Void) {
-        Apollo().getClient().fetch(query: GetDuidQuery(), cachePolicy: .fetchIgnoringCacheData) { (result, error) in
+    func setUpUser(nav: UINavigationController){
+        let user = UserAccount.shared
+         // Get the User info (comes back as a String array).
+        Apollo().getClient().fetch(query: GetUserInfoQuery()) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 switch (err.response.statusCode) {
-                    case 401:
-                        // The request was unauthorized due to a bad token, request a new OAuth token.
-                        OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
-                            if success {
-                                // We receieved a new token, try again.
-                                self.getUserDuid(nav: nav) { duid, error in
-                                    completionHandler(duid, error)
-                                }
-                            } else {
-                                // TODO: handle error
-                            }
+                case 401:
+                    // The request was unauthorized due to a bad token, request a new OAuth token.
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.setUpUser(nav: nav)
+                        } else {
+                            // TODO: handle error
                         }
-                    case 403:
-                        print("403")
-                        // TODO: Handle not authorized (Forbidden) error
-                        let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
-                        // self.showMessage(message: message)
-                    case 500...599:
-                        print("500")
-                        // TODO: handle GQL/Kong server error
-                    default:
-                        // Something else went wrong, get a new token and try again
-                        OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
-                            if success {
-                                self.getUserDuid(nav: nav) { duid, error in
-                                    completionHandler(duid, error)
-                                }
-                            } else {
-                                // TODO: handle error
-                            }
+                    }
+                case 403:
+                    print("403")
+                    // TODO: Handle not authorized (Forbidden) error
+                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+                // self.showMessage(message: message)
+                case 500...599:
+                    print("500")
+                // TODO: handle GQL/Kong server error
+                default:
+                    // Something else went wrong, get a new token and try again
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.setUpUser(nav: nav)
+                        } else {
+                            // TODO: handle error
                         }
+                    }
                 }
             }
             else if let err = error as NSError?, err.domain == NSURLErrorDomain {
@@ -63,121 +57,10 @@ class NetworkAPI {
                 // self.showMessage(message: ["title": title, "message": message])
             }
             else {
-                print((result?.data?.getDuid)!)
-                DispatchQueue.main.async{
-                    completionHandler((result?.data?.getDuid)!, nil)
+                if let u = result?.data?.getUserInfo {
+                    user.setUp(id: Int(u.id)!, duid: "", netid: u.netid, name: u.name!, phone: u.phone ?? "", picture: u.picture ?? "", myLikes: [], myFavorites: [])
                 }
-        }
-        }
-    }
-    
-    //This method checks for e
-    func fetchUserData(nav: UINavigationController, completionHandler: @escaping (_ user: [String]?, _ error: String?) -> Void){
-        getUserDuid(nav: nav) { duid, error in
-        // Get the User info (comes back as a String array).
-            Apollo().getClient().fetch(query: GetUserInfoQuery(duid: duid ?? "00000")) { (result, error) in
-                if let err = error as? GraphQLHTTPResponseError {
-                    switch (err.response.statusCode) {
-                    case 401:
-                        // The request was unauthorized due to a bad token, request a new OAuth token.
-                        OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
-                            if success {
-                                // We receieved a new token, try again.
-                                self.fetchUserData(nav: nav) { user, error in
-                                    completionHandler(user, error)
-                                }
-                            } else {
-                                // TODO: handle error
-                            }
-                        }
-                    case 403:
-                        print("403")
-                        // TODO: Handle not authorized (Forbidden) error
-                        let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
-                    // self.showMessage(message: message)
-                    case 500...599:
-                        print("500")
-                    // TODO: handle GQL/Kong server error
-                    default:
-                        // Something else went wrong, get a new token and try again
-                        OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
-                            if success {
-                                self.fetchUserData(nav: nav) { user, error in
-                                    completionHandler(user, error)
-                                }
-                            } else {
-                                // TODO: handle error
-                            }
-                        }
-                    }
-                }
-                else if let err = error as NSError?, err.domain == NSURLErrorDomain {
-                    print("error NSE")
-                    // TODO: Handle error
-                    // let title = "Unexpected Error"
-                    // let message = err.localizedDescription
-                    // self.showMessage(message: ["title": title, "message": message])
-                }
-                else {
-                    DispatchQueue.main.async{
-                        completionHandler((result?.data?.getUserInfo)!, nil) // catch errors
-                    }
-                }
-            }
-        }
-    }
-
-    func setUpUser(nav: UINavigationController){
-        fetchUserData(nav: nav) { userInfo, err in
-             // Get the User info (comes back as a String array).
-            Apollo().getClient().fetch(query: UserByNetIdQuery(netid: userInfo?[0] ?? "00000")) { (result, error) in
-                if let err = error as? GraphQLHTTPResponseError {
-                    switch (err.response.statusCode) {
-                    case 401:
-                        // The request was unauthorized due to a bad token, request a new OAuth token.
-                        OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
-                            if success {
-                                self.setUpUser(nav: nav)
-                            } else {
-                                // TODO: handle error
-                            }
-                        }
-                    case 403:
-                        print("403")
-                        // TODO: Handle not authorized (Forbidden) error
-                        let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
-                    // self.showMessage(message: message)
-                    case 500...599:
-                        print("500")
-                    // TODO: handle GQL/Kong server error
-                    default:
-                        // Something else went wrong, get a new token and try again
-                        OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
-                            if success {
-                                self.setUpUser(nav: nav)
-                            } else {
-                                // TODO: handle error
-                            }
-                        }
-                    }
-                }
-                else if let err = error as NSError?, err.domain == NSURLErrorDomain {
-                    print("error NSE")
-                    // TODO: Handle error
-                    // let title = "Unexpected Error"
-                    // let message = err.localizedDescription
-                    // self.showMessage(message: ["title": title, "message": message])
-                }
-                else {
-                    if let u = result?.data?.userByNetId {
-                        self.myUser.setUp(id: Int(u.id)!, duid: (userInfo?[1])!, netid: u.netid, name: u.name!, phone: u.phone ?? "", picture: u.picture ?? "", myLikes: u.likedIssues!, myFavorites: u.favoritedIssues!)
-                    }
-                    // If user does not exist, create a new User and instantiate
-                    else {
-                        self.myUser.newUser(nav: nav, duid:(userInfo?[1])!, netid: (userInfo?[0])!, name: (userInfo?[2])! , phone: "", picture: "photo.jpg")
-                    }
-                }
-
+                print("USER LOADED")
             }
         }
     }

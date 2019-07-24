@@ -38,12 +38,6 @@ class UserAccount{
         self.listOfFavedIssues = myFavorites
     }
     
-    func newUser(nav: UINavigationController, duid:String, netid: String, name: String, phone: String, picture: String){
-        NetworkAPI().createUser(nav: nav, name: name, netid: netid, phone: phone, picture: picture) { id,error in
-            self.setUp(id: id, duid: duid, netid: netid, name: name, phone: phone, picture: picture, myLikes: [], myFavorites: [])
-        }
-    }
-    
     func getNetId() -> String {
         return userNetId
     }
