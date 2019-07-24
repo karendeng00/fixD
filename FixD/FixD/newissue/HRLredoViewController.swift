@@ -35,6 +35,9 @@ class HRLredoViewController: UIViewController {
         areaDropDown.text = "Please select"
         locationDropDown.text = "Please select"
         serviceAnimalDropDown.text = "Please select"
+        
+        campusDropDown.isSearchEnable = false
+        serviceAnimalDropDown.isSearchEnable = false
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {

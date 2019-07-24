@@ -24,6 +24,8 @@ class NewIssuePTSViewController: UIViewController {
         
         topicDropDown.text = "Please select"
         
+        topicDropDown.isSearchEnable = false
+        
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {

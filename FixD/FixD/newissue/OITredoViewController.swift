@@ -54,6 +54,9 @@ class OITredoViewController: UIViewController, UITextViewDelegate, UINavigationC
         longCamera.minimumPressDuration = 0
         cameraView.addGestureRecognizer(longCamera)
         
+        urgencyDropDown.isSearchEnable = false
+        impactDropDown.isSearchEnable = false
+        
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {

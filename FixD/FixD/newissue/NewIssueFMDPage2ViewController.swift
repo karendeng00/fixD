@@ -48,6 +48,8 @@ class NewIssueFMDPage2ViewController: UIViewController {
             roomSecondDropDown.text = roomText
         }
         
+        serviceListDropDown.isSearchEnable = false
+        
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
