@@ -316,3 +316,27 @@ mutation DeleteIssue($id: Int!){
         id
     }
 }
+
+mutation AddLikeToUser($userId: Int!, $issueId: Int!){
+    addLikeToUser(userId: $userId, issueId: $issueId){
+        id
+    }
+}
+
+mutation AddFavToUser($userId: Int!, $issueId: Int!){
+    addFavToUser(userId: $userId, issueId: $issueId){
+        id
+    }
+}
+
+mutation DeleteLikeFromUser($userId: Int!, $issueId: Int!){
+    deleteLikeFromUser(userId: $userId, issueId: $issueId){
+        id
+    }
+}
+
+mutation DeleteFavFromUser($userId: Int!, $issueId: Int!){
+    deleteFavFromUser(userId: $userId, issueId: $issueId){
+        id
+    }
+}

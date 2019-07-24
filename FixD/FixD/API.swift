@@ -3863,3 +3863,327 @@ public final class DeleteIssueMutation: GraphQLMutation {
     }
   }
 }
+
+public final class AddLikeToUserMutation: GraphQLMutation {
+  public let operationDefinition =
+    "mutation AddLikeToUser($userId: Int!, $issueId: Int!) {\n  addLikeToUser(userId: $userId, issueId: $issueId) {\n    __typename\n    id\n  }\n}"
+
+  public var userId: Int
+  public var issueId: Int
+
+  public init(userId: Int, issueId: Int) {
+    self.userId = userId
+    self.issueId = issueId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["userId": userId, "issueId": issueId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("addLikeToUser", arguments: ["userId": GraphQLVariable("userId"), "issueId": GraphQLVariable("issueId")], type: .nonNull(.object(AddLikeToUser.selections))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(addLikeToUser: AddLikeToUser) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "addLikeToUser": addLikeToUser.resultMap])
+    }
+
+    public var addLikeToUser: AddLikeToUser {
+      get {
+        return AddLikeToUser(unsafeResultMap: resultMap["addLikeToUser"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "addLikeToUser")
+      }
+    }
+
+    public struct AddLikeToUser: GraphQLSelectionSet {
+      public static let possibleTypes = ["User"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+    }
+  }
+}
+
+public final class AddFavToUserMutation: GraphQLMutation {
+  public let operationDefinition =
+    "mutation AddFavToUser($userId: Int!, $issueId: Int!) {\n  addFavToUser(userId: $userId, issueId: $issueId) {\n    __typename\n    id\n  }\n}"
+
+  public var userId: Int
+  public var issueId: Int
+
+  public init(userId: Int, issueId: Int) {
+    self.userId = userId
+    self.issueId = issueId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["userId": userId, "issueId": issueId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("addFavToUser", arguments: ["userId": GraphQLVariable("userId"), "issueId": GraphQLVariable("issueId")], type: .nonNull(.object(AddFavToUser.selections))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(addFavToUser: AddFavToUser) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "addFavToUser": addFavToUser.resultMap])
+    }
+
+    public var addFavToUser: AddFavToUser {
+      get {
+        return AddFavToUser(unsafeResultMap: resultMap["addFavToUser"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "addFavToUser")
+      }
+    }
+
+    public struct AddFavToUser: GraphQLSelectionSet {
+      public static let possibleTypes = ["User"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+    }
+  }
+}
+
+public final class DeleteLikeFromUserMutation: GraphQLMutation {
+  public let operationDefinition =
+    "mutation DeleteLikeFromUser($userId: Int!, $issueId: Int!) {\n  deleteLikeFromUser(userId: $userId, issueId: $issueId) {\n    __typename\n    id\n  }\n}"
+
+  public var userId: Int
+  public var issueId: Int
+
+  public init(userId: Int, issueId: Int) {
+    self.userId = userId
+    self.issueId = issueId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["userId": userId, "issueId": issueId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("deleteLikeFromUser", arguments: ["userId": GraphQLVariable("userId"), "issueId": GraphQLVariable("issueId")], type: .nonNull(.object(DeleteLikeFromUser.selections))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(deleteLikeFromUser: DeleteLikeFromUser) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "deleteLikeFromUser": deleteLikeFromUser.resultMap])
+    }
+
+    public var deleteLikeFromUser: DeleteLikeFromUser {
+      get {
+        return DeleteLikeFromUser(unsafeResultMap: resultMap["deleteLikeFromUser"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "deleteLikeFromUser")
+      }
+    }
+
+    public struct DeleteLikeFromUser: GraphQLSelectionSet {
+      public static let possibleTypes = ["User"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+    }
+  }
+}
+
+public final class DeleteFavFromUserMutation: GraphQLMutation {
+  public let operationDefinition =
+    "mutation DeleteFavFromUser($userId: Int!, $issueId: Int!) {\n  deleteFavFromUser(userId: $userId, issueId: $issueId) {\n    __typename\n    id\n  }\n}"
+
+  public var userId: Int
+  public var issueId: Int
+
+  public init(userId: Int, issueId: Int) {
+    self.userId = userId
+    self.issueId = issueId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["userId": userId, "issueId": issueId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("deleteFavFromUser", arguments: ["userId": GraphQLVariable("userId"), "issueId": GraphQLVariable("issueId")], type: .nonNull(.object(DeleteFavFromUser.selections))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(deleteFavFromUser: DeleteFavFromUser) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "deleteFavFromUser": deleteFavFromUser.resultMap])
+    }
+
+    public var deleteFavFromUser: DeleteFavFromUser {
+      get {
+        return DeleteFavFromUser(unsafeResultMap: resultMap["deleteFavFromUser"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "deleteFavFromUser")
+      }
+    }
+
+    public struct DeleteFavFromUser: GraphQLSelectionSet {
+      public static let possibleTypes = ["User"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+    }
+  }
+}
