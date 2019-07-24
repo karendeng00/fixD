@@ -19,27 +19,29 @@ class UserAccount{
     var userImage:String = ""
     var userPhone:String = ""
     var newUser:Bool = false
-    var listOfLikeIssues:[String] = []
+    var listOfLikedIssues:[Int] = []
+    var listOfFavedIssues:[Int] = []
     
     static let shared = UserAccount()
 
     private init(){}
     
     //In the future, connect to the database
-    func setUp(id: Int, duid:String, netid:String, name:String, phone: String, picture: String) {
+    func setUp(id: Int, duid:String, netid:String, name:String, phone: String, picture: String, myLikes: [Int], myFavorites: [Int]) {
         self.userId = id
         self.userDuid = duid
         self.userName = name
         self.userNetId = netid
         self.userPhone = phone
         self.userImage = picture
+        self.listOfLikedIssues = myLikes
+        self.listOfFavedIssues = myFavorites
     }
     
     func newUser(nav: UINavigationController, duid:String, netid: String, name: String, phone: String, picture: String){
         NetworkAPI().createUser(nav: nav, name: name, netid: netid, phone: phone, picture: picture) { id,error in
-            self.setUp(id: id, duid: duid, netid: netid, name: name, phone: phone, picture: picture)
+            self.setUp(id: id, duid: duid, netid: netid, name: name, phone: phone, picture: picture, myLikes: [], myFavorites: [])
         }
-        
     }
     
     func getNetId() -> String {

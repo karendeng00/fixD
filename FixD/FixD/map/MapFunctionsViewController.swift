@@ -243,11 +243,11 @@ extension MapFunctionsViewController: MKMapViewDelegate {
             markerAnnotationView.animatesWhenAdded = true
             markerAnnotationView.canShowCallout = true
             setIssueColor(annotation: markerAnnotationView)
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-            let scaleFactor = UIScreen.main.scale
-            let scale = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
-            let size = imageView.bounds.size.applying(scale)
             if let imagePath = (markerAnnotationView.annotation as! IssueAnnotation).imageName, imagePath != ""{
+                let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+                let scaleFactor = UIScreen.main.scale
+                let scale = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+                let size = imageView.bounds.size.applying(scale)
                 let image = resizedImage(image: UIImage(named: imagePath) ?? UIImage(named: "NoImage")!, for: size)
                 imageView.image = image
                 markerAnnotationView.detailCalloutAccessoryView = imageView

@@ -128,7 +128,6 @@ class NetworkAPI {
     }
 
     func setUpUser(nav: UINavigationController){
-        let user = UserAccount.shared
         fetchUserData(nav: nav) { userInfo, err in
              // Get the User info (comes back as a String array).
             Apollo().getClient().fetch(query: UserByNetIdQuery(netid: userInfo?[0] ?? "00000")) { (result, error) in
@@ -171,11 +170,11 @@ class NetworkAPI {
                 }
                 else {
                     if let u = result?.data?.userByNetId {
-                        user.setUp(id: Int(u.id)!, duid: (userInfo?[1])!, netid: u.netid, name: u.name!, phone: u.phone ?? "", picture: u.picture ?? "")
+                        self.myUser.setUp(id: Int(u.id)!, duid: (userInfo?[1])!, netid: u.netid, name: u.name!, phone: u.phone ?? "", picture: u.picture ?? "", myLikes: u.likedIssues!, myFavorites: u.favoritedIssues!)
                     }
                     // If user does not exist, create a new User and instantiate
                     else {
-                        user.newUser(nav: nav, duid:(userInfo?[1])!, netid: (userInfo?[0])!, name: (userInfo?[2])! , phone: "", picture: "photo.jpg")
+                        self.myUser.newUser(nav: nav, duid:(userInfo?[1])!, netid: (userInfo?[0])!, name: (userInfo?[2])! , phone: "", picture: "photo.jpg")
                     }
                 }
 

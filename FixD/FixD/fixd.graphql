@@ -216,6 +216,8 @@ query UserByNetId($netid: String!){
             favorites
             createdAt
         }
+        likedIssues
+        favoritedIssues
     }
 }
 
@@ -237,6 +239,8 @@ query UserById($id: Int!){
             favorites
             createdAt
         }
+        likedIssues
+        favoritedIssues
     }
 }
 

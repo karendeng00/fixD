@@ -2389,7 +2389,7 @@ public final class CommentsByIssueQuery: GraphQLQuery {
 
 public final class UserByNetIdQuery: GraphQLQuery {
   public let operationDefinition =
-    "query UserByNetId($netid: String!) {\n  userByNetId(netid: $netid) {\n    __typename\n    id\n    name\n    netid\n    phone\n    picture\n    issues {\n      __typename\n      id\n      title\n      description\n      location\n      image\n      userId\n      likes\n      favorites\n      createdAt\n    }\n  }\n}"
+    "query UserByNetId($netid: String!) {\n  userByNetId(netid: $netid) {\n    __typename\n    id\n    name\n    netid\n    phone\n    picture\n    issues {\n      __typename\n      id\n      title\n      description\n      location\n      image\n      userId\n      likes\n      favorites\n      createdAt\n    }\n    likedIssues\n    favoritedIssues\n  }\n}"
 
   public var netid: String
 
@@ -2439,6 +2439,8 @@ public final class UserByNetIdQuery: GraphQLQuery {
         GraphQLField("phone", type: .scalar(String.self)),
         GraphQLField("picture", type: .scalar(String.self)),
         GraphQLField("issues", type: .list(.nonNull(.object(Issue.selections)))),
+        GraphQLField("likedIssues", type: .list(.nonNull(.scalar(Int.self)))),
+        GraphQLField("favoritedIssues", type: .list(.nonNull(.scalar(Int.self)))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -2447,8 +2449,8 @@ public final class UserByNetIdQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, name: String? = nil, netid: String, phone: String? = nil, picture: String? = nil, issues: [Issue]? = nil) {
-        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "netid": netid, "phone": phone, "picture": picture, "issues": issues.flatMap { (value: [Issue]) -> [ResultMap] in value.map { (value: Issue) -> ResultMap in value.resultMap } }])
+      public init(id: GraphQLID, name: String? = nil, netid: String, phone: String? = nil, picture: String? = nil, issues: [Issue]? = nil, likedIssues: [Int]? = nil, favoritedIssues: [Int]? = nil) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "netid": netid, "phone": phone, "picture": picture, "issues": issues.flatMap { (value: [Issue]) -> [ResultMap] in value.map { (value: Issue) -> ResultMap in value.resultMap } }, "likedIssues": likedIssues, "favoritedIssues": favoritedIssues])
       }
 
       public var __typename: String {
@@ -2511,6 +2513,24 @@ public final class UserByNetIdQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue.flatMap { (value: [Issue]) -> [ResultMap] in value.map { (value: Issue) -> ResultMap in value.resultMap } }, forKey: "issues")
+        }
+      }
+
+      public var likedIssues: [Int]? {
+        get {
+          return resultMap["likedIssues"] as? [Int]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "likedIssues")
+        }
+      }
+
+      public var favoritedIssues: [Int]? {
+        get {
+          return resultMap["favoritedIssues"] as? [Int]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "favoritedIssues")
         }
       }
 
@@ -2636,7 +2656,7 @@ public final class UserByNetIdQuery: GraphQLQuery {
 
 public final class UserByIdQuery: GraphQLQuery {
   public let operationDefinition =
-    "query UserById($id: Int!) {\n  userById(id: $id) {\n    __typename\n    id\n    name\n    netid\n    phone\n    picture\n    issues {\n      __typename\n      id\n      title\n      description\n      location\n      image\n      userId\n      likes\n      favorites\n      createdAt\n    }\n  }\n}"
+    "query UserById($id: Int!) {\n  userById(id: $id) {\n    __typename\n    id\n    name\n    netid\n    phone\n    picture\n    issues {\n      __typename\n      id\n      title\n      description\n      location\n      image\n      userId\n      likes\n      favorites\n      createdAt\n    }\n    likedIssues\n    favoritedIssues\n  }\n}"
 
   public var id: Int
 
@@ -2686,6 +2706,8 @@ public final class UserByIdQuery: GraphQLQuery {
         GraphQLField("phone", type: .scalar(String.self)),
         GraphQLField("picture", type: .scalar(String.self)),
         GraphQLField("issues", type: .list(.nonNull(.object(Issue.selections)))),
+        GraphQLField("likedIssues", type: .list(.nonNull(.scalar(Int.self)))),
+        GraphQLField("favoritedIssues", type: .list(.nonNull(.scalar(Int.self)))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -2694,8 +2716,8 @@ public final class UserByIdQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, name: String? = nil, netid: String, phone: String? = nil, picture: String? = nil, issues: [Issue]? = nil) {
-        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "netid": netid, "phone": phone, "picture": picture, "issues": issues.flatMap { (value: [Issue]) -> [ResultMap] in value.map { (value: Issue) -> ResultMap in value.resultMap } }])
+      public init(id: GraphQLID, name: String? = nil, netid: String, phone: String? = nil, picture: String? = nil, issues: [Issue]? = nil, likedIssues: [Int]? = nil, favoritedIssues: [Int]? = nil) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "netid": netid, "phone": phone, "picture": picture, "issues": issues.flatMap { (value: [Issue]) -> [ResultMap] in value.map { (value: Issue) -> ResultMap in value.resultMap } }, "likedIssues": likedIssues, "favoritedIssues": favoritedIssues])
       }
 
       public var __typename: String {
@@ -2758,6 +2780,24 @@ public final class UserByIdQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue.flatMap { (value: [Issue]) -> [ResultMap] in value.map { (value: Issue) -> ResultMap in value.resultMap } }, forKey: "issues")
+        }
+      }
+
+      public var likedIssues: [Int]? {
+        get {
+          return resultMap["likedIssues"] as? [Int]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "likedIssues")
+        }
+      }
+
+      public var favoritedIssues: [Int]? {
+        get {
+          return resultMap["favoritedIssues"] as? [Int]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "favoritedIssues")
         }
       }
 
