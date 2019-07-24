@@ -148,7 +148,8 @@ class MapFunctionsViewController: UIViewController {
                 print(issue.getTitle())
                 let loc = issue.getLocation()
                 let geoCoder = CLGeocoder()
-                geoCoder.geocodeAddressString(loc) { (placemarks, error) -> Void in
+                let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: 36.001522, longitude: -78.938207), radius: 500, identifier: "Durham")
+                geoCoder.geocodeAddressString(loc, in: region) { (placemarks, error) -> Void in
                     if let pMark = placemarks?.first {
                         if let coordinate = pMark.location?.coordinate{
                             let issueAnnotation = IssueAnnotation(coordinate: coordinate)
@@ -242,11 +243,11 @@ extension MapFunctionsViewController: MKMapViewDelegate {
             markerAnnotationView.animatesWhenAdded = true
             markerAnnotationView.canShowCallout = true
             setIssueColor(annotation: markerAnnotationView)
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-            let scaleFactor = UIScreen.main.scale
-            let scale = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
-            let size = imageView.bounds.size.applying(scale)
             if let imagePath = (markerAnnotationView.annotation as! IssueAnnotation).imageName, imagePath != ""{
+                let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+                let scaleFactor = UIScreen.main.scale
+                let scale = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+                let size = imageView.bounds.size.applying(scale)
                 let image = resizedImage(image: UIImage(named: imagePath) ?? UIImage(named: "NoImage")!, for: size)
                 imageView.image = image
                 markerAnnotationView.detailCalloutAccessoryView = imageView
