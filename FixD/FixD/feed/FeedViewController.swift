@@ -46,11 +46,21 @@ class FeedIssueCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(like(_:)))
-        likeView.addGestureRecognizer(tap)
+        if (myIssue.getUpVoteState()){
+            //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
+            likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
+        } else {
+            //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
+            likeButton.setImage(UIImage(named: "heart-1"), for: .normal)
+        }
         
-        let favoriteTap = UITapGestureRecognizer(target: self, action: #selector(favorite(_:)))
-        starView.addGestureRecognizer(favoriteTap)
+        if (myIssue.getFavoritesState()){
+            //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
+            starButton.setImage(UIImage(named: "filled star"), for: .normal)
+        }else {
+            //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
+            starButton.setImage(UIImage(named: "star"), for: .normal)
+        }
         
         for v in views {
             v.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])
@@ -140,32 +150,6 @@ class FeedIssueCell: UITableViewCell {
         myIssue = issue
     }
     
-    @objc func like(_ sender: Any) {
-        NotificationCenter.default.post(name: NSNotification.Name("CheckLikeIssue"), object: myIssue)
-        //self.issueUpvotes.text = String(self.myIssue.getUpVotes())
-        if (myIssue.getUpVoteState()){
-            upVoteButton.setImage(UIImage(named: "filled heart"), for: .normal)
-        }else {
-            upVoteButton.setImage(UIImage(named: "heart-1"), for: .normal)
-        }
-    }
-    
-    @IBAction func upVote(_ sender: Any) {
-        like(sender)
-    }
-    
-    @IBAction func favorite(_ sender: Any) {
-        NotificationCenter.default.post(name: NSNotification.Name("CheckFavoriteIssue"), object: myIssue)
-        
-        //self.issueFavorites.text = String(self.myIssue.getFavorites())
-        //if favorited, it is a filled star
-        if (myIssue.getFavoritesState()){
-            favoritesButton.setImage(UIImage(named: "filled star"), for: .normal)
-        }else {
-            favoritesButton.setImage(UIImage(named: "star"), for: .normal)
-        }
-    }
-    
 }
 
 
@@ -231,7 +215,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     }
     
     @objc func reload(_ sender: Any) {
-        print("reloaded")
         self.tableView.reloadData()
     }
     
@@ -280,10 +263,8 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
                 let currCell = feedTable.cellForRow(at: indexPath) as! FeedIssueCell
                 viewController?.issueID = currCell.myIssue.getID()
             }
-            print("issue selected")
         }
         if segue.identifier == "comSegue" {
-            print("comment button pressed")
         }
     }
 

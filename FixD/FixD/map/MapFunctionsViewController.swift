@@ -145,7 +145,6 @@ class MapFunctionsViewController: UIViewController {
             let hrl = UserDefaults.standard.bool(forKey: "checkHRL") && issue.getType() == ("HrlIssue")
             
              if (all || oit || park || fac ||  hrl) {
-                print(issue.getTitle())
                 let loc = issue.getLocation()
                 let geoCoder = CLGeocoder()
                 let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: 36.001522, longitude: -78.938207), radius: 500, identifier: "Durham")

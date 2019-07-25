@@ -62,7 +62,7 @@ class NetworkAPI {
             }
             else {
                 if let u = result?.data?.getUserInfo {
-                    user.setUp(id: Int(u.id)!, duid: "", netid: u.netid, name: u.name!, phone: u.phone ?? "", picture: u.picture ?? "", myLikes: [], myFavorites: [])
+                    user.setUp(id: Int(u.id)!, duid: "", netid: u.netid, name: u.name!, phone: u.phone ?? "", picture: u.picture ?? "", myLikes: u.likedIssues!, myFavorites: u.favoritedIssues!)
                     completionHandler(true)
                 }
                 print("USER LOADED")

@@ -251,6 +251,8 @@ query GetUserInfo {
         netid
         picture
         phone
+        likedIssues
+        favoritedIssues
     }
 }
 

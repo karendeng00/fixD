@@ -25,8 +25,8 @@ class IssueClass: Equatable, Hashable {
     private var myDescription:String = ""
     private var myLocation:String = ""
     private var myIssueImage:String = ""
-    var liked = false
-    var favorited = false
+    private var liked = false
+    private var favorited = false
 
     private var myUserID:Int = 0
     private var myType:String = ""
@@ -62,6 +62,8 @@ class IssueClass: Equatable, Hashable {
     private var myComments: [CommentsClass] = []
     private var myListOfImages: Array<UIImage> = Array()
     
+    private var myUser = UserAccount.shared
+    
     
     
     //For Loading
@@ -79,6 +81,8 @@ class IssueClass: Equatable, Hashable {
         self.myUserName = userName
         self.myUserImage = userImage
         self.myType = type
+        liked = myUser.listOfLikedIssues.contains(issueID)
+        favorited = myUser.listOfFavedIssues.contains(issueID)
     }
     
     //For Basic Initialization
@@ -167,12 +171,17 @@ class IssueClass: Equatable, Hashable {
     func checkLiked(id: Int, nav: UINavigationController){
         if liked{
             self.myLikes -= 1
+            myUser.listOfLikedIssues.remove(at: myUser.listOfLikedIssues.firstIndex(of: myIssueID)!)
             NetworkAPI().deleteLike(issueId: id, nav: nav)
+            NetworkAPI().deleteLikeFromUser(userID: myUser.userId, issueID: myIssueID)
         }else {
             self.myLikes += 1
+            myUser.listOfLikedIssues.append(myIssueID)
             NetworkAPI().addLike( issueId: id, nav: nav)
+            NetworkAPI().addLikeToUser(userID: myUser.userId, issueID: myIssueID)
         }
         liked = !liked
+        print(myUser.listOfLikedIssues)
     }
     
     func getUpVoteState() -> Bool {
@@ -187,9 +196,11 @@ class IssueClass: Equatable, Hashable {
         if favorited {
             self.myFavorites -= 1
             NetworkAPI().deleteFavorite(issueId: id, nav: nav)
+            NetworkAPI().deleteFavFromUser(userID: myUser.userId, issueID: myIssueID)
         }else {
             self.myFavorites += 1
             NetworkAPI().addFavorite(issueId: id, nav: nav)
+            NetworkAPI().addFavToUser(userID: myUser.userId, issueID: myIssueID)
         }
         favorited = !favorited
     }
