@@ -445,5 +445,21 @@ class NetworkAPI {
             }
         }
     }
-
+    
+    func addLikeToUser(userID: Int!, issueID: Int!) {
+        Apollo().getClient().perform(mutation: AddLikeToUserMutation(userId: userID, issueId: issueID))
+    }
+    
+    func addFavToUser(userID: Int!, issueID: Int!) {
+        Apollo().getClient().perform(mutation: AddFavToUserMutation(userId: userID, issueId: issueID))
+    }
+    
+    func deleteLikeFromUser(userID: Int!, issueID: Int!) {
+        Apollo().getClient().perform(mutation: DeleteLikeFromUserMutation(userId: userID, issueId: issueID))
+    }
+    
+    func deleteFavFromUser(userID: Int!, issueID: Int!) {
+        Apollo().getClient().perform(mutation: DeleteFavFromUserMutation(userId: userID, issueId: issueID))
+    }
+    
 }

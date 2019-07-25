@@ -25,8 +25,8 @@ class IssueClass: Equatable, Hashable {
     private var myDescription:String = ""
     private var myLocation:String = ""
     private var myIssueImage:String = ""
-    private var liked = false
-    private var favorited = false
+    var liked = false
+    var favorited = false
 
     private var myUserID:Int = 0
     private var myType:String = ""

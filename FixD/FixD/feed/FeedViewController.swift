@@ -354,8 +354,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             cell.issueDescription.text = obj.getDescription()
             cell.issueLocation.text = obj.getLocation()
             cell.issueImage.image = UIImage(named: obj.getIssueImage())
-            //        cell.issueUpvotes.text = String(obj.getUpVotes())
-            //        cell.issueFavorites.text = String(obj.getFavorites())
             cell.userName.text = obj.myUserName
             cell.userImage.image = UIImage(named: obj.myUserImage)
             cell.issueDate.text = obj.getIssueDate()
@@ -368,8 +366,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             cell.issueDescription.text = obj.getDescription()
             cell.issueLocation.text = obj.getLocation()
             cell.issueImage.image = UIImage(named: obj.getIssueImage())
-            //        cell.issueUpvotes.text = String(obj.getUpVotes())
-            //        cell.issueFavorites.text = String(obj.getFavorites())
             cell.userName.text = obj.myUserName
             cell.userImage.image = UIImage(named: obj.myUserImage)
             cell.issueDate.text = obj.getIssueDate()
