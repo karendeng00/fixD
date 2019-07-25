@@ -16,7 +16,7 @@ class Apollo {
     
     func getClient() -> ApolloClient {
         let token = OAuthService.shared.getAccessToken() ?? ""
-        print(token)
+//        print(token)
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = ["Authorization": "Bearer \(token)", "Content-Type": "application/json"]
         let kongURL = "https://issue-reporting-backend.api-test.oit.duke.edu/graphql"

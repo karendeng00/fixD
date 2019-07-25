@@ -164,13 +164,13 @@ class IssueClass: Equatable, Hashable {
         self.myTime = "\(String(time[0])):\(String(time[1]))"
     }
     
-    func checkLiked(id: Int){
+    func checkLiked(id: Int, nav: UINavigationController){
         if liked{
             self.myLikes -= 1
-            NetworkAPI().deleteLike(issueId: id)
+            NetworkAPI().deleteLike(issueId: id, nav: nav)
         }else {
             self.myLikes += 1
-            NetworkAPI().addLike( issueId: id)
+            NetworkAPI().addLike( issueId: id, nav: nav)
         }
         liked = !liked
     }
@@ -183,13 +183,13 @@ class IssueClass: Equatable, Hashable {
         return favorited
     }
     
-    func checkFavorited(id: Int){
+    func checkFavorited(id: Int, nav: UINavigationController){
         if favorited {
             self.myFavorites -= 1
-            NetworkAPI().deleteFavorite(issueId: id)
+            NetworkAPI().deleteFavorite(issueId: id, nav: nav)
         }else {
             self.myFavorites += 1
-            NetworkAPI().addFavorite(issueId: id)
+            NetworkAPI().addFavorite(issueId: id, nav: nav)
         }
         favorited = !favorited
     }
