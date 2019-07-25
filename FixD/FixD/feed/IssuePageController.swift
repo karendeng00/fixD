@@ -190,7 +190,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             likeView.backgroundColor = white
             likeView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
-            myIssue.checkLiked(id: myIssue.getID())
+            myIssue.checkLiked(id: myIssue.getID(), nav: self.navigationController!)
             changeLikeOrFavoriteButton(button: likeButton, state: myIssue.getUpVoteState(), imageOne: UIImage(named: "filled heart"), imageTwo: UIImage(named: "heart-1"))
         }
             
@@ -205,7 +205,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             favView.backgroundColor = white
             favView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
-            myIssue.checkFavorited(id: myIssue.getID())
+            myIssue.checkFavorited(id: myIssue.getID(), nav: self.navigationController!)
             changeLikeOrFavoriteButton(button: favButton, state: myIssue.getFavoritesState(), imageOne: UIImage(named: "filled star"), imageTwo: UIImage(named: "star"))
         }
         else {

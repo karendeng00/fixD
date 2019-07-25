@@ -35,6 +35,7 @@ class FeedIssueCell: UITableViewCell {
     
     @IBOutlet weak var upVoteButton: UIButton!
     @IBOutlet weak var favoritesButton: UIButton!
+
     
     var myIssue: IssueClass!
     
@@ -78,7 +79,7 @@ class FeedIssueCell: UITableViewCell {
             likeView.backgroundColor = white
             likeView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
-            myIssue.checkLiked(id: self.myIssue.getID())
+            NotificationCenter.default.post(name: NSNotification.Name("CheckLikeIssue"), object: myIssue)
             if (myIssue.getUpVoteState()){
                 //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
@@ -99,7 +100,7 @@ class FeedIssueCell: UITableViewCell {
             starView.backgroundColor = white
             starView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
-            myIssue.checkFavorited(id: self.myIssue.getID())
+            NotificationCenter.default.post(name: NSNotification.Name("CheckFavoriteIssue"), object: myIssue)
             if (myIssue.getFavoritesState()){
                 //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 starButton.setImage(UIImage(named: "filled star"), for: .normal)
@@ -140,7 +141,7 @@ class FeedIssueCell: UITableViewCell {
     }
     
     @objc func like(_ sender: Any) {
-        myIssue.checkLiked(id: self.myIssue.getID())
+        NotificationCenter.default.post(name: NSNotification.Name("CheckLikeIssue"), object: myIssue)
         //self.issueUpvotes.text = String(self.myIssue.getUpVotes())
         if (myIssue.getUpVoteState()){
             upVoteButton.setImage(UIImage(named: "filled heart"), for: .normal)
@@ -154,7 +155,7 @@ class FeedIssueCell: UITableViewCell {
     }
     
     @IBAction func favorite(_ sender: Any) {
-        myIssue.checkFavorited(id: self.myIssue.getID())
+        NotificationCenter.default.post(name: NSNotification.Name("CheckFavoriteIssue"), object: myIssue)
         
         //self.issueFavorites.text = String(self.myIssue.getFavorites())
         //if favorited, it is a filled star
@@ -187,6 +188,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reload(_:)), name: NSNotification.Name("CHECK"), object: nil)
+        
         NetworkAPI().setUpUser(nav: self.navigationController!) { result in
             self.getIssueData() //Get Issue Data for Feed
         }
@@ -223,6 +225,8 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         var contentOffset = tableView.contentOffset
         contentOffset.y += feedSearchBar.frame.size.height
         tableView.contentOffset = contentOffset
+
+        setupNotificationListener()
         
     }
     
@@ -243,6 +247,25 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         getIssueData()
         self.refreshControl!.endRefreshing()
     }
+    
+    func setupNotificationListener() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(checkLikeIssue(notification:)), name: NSNotification.Name("CheckLikeIssue"), object: nil)
+        notificationCenter.addObserver(self, selector: #selector(checkFavoriteIssue(notification:)), name: NSNotification.Name("CheckFavoriteIssue"), object: nil)
+    }
+    
+    @objc func checkLikeIssue(notification: Notification) {
+        if let issue = notification.object as? IssueClass {
+            issue.checkLiked(id: issue.getID(), nav: self.navigationController!)
+        }
+    }
+    
+    @objc func checkFavoriteIssue(notification: Notification) {
+        if let issue = notification.object as? IssueClass {
+            issue.checkFavorited(id: issue.getID(), nav: self.navigationController!)
+        }
+    }
+
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ShowIssuePage", sender: self)
