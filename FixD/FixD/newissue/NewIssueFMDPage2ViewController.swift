@@ -48,12 +48,15 @@ class NewIssueFMDPage2ViewController: UIViewController {
             roomSecondDropDown.text = roomText
         }
         
+        serviceListDropDown.isSearchEnable = false
+        
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        let nav = self.navigationController!
         if buildingSecondDropDown.text != "Please select" && floorSecondDropDown.text != "Please select" && roomSecondDropDown.text != "Please select" && serviceListDropDown.text != "Please select" {
             myIssue.defineEAMParamsP2(service_building: buildingSecondDropDown.text!, service_floor: floorSecondDropDown.text!, service_room: roomSecondDropDown.text!, service_type: serviceListDropDown.text!, fund_code: fundCodeTextField.text ?? "")
-            NetworkAPI().buildIssue(issue: myIssue)
+            NetworkAPI().buildIssue(issue: myIssue, nav: nav)
             return true
         }
         createAlert(title: "Selections Missing", message: "Please fill in missing selections.")

@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "585857813.749967"
+            timestampString = "585858541.439278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -118,7 +118,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "585857813.751598"
+            timestampString = "585858541.4403991"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "79"
@@ -134,12 +134,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "585857813.752551"
+            timestampString = "585858541.441175"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
             endingLineNumber = "130"
-            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -150,12 +150,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "585857813.75342"
+            timestampString = "585858541.441936"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "140"
             endingLineNumber = "140"
-            landmarkName = "longCam(_:)"
+            landmarkName = "deinit"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -166,12 +166,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "585857813.754247"
+            timestampString = "585858541.442597"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "131"
             endingLineNumber = "131"
-            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -182,7 +182,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "585857813.755077"
+            timestampString = "585858541.443234"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
@@ -722,12 +722,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssuePageController.swift"
-            timestampString = "585857813.7562129"
+            timestampString = "585858541.444173"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "289"
             endingLineNumber = "289"
-            landmarkName = "keyboardWillChange(notification:)"
+            landmarkName = "send(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -754,12 +754,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FixD/feed/IssueClass.swift"
-            timestampString = "585857813.757515"
+            timestampString = "585858541.444892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "197"
             endingLineNumber = "197"
-            landmarkName = "addComment(comment:image:issueId:userId:user_name:user_image:)"
+            landmarkName = "checkFavorited(id:nav:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

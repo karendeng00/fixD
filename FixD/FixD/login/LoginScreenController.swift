@@ -29,7 +29,6 @@ class LoginScreenController: UIViewController {
             DispatchQueue.main.async {
                 let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "tab") as? UITabBarController
                 self.present(tabVC!, animated: true, completion: nil)
-//                NetworkAPI().getUserDuid(nav: nav!) { duid,error in }
             }
         }
     }
@@ -56,9 +55,6 @@ class LoginScreenController: UIViewController {
                 if success {
                     print ("Login - success")
                     UserDefaults.standard.set(true, forKey: "LoggedIn")
-                    //self.navigationController?.dismiss(animated:true, completion: nil)
-                    //self.navigationController?.dismiss(animated: true, completion: nil)
-                    //self.performSegue(withIdentifier: "showMainFeed", sender: sender)
                     DispatchQueue.main.async {
                         let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "tab") as? UITabBarController
                         self.present(tabVC!, animated: false, completion: nil)

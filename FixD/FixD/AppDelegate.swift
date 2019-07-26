@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         Thread.sleep(forTimeInterval: 2.0)
         
-//        print("Logged In = \(UserDefaults.standard.bool(forKey: "LoggedIn"))")
         
         UserDefaults.standard.set(false, forKey: "checkFacilities")
         UserDefaults.standard.set(false, forKey: "checkHRL")
@@ -25,15 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set(false, forKey: "checkParking")
         UserDefaults.standard.set(false, forKey: "liked")
         UserDefaults.standard.set(false, forKey: "starred")
-
-//        if (UserDefaults.standard.bool(forKey: "LoggedIn") == true) {
-//            let sb = UIStoryboard(name: "Main", bundle: nil)
-//            let vc = sb.instantiateViewController(withIdentifier: "tab")
-//            
-//            vc.modalTransitionStyle = .crossDissolve
-//            window!.rootViewController = vc
-//            window!.makeKeyAndVisible()
-//        }
         
         //Changes the appearance of the Navigation Bar
         let navBarAppearance = UINavigationBar.appearance()

@@ -85,7 +85,7 @@ class ShibAuthViewController: UIViewController, WKNavigationDelegate {
             print(client)
             let loginURL = MOBILE_AUTH_BASE_URL + client + LOGIN_PATH
             print(loginURL)
-                webView!.load(NSURLRequest(url: NSURL(string: loginURL)! as URL) as URLRequest)
+            webView!.load(NSURLRequest(url: NSURL(string: loginURL)! as URL) as URLRequest)
         } else if let _ = oAuthServiceCallback {
             oAuthServiceCallback!(success)
         }

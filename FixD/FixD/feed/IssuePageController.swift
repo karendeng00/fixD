@@ -60,18 +60,36 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     var comments:[CommentsClass] = []
     var issueID:Int = 0
     var myIssue = IssueClass()
+    let myUser = UserAccount.shared
     var tempImg: UIImage?
     var hasImage = false
+    
+    private var tabBarHeight:CGFloat = 0
+    private var navBarHeight:CGFloat = 0
+    private var statusBarHeight:CGFloat = 0
     
     let white = UIColor(cgColor: CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])!)
     let granite = UIColor(red: 181/255.0, green: 181/255.0, blue: 181/255.0, alpha: 0.5)
     
+    //Handles Refresing the Likes and Favorites on the feed
+    var likeButtonHandler:(() -> ())?
+    var favButtonHandler:(() -> ())?
+    var feedScrollHandler:(() -> ())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        feedScrollHandler?()
+        
         commentTextField.delegate = self
         commentView.delegate = self
         commentView.dataSource = self
         loadIssue()
+        
+        //Heights needed to adjust the screen for when the keyboard appears
+        tabBarHeight = tabBarController?.tabBar.bounds.size.height ?? 0
+        navBarHeight = navigationController?.navigationBar.bounds.size.height ?? 0
+        statusBarHeight = UIApplication.shared.statusBarFrame.size.height
         
         self.commentView.reloadData()
         //Code to set up and event listener
@@ -179,8 +197,9 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             likeView.backgroundColor = white
             likeView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
-            myIssue.checkLiked(id: myIssue.getID())
+            myIssue.checkLiked(id: myIssue.getID(), nav: self.navigationController!)
             changeLikeOrFavoriteButton(button: likeButton, state: myIssue.getUpVoteState(), imageOne: UIImage(named: "filled heart"), imageTwo: UIImage(named: "heart-1"))
+            likeButtonHandler?()
         }
             
         else {
@@ -194,8 +213,9 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             favView.backgroundColor = white
             favView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
-            myIssue.checkFavorited(id: myIssue.getID())
+            myIssue.checkFavorited(id: myIssue.getID(), nav: self.navigationController!)
             changeLikeOrFavoriteButton(button: favButton, state: myIssue.getFavoritesState(), imageOne: UIImage(named: "filled star"), imageTwo: UIImage(named: "star"))
+            favButtonHandler?()
         }
         else {
             favView.backgroundColor = granite
@@ -232,7 +252,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func loadIssue() {
-        NetworkAPI().getIssueById(id: issueID) { issue in
+        let nav = self.navigationController!
+        NetworkAPI().getIssueById(nav: nav, id: issueID) { issue,error in
             self.myIssue = issue
             self.issueLabel.text = issue.getTitle()
             self.descriptionLabel.text = issue.getDescription()
@@ -289,14 +310,16 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             return
         }
         if notification.name == UIResponder.keyboardWillShowNotification  || notification.name == UIResponder.keyboardWillChangeFrameNotification{
-            view.frame.origin.y = -keyboardRect.height + 175
+            //When the keyboard appears, this is the value that the screens needs to be shifted up by.
+            view.frame.origin.y = -(keyboardRect.height - tabBarHeight - navBarHeight - statusBarHeight)
         }else {
-            view.frame.origin.y = 89
+            //When the keyboard is dismissed, the height needs to be reset to this value.
+            view.frame.origin.y = navBarHeight + statusBarHeight
         }
     }
     
     func updateComments() {
-        
+        let nav = self.navigationController!
         if hasImage == true {
             NetworkAPI().uploadCommentImage(issueID: issueID, userID: myIssue.getUserId(), commentImage: tempImg!)
             hasImage = false
@@ -305,7 +328,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         else {
             tempImg = UIImage()
             if commentTextField.hasText {
-                myIssue.addComment(comment: commentTextField.text!, image: "none", issueId: myIssue.getID(), userId: myIssue.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage)
+                myIssue.addComment(comment: commentTextField.text!, image: "none", issueId: myIssue.getID(), userId: myIssue.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage, nav: self.navigationController!)
             }
         }
         
@@ -314,7 +337,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         })
         
     }
-
     func listenForNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)

@@ -54,12 +54,16 @@ class OITredoViewController: UIViewController, UITextViewDelegate, UINavigationC
         longCamera.minimumPressDuration = 0
         cameraView.addGestureRecognizer(longCamera)
         
+        urgencyDropDown.isSearchEnable = false
+        impactDropDown.isSearchEnable = false
+        
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        let nav = self.navigationController!
         if urgencyDropDown.text != "Please select" && impactDropDown.text != "Please select" {
             myIssue.defineServiceNowParams(urgency: urgencyDropDown.text!, impact: impactDropDown.text!, sensitive_info: sensitiveInfo.text!)
-            NetworkAPI().buildIssue(issue: myIssue)
+            NetworkAPI().buildIssue(issue: myIssue, nav: nav)
             return true
         }
         createAlert(title: "Selections Missing", message: "Please fill in missing selections.")
@@ -92,12 +96,10 @@ class OITredoViewController: UIViewController, UITextViewDelegate, UINavigationC
     }
     
     @objc func longCam(_ gestureRecognizer: UILongPressGestureRecognizer) {
-        print("you've pressed me")
         if gestureRecognizer.state == .ended {
             cameraView.backgroundColor = white
             cameraView.layer.shadowOffset = CGSize(width: -1, height: 1)
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
-                print("yep")
                 let imagePicker = UIImagePickerController()
                 imagePicker.delegate = self
                 imagePicker.sourceType = UIImagePickerController.SourceType.camera
@@ -112,7 +114,6 @@ class OITredoViewController: UIViewController, UITextViewDelegate, UINavigationC
     }
     
     @objc func longGal(_ gestureRecognizer: UILongPressGestureRecognizer) {
-        print("you've pressed me")
         if gestureRecognizer.state == .ended {
             galleryView.backgroundColor = white
             galleryView.layer.shadowOffset = CGSize(width: -1, height: 1)

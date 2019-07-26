@@ -62,6 +62,8 @@ class IssueClass: Equatable, Hashable {
     private var myComments: [CommentsClass] = []
     private var myListOfImages: Array<UIImage> = Array()
     
+    private var myUser = UserAccount.shared
+    
     
     
     //For Loading
@@ -79,6 +81,8 @@ class IssueClass: Equatable, Hashable {
         self.myUserName = userName
         self.myUserImage = userImage
         self.myType = type
+        liked = myUser.listOfLikedIssues.contains(issueID)
+        favorited = myUser.listOfFavedIssues.contains(issueID)
     }
     
     //For Basic Initialization
@@ -164,13 +168,17 @@ class IssueClass: Equatable, Hashable {
         self.myTime = "\(String(time[0])):\(String(time[1]))"
     }
     
-    func checkLiked(id: Int){
+    func checkLiked(id: Int, nav: UINavigationController){
         if liked{
             self.myLikes -= 1
-            NetworkAPI().deleteLike(issueId: id)
+            myUser.listOfLikedIssues.remove(at: myUser.listOfLikedIssues.firstIndex(of: myIssueID)!)
+            NetworkAPI().deleteLike(issueId: id, nav: nav)
+            NetworkAPI().deleteLikeFromUser(userID: myUser.userId, issueID: myIssueID)
         }else {
             self.myLikes += 1
-            NetworkAPI().addLike(issueId: id)
+            myUser.listOfLikedIssues.append(myIssueID)
+            NetworkAPI().addLike( issueId: id, nav: nav)
+            NetworkAPI().addLikeToUser(userID: myUser.userId, issueID: myIssueID)
         }
         liked = !liked
     }
@@ -183,19 +191,23 @@ class IssueClass: Equatable, Hashable {
         return favorited
     }
     
-    func checkFavorited(id: Int){
+    func checkFavorited(id: Int, nav: UINavigationController){
         if favorited {
             self.myFavorites -= 1
-            NetworkAPI().deleteFavorite(issueId: id)
+            myUser.listOfFavedIssues.remove(at: myUser.listOfFavedIssues.firstIndex(of: myIssueID)!)
+            NetworkAPI().deleteFavorite(issueId: id, nav: nav)
+            NetworkAPI().deleteFavFromUser(userID: myUser.userId, issueID: myIssueID)
         }else {
             self.myFavorites += 1
-            NetworkAPI().addFavorite(issueId: id)
+            myUser.listOfFavedIssues.append(myIssueID)
+            NetworkAPI().addFavorite(issueId: id, nav: nav)
+            NetworkAPI().addFavToUser(userID: myUser.userId, issueID: myIssueID)
         }
         favorited = !favorited
     }
     
-    func addComment(comment:String, image: String, issueId:Int, userId:Int, user_name: String, user_image: String){
-        NetworkAPI().createComment(comment: comment, image: image, issueId: issueId, userId: userId)
+    func addComment(comment:String, image: String, issueId:Int, userId:Int, user_name: String, user_image: String, nav: UINavigationController){
+        NetworkAPI().createComment(comment: comment, image: image, issueId: issueId, userId: userId, nav: nav)
     }
     
     func addImage(image:UIImage) {

@@ -4,7 +4,7 @@ import Apollo
 
 public final class AllIssuesQuery: GraphQLQuery {
   public let operationDefinition =
-    "query AllIssues {\n  allIssues {\n    __typename\n    id\n    title\n    description\n    location\n    image\n    userId\n    likes\n    favorites\n    createdAt\n    type\n    user {\n      __typename\n      id\n      name\n      netid\n      phone\n      picture\n    }\n    comments {\n      __typename\n      id\n      body\n      issueId\n      userId\n      image\n      createdAt\n    }\n  }\n}"
+    "query AllIssues {\n  allIssues {\n    __typename\n    id\n    title\n    description\n    location\n    image\n    userId\n    likes\n    favorites\n    createdAt\n    type\n    user {\n      __typename\n      id\n      name\n      netid\n      phone\n      picture\n    }\n    comments {\n      __typename\n      id\n      body\n      issueId\n      userId\n      image\n      createdAt\n      user {\n        __typename\n        id\n        name\n        picture\n        netid\n      }\n    }\n  }\n}"
 
   public init() {
   }
@@ -270,6 +270,7 @@ public final class AllIssuesQuery: GraphQLQuery {
           GraphQLField("userId", type: .nonNull(.scalar(Int.self))),
           GraphQLField("image", type: .scalar(String.self)),
           GraphQLField("createdAt", type: .scalar(String.self)),
+          GraphQLField("user", type: .nonNull(.object(User.selections))),
         ]
 
         public private(set) var resultMap: ResultMap
@@ -278,8 +279,8 @@ public final class AllIssuesQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: GraphQLID, body: String? = nil, issueId: Int, userId: Int, image: String? = nil, createdAt: String? = nil) {
-          self.init(unsafeResultMap: ["__typename": "Comment", "id": id, "body": body, "issueId": issueId, "userId": userId, "image": image, "createdAt": createdAt])
+        public init(id: GraphQLID, body: String? = nil, issueId: Int, userId: Int, image: String? = nil, createdAt: String? = nil, user: User) {
+          self.init(unsafeResultMap: ["__typename": "Comment", "id": id, "body": body, "issueId": issueId, "userId": userId, "image": image, "createdAt": createdAt, "user": user.resultMap])
         }
 
         public var __typename: String {
@@ -344,6 +345,82 @@ public final class AllIssuesQuery: GraphQLQuery {
             resultMap.updateValue(newValue, forKey: "createdAt")
           }
         }
+
+        public var user: User {
+          get {
+            return User(unsafeResultMap: resultMap["user"]! as! ResultMap)
+          }
+          set {
+            resultMap.updateValue(newValue.resultMap, forKey: "user")
+          }
+        }
+
+        public struct User: GraphQLSelectionSet {
+          public static let possibleTypes = ["User"]
+
+          public static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("name", type: .scalar(String.self)),
+            GraphQLField("picture", type: .scalar(String.self)),
+            GraphQLField("netid", type: .nonNull(.scalar(String.self))),
+          ]
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(id: GraphQLID, name: String? = nil, picture: String? = nil, netid: String) {
+            self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "picture": picture, "netid": netid])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var id: GraphQLID {
+            get {
+              return resultMap["id"]! as! GraphQLID
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "id")
+            }
+          }
+
+          public var name: String? {
+            get {
+              return resultMap["name"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "name")
+            }
+          }
+
+          public var picture: String? {
+            get {
+              return resultMap["picture"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "picture")
+            }
+          }
+
+          public var netid: String {
+            get {
+              return resultMap["netid"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "netid")
+            }
+          }
+        }
       }
     }
   }
@@ -351,7 +428,7 @@ public final class AllIssuesQuery: GraphQLQuery {
 
 public final class IssueByIdQuery: GraphQLQuery {
   public let operationDefinition =
-    "query IssueById($id: Int!) {\n  issueById(id: $id) {\n    __typename\n    id\n    title\n    description\n    location\n    image\n    userId\n    likes\n    favorites\n    createdAt\n    type\n    user {\n      __typename\n      id\n      name\n      netid\n      phone\n      picture\n    }\n    comments {\n      __typename\n      id\n      body\n      issueId\n      userId\n      image\n      createdAt\n    }\n  }\n}"
+    "query IssueById($id: Int!) {\n  issueById(id: $id) {\n    __typename\n    id\n    title\n    description\n    location\n    image\n    userId\n    likes\n    favorites\n    createdAt\n    type\n    user {\n      __typename\n      id\n      name\n      netid\n      phone\n      picture\n    }\n    comments {\n      __typename\n      id\n      body\n      issueId\n      userId\n      image\n      createdAt\n      user {\n        __typename\n        id\n        name\n        picture\n        netid\n      }\n    }\n  }\n}"
 
   public var id: Int
 
@@ -624,6 +701,7 @@ public final class IssueByIdQuery: GraphQLQuery {
           GraphQLField("userId", type: .nonNull(.scalar(Int.self))),
           GraphQLField("image", type: .scalar(String.self)),
           GraphQLField("createdAt", type: .scalar(String.self)),
+          GraphQLField("user", type: .nonNull(.object(User.selections))),
         ]
 
         public private(set) var resultMap: ResultMap
@@ -632,8 +710,8 @@ public final class IssueByIdQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: GraphQLID, body: String? = nil, issueId: Int, userId: Int, image: String? = nil, createdAt: String? = nil) {
-          self.init(unsafeResultMap: ["__typename": "Comment", "id": id, "body": body, "issueId": issueId, "userId": userId, "image": image, "createdAt": createdAt])
+        public init(id: GraphQLID, body: String? = nil, issueId: Int, userId: Int, image: String? = nil, createdAt: String? = nil, user: User) {
+          self.init(unsafeResultMap: ["__typename": "Comment", "id": id, "body": body, "issueId": issueId, "userId": userId, "image": image, "createdAt": createdAt, "user": user.resultMap])
         }
 
         public var __typename: String {
@@ -698,6 +776,82 @@ public final class IssueByIdQuery: GraphQLQuery {
             resultMap.updateValue(newValue, forKey: "createdAt")
           }
         }
+
+        public var user: User {
+          get {
+            return User(unsafeResultMap: resultMap["user"]! as! ResultMap)
+          }
+          set {
+            resultMap.updateValue(newValue.resultMap, forKey: "user")
+          }
+        }
+
+        public struct User: GraphQLSelectionSet {
+          public static let possibleTypes = ["User"]
+
+          public static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("name", type: .scalar(String.self)),
+            GraphQLField("picture", type: .scalar(String.self)),
+            GraphQLField("netid", type: .nonNull(.scalar(String.self))),
+          ]
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(id: GraphQLID, name: String? = nil, picture: String? = nil, netid: String) {
+            self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "picture": picture, "netid": netid])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var id: GraphQLID {
+            get {
+              return resultMap["id"]! as! GraphQLID
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "id")
+            }
+          }
+
+          public var name: String? {
+            get {
+              return resultMap["name"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "name")
+            }
+          }
+
+          public var picture: String? {
+            get {
+              return resultMap["picture"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "picture")
+            }
+          }
+
+          public var netid: String {
+            get {
+              return resultMap["netid"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "netid")
+            }
+          }
+        }
       }
     }
   }
@@ -705,7 +859,7 @@ public final class IssueByIdQuery: GraphQLQuery {
 
 public final class IssuesByTypeQuery: GraphQLQuery {
   public let operationDefinition =
-    "query IssuesByType($type: String!) {\n  issuesByType(type: $type) {\n    __typename\n    id\n    title\n    description\n    location\n    image\n    userId\n    likes\n    favorites\n    createdAt\n    type\n    user {\n      __typename\n      id\n      name\n      netid\n      phone\n      picture\n    }\n    comments {\n      __typename\n      id\n      body\n      issueId\n      userId\n      image\n      createdAt\n    }\n  }\n}"
+    "query IssuesByType($type: String!) {\n  issuesByType(type: $type) {\n    __typename\n    id\n    title\n    description\n    location\n    image\n    userId\n    likes\n    favorites\n    createdAt\n    type\n    user {\n      __typename\n      id\n      name\n      netid\n      phone\n      picture\n    }\n    comments {\n      __typename\n      id\n      body\n      issueId\n      userId\n      image\n      createdAt\n      user {\n        __typename\n        id\n        name\n        picture\n        netid\n      }\n    }\n  }\n}"
 
   public var type: String
 
@@ -978,6 +1132,7 @@ public final class IssuesByTypeQuery: GraphQLQuery {
           GraphQLField("userId", type: .nonNull(.scalar(Int.self))),
           GraphQLField("image", type: .scalar(String.self)),
           GraphQLField("createdAt", type: .scalar(String.self)),
+          GraphQLField("user", type: .nonNull(.object(User.selections))),
         ]
 
         public private(set) var resultMap: ResultMap
@@ -986,8 +1141,8 @@ public final class IssuesByTypeQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: GraphQLID, body: String? = nil, issueId: Int, userId: Int, image: String? = nil, createdAt: String? = nil) {
-          self.init(unsafeResultMap: ["__typename": "Comment", "id": id, "body": body, "issueId": issueId, "userId": userId, "image": image, "createdAt": createdAt])
+        public init(id: GraphQLID, body: String? = nil, issueId: Int, userId: Int, image: String? = nil, createdAt: String? = nil, user: User) {
+          self.init(unsafeResultMap: ["__typename": "Comment", "id": id, "body": body, "issueId": issueId, "userId": userId, "image": image, "createdAt": createdAt, "user": user.resultMap])
         }
 
         public var __typename: String {
@@ -1052,6 +1207,82 @@ public final class IssuesByTypeQuery: GraphQLQuery {
             resultMap.updateValue(newValue, forKey: "createdAt")
           }
         }
+
+        public var user: User {
+          get {
+            return User(unsafeResultMap: resultMap["user"]! as! ResultMap)
+          }
+          set {
+            resultMap.updateValue(newValue.resultMap, forKey: "user")
+          }
+        }
+
+        public struct User: GraphQLSelectionSet {
+          public static let possibleTypes = ["User"]
+
+          public static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("name", type: .scalar(String.self)),
+            GraphQLField("picture", type: .scalar(String.self)),
+            GraphQLField("netid", type: .nonNull(.scalar(String.self))),
+          ]
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(id: GraphQLID, name: String? = nil, picture: String? = nil, netid: String) {
+            self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "picture": picture, "netid": netid])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var id: GraphQLID {
+            get {
+              return resultMap["id"]! as! GraphQLID
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "id")
+            }
+          }
+
+          public var name: String? {
+            get {
+              return resultMap["name"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "name")
+            }
+          }
+
+          public var picture: String? {
+            get {
+              return resultMap["picture"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "picture")
+            }
+          }
+
+          public var netid: String {
+            get {
+              return resultMap["netid"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "netid")
+            }
+          }
+        }
       }
     }
   }
@@ -1059,7 +1290,7 @@ public final class IssuesByTypeQuery: GraphQLQuery {
 
 public final class IssuesByUserQuery: GraphQLQuery {
   public let operationDefinition =
-    "query IssuesByUser($userId: Int!) {\n  issuesByUser(userId: $userId) {\n    __typename\n    id\n    title\n    description\n    location\n    image\n    userId\n    likes\n    favorites\n    createdAt\n    type\n    user {\n      __typename\n      id\n      name\n      netid\n      phone\n      picture\n    }\n    comments {\n      __typename\n      id\n      body\n      issueId\n      userId\n      image\n      createdAt\n    }\n  }\n}"
+    "query IssuesByUser($userId: Int!) {\n  issuesByUser(userId: $userId) {\n    __typename\n    id\n    title\n    description\n    location\n    image\n    userId\n    likes\n    favorites\n    createdAt\n    type\n    user {\n      __typename\n      id\n      name\n      netid\n      phone\n      picture\n    }\n    comments {\n      __typename\n      id\n      body\n      issueId\n      userId\n      image\n      createdAt\n      user {\n        __typename\n        id\n        name\n        picture\n        netid\n      }\n    }\n  }\n}"
 
   public var userId: Int
 
@@ -1332,6 +1563,7 @@ public final class IssuesByUserQuery: GraphQLQuery {
           GraphQLField("userId", type: .nonNull(.scalar(Int.self))),
           GraphQLField("image", type: .scalar(String.self)),
           GraphQLField("createdAt", type: .scalar(String.self)),
+          GraphQLField("user", type: .nonNull(.object(User.selections))),
         ]
 
         public private(set) var resultMap: ResultMap
@@ -1340,8 +1572,8 @@ public final class IssuesByUserQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: GraphQLID, body: String? = nil, issueId: Int, userId: Int, image: String? = nil, createdAt: String? = nil) {
-          self.init(unsafeResultMap: ["__typename": "Comment", "id": id, "body": body, "issueId": issueId, "userId": userId, "image": image, "createdAt": createdAt])
+        public init(id: GraphQLID, body: String? = nil, issueId: Int, userId: Int, image: String? = nil, createdAt: String? = nil, user: User) {
+          self.init(unsafeResultMap: ["__typename": "Comment", "id": id, "body": body, "issueId": issueId, "userId": userId, "image": image, "createdAt": createdAt, "user": user.resultMap])
         }
 
         public var __typename: String {
@@ -1404,6 +1636,82 @@ public final class IssuesByUserQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "createdAt")
+          }
+        }
+
+        public var user: User {
+          get {
+            return User(unsafeResultMap: resultMap["user"]! as! ResultMap)
+          }
+          set {
+            resultMap.updateValue(newValue.resultMap, forKey: "user")
+          }
+        }
+
+        public struct User: GraphQLSelectionSet {
+          public static let possibleTypes = ["User"]
+
+          public static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("name", type: .scalar(String.self)),
+            GraphQLField("picture", type: .scalar(String.self)),
+            GraphQLField("netid", type: .nonNull(.scalar(String.self))),
+          ]
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(id: GraphQLID, name: String? = nil, picture: String? = nil, netid: String) {
+            self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "picture": picture, "netid": netid])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var id: GraphQLID {
+            get {
+              return resultMap["id"]! as! GraphQLID
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "id")
+            }
+          }
+
+          public var name: String? {
+            get {
+              return resultMap["name"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "name")
+            }
+          }
+
+          public var picture: String? {
+            get {
+              return resultMap["picture"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "picture")
+            }
+          }
+
+          public var netid: String {
+            get {
+              return resultMap["netid"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "netid")
+            }
           }
         }
       }
@@ -2081,7 +2389,7 @@ public final class CommentsByIssueQuery: GraphQLQuery {
 
 public final class UserByNetIdQuery: GraphQLQuery {
   public let operationDefinition =
-    "query UserByNetId($netid: String!) {\n  userByNetId(netid: $netid) {\n    __typename\n    id\n    name\n    netid\n    phone\n    picture\n    issues {\n      __typename\n      id\n      title\n      description\n      location\n      image\n      userId\n      likes\n      favorites\n      createdAt\n    }\n  }\n}"
+    "query UserByNetId($netid: String!) {\n  userByNetId(netid: $netid) {\n    __typename\n    id\n    name\n    netid\n    phone\n    picture\n    issues {\n      __typename\n      id\n      title\n      description\n      location\n      image\n      userId\n      likes\n      favorites\n      createdAt\n    }\n    likedIssues\n    favoritedIssues\n  }\n}"
 
   public var netid: String
 
@@ -2131,6 +2439,8 @@ public final class UserByNetIdQuery: GraphQLQuery {
         GraphQLField("phone", type: .scalar(String.self)),
         GraphQLField("picture", type: .scalar(String.self)),
         GraphQLField("issues", type: .list(.nonNull(.object(Issue.selections)))),
+        GraphQLField("likedIssues", type: .list(.nonNull(.scalar(Int.self)))),
+        GraphQLField("favoritedIssues", type: .list(.nonNull(.scalar(Int.self)))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -2139,8 +2449,8 @@ public final class UserByNetIdQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, name: String? = nil, netid: String, phone: String? = nil, picture: String? = nil, issues: [Issue]? = nil) {
-        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "netid": netid, "phone": phone, "picture": picture, "issues": issues.flatMap { (value: [Issue]) -> [ResultMap] in value.map { (value: Issue) -> ResultMap in value.resultMap } }])
+      public init(id: GraphQLID, name: String? = nil, netid: String, phone: String? = nil, picture: String? = nil, issues: [Issue]? = nil, likedIssues: [Int]? = nil, favoritedIssues: [Int]? = nil) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "netid": netid, "phone": phone, "picture": picture, "issues": issues.flatMap { (value: [Issue]) -> [ResultMap] in value.map { (value: Issue) -> ResultMap in value.resultMap } }, "likedIssues": likedIssues, "favoritedIssues": favoritedIssues])
       }
 
       public var __typename: String {
@@ -2203,6 +2513,24 @@ public final class UserByNetIdQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue.flatMap { (value: [Issue]) -> [ResultMap] in value.map { (value: Issue) -> ResultMap in value.resultMap } }, forKey: "issues")
+        }
+      }
+
+      public var likedIssues: [Int]? {
+        get {
+          return resultMap["likedIssues"] as? [Int]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "likedIssues")
+        }
+      }
+
+      public var favoritedIssues: [Int]? {
+        get {
+          return resultMap["favoritedIssues"] as? [Int]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "favoritedIssues")
         }
       }
 
@@ -2328,7 +2656,7 @@ public final class UserByNetIdQuery: GraphQLQuery {
 
 public final class UserByIdQuery: GraphQLQuery {
   public let operationDefinition =
-    "query UserById($id: Int!) {\n  userById(id: $id) {\n    __typename\n    id\n    name\n    netid\n    phone\n    picture\n    issues {\n      __typename\n      id\n      title\n      description\n      location\n      image\n      userId\n      likes\n      favorites\n      createdAt\n    }\n  }\n}"
+    "query UserById($id: Int!) {\n  userById(id: $id) {\n    __typename\n    id\n    name\n    netid\n    phone\n    picture\n    issues {\n      __typename\n      id\n      title\n      description\n      location\n      image\n      userId\n      likes\n      favorites\n      createdAt\n    }\n    likedIssues\n    favoritedIssues\n  }\n}"
 
   public var id: Int
 
@@ -2378,6 +2706,8 @@ public final class UserByIdQuery: GraphQLQuery {
         GraphQLField("phone", type: .scalar(String.self)),
         GraphQLField("picture", type: .scalar(String.self)),
         GraphQLField("issues", type: .list(.nonNull(.object(Issue.selections)))),
+        GraphQLField("likedIssues", type: .list(.nonNull(.scalar(Int.self)))),
+        GraphQLField("favoritedIssues", type: .list(.nonNull(.scalar(Int.self)))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -2386,8 +2716,8 @@ public final class UserByIdQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, name: String? = nil, netid: String, phone: String? = nil, picture: String? = nil, issues: [Issue]? = nil) {
-        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "netid": netid, "phone": phone, "picture": picture, "issues": issues.flatMap { (value: [Issue]) -> [ResultMap] in value.map { (value: Issue) -> ResultMap in value.resultMap } }])
+      public init(id: GraphQLID, name: String? = nil, netid: String, phone: String? = nil, picture: String? = nil, issues: [Issue]? = nil, likedIssues: [Int]? = nil, favoritedIssues: [Int]? = nil) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "netid": netid, "phone": phone, "picture": picture, "issues": issues.flatMap { (value: [Issue]) -> [ResultMap] in value.map { (value: Issue) -> ResultMap in value.resultMap } }, "likedIssues": likedIssues, "favoritedIssues": favoritedIssues])
       }
 
       public var __typename: String {
@@ -2450,6 +2780,24 @@ public final class UserByIdQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue.flatMap { (value: [Issue]) -> [ResultMap] in value.map { (value: Issue) -> ResultMap in value.resultMap } }, forKey: "issues")
+        }
+      }
+
+      public var likedIssues: [Int]? {
+        get {
+          return resultMap["likedIssues"] as? [Int]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "likedIssues")
+        }
+      }
+
+      public var favoritedIssues: [Int]? {
+        get {
+          return resultMap["favoritedIssues"] as? [Int]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "favoritedIssues")
         }
       }
 
@@ -2575,23 +2923,16 @@ public final class UserByIdQuery: GraphQLQuery {
 
 public final class GetUserInfoQuery: GraphQLQuery {
   public let operationDefinition =
-    "query GetUserInfo($duid: String!) {\n  getUserInfo(duid: $duid)\n}"
+    "query GetUserInfo {\n  getUserInfo {\n    __typename\n    id\n    name\n    netid\n    picture\n    phone\n    likedIssues\n    favoritedIssues\n  }\n}"
 
-  public var duid: String
-
-  public init(duid: String) {
-    self.duid = duid
-  }
-
-  public var variables: GraphQLMap? {
-    return ["duid": duid]
+  public init() {
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Query"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("getUserInfo", arguments: ["duid": GraphQLVariable("duid")], type: .nonNull(.list(.nonNull(.scalar(String.self))))),
+      GraphQLField("getUserInfo", type: .nonNull(.object(GetUserInfo.selections))),
     ]
 
     public private(set) var resultMap: ResultMap
@@ -2600,19 +2941,114 @@ public final class GetUserInfoQuery: GraphQLQuery {
       self.resultMap = unsafeResultMap
     }
 
-    public init(getUserInfo: [String]) {
-      self.init(unsafeResultMap: ["__typename": "Query", "getUserInfo": getUserInfo])
+    public init(getUserInfo: GetUserInfo) {
+      self.init(unsafeResultMap: ["__typename": "Query", "getUserInfo": getUserInfo.resultMap])
     }
 
     /// Get User info from IDMS through Kong
-    /// 
-    /// Order: NetId, DUID, Name
-    public var getUserInfo: [String] {
+    public var getUserInfo: GetUserInfo {
       get {
-        return resultMap["getUserInfo"]! as! [String]
+        return GetUserInfo(unsafeResultMap: resultMap["getUserInfo"]! as! ResultMap)
       }
       set {
-        resultMap.updateValue(newValue, forKey: "getUserInfo")
+        resultMap.updateValue(newValue.resultMap, forKey: "getUserInfo")
+      }
+    }
+
+    public struct GetUserInfo: GraphQLSelectionSet {
+      public static let possibleTypes = ["User"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("name", type: .scalar(String.self)),
+        GraphQLField("netid", type: .nonNull(.scalar(String.self))),
+        GraphQLField("picture", type: .scalar(String.self)),
+        GraphQLField("phone", type: .scalar(String.self)),
+        GraphQLField("likedIssues", type: .list(.nonNull(.scalar(Int.self)))),
+        GraphQLField("favoritedIssues", type: .list(.nonNull(.scalar(Int.self)))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID, name: String? = nil, netid: String, picture: String? = nil, phone: String? = nil, likedIssues: [Int]? = nil, favoritedIssues: [Int]? = nil) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "netid": netid, "picture": picture, "phone": phone, "likedIssues": likedIssues, "favoritedIssues": favoritedIssues])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var name: String? {
+        get {
+          return resultMap["name"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "name")
+        }
+      }
+
+      public var netid: String {
+        get {
+          return resultMap["netid"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "netid")
+        }
+      }
+
+      public var picture: String? {
+        get {
+          return resultMap["picture"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "picture")
+        }
+      }
+
+      public var phone: String? {
+        get {
+          return resultMap["phone"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "phone")
+        }
+      }
+
+      public var likedIssues: [Int]? {
+        get {
+          return resultMap["likedIssues"] as? [Int]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "likedIssues")
+        }
+      }
+
+      public var favoritedIssues: [Int]? {
+        get {
+          return resultMap["favoritedIssues"] as? [Int]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "favoritedIssues")
+        }
       }
     }
   }
@@ -3425,6 +3861,330 @@ public final class DeleteIssueMutation: GraphQLMutation {
 
       public init(id: GraphQLID) {
         self.init(unsafeResultMap: ["__typename": "Issue", "id": id])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+    }
+  }
+}
+
+public final class AddLikeToUserMutation: GraphQLMutation {
+  public let operationDefinition =
+    "mutation AddLikeToUser($userId: Int!, $issueId: Int!) {\n  addLikeToUser(userId: $userId, issueId: $issueId) {\n    __typename\n    id\n  }\n}"
+
+  public var userId: Int
+  public var issueId: Int
+
+  public init(userId: Int, issueId: Int) {
+    self.userId = userId
+    self.issueId = issueId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["userId": userId, "issueId": issueId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("addLikeToUser", arguments: ["userId": GraphQLVariable("userId"), "issueId": GraphQLVariable("issueId")], type: .nonNull(.object(AddLikeToUser.selections))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(addLikeToUser: AddLikeToUser) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "addLikeToUser": addLikeToUser.resultMap])
+    }
+
+    public var addLikeToUser: AddLikeToUser {
+      get {
+        return AddLikeToUser(unsafeResultMap: resultMap["addLikeToUser"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "addLikeToUser")
+      }
+    }
+
+    public struct AddLikeToUser: GraphQLSelectionSet {
+      public static let possibleTypes = ["User"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+    }
+  }
+}
+
+public final class AddFavToUserMutation: GraphQLMutation {
+  public let operationDefinition =
+    "mutation AddFavToUser($userId: Int!, $issueId: Int!) {\n  addFavToUser(userId: $userId, issueId: $issueId) {\n    __typename\n    id\n  }\n}"
+
+  public var userId: Int
+  public var issueId: Int
+
+  public init(userId: Int, issueId: Int) {
+    self.userId = userId
+    self.issueId = issueId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["userId": userId, "issueId": issueId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("addFavToUser", arguments: ["userId": GraphQLVariable("userId"), "issueId": GraphQLVariable("issueId")], type: .nonNull(.object(AddFavToUser.selections))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(addFavToUser: AddFavToUser) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "addFavToUser": addFavToUser.resultMap])
+    }
+
+    public var addFavToUser: AddFavToUser {
+      get {
+        return AddFavToUser(unsafeResultMap: resultMap["addFavToUser"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "addFavToUser")
+      }
+    }
+
+    public struct AddFavToUser: GraphQLSelectionSet {
+      public static let possibleTypes = ["User"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+    }
+  }
+}
+
+public final class DeleteLikeFromUserMutation: GraphQLMutation {
+  public let operationDefinition =
+    "mutation DeleteLikeFromUser($userId: Int!, $issueId: Int!) {\n  deleteLikeFromUser(userId: $userId, issueId: $issueId) {\n    __typename\n    id\n  }\n}"
+
+  public var userId: Int
+  public var issueId: Int
+
+  public init(userId: Int, issueId: Int) {
+    self.userId = userId
+    self.issueId = issueId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["userId": userId, "issueId": issueId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("deleteLikeFromUser", arguments: ["userId": GraphQLVariable("userId"), "issueId": GraphQLVariable("issueId")], type: .nonNull(.object(DeleteLikeFromUser.selections))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(deleteLikeFromUser: DeleteLikeFromUser) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "deleteLikeFromUser": deleteLikeFromUser.resultMap])
+    }
+
+    public var deleteLikeFromUser: DeleteLikeFromUser {
+      get {
+        return DeleteLikeFromUser(unsafeResultMap: resultMap["deleteLikeFromUser"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "deleteLikeFromUser")
+      }
+    }
+
+    public struct DeleteLikeFromUser: GraphQLSelectionSet {
+      public static let possibleTypes = ["User"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+    }
+  }
+}
+
+public final class DeleteFavFromUserMutation: GraphQLMutation {
+  public let operationDefinition =
+    "mutation DeleteFavFromUser($userId: Int!, $issueId: Int!) {\n  deleteFavFromUser(userId: $userId, issueId: $issueId) {\n    __typename\n    id\n  }\n}"
+
+  public var userId: Int
+  public var issueId: Int
+
+  public init(userId: Int, issueId: Int) {
+    self.userId = userId
+    self.issueId = issueId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["userId": userId, "issueId": issueId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("deleteFavFromUser", arguments: ["userId": GraphQLVariable("userId"), "issueId": GraphQLVariable("issueId")], type: .nonNull(.object(DeleteFavFromUser.selections))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(deleteFavFromUser: DeleteFavFromUser) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "deleteFavFromUser": deleteFavFromUser.resultMap])
+    }
+
+    public var deleteFavFromUser: DeleteFavFromUser {
+      get {
+        return DeleteFavFromUser(unsafeResultMap: resultMap["deleteFavFromUser"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "deleteFavFromUser")
+      }
+    }
+
+    public struct DeleteFavFromUser: GraphQLSelectionSet {
+      public static let possibleTypes = ["User"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id])
       }
 
       public var __typename: String {

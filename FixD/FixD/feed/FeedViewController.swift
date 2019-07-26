@@ -35,6 +35,7 @@ class FeedIssueCell: UITableViewCell {
     
     @IBOutlet weak var upVoteButton: UIButton!
     @IBOutlet weak var favoritesButton: UIButton!
+
     
     var myIssue: IssueClass!
     
@@ -45,11 +46,17 @@ class FeedIssueCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(like(_:)))
-        likeView.addGestureRecognizer(tap)
+        if (myIssue.getUpVoteState()){
+            likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
+        } else {
+            likeButton.setImage(UIImage(named: "heart-1"), for: .normal)
+        }
         
-        let favoriteTap = UITapGestureRecognizer(target: self, action: #selector(favorite(_:)))
-        starView.addGestureRecognizer(favoriteTap)
+        if (myIssue.getFavoritesState()){
+            starButton.setImage(UIImage(named: "filled star"), for: .normal)
+        }else {
+            starButton.setImage(UIImage(named: "star"), for: .normal)
+        }
         
         for v in views {
             v.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])
@@ -78,12 +85,10 @@ class FeedIssueCell: UITableViewCell {
             likeView.backgroundColor = white
             likeView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
-            myIssue.checkLiked(id: myIssue.getID())
+            NotificationCenter.default.post(name: NSNotification.Name("CheckLikeIssue"), object: myIssue)
             if (myIssue.getUpVoteState()){
-                //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
             } else {
-                //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 likeButton.setImage(UIImage(named: "heart-1"), for: .normal)
             }
         }
@@ -99,12 +104,10 @@ class FeedIssueCell: UITableViewCell {
             starView.backgroundColor = white
             starView.layer.shadowOffset = CGSize(width: -1, height: 1)
             
-            myIssue.checkFavorited(id: myIssue.getID())
+            NotificationCenter.default.post(name: NSNotification.Name("CheckFavoriteIssue"), object: myIssue)
             if (myIssue.getFavoritesState()){
-                //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 starButton.setImage(UIImage(named: "filled star"), for: .normal)
             }else {
-                //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 starButton.setImage(UIImage(named: "star"), for: .normal)
             }
         }
@@ -124,12 +127,10 @@ class FeedIssueCell: UITableViewCell {
             commentView.backgroundColor = granite
             commentView.layer.shadowOffset = CGSize(width: -10, height: 10)
         }
-        
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //getIssueData()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -138,32 +139,6 @@ class FeedIssueCell: UITableViewCell {
     
     func setIssue(issue: IssueClass){
         myIssue = issue
-    }
-    
-    @objc func like(_ sender: Any) {
-        self.myIssue.checkLiked(id: self.myIssue.getID())
-        //self.issueUpvotes.text = String(self.myIssue.getUpVotes())
-        if (myIssue.getUpVoteState()){
-            upVoteButton.setImage(UIImage(named: "filled heart"), for: .normal)
-        }else {
-            upVoteButton.setImage(UIImage(named: "heart-1"), for: .normal)
-        }
-    }
-    
-    @IBAction func upVote(_ sender: Any) {
-        like(sender)
-    }
-    
-    @IBAction func favorite(_ sender: Any) {
-        self.myIssue.checkFavorited(id: self.myIssue.getID())
-        
-        //self.issueFavorites.text = String(self.myIssue.getFavorites())
-        //if favorited, it is a filled star
-        if (myIssue.getFavoritesState()){
-            favoritesButton.setImage(UIImage(named: "filled star"), for: .normal)
-        }else {
-            favoritesButton.setImage(UIImage(named: "star"), for: .normal)
-        }
     }
     
 }
@@ -189,8 +164,10 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         
         NotificationCenter.default.addObserver(self, selector: #selector(reload(_:)), name: NSNotification.Name("CHECK"), object: nil)
         
-//        NetworkAPI().setUpUser(nav: self.navigationController!) //Move this?
-        getIssueData() //Get Issue Data for Feed
+        NetworkAPI().setUpUser(nav: self.navigationController!) { result in
+            //Get Issue Data for Feed
+            self.getIssueData()
+        }
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -224,16 +201,18 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         var contentOffset = tableView.contentOffset
         contentOffset.y += feedSearchBar.frame.size.height
         tableView.contentOffset = contentOffset
+
+        setupNotificationListener()
         
     }
     
     @objc func reload(_ sender: Any) {
-        print("reloaded")
         self.tableView.reloadData()
     }
     
     func getIssueData() {
-        NetworkAPI().getListOfIssues() { issueData in
+        let nav = self.navigationController!
+        NetworkAPI().getListOfIssues(nav: nav) { issueData, error  in
             self.myIssueList = issueData
             self.tableView.reloadData()
         }
@@ -244,6 +223,25 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         self.refreshControl!.endRefreshing()
     }
     
+    func setupNotificationListener() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(checkLikeIssue(notification:)), name: NSNotification.Name("CheckLikeIssue"), object: nil)
+        notificationCenter.addObserver(self, selector: #selector(checkFavoriteIssue(notification:)), name: NSNotification.Name("CheckFavoriteIssue"), object: nil)
+    }
+    
+    @objc func checkLikeIssue(notification: Notification) {
+        if let issue = notification.object as? IssueClass {
+            issue.checkLiked(id: issue.getID(), nav: self.navigationController!)
+        }
+    }
+    
+    @objc func checkFavoriteIssue(notification: Notification) {
+        if let issue = notification.object as? IssueClass {
+            issue.checkFavorited(id: issue.getID(), nav: self.navigationController!)
+        }
+    }
+
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ShowIssuePage", sender: self)
     }
@@ -251,12 +249,23 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     @IBOutlet var feedTable: UITableView!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is IssuePageController {
+        if segue.identifier == "ShowIssuePage" {
             let viewController = segue.destination as? IssuePageController
             if let indexPath = feedTable.indexPathForSelectedRow{
                 let currCell = feedTable.cellForRow(at: indexPath) as! FeedIssueCell
                 viewController?.issueID = currCell.myIssue.getID()
             }
+            viewController?.likeButtonHandler = {
+                self.getIssueData()
+            }
+            viewController?.favButtonHandler = {
+                self.getIssueData()
+            }
+            viewController?.feedScrollHandler = {
+                self.tableView.scrollToRow(at: self.tableView.indexPathForSelectedRow!, at: UITableView.ScrollPosition.middle, animated: false)
+            }
+        }
+        if segue.identifier == "comSegue" {
         }
     }
 
@@ -276,17 +285,16 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
         
-        var all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL") && !UserDefaults.standard.bool(forKey: "liked") && !UserDefaults.standard.bool(forKey: "starred")
-        var check = UserDefaults.standard.bool(forKey: "checkOIT") ||  UserDefaults.standard.bool(forKey: "checkParking") || UserDefaults.standard.bool(forKey: "checkFacilities") || UserDefaults.standard.bool(forKey: "checkHRL")
-        var oit = UserDefaults.standard.bool(forKey: "checkOIT") && obj.getType() == ("SnIssue")
-        var park = UserDefaults.standard.bool(forKey: "checkParking") && obj.getType() == ("PtIssue")
-        var fac = UserDefaults.standard.bool(forKey: "checkFacilities") && obj.getType() == ("EamIssue")
-        var hrl = UserDefaults.standard.bool(forKey: "checkHRL") && obj.getType() == ("HrlIssue")
-        var checkLike = UserDefaults.standard.bool(forKey: "liked")
-        var checkFav = UserDefaults.standard.bool(forKey: "starred")
-        var like = UserDefaults.standard.bool(forKey: "liked") && obj.getUpVoteState()
-        var fav = UserDefaults.standard.bool(forKey: "starred") && obj.getFavoritesState()
-        
+        let all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL") && !UserDefaults.standard.bool(forKey: "liked") && !UserDefaults.standard.bool(forKey: "starred")
+        let check = UserDefaults.standard.bool(forKey: "checkOIT") ||  UserDefaults.standard.bool(forKey: "checkParking") || UserDefaults.standard.bool(forKey: "checkFacilities") || UserDefaults.standard.bool(forKey: "checkHRL")
+        let oit = UserDefaults.standard.bool(forKey: "checkOIT") && obj.getType() == ("SnIssue")
+        let park = UserDefaults.standard.bool(forKey: "checkParking") && obj.getType() == ("PtIssue")
+        let fac = UserDefaults.standard.bool(forKey: "checkFacilities") && obj.getType() == ("EamIssue")
+        let hrl = UserDefaults.standard.bool(forKey: "checkHRL") && obj.getType() == ("HrlIssue")
+        let checkLike = UserDefaults.standard.bool(forKey: "liked")
+        let checkFav = UserDefaults.standard.bool(forKey: "starred")
+        let like = UserDefaults.standard.bool(forKey: "liked") && obj.getUpVoteState()
+        let fav = UserDefaults.standard.bool(forKey: "starred") && obj.getFavoritesState()
         
         if(checkLike && checkFav && check) {
             if(like && fav && (oit || park || fac || hrl)) {
@@ -296,7 +304,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
                 return 0
             }
         }
-        
         if(checkLike && checkFav) {
             if (like && fav) {
                 return 210
@@ -305,7 +312,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
                 return 0
             }
         }
-        
         if(checkLike && check) {
             if(like && (oit || park || fac || hrl)) {
                 return 210
@@ -314,7 +320,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
                 return 0
             }
         }
-        
         if(checkFav && check) {
             if(fav && (oit || park || fac || hrl)) {
                 return 210
@@ -323,8 +328,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
                 return 0
             }
         }
-        
-        
         if (checkLike) {
             if (like) {
                 return 210
@@ -333,7 +336,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
                 return 0
             }
         }
-        
         if(checkFav) {
             if (fav) {
                 return 210
@@ -342,32 +344,14 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
                 return 0
             }
         }
-        
         if (all || oit || park || fac || hrl ) {
             return 210
         }
-        
         return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
-        
-         //Configure the cell...
-//            let obj = filteredIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
-//            cell.setIssue(issue: obj)
-//            cell.issueName.text = obj.getTitle()
-//            cell.issueDescription.text = obj.getDescription()
-//            cell.issueLocation.text = obj.getLocation()
-//            cell.issueImage.image = UIImage(named: obj.getIssueImage())
-//            //        cell.issueUpvotes.text = String(obj.getUpVotes())
-//            //        cell.issueFavorites.text = String(obj.getFavorites())
-//            cell.userName.text = obj.myUserName
-//            cell.userImage.image = UIImage(named: obj.myUserImage)
-//            cell.issueDate.text = obj.getIssueDate()
-//            cell.issueTime.text = obj.getIssueTime()
-//            cell.textLabel?.text = nameList[indexPath.row]
-        
         if searching {
             let obj = feedSearchIssues.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
             cell.setIssue(issue: obj)
@@ -375,8 +359,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             cell.issueDescription.text = obj.getDescription()
             cell.issueLocation.text = obj.getLocation()
             cell.issueImage.image = UIImage(named: obj.getIssueImage())
-            //        cell.issueUpvotes.text = String(obj.getUpVotes())
-            //        cell.issueFavorites.text = String(obj.getFavorites())
             cell.userName.text = obj.myUserName
             cell.userImage.image = UIImage(named: obj.myUserImage)
             cell.issueDate.text = obj.getIssueDate()
@@ -389,15 +371,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             cell.issueDescription.text = obj.getDescription()
             cell.issueLocation.text = obj.getLocation()
             cell.issueImage.image = UIImage(named: obj.getIssueImage())
-            //        cell.issueUpvotes.text = String(obj.getUpVotes())
-            //        cell.issueFavorites.text = String(obj.getFavorites())
             cell.userName.text = obj.myUserName
             cell.userImage.image = UIImage(named: obj.myUserImage)
             cell.issueDate.text = obj.getIssueDate()
             cell.issueTime.text = obj.getIssueTime()
         }
         return cell
-        
     }
     
     @IBAction func didTapMenu(_ sender: UIButton) {
@@ -405,11 +384,9 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     }
     
     @objc func swipePanAction(sender: UIScreenEdgePanGestureRecognizer) {
-
         if sender.state == UIGestureRecognizer.State.ended {
             self.openMenu()
         }
-        
     }
     
     //when you click a button on the side menu, it brings you to another page
@@ -418,27 +395,19 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "tab") as? UITabBarController else {
             return
         }
-        
         guard let logOutController = storyBoard.instantiateViewController(withIdentifier: "login") as? UIViewController else {
             return
         }
-        
-        
         switch menuType {
         case .map:
-            
             nextViewController.selectedIndex = 1
             self.present(nextViewController, animated:false, completion:nil)
-            
         case .account:
-            
             nextViewController.selectedIndex = 2
             self.present(nextViewController, animated:false, completion:nil)
-            
         case .logout:
             let navigationController = UINavigationController(rootViewController: logOutController)
             self.present(navigationController, animated:false, completion: nil)
-            
         default:
             break
         }
@@ -475,6 +444,11 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         return transition
     }
     
+    @IBAction func addComment(_ sender: Any) {
+        performSegue(withIdentifier: "comSegue", sender: self)
+    }
+    
+    
     @IBOutlet weak var feedSearchBar: UISearchBar!
     var feedIssueList = Set<IssueClass>()
     var feedSearchIssues = [IssueClass]()
@@ -486,9 +460,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         })
         searching = true
         tableView.reloadData()
-        for item in feedSearchIssues {
-            print(item.getTitle())
-        }
         
         if searchText == "" {
             searching = false
@@ -507,6 +478,5 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         tableView.reloadData()
         feedSearchBar.resignFirstResponder()
     }
-    
-    
+
 }

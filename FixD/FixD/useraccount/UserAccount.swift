@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 // Note: THIS IS NOT THE SAME AS UserClass. This is the User that owns the account.
 // There exists only one version of this account.
 class UserAccount{
@@ -19,31 +19,40 @@ class UserAccount{
     var userImage:String = ""
     var userPhone:String = ""
     var newUser:Bool = false
-    var listOfLikeIssues:[String] = []
+    var listOfLikedIssues:[Int] = []
+    var listOfFavedIssues:[Int] = []
     
-    static let account = UserAccount()
+    static let shared = UserAccount()
 
     private init(){}
     
     //In the future, connect to the database
-    func setUp(id: Int, duid:String, netid:String, name:String, phone: String, picture: String) {
-        self.userId = 0
+    func setUp(id: Int, duid:String, netid:String, name:String, phone: String, picture: String, myLikes: [Int], myFavorites: [Int]) {
+        self.userId = id
         self.userDuid = duid
         self.userName = name
         self.userNetId = netid
         self.userPhone = phone
         self.userImage = picture
-    }
-    
-    func newUser(duid:String, netid: String, name: String, phone: String, picture: String){
-        NetworkAPI().createUser(name: name, netid: netid, phone: phone, picture: picture) { id in
-            self.setUp(id: id, duid: duid, netid: netid, name: name, phone: phone, picture: picture)
-        }
-        
+        self.listOfLikedIssues = myLikes
+        self.listOfFavedIssues = myFavorites
     }
     
     func getNetId() -> String {
         return userNetId
     }
+    
+    func getUserId() -> Int {
+        return userId
+    }
+    
+    func getUserName() -> String {
+        return userName
+    }
+    
+    func getUserImage() -> String {
+        return userImage
+    }
+
 }
 

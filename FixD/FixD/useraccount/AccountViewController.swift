@@ -14,7 +14,7 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
     @IBOutlet weak var myAccountName: UILabel!
     @IBOutlet weak var myAccountImage: UIImageView!
     
-    var myUser = UserAccount.account
+    var myUser = UserAccount.shared
     
     let transition = SlideInTransition()
     var topView: UIView?
@@ -50,7 +50,7 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
     }
     
     func setUpUser() {
-        myAccountImage.image = UIImage(named:myUser.userImage ?? "photo.jpg")
+        myAccountImage.image = UIImage(named: myUser.userImage)
         myAccountName.text = myUser.userName
         myAccountPosition.text = "Student"
     }

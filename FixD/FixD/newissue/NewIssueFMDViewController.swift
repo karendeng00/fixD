@@ -53,6 +53,9 @@ class NewIssueFMDViewController: UIViewController {
         sameDropDown.didSelect{(selectedText, index, id) in
             self.locationOption = selectedText
         }
+        
+        sameDropDown.isSearchEnable = false
+        requestDropDown.isSearchEnable = false
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {

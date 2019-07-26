@@ -24,6 +24,12 @@ query AllIssues {
             userId
             image
             createdAt
+            user {
+                id
+                name
+                picture
+                netid
+            }
         }
     }
 }
@@ -54,6 +60,12 @@ query IssueById($id: Int!) {
             userId
             image
             createdAt
+            user {
+                id
+                name
+                picture
+                netid
+            }
         }
     }
 }
@@ -84,6 +96,12 @@ query IssuesByType($type: String!) {
             userId
             image
             createdAt
+            user {
+                id
+                name
+                picture
+                netid
+            }
         }
     }
 }
@@ -114,6 +132,12 @@ query IssuesByUser($userId: Int!){
             userId
             image
             createdAt
+            user {
+                id
+                name
+                picture
+                netid
+            }
         }
     }
 }
@@ -192,6 +216,8 @@ query UserByNetId($netid: String!){
             favorites
             createdAt
         }
+        likedIssues
+        favoritedIssues
     }
 }
 
@@ -213,17 +239,26 @@ query UserById($id: Int!){
             favorites
             createdAt
         }
+        likedIssues
+        favoritedIssues
     }
 }
 
-query GetUserInfo($duid:String!) {
-    getUserInfo(duid: $duid)
+query GetUserInfo {
+    getUserInfo{
+        id
+        name
+        netid
+        picture
+        phone
+        likedIssues
+        favoritedIssues
+    }
 }
 
 query GetDuid {
     getDuid
 }
-
 
 mutation CreateUser($name: String!, $netid: String!, $phone: String!, $picture: String!){
     createUser(name: $name, netid: $netid, phone: $phone, picture: $picture){
@@ -280,6 +315,30 @@ mutation CreateIssue(
 
 mutation DeleteIssue($id: Int!){
     deleteIssue(id: $id){
+        id
+    }
+}
+
+mutation AddLikeToUser($userId: Int!, $issueId: Int!){
+    addLikeToUser(userId: $userId, issueId: $issueId){
+        id
+    }
+}
+
+mutation AddFavToUser($userId: Int!, $issueId: Int!){
+    addFavToUser(userId: $userId, issueId: $issueId){
+        id
+    }
+}
+
+mutation DeleteLikeFromUser($userId: Int!, $issueId: Int!){
+    deleteLikeFromUser(userId: $userId, issueId: $issueId){
+        id
+    }
+}
+
+mutation DeleteFavFromUser($userId: Int!, $issueId: Int!){
+    deleteFavFromUser(userId: $userId, issueId: $issueId){
         id
     }
 }
