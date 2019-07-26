@@ -173,12 +173,12 @@ class IssueClass: Equatable, Hashable {
             self.myLikes -= 1
             myUser.listOfLikedIssues.remove(at: myUser.listOfLikedIssues.firstIndex(of: myIssueID)!)
             NetworkAPI().deleteLike(issueId: id, nav: nav)
-            NetworkAPI().deleteLikeFromUser(userID: myUser.userId, issueID: myIssueID)
+            NetworkAPI().deleteLikeFromUser(userID: myUser.userId, issueID: myIssueID, nav: nav)
         }else {
             self.myLikes += 1
             myUser.listOfLikedIssues.append(myIssueID)
             NetworkAPI().addLike( issueId: id, nav: nav)
-            NetworkAPI().addLikeToUser(userID: myUser.userId, issueID: myIssueID)
+            NetworkAPI().addLikeToUser(userID: myUser.userId, issueID: myIssueID, nav: nav)
         }
         liked = !liked
     }
@@ -196,12 +196,12 @@ class IssueClass: Equatable, Hashable {
             self.myFavorites -= 1
             myUser.listOfFavedIssues.remove(at: myUser.listOfFavedIssues.firstIndex(of: myIssueID)!)
             NetworkAPI().deleteFavorite(issueId: id, nav: nav)
-            NetworkAPI().deleteFavFromUser(userID: myUser.userId, issueID: myIssueID)
+            NetworkAPI().deleteFavFromUser(userID: myUser.userId, issueID: myIssueID, nav: nav)
         }else {
             self.myFavorites += 1
             myUser.listOfFavedIssues.append(myIssueID)
             NetworkAPI().addFavorite(issueId: id, nav: nav)
-            NetworkAPI().addFavToUser(userID: myUser.userId, issueID: myIssueID)
+            NetworkAPI().addFavToUser(userID: myUser.userId, issueID: myIssueID, nav: nav)
         }
         favorited = !favorited
     }

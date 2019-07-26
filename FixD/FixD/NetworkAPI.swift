@@ -582,20 +582,172 @@ class NetworkAPI {
         }
     }
     
-    func addLikeToUser(userID: Int!, issueID: Int!) {
-        Apollo().getClient().perform(mutation: AddLikeToUserMutation(userId: userID, issueId: issueID))
+    func addLikeToUser(userID: Int!, issueID: Int!, nav: UINavigationController) {
+        Apollo().getClient().perform(mutation: AddLikeToUserMutation(userId: userID, issueId: issueID)) { result, error in
+            if let err = error as? GraphQLHTTPResponseError {
+                switch (err.response.statusCode) {
+                case 401:
+                    // The request was unauthorized due to a bad token, request a new OAuth token.
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.addLikeToUser(userID: userID, issueID: issueID, nav: nav)
+                        } else {
+                            // TODO: handle error
+                        }
+                    }
+                case 403:
+                    print("403")
+                    // TODO: Handle not authorized (Forbidden) error
+                    //                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+                // self.showMessage(message: message)
+                case 500...599:
+                    print("500")
+                // TODO: handle GQL/Kong server error
+                default:
+                    // Something else went wrong, get a new token and try again
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.addLikeToUser(userID: userID, issueID: issueID, nav: nav)
+                        } else {
+                            // TODO: handle error
+                        }
+                    }
+                }
+            }
+            else if let err = error as NSError?, err.domain == NSURLErrorDomain {
+                print("error NSE")
+                // TODO: Handle error
+                // let title = "Unexpected Error"
+                // let message = err.localizedDescription
+                // self.showMessage(message: ["title": title, "message": message])
+            }
+        }
     }
     
-    func addFavToUser(userID: Int!, issueID: Int!) {
-        Apollo().getClient().perform(mutation: AddFavToUserMutation(userId: userID, issueId: issueID))
+    func addFavToUser(userID: Int!, issueID: Int!, nav: UINavigationController) {
+        Apollo().getClient().perform(mutation: AddFavToUserMutation(userId: userID, issueId: issueID)){ results, error in
+            if let err = error as? GraphQLHTTPResponseError {
+                switch (err.response.statusCode) {
+                case 401:
+                    // The request was unauthorized due to a bad token, request a new OAuth token.
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.addFavToUser(userID: userID, issueID: issueID, nav: nav)
+                        } else {
+                            // TODO: handle error
+                        }
+                    }
+                case 403:
+                    print("403")
+                    // TODO: Handle not authorized (Forbidden) error
+                    //                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+                // self.showMessage(message: message)
+                case 500...599:
+                    print("500")
+                // TODO: handle GQL/Kong server error
+                default:
+                    // Something else went wrong, get a new token and try again
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.addFavToUser(userID: userID, issueID: issueID, nav: nav)
+                        } else {
+                            // TODO: handle error
+                        }
+                    }
+                }
+            }
+            else if let err = error as NSError?, err.domain == NSURLErrorDomain {
+                print("error NSE")
+                // TODO: Handle error
+                // let title = "Unexpected Error"
+                // let message = err.localizedDescription
+                // self.showMessage(message: ["title": title, "message": message])
+            }
+        }
     }
     
-    func deleteLikeFromUser(userID: Int!, issueID: Int!) {
-        Apollo().getClient().perform(mutation: DeleteLikeFromUserMutation(userId: userID, issueId: issueID))
+    func deleteLikeFromUser(userID: Int!, issueID: Int!, nav: UINavigationController) {
+        Apollo().getClient().perform(mutation: DeleteLikeFromUserMutation(userId: userID, issueId: issueID)){ results, error in
+            if let err = error as? GraphQLHTTPResponseError {
+                switch (err.response.statusCode) {
+                case 401:
+                    // The request was unauthorized due to a bad token, request a new OAuth token.
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.deleteLikeFromUser(userID: userID, issueID: issueID, nav: nav)
+                        } else {
+                            // TODO: handle error
+                        }
+                    }
+                case 403:
+                    print("403")
+                    // TODO: Handle not authorized (Forbidden) error
+                    //                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+                // self.showMessage(message: message)
+                case 500...599:
+                    print("500")
+                // TODO: handle GQL/Kong server error
+                default:
+                    // Something else went wrong, get a new token and try again
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.deleteLikeFromUser(userID: userID, issueID: issueID, nav: nav)
+                        } else {
+                            // TODO: handle error
+                        }
+                    }
+                }
+            }
+            else if let err = error as NSError?, err.domain == NSURLErrorDomain {
+                print("error NSE")
+                // TODO: Handle error
+                // let title = "Unexpected Error"
+                // let message = err.localizedDescription
+                // self.showMessage(message: ["title": title, "message": message])
+            }
+        }
     }
     
-    func deleteFavFromUser(userID: Int!, issueID: Int!) {
-        Apollo().getClient().perform(mutation: DeleteFavFromUserMutation(userId: userID, issueId: issueID))
+    func deleteFavFromUser(userID: Int!, issueID: Int!, nav: UINavigationController) {
+        Apollo().getClient().perform(mutation: DeleteFavFromUserMutation(userId: userID, issueId: issueID)){ results, error in
+            if let err = error as? GraphQLHTTPResponseError {
+                switch (err.response.statusCode) {
+                case 401:
+                    // The request was unauthorized due to a bad token, request a new OAuth token.
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.deleteFavFromUser(userID: userID, issueID: issueID, nav: nav)
+                        } else {
+                            // TODO: handle error
+                        }
+                    }
+                case 403:
+                    print("403")
+                    // TODO: Handle not authorized (Forbidden) error
+                    //                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+                // self.showMessage(message: message)
+                case 500...599:
+                    print("500")
+                // TODO: handle GQL/Kong server error
+                default:
+                    // Something else went wrong, get a new token and try again
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.deleteFavFromUser(userID: userID, issueID: issueID, nav: nav)
+                        } else {
+                            // TODO: handle error
+                        }
+                    }
+                }
+            }
+            else if let err = error as NSError?, err.domain == NSURLErrorDomain {
+                print("error NSE")
+                // TODO: Handle error
+                // let title = "Unexpected Error"
+                // let message = err.localizedDescription
+                // self.showMessage(message: ["title": title, "message": message])
+            }
+        }
     }
     
 }
