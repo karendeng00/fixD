@@ -35,7 +35,7 @@ class NetworkAPI {
                 case 403:
                     print("403")
                     // TODO: Handle not authorized (Forbidden) error
-                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+//                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
                 // self.showMessage(message: message)
                 case 500...599:
                     print("500")
@@ -89,7 +89,7 @@ class NetworkAPI {
                 case 403:
                     print("403")
                     // TODO: Handle not authorized (Forbidden) error
-                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+//                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
                 // self.showMessage(message: message)
                 case 500...599:
                     print("500")
@@ -164,7 +164,7 @@ class NetworkAPI {
                 case 403:
                     print("403")
                     // TODO: Handle not authorized (Forbidden) error
-                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+//                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
                 // self.showMessage(message: message)
                 case 500...599:
                     print("500")
@@ -235,7 +235,7 @@ class NetworkAPI {
                 case 403:
                     print("403")
                     // TODO: Handle not authorized (Forbidden) error
-                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+//                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
                 // self.showMessage(message: message)
                 case 500...599:
                     print("500")
@@ -280,7 +280,7 @@ class NetworkAPI {
                 case 403:
                     print("403")
                     // TODO: Handle not authorized (Forbidden) error
-                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+//                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
                 // self.showMessage(message: message)
                 case 500...599:
                     print("500")
@@ -327,7 +327,7 @@ class NetworkAPI {
                 case 403:
                     print("403")
                     // TODO: Handle not authorized (Forbidden) error
-                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+//                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
                 // self.showMessage(message: message)
                 case 500...599:
                     print("500")
@@ -376,7 +376,7 @@ class NetworkAPI {
                 case 403:
                     print("403")
                     // TODO: Handle not authorized (Forbidden) error
-                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+//                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
                 // self.showMessage(message: message)
                 case 500...599:
                     print("500")
@@ -421,7 +421,7 @@ class NetworkAPI {
                 case 403:
                     print("403")
                     // TODO: Handle not authorized (Forbidden) error
-                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+//                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
                 // self.showMessage(message: message)
                 case 500...599:
                     print("500")
@@ -466,7 +466,7 @@ class NetworkAPI {
                 case 403:
                     print("403")
                     // TODO: Handle not authorized (Forbidden) error
-                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+//                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
                 // self.showMessage(message: message)
                 case 500...599:
                     print("500")
@@ -511,7 +511,7 @@ class NetworkAPI {
                 case 403:
                     print("403")
                     // TODO: Handle not authorized (Forbidden) error
-                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+//                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
                 // self.showMessage(message: message)
                 case 500...599:
                     print("500")
@@ -556,7 +556,7 @@ class NetworkAPI {
                 case 403:
                     print("403")
                     // TODO: Handle not authorized (Forbidden) error
-                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
+//                    let message = ["title": "Unauthorized", "message": "You do not have access to this feature."]
                 // self.showMessage(message: message)
                 case 500...599:
                     print("500")

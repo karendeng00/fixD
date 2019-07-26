@@ -47,18 +47,14 @@ class FeedIssueCell: UITableViewCell {
         super.layoutSubviews()
         
         if (myIssue.getUpVoteState()){
-            //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
             likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
         } else {
-            //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
             likeButton.setImage(UIImage(named: "heart-1"), for: .normal)
         }
         
         if (myIssue.getFavoritesState()){
-            //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
             starButton.setImage(UIImage(named: "filled star"), for: .normal)
         }else {
-            //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
             starButton.setImage(UIImage(named: "star"), for: .normal)
         }
         
@@ -91,10 +87,8 @@ class FeedIssueCell: UITableViewCell {
             
             NotificationCenter.default.post(name: NSNotification.Name("CheckLikeIssue"), object: myIssue)
             if (myIssue.getUpVoteState()){
-                //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
             } else {
-                //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 likeButton.setImage(UIImage(named: "heart-1"), for: .normal)
             }
         }
@@ -112,10 +106,8 @@ class FeedIssueCell: UITableViewCell {
             
             NotificationCenter.default.post(name: NSNotification.Name("CheckFavoriteIssue"), object: myIssue)
             if (myIssue.getFavoritesState()){
-                //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 starButton.setImage(UIImage(named: "filled star"), for: .normal)
             }else {
-                //likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
                 starButton.setImage(UIImage(named: "star"), for: .normal)
             }
         }
@@ -139,7 +131,6 @@ class FeedIssueCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //getIssueData()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -174,7 +165,8 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         NotificationCenter.default.addObserver(self, selector: #selector(reload(_:)), name: NSNotification.Name("CHECK"), object: nil)
         
         NetworkAPI().setUpUser(nav: self.navigationController!) { result in
-            self.getIssueData() //Get Issue Data for Feed
+            //Get Issue Data for Feed
+            self.getIssueData()
         }
 
         self.tableView.delegate = self
@@ -293,16 +285,16 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
         
-        var all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL") && !UserDefaults.standard.bool(forKey: "liked") && !UserDefaults.standard.bool(forKey: "starred")
-        var check = UserDefaults.standard.bool(forKey: "checkOIT") ||  UserDefaults.standard.bool(forKey: "checkParking") || UserDefaults.standard.bool(forKey: "checkFacilities") || UserDefaults.standard.bool(forKey: "checkHRL")
-        var oit = UserDefaults.standard.bool(forKey: "checkOIT") && obj.getType() == ("SnIssue")
-        var park = UserDefaults.standard.bool(forKey: "checkParking") && obj.getType() == ("PtIssue")
-        var fac = UserDefaults.standard.bool(forKey: "checkFacilities") && obj.getType() == ("EamIssue")
-        var hrl = UserDefaults.standard.bool(forKey: "checkHRL") && obj.getType() == ("HrlIssue")
-        var checkLike = UserDefaults.standard.bool(forKey: "liked")
-        var checkFav = UserDefaults.standard.bool(forKey: "starred")
-        var like = UserDefaults.standard.bool(forKey: "liked") && obj.getUpVoteState()
-        var fav = UserDefaults.standard.bool(forKey: "starred") && obj.getFavoritesState()
+        let all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL") && !UserDefaults.standard.bool(forKey: "liked") && !UserDefaults.standard.bool(forKey: "starred")
+        let check = UserDefaults.standard.bool(forKey: "checkOIT") ||  UserDefaults.standard.bool(forKey: "checkParking") || UserDefaults.standard.bool(forKey: "checkFacilities") || UserDefaults.standard.bool(forKey: "checkHRL")
+        let oit = UserDefaults.standard.bool(forKey: "checkOIT") && obj.getType() == ("SnIssue")
+        let park = UserDefaults.standard.bool(forKey: "checkParking") && obj.getType() == ("PtIssue")
+        let fac = UserDefaults.standard.bool(forKey: "checkFacilities") && obj.getType() == ("EamIssue")
+        let hrl = UserDefaults.standard.bool(forKey: "checkHRL") && obj.getType() == ("HrlIssue")
+        let checkLike = UserDefaults.standard.bool(forKey: "liked")
+        let checkFav = UserDefaults.standard.bool(forKey: "starred")
+        let like = UserDefaults.standard.bool(forKey: "liked") && obj.getUpVoteState()
+        let fav = UserDefaults.standard.bool(forKey: "starred") && obj.getFavoritesState()
         
         if(checkLike && checkFav && check) {
             if(like && fav && (oit || park || fac || hrl)) {
@@ -468,9 +460,6 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         })
         searching = true
         tableView.reloadData()
-        for item in feedSearchIssues {
-            print(item.getTitle())
-        }
         
         if searchText == "" {
             searching = false

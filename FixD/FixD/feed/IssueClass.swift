@@ -204,7 +204,6 @@ class IssueClass: Equatable, Hashable {
             NetworkAPI().addFavToUser(userID: myUser.userId, issueID: myIssueID)
         }
         favorited = !favorited
-        print(myUser.listOfFavedIssues)
     }
     
     func addComment(comment:String, image: UIImage, issueId:Int, userId:Int, user_name: String, user_image: String, nav: UINavigationController){

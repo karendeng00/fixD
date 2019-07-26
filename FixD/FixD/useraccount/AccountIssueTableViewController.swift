@@ -28,7 +28,6 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
         refreshControl!.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
         
         getIssueData()
-        //list = myUserIssuesList
         
         issueSearchAndScope.scopeButtonTitles = ["Issues I've Reported", "Issues I've Starred"]
         issueSearchAndScope.text = "Search issue by title"
@@ -71,10 +70,7 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
             cell.issueDescription.text = obj.getDescription()
             cell.issueLocation.text = obj.getLocation()
             cell.issueImage.image = UIImage(named: obj.getIssueImage())
-            //cell.issueUpvotes.text = String(obj.getUpVotes())
-            //cell.issueFavorites.text = String(obj.getFavorites())
             cell.userName.text = obj.myUserName
-    //        cell.userImage.image = UIImage(named: obj.myUserImage)
             cell.locationImage.image = UIImage(named:"locicon")
         } else {
             let obj = scopeList[indexPath.row]
@@ -84,10 +80,7 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
             cell.issueDescription.text = obj.getDescription()
             cell.issueLocation.text = obj.getLocation()
             cell.issueImage.image = UIImage(named: obj.getIssueImage())
-            //cell.issueUpvotes.text = String(obj.getUpVotes())
-            //cell.issueFavorites.text = String(obj.getFavorites())
             cell.userName.text = obj.myUserName
-            //        cell.userImage.image = UIImage(named: obj.myUserImage)
             cell.locationImage.image = UIImage(named:"locicon")
         }
         
@@ -166,15 +159,11 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
         issueSearchAndScope.text = "Search issue by title"
         switch issueSearchAndScope.selectedScopeButtonIndex {
         case 0:
-            print("Issues I've Reported has been selected")
             listFlag = true
             self.getIssueData()
-            print(scopeList.count)
         case 1:
-            print("Issues I've Starred has been selected.")
             listFlag = false
             self.getIssueData()
-            print(scopeList.count)
         default:
             break
         }
@@ -196,9 +185,6 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
         })
         searching = true
         tableView.reloadData()
-        for item in accountSearchIssues {
-            print(item.getTitle())
-        }
         
         if searchText == "" {
             searching = false

@@ -35,7 +35,7 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTapGesture()
-        //issueDescriptionText.text = "Type your description here."
+
         createAlert(title: "Is this an emergency?", message: "If this is an emergency, please call 911 or contact Duke Police.")
         
         //Heights needed to adjust the screen for when the keyboard appears

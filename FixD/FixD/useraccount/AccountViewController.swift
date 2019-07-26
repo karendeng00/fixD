@@ -50,7 +50,7 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
     }
     
     func setUpUser() {
-        myAccountImage.image = UIImage(named:myUser.userImage ?? "photo.jpg")
+        myAccountImage.image = UIImage(named: myUser.userImage)
         myAccountName.text = myUser.userName
         myAccountPosition.text = "Student"
     }
