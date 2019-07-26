@@ -252,6 +252,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func loadIssue() {
+        let nav = self.navigationController!
         NetworkAPI().getIssueById(nav: nav, id: issueID) { issue,error in
             self.myIssue = issue
             self.issueLabel.text = issue.getTitle()
@@ -322,7 +323,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         if hasImage == true {
             NetworkAPI().uploadCommentImage(issueID: issueID, userID: myUser.getUserId(), commentImage: tempImg!)
             hasImage = false
-           
         }
         else {
             tempImg = UIImage()
