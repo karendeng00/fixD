@@ -393,7 +393,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         let session = URLSession(configuration: config)
         
         // Set the URLRequest to POST and to the specified URL
-        var urlRequest = URLRequest(url: URL(string: "http://localhost:3000/comments")!)
+        var urlRequest = URLRequest(url: URL(string: "https://fixd-test.cloud.duke.edu/comments")!)
         urlRequest.httpMethod = "POST"
         
         // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
