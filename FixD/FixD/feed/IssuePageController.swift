@@ -72,8 +72,16 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     let white = UIColor(cgColor: CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])!)
     let granite = UIColor(red: 181/255.0, green: 181/255.0, blue: 181/255.0, alpha: 0.5)
     
+    //Handles Refresing the Likes and Favorites on the feed
+    var likeButtonHandler:(() -> ())?
+    var favButtonHandler:(() -> ())?
+    var feedScrollHandler:(() -> ())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        feedScrollHandler?()
+        
         commentTextField.delegate = self
         commentView.delegate = self
         commentView.dataSource = self
@@ -192,6 +200,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             
             myIssue.checkLiked(id: myIssue.getID(), nav: self.navigationController!)
             changeLikeOrFavoriteButton(button: likeButton, state: myIssue.getUpVoteState(), imageOne: UIImage(named: "filled heart"), imageTwo: UIImage(named: "heart-1"))
+            likeButtonHandler?()
         }
             
         else {
@@ -207,6 +216,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             
             myIssue.checkFavorited(id: myIssue.getID(), nav: self.navigationController!)
             changeLikeOrFavoriteButton(button: favButton, state: myIssue.getFavoritesState(), imageOne: UIImage(named: "filled star"), imageTwo: UIImage(named: "star"))
+            favButtonHandler?()
         }
         else {
             favView.backgroundColor = granite

@@ -263,6 +263,15 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
                 let currCell = feedTable.cellForRow(at: indexPath) as! FeedIssueCell
                 viewController?.issueID = currCell.myIssue.getID()
             }
+            viewController?.likeButtonHandler = {
+                self.getIssueData()
+            }
+            viewController?.favButtonHandler = {
+                self.getIssueData()
+            }
+            viewController?.feedScrollHandler = {
+                self.tableView.scrollToRow(at: self.tableView.indexPathForSelectedRow!, at: UITableView.ScrollPosition.middle, animated: false)
+            }
         }
         if segue.identifier == "comSegue" {
         }

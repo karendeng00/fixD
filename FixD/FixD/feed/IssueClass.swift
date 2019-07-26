@@ -181,7 +181,6 @@ class IssueClass: Equatable, Hashable {
             NetworkAPI().addLikeToUser(userID: myUser.userId, issueID: myIssueID)
         }
         liked = !liked
-        print(myUser.listOfLikedIssues)
     }
     
     func getUpVoteState() -> Bool {
@@ -195,14 +194,17 @@ class IssueClass: Equatable, Hashable {
     func checkFavorited(id: Int, nav: UINavigationController){
         if favorited {
             self.myFavorites -= 1
+            myUser.listOfFavedIssues.remove(at: myUser.listOfFavedIssues.firstIndex(of: myIssueID)!)
             NetworkAPI().deleteFavorite(issueId: id, nav: nav)
             NetworkAPI().deleteFavFromUser(userID: myUser.userId, issueID: myIssueID)
         }else {
             self.myFavorites += 1
+            myUser.listOfFavedIssues.append(myIssueID)
             NetworkAPI().addFavorite(issueId: id, nav: nav)
             NetworkAPI().addFavToUser(userID: myUser.userId, issueID: myIssueID)
         }
         favorited = !favorited
+        print(myUser.listOfFavedIssues)
     }
     
     func addComment(comment:String, image: UIImage, issueId:Int, userId:Int, user_name: String, user_image: String, nav: UINavigationController){
