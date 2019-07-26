@@ -252,7 +252,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func loadIssue() {
-        let nav = self.navigationController!
         NetworkAPI().getIssueById(nav: nav, id: issueID) { issue,error in
             self.myIssue = issue
             self.issueLabel.text = issue.getTitle()
