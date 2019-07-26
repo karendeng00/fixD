@@ -18,7 +18,6 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
     var listFlag = true
     let myUser = UserAccount.shared
     
-//    @IBOutlet weak var issueSelector: UISegmentedControl!
     @IBOutlet weak var issueSearchAndScope: UISearchBar!
     
     var issuesList:[IssueClass] = []
@@ -31,7 +30,7 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
         getIssueData()
         //list = myUserIssuesList
         
-        issueSearchAndScope.scopeButtonTitles = ["Issues I've Favorited", "Issues I've Reported"]
+        issueSearchAndScope.scopeButtonTitles = ["Issues I've Reported", "Issues I've Starred"]
         issueSearchAndScope.text = "Search issue by title"
         
         var contentOffset = tableView.contentOffset
@@ -59,14 +58,11 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
         } else {
             return scopeList.count
         }
-//        return issuesList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell", for: indexPath) as! FeedIssueCell
         
-        //let obj = myUserIssuesList[indexPath.row]
-        //let obj = issuesList[indexPath.row]
         if searching {
             let obj = accountSearchIssues[indexPath.row]
 
@@ -142,17 +138,16 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
             for issue in issues {
                 if issue.getUserId() == self.myUser.getUserId() && self.listFlag == true {
                     self.issuesReportedList.append(issue)
-                    //self.issuesList = self.issuesReportedList
                     if self.searching {
                         self.accountSearchIssues = self.issuesReportedList
                     } else {
                         self.scopeList = self.issuesReportedList
                     }
                 }
-                if issue.getUserId() != self.myUser.getUserId() && self.listFlag == false {
-                    self.issuesStarredList.append(issue)
-                    //self.issuesList = self.issuesStarredList
-                    //self.scopeList = self.issuesStarredList
+                else {
+                    if issue.getUserId() != self.myUser.getUserId() && self.listFlag == false {
+                        self.issuesStarredList.append(issue)
+                    }
                     if self.searching {
                         self.accountSearchIssues = self.issuesStarredList
                     } else {
@@ -163,21 +158,6 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
             self.tableView.reloadData()
         }
     }
-    
-//    @IBAction func selectorChanged(_ sender: Any) {
-//        switch issueSearchAndScope.selectedSegmentIndex {
-//        case 0:
-//            print("Issues I've Reported has been selected")
-//            listFlag = true
-//            self.getIssueData()
-//        case 1:
-//            print("Issues I've Starred has been selected.")
-//            listFlag = false
-//            self.getIssueData()
-//        default:
-//            break
-//        }
-//    }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         //filter
