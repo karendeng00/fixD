@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-FixD/Pods-FixD-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Apollo/Apollo.framework
+${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework
+${BUILT_PRODUCTS_DIR}/iOSDropDown/iOSDropDown.framework
