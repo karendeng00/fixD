@@ -321,7 +321,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     func updateComments() {
         let nav = self.navigationController!
         if hasImage == true {
-            NetworkAPI().uploadCommentImage(issueID: issueID, userID: myIssue.getUserId(), commentImage: tempImg!)
+            NetworkAPI().uploadCommentImage(issueID: issueID, userID: myUser.getUserId(), commentImage: tempImg!)
             hasImage = false
            
         }
