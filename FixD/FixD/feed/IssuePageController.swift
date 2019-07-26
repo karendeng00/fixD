@@ -58,7 +58,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var likeAndFavoriteAmountLabel: UILabel!
    
     var comments:[CommentsClass] = []
-    var images:[UIImage] = []
     var issueID:Int = 0
     var myIssue = IssueClass()
     var tempImg: UIImage?
@@ -76,7 +75,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         
         self.commentView.reloadData()
         //Code to set up and event listener
-        listenForNotifications()
+            listenForNotifications()
 
         for v in views {
             v.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])
@@ -245,6 +244,11 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             self.userNameLabel.text = issue.myUserName
             self.profileImage.image = UIImage(named: issue.myUserImage)
             self.comments = issue.getListOfComments()
+            
+            for comment in issue.getListOfComments(){
+                print(comment.myImage)
+            }
+
             self.commentView.reloadData()
             if self.comments.count > 0{
                 self.scrollToBottom()
@@ -254,7 +258,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         configureTapGesture()
     }
-
+    
     @objc func send(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .ended {
             sendView.backgroundColor = white
@@ -262,6 +266,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             
             updateComments()
             commentTextField.resignFirstResponder()
+            commentTextField.text = ""
+            
         }
         else {
             sendView.backgroundColor = granite
@@ -292,32 +298,23 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     func updateComments() {
         
         if hasImage == true {
-            myIssue.addImage(image: tempImg!)
-            upload()
-            
+            NetworkAPI().uploadCommentImage(issueID: issueID, userID: myIssue.getUserId(), commentImage: tempImg!)
             hasImage = false
+           
         }
         else {
             tempImg = UIImage()
-            myIssue.addImage(image: tempImg!)
-        }   
-        
-        if commentTextField.hasText {
-            myIssue.addComment(comment: commentTextField.text!, image: tempImg! , issueId: myIssue.getID(), userId: myIssue.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage)
-        }
-        else {
-            myIssue.addComment(comment: "", image: tempImg! , issueId: myIssue.getID(), userId: myIssue.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage)
+            if commentTextField.hasText {
+                myIssue.addComment(comment: commentTextField.text!, image: "none", issueId: myIssue.getID(), userId: myIssue.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage)
+            }
         }
         
-        commentTextField.text = ""
-        comments = myIssue.getListOfComments()
-        images = myIssue.getListOfImages()
-        commentView.reloadData()
-        scrollToBottom()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+            self.loadIssue()
+        })
+        
     }
-    
-    
-    
+
     func listenForNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -333,16 +330,26 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath) as! textCommentCell
+        comments = myIssue.getListOfComments()
         cell.commentLabel.text = comments[indexPath.row].myBody
         cell.userLabel.text = comments[indexPath.row].myUserName
         cell.commentUserImage.image = UIImage(named:comments[indexPath.row].myUserImage)
         
-        var url = NSURL(string: "http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRSMkZDV2pGUmRWTk5WbU5GYUhSeFdXTlRVR2M1WldKUkJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSS9hVzVzYVc1bE95Qm1hV3hsYm1GdFpUMGlZWFpoZEdGeUxuQnVaeUk3SUdacGJHVnVZVzFsS2oxVlZFWXRPQ2NuWVhaaGRHRnlMbkJ1WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraURtbHRZV2RsTDNCdVp3WTdCbFE9IiwiZXhwIjoiMjAxOS0wNy0yMlQyMDo1MDozMS44NDlaIiwicHVyIjoiYmxvYl9rZXkifX0=--1103502ecbc56431d1d5207ed1e87ea740282044/avatar.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22avatar.png%22%3B+filename%2A%3DUTF-8%27%27avatar.png")
+        print("pay attention to this")
+        print(comments[indexPath.row].myImage)
+        if(comments[indexPath.row].myImage != "none") {
+            var url = NSURL(string: comments[indexPath.row].myImage)
         
-        var data = NSData(contentsOf : url as! URL)
-        var image = UIImage(data : data as! Data)
-        cell.commentPic.image = image
+            print(url)
+            var data = NSData(contentsOf : url as! URL)
+            var image = UIImage(data : data! as Data)
+            cell.commentPic.image = image
+        }
+        else {
+            cell.commentPic.image = UIImage()
+        }
         return cell
     }
     
@@ -352,81 +359,5 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    
-    func upload() {
-        guard let image = tempImg else { return  }
-        
-        let filename = "avatar.png"
-        
-        // generate boundary string using a unique per-app string
-        let boundary = UUID().uuidString
-
-        let comment = ["body": "This is the body",
-                       "issue_id": myIssue.getID(),
-                       "user_id": myIssue.getUserId()] as [String : Any]
-        var parameters = [[String: Any]]()
-        parameters.append(comment)
-        
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        
-        // Set the URLRequest to POST and to the specified URL
-        var urlRequest = URLRequest(url: URL(string: "http://localhost:3000/comments")!)
-        urlRequest.httpMethod = "POST"
-        
-        // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
-        // And the boundary is also set here
-        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        
-        var data = Data()
-        
-        // Add the reqtype field and its value to the raw http request data
-        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-        data.append("Content-Disposition: form-data; name=\"comment[body]\"\r\n\r\n".data(using: .utf8)!)
-        data.append("This is the body".data(using: .utf8)!)
-        
-        // Add the image data to the raw http request data
-        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-        data.append("Content-Disposition: form-data; name=\"comment[avatar]\"; filename=\"\(filename)\"\r\n".data(using: .utf8)!)
-        data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
-        data.append(image.pngData()!)
-        
-        
-        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-        data.append("Content-Disposition: form-data; name=\"comment[issue_id]\"\r\n\r\n".data(using: .utf8)!)
-        data.append("1".data(using: .utf8)!)
-        
-        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-        data.append("Content-Disposition: form-data; name=\"comment[user_id]\"\r\n\r\n".data(using: .utf8)!)
-        data.append("1".data(using: .utf8)!)
-        
-        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-        data.append("Content-Disposition: form-data; name=\"commit\"\r\n\r\n".data(using: .utf8)!)
-        data.append("Save Comment".data(using: .utf8)!)
-        
-        // End the raw http request data, note that there is 2 extra dash ("-") at the end, this is to indicate the end of the data
-        // According to the HTTP 1.1 specification https://tools.ietf.org/html/rfc7230
-        data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
-        
-        // Send a POST request to the URL, with the data we created earlier
-        session.uploadTask(with: urlRequest, from: data, completionHandler: { responseData, response, error in
-            
-            if(error != nil){
-                print("\(error!.localizedDescription)")
-            }
-            
-            guard let responseData = responseData else {
-                print("no response data")
-                return
-            }
-            
-            if let responseString = String(data: responseData, encoding: .utf8) {
-                print("uploaded to: \(responseString)")
-
-            }
-        
-            
-        }).resume()
-    }
     
 }
