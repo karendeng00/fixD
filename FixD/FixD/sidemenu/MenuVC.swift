@@ -28,8 +28,13 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
     
     let locationManager = CLLocationManager()
     
-    //issues I've...
     
+    
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userPosition: UILabel!
+    @IBOutlet weak var userImage: UIImageView!
+    
+    //issues I've...
     @IBOutlet weak var likeBox: UIImageView!
     @IBOutlet weak var starredBox: UIImageView!
     
@@ -53,6 +58,7 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var parkingButton: UIButton!
     @IBOutlet weak var oitButton: UIButton!
     
+    let myUser = UserAccount.shared
     
     var check = false
     var checkCategory = false
@@ -71,6 +77,7 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpUser()
         
     tableView.estimatedRowHeight = 60.0;
         tableView.rowHeight = UITableView.automaticDimension
@@ -91,6 +98,11 @@ class MenuVC: UITableViewController, UIGestureRecognizerDelegate {
         likeBox.image = UIImage(named: "box\(!checkLiked)")
         starredBox.image = UIImage(named: "box\(!checkStarred)")
         
+    }
+    
+    func setUpUser() {
+        userName.text = myUser.getUserName()
+        userImage.image = UIImage(named: myUser.getUserImage())
     }
 
     @IBAction func facilities(_ sender: UIButton) {
