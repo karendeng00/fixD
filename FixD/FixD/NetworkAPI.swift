@@ -609,7 +609,7 @@ class NetworkAPI {
         // Add the reqtype field and its value to the raw http request data
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
         data.append("Content-Disposition: form-data; name=\"comment[body]\"\r\n\r\n".data(using: .utf8)!)
-        data.append("This is the body".data(using: .utf8)!)
+        data.append("".data(using: .utf8)!)
         
         // Add the image data to the raw http request data
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
