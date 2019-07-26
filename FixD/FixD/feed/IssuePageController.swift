@@ -328,7 +328,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         else {
             tempImg = UIImage()
             if commentTextField.hasText {
-                myIssue.addComment(comment: commentTextField.text!, image: "none", issueId: myIssue.getID(), userId: myIssue.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage, nav: self.navigationController!)
+                myIssue.addComment(comment: commentTextField.text!, image: "none", issueId: myIssue.getID(), userId: myUser.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage, nav: self.navigationController!)
             }
         }
         
