@@ -120,7 +120,7 @@ class NetworkAPI {
                         var listOfComments:[CommentsClass] = []
                         if let comments = issue.comments {
                             for comment in comments {
-                                listOfComments.append(CommentsClass(body: comment.body ?? "", image: UIImage(), userId: comment.userId, issueId: comment.issueId, name: comment.user.name!, user_image: comment.user.picture ?? ""))
+                                listOfComments.append(CommentsClass(body: comment.body ?? "", image: comment.image!, userId: comment.userId, issueId: comment.issueId, name: comment.user.name!, user_image: comment.user.picture ?? ""))
                             }
                         }
                         myIssueList.append(IssueClass(
@@ -194,7 +194,7 @@ class NetworkAPI {
                     var listOfComments:[CommentsClass] = []
                     if let comments = i.comments {
                         for comment in comments {
-                            listOfComments.append(CommentsClass(body: comment.body ?? "", image: UIImage(), userId: comment.userId, issueId: comment.issueId, name: comment.user.name!, user_image: comment.user.picture ?? ""))
+                            listOfComments.append(CommentsClass(body: comment.body ?? "", image: comment.image!, userId: comment.userId, issueId: comment.issueId, name: comment.user.name!, user_image: comment.user.picture ?? ""))
                         }
                     }
                     let issue = IssueClass(issueID: Int(i.id)!,
@@ -582,6 +582,77 @@ class NetworkAPI {
         }
     }
     
+    func uploadCommentImage(issueID: Int, userID: Int, commentImage: UIImage) {
+        
+        let image = commentImage
+        
+        let filename = "avatar.png"
+        
+        // generate boundary string using a unique per-app string
+        let boundary = UUID().uuidString
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        
+        // Set the URLRequest to POST and to the specified URL
+        var urlRequest = URLRequest(url: URL(string: "http://localhost:3000/comments")!)
+        urlRequest.httpMethod = "POST"
+        
+        print("printed request")
+        
+        // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
+        // And the boundary is also set here
+        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        var data = Data()
+        
+        // Add the reqtype field and its value to the raw http request data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"comment[body]\"\r\n\r\n".data(using: .utf8)!)
+        data.append("".data(using: .utf8)!)
+        
+        // Add the image data to the raw http request data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"comment[avatar]\"; filename=\"\(filename)\"\r\n".data(using: .utf8)!)
+        data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
+        data.append(image.pngData()!)
+        
+        
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"comment[issue_id]\"\r\n\r\n".data(using: .utf8)!)
+        data.append("\(issueID)".data(using: .utf8)!)
+        
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"comment[user_id]\"\r\n\r\n".data(using: .utf8)!)
+        data.append("\(userID)".data(using: .utf8)!)
+        
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"commit\"\r\n\r\n".data(using: .utf8)!)
+        data.append("Save Comment".data(using: .utf8)!)
+        
+        // End the raw http request data, note that there is 2 extra dash ("-") at the end, this is to indicate the end of the data
+        // According to the HTTP 1.1 specification https://tools.ietf.org/html/rfc7230
+        data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+        
+        // Send a POST request to the URL, with the data we created earlier
+        session.uploadTask(with: urlRequest, from: data, completionHandler: { responseData, response, error in
+            
+            if(error != nil){
+                print("\(error!.localizedDescription)")
+            }
+            
+            guard let responseData = responseData else {
+                print("no response data")
+                return
+            }
+            
+            if let responseString = String(data: responseData, encoding: .utf8) {
+                print("uploaded to: \(responseString)")
+            }
+            
+        }).resume()
+    }
+
     func addLikeToUser(userID: Int!, issueID: Int!, nav: UINavigationController) {
         Apollo().getClient().perform(mutation: AddLikeToUserMutation(userId: userID, issueId: issueID)) { result, error in
             if let err = error as? GraphQLHTTPResponseError {

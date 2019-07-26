@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		224D684222E8CAFB009DBBF8 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 224D684122E8CAFB009DBBF8 /* schema.json */; };
 		22740CEC22CD052D0011835E /* IssueAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22740CEB22CD052D0011835E /* IssueAnnotation.swift */; };
 		22775BCE22CBC4C400130E12 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22775BCD22CBC4C400130E12 /* OAuthService.swift */; };
 		22775BD122CBC4E000130E12 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 22775BCF22CBC4E000130E12 /* README.md */; };
@@ -110,6 +109,7 @@
 		B4ED85FF22E0CCDB002E6D79 /* Apollo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apollo.swift; sourceTree = "<group>"; };
 		F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
+		F5EBC84022EB81F000846C6D /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Bold.ttf"; path = "../../../../../../Downloads/Open_Sans/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		F5EE5DB822CA8EBD00F89735 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueGeneralInfoViewController.swift; sourceTree = "<group>"; };
 		FF95139622CA8EEA00B94CB2 /* NewIssuePTSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssuePTSViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +198,7 @@
 		B461C14222E794BD009D75D3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				F5EBC84022EB81F000846C6D /* OpenSans-Bold.ttf */,
 				B461C14522E794BD009D75D3 /* OpenSans-Regular.ttf */,
 				B461C14422E794BD009D75D3 /* Merriweather-Regular.ttf */,
 			);
@@ -349,7 +350,6 @@
 				B4085C1222A850A500A24525 /* LaunchScreen.storyboard in Resources */,
 				B4085C0F22A850A500A24525 /* Assets.xcassets in Resources */,
 				22775BD122CBC4E000130E12 /* README.md in Resources */,
-				22D496CC22E64F3400AFE99A /* schema.json in Resources */,
 				B461C14622E794BD009D75D3 /* Merriweather-Regular.ttf in Resources */,
 				B44EED4022D39D16004C1627 /* fixd.graphql in Resources */,
 				B461C14722E794BD009D75D3 /* OpenSans-Regular.ttf in Resources */,
