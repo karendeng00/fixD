@@ -188,8 +188,6 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             galleryView.backgroundColor = granite
             galleryView.layer.shadowOffset = CGSize(width: -10, height: 10)
         }
-        
-        
     }
     
     @objc func longL(_ gestureRecognizer: UILongPressGestureRecognizer) {
@@ -252,7 +250,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func loadIssue() {
-        NetworkAPI().getIssueById(nav: nav, id: issueID) { issue,error in
+        NetworkAPI().getIssueById(nav: self.navigationController!, id: issueID) { issue,error in
             self.myIssue = issue
             self.issueLabel.text = issue.getTitle()
             self.descriptionLabel.text = issue.getDescription()
@@ -320,7 +318,9 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     func updateComments() {
         let nav = self.navigationController!
         if hasImage == true {
-            NetworkAPI().uploadCommentImage(issueID: issueID, userID: myUser.getUserId(), commentImage: tempImg!)
+            NetworkAPI().uploadCommentImage(issueID: issueID, userID: myUser.getUserId(), commentImage: tempImg!) { stall in
+                self.loadIssue()
+            }
             hasImage = false
            
         }
@@ -331,7 +331,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
             self.loadIssue()
         })
         

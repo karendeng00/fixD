@@ -206,8 +206,9 @@ class IssueClass: Equatable, Hashable {
         favorited = !favorited
     }
     
-    func addComment(comment:String, image: String, issueId:Int, userId:Int, user_name: String, user_image: String, nav: UINavigationController){
+    func addComment(comment:String, image: String, issueId:Int, userId:Int, user_name: String, user_image: String, nav: UINavigationController) {
         NetworkAPI().createComment(comment: comment, image: image, issueId: issueId, userId: userId, nav: nav)
+    
     }
     
     func addImage(image:UIImage) {

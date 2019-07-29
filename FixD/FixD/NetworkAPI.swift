@@ -264,7 +264,7 @@ class NetworkAPI {
         }
     }
     
-    func createComment(comment:String, image:String, issueId:Int, userId:Int, nav: UINavigationController){
+    func createComment(comment:String, image:String, issueId:Int, userId:Int, nav: UINavigationController) {
         Apollo().getClient().perform(mutation: CreateCommentMutation(body: comment, image: image, userId: userId, issueId: issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 switch (err.response.statusCode) {
@@ -304,7 +304,7 @@ class NetworkAPI {
                 // self.showMessage(message: ["title": title, "message": message])
             }
             else {
-                print("Comment Added Succesfully!")
+                print("it's been successful")
             }
         }
     }
@@ -582,10 +582,9 @@ class NetworkAPI {
         }
     }
     
-    func uploadCommentImage(issueID: Int, userID: Int, commentImage: UIImage) {
+    func uploadCommentImage(issueID: Int, userID: Int, commentImage: UIImage, completionHandler: @escaping (Bool) -> ()) {
         
         let image = commentImage
-        
         let filename = "avatar.png"
         
         // generate boundary string using a unique per-app string
@@ -617,14 +616,13 @@ class NetworkAPI {
         data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
         data.append(image.pngData()!)
         
-        
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
         data.append("Content-Disposition: form-data; name=\"comment[issue_id]\"\r\n\r\n".data(using: .utf8)!)
         data.append("\(issueID)".data(using: .utf8)!)
         
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
         data.append("Content-Disposition: form-data; name=\"comment[user_id]\"\r\n\r\n".data(using: .utf8)!)
-        data.append("\(userID)".data(using: .utf8)!)
+        data.append("1".data(using: .utf8)!)
         
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
         data.append("Content-Disposition: form-data; name=\"commit\"\r\n\r\n".data(using: .utf8)!)
@@ -648,6 +646,10 @@ class NetworkAPI {
             
             if let responseString = String(data: responseData, encoding: .utf8) {
                 print("uploaded to: \(responseString)")
+            }
+            
+            DispatchQueue.main.async {
+                completionHandler(true)
             }
             
         }).resume()
