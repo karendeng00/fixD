@@ -173,12 +173,12 @@ class IssueClass: Equatable, Hashable {
             self.myLikes -= 1
             myUser.listOfLikedIssues.remove(at: myUser.listOfLikedIssues.firstIndex(of: myIssueID)!)
             NetworkAPI().deleteLike(issueId: id, nav: nav)
-            NetworkAPI().deleteLikeFromUser(userID: myUser.userId, issueID: myIssueID)
+            NetworkAPI().deleteLikeFromUser(userID: myUser.userId, issueID: myIssueID, nav: nav)
         }else {
             self.myLikes += 1
             myUser.listOfLikedIssues.append(myIssueID)
             NetworkAPI().addLike( issueId: id, nav: nav)
-            NetworkAPI().addLikeToUser(userID: myUser.userId, issueID: myIssueID)
+            NetworkAPI().addLikeToUser(userID: myUser.userId, issueID: myIssueID, nav: nav)
         }
         liked = !liked
     }
@@ -196,19 +196,18 @@ class IssueClass: Equatable, Hashable {
             self.myFavorites -= 1
             myUser.listOfFavedIssues.remove(at: myUser.listOfFavedIssues.firstIndex(of: myIssueID)!)
             NetworkAPI().deleteFavorite(issueId: id, nav: nav)
-            NetworkAPI().deleteFavFromUser(userID: myUser.userId, issueID: myIssueID)
+            NetworkAPI().deleteFavFromUser(userID: myUser.userId, issueID: myIssueID, nav: nav)
         }else {
             self.myFavorites += 1
             myUser.listOfFavedIssues.append(myIssueID)
             NetworkAPI().addFavorite(issueId: id, nav: nav)
-            NetworkAPI().addFavToUser(userID: myUser.userId, issueID: myIssueID)
+            NetworkAPI().addFavToUser(userID: myUser.userId, issueID: myIssueID, nav: nav)
         }
         favorited = !favorited
     }
     
-    func addComment(comment:String, image: UIImage, issueId:Int, userId:Int, user_name: String, user_image: String, nav: UINavigationController){
-        myComments.append(CommentsClass(body: comment, image: image, userId: userId, issueId: issueId, name: user_name, user_image: user_image))
-        NetworkAPI().createComment(comment: comment, image: "path", issueId: issueId, userId: userId, nav: nav)
+    func addComment(comment:String, image: String, issueId:Int, userId:Int, user_name: String, user_image: String, nav: UINavigationController){
+        NetworkAPI().createComment(comment: comment, image: image, issueId: issueId, userId: userId, nav: nav)
     }
     
     func addImage(image:UIImage) {
