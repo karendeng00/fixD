@@ -597,7 +597,7 @@ class NetworkAPI {
         let session = URLSession(configuration: config)
         
         // Set the URLRequest to POST and to the specified URL
-        var urlRequest = URLRequest(url: URL(string: "http://localhost:3000/comments")!)
+        var urlRequest = URLRequest(url: URL(string: "https://fixd-test.cloud.duke.edu/comments")!)
         urlRequest.httpMethod = "POST"
         
         print("printed request")
