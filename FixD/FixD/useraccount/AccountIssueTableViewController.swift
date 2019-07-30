@@ -11,10 +11,12 @@ import UIKit
 class AccountIssueTableViewController: UITableViewController, UISearchBarDelegate {
 
     let myCellIndentifier = "IssueCell"
-    var myUserIssuesList:[IssueClass] = []
     var issuesReportedList:[IssueClass] = []
     var issuesStarredList:[IssueClass] = []
     var scopeList:[IssueClass] = []
+    var accountIssueList = Set<IssueClass>()
+    var accountSearchIssues:[IssueClass] = []
+    var searching = false
     var listFlag = true
     let myUser = UserAccount.shared
     
@@ -125,20 +127,23 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
     
     func getIssueData() {
         let nav = self.storyboard?.instantiateViewController(withIdentifier: "sbProfNav") as? UINavigationController
+        resetLists()
+        print("1:\(scopeList.count)")
         NetworkAPI().getListOfIssues(nav: nav!) { issueData,error in
-            self.resetLists()
-            let issues:[IssueClass] = issueData
+            let issues = issueData
             for issue in issues {
-                if issue.getUserId() == self.myUser.getUserId() && self.listFlag == true {
-                    self.issuesReportedList.append(issue)
-                    if self.searching {
-                        self.accountSearchIssues = self.issuesReportedList
-                    } else {
-                        self.scopeList = self.issuesReportedList
+                if self.listFlag {
+                    if issue.getUserId() == self.myUser.getUserId() {
+                        self.issuesReportedList.append(issue)
+                        if self.searching {
+                            self.accountSearchIssues = self.issuesReportedList
+                        } else {
+                            self.scopeList = self.issuesReportedList
+                        }
                     }
                 }
                 else {
-                    if issue.getUserId() != self.myUser.getUserId() && self.listFlag == false {
+                    if(self.myUser.listOfFavedIssues.contains(issue.getID())){
                         self.issuesStarredList.append(issue)
                     }
                     if self.searching {
@@ -147,37 +152,35 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
                         self.scopeList = self.issuesStarredList
                     }
                 }
+                print("2:\(self.scopeList.count)")
+                self.tableView.reloadData()
             }
-            self.tableView.reloadData()
         }
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         //filter
         searching = false
-        tableView.reloadData()
         issueSearchAndScope.text = "Search issue by title"
         switch issueSearchAndScope.selectedScopeButtonIndex {
-        case 0:
-            listFlag = true
-            self.getIssueData()
-        case 1:
-            listFlag = false
-            self.getIssueData()
-        default:
-            break
+            case 0:
+                listFlag = true
+                self.getIssueData()
+            case 1:
+                listFlag = false
+                self.getIssueData()
+            default:
+                break
         }
     }
     
     private func resetLists() {
-        self.issuesReportedList = Array()
-        self.issuesStarredList = Array()
-        self.issuesList = Array()
+        self.accountSearchIssues.removeAll()
+        self.issuesReportedList.removeAll()
+        self.issuesStarredList.removeAll()
+        self.issuesList.removeAll()
+        self.scopeList.removeAll()
     }
-    
-    var accountIssueList = Set<IssueClass>()
-    var accountSearchIssues = [IssueClass]()
-    var searching = false
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         accountSearchIssues = scopeList.filter({( issue:IssueClass) -> Bool in
@@ -185,12 +188,10 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
         })
         searching = true
         tableView.reloadData()
-        
         if searchText == "" {
             searching = false
             tableView.reloadData()
         }
-        
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -203,5 +204,5 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
         tableView.reloadData()
         issueSearchAndScope.resignFirstResponder()
     }
-    
+
 }
