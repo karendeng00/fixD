@@ -264,7 +264,7 @@ class NetworkAPI {
         }
     }
     
-    func createComment(comment:String, image:String, issueId:Int, userId:Int, nav: UINavigationController){
+    func createComment(comment:String, image:String, issueId:Int, userId:Int, nav: UINavigationController,  completionHandler: @escaping (Bool) -> ()){
         Apollo().getClient().perform(mutation: CreateCommentMutation(body: comment, image: image, userId: userId, issueId: issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
                 switch (err.response.statusCode) {
@@ -272,7 +272,7 @@ class NetworkAPI {
                     // The request was unauthorized due to a bad token, request a new OAuth token.
                     OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
                         if success {
-                            self.createComment(comment: comment, image: image, issueId: issueId, userId: userId, nav: nav)
+                            self.createComment(comment: comment, image: image, issueId: issueId, userId: userId, nav: nav) { stall in}
                         } else {
                             // TODO: handle error
                         }
@@ -289,7 +289,7 @@ class NetworkAPI {
                     // Something else went wrong, get a new token and try again
                     OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
                         if success {
-                            self.createComment(comment: comment, image: image, issueId: issueId, userId: userId, nav: nav)
+                            self.createComment(comment: comment, image: image, issueId: issueId, userId: userId, nav: nav) { stall in}
                         } else {
                             // TODO: handle error
                         }
@@ -304,7 +304,9 @@ class NetworkAPI {
                 // self.showMessage(message: ["title": title, "message": message])
             }
             else {
-                print("Comment Added Succesfully!")
+                DispatchQueue.main.async {
+                    completionHandler(true)
+                }
             }
         }
     }
@@ -582,7 +584,7 @@ class NetworkAPI {
         }
     }
     
-    func uploadCommentImage(issueID: Int, userID: Int, commentImage: UIImage) {
+    func uploadCommentImage(issueID: Int, userID: Int, commentImage: UIImage, completionHandler: @escaping (Bool) -> ()) {
         
         let image = commentImage
         
@@ -617,14 +619,15 @@ class NetworkAPI {
         data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
         data.append(image.pngData()!)
         
-        
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
         data.append("Content-Disposition: form-data; name=\"comment[issue_id]\"\r\n\r\n".data(using: .utf8)!)
         data.append("\(issueID)".data(using: .utf8)!)
         
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
         data.append("Content-Disposition: form-data; name=\"comment[user_id]\"\r\n\r\n".data(using: .utf8)!)
-        data.append("\(userID)".data(using: .utf8)!)
+        data.append("1".data(using: .utf8)!)
+        
+        print(userID)
         
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
         data.append("Content-Disposition: form-data; name=\"commit\"\r\n\r\n".data(using: .utf8)!)
@@ -638,6 +641,7 @@ class NetworkAPI {
         session.uploadTask(with: urlRequest, from: data, completionHandler: { responseData, response, error in
             
             if(error != nil){
+                print("this is happening to the first error")
                 print("\(error!.localizedDescription)")
             }
             
@@ -648,7 +652,13 @@ class NetworkAPI {
             
             if let responseString = String(data: responseData, encoding: .utf8) {
                 print("uploaded to: \(responseString)")
+                //this is printing out - user does not exist?
             }
+            
+            DispatchQueue.main.async {
+                completionHandler(true)
+            }
+
             
         }).resume()
     }

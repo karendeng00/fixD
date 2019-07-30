@@ -206,8 +206,16 @@ class IssueClass: Equatable, Hashable {
         favorited = !favorited
     }
     
-    func addComment(comment:String, image: String, issueId:Int, userId:Int, user_name: String, user_image: String, nav: UINavigationController){
-        NetworkAPI().createComment(comment: comment, image: image, issueId: issueId, userId: userId, nav: nav)
+    func addComment(comment:String, image: String, issueId:Int, userId:Int, user_name: String, user_image: String, nav: UINavigationController, completionHandler: @escaping (Bool) -> ()) {
+        NetworkAPI().createComment(comment: comment, image: image, issueId: issueId, userId: userId, nav: nav) {
+            stall in
+            
+            DispatchQueue.main.async {
+                completionHandler(true)
+            }
+        }
+        
+        
     }
     
     func addImage(image:UIImage) {
