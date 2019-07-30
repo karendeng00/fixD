@@ -73,12 +73,32 @@ class FeedIssueCell: UITableViewCell {
         let longFav = UILongPressGestureRecognizer(target: self, action: #selector(longF(_:)))
         longFav.minimumPressDuration = 0
         starView.addGestureRecognizer(longFav)
-        
+
         let longCom = UILongPressGestureRecognizer(target: self, action: #selector(longC(_:)))
         longCom.minimumPressDuration = 0
         commentView.addGestureRecognizer(longCom)
         
     }
+    
+    @objc func longC(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state == .ended {
+            commentView.backgroundColor = white
+            commentView.layer.shadowOffset = CGSize(width: -1, height: 1)
+            NotificationCenter.default.post(name: NSNotification.Name("commentSegue"), object: nil)
+            
+        }
+        else {
+            commentView.backgroundColor = granite
+            commentView.layer.shadowOffset = CGSize(width: -10, height: 10)
+        }
+    }
+    
+    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer)
+        -> Bool {
+            return true
+    }
+
     
     @objc func longL(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .ended {
@@ -118,16 +138,6 @@ class FeedIssueCell: UITableViewCell {
         
     }
     
-    @objc func longC(_ gestureRecognizer: UILongPressGestureRecognizer) {
-        if gestureRecognizer.state == .ended {
-            commentView.backgroundColor = white
-            commentView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        }
-        else {
-            commentView.backgroundColor = granite
-            commentView.layer.shadowOffset = CGSize(width: -10, height: 10)
-        }
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -167,6 +177,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         NetworkAPI().setUpUser(nav: self.navigationController!) { result in
             //Get Issue Data for Feed
             self.getIssueData()
+        
         }
 
         self.tableView.delegate = self
@@ -204,6 +215,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
 
         setupNotificationListener()
         
+        
     }
     
     @objc func reload(_ sender: Any) {
@@ -217,6 +229,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             self.tableView.reloadData()
         }
     }
+    
 
     @objc func refresh(_ sender: Any) {
         getIssueData()
@@ -261,9 +274,9 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             viewController?.favButtonHandler = {
                 self.getIssueData()
             }
-            viewController?.feedScrollHandler = {
-                self.tableView.scrollToRow(at: self.tableView.indexPathForSelectedRow!, at: UITableView.ScrollPosition.middle, animated: false)
-            }
+//            viewController?.feedScrollHandler = {
+//                self.tableView.scrollToRow(at: self.tableView.indexPathForSelectedRow!, at: UITableView.ScrollPosition.middle, animated: false)
+//            }
         }
         if segue.identifier == "comSegue" {
         }
@@ -282,6 +295,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         }
     }
     
+  
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
         
@@ -349,9 +363,21 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         }
         return 0
     }
+    
+    
+    
+    @objc func longC(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state == .ended {
+            print("Hello")
+            
+        }
+    }
+    
+   
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
+        
         if searching {
             let obj = feedSearchIssues.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
             cell.setIssue(issue: obj)

@@ -74,12 +74,12 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     //Handles Refresing the Likes and Favorites on the feed
     var likeButtonHandler:(() -> ())?
     var favButtonHandler:(() -> ())?
-    var feedScrollHandler:(() -> ())?
+    //var feedScrollHandler:(() -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        feedScrollHandler?()
+        //feedScrollHandler?()
         
         commentTextField.delegate = self
         commentView.delegate = self
@@ -238,6 +238,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         if gestureRecognizer.state == .ended {
             comView.backgroundColor = white
             comView.layer.shadowOffset = CGSize(width: -1, height: 1)
+            commentTextField.becomeFirstResponder()
         }
         else {
             comView.backgroundColor = granite
@@ -246,11 +247,11 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-    fileprivate func scrollToBottom() {
-        let indexPath = NSIndexPath(item: self.comments.count-1, section: 0)
-        self.commentView.scrollToRow(at: indexPath as IndexPath, at: UITableView.ScrollPosition.bottom, animated: false)
-    }
-    
+//    fileprivate func scrollToBottom() {
+//        let indexPath = NSIndexPath(item: self.comments.count-1, section: 0)
+//        self.commentView.scrollToRow(at: indexPath as IndexPath, at: UITableView.ScrollPosition.bottom, animated: false)
+//    }
+//
     func loadIssue() {
         let nav = self.navigationController!
         NetworkAPI().getIssueById(nav: nav, id: issueID) { issue,error in
@@ -271,9 +272,9 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
             }
 
             self.commentView.reloadData()
-            if self.comments.count > 0{
-                self.scrollToBottom()
-            }
+//            if self.comments.count > 0{
+//                self.scrollToBottom()
+//            }
             self.changeLikeOrFavoriteButton(button: self.likeButton, state: self.myIssue.getUpVoteState(), imageOne: UIImage(named: "filled heart"), imageTwo: UIImage(named: "heart-1"))
             self.changeLikeOrFavoriteButton(button: self.favButton, state: self.myIssue.getFavoritesState(), imageOne: UIImage(named: "filled star"), imageTwo: UIImage(named: "star"))
         }
@@ -306,12 +307,15 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @objc func keyboardWillChange(notification: Notification){
+        print("yes!")
+        
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
         }
         if notification.name == UIResponder.keyboardWillShowNotification  || notification.name == UIResponder.keyboardWillChangeFrameNotification{
             //When the keyboard appears, this is the value that the screens needs to be shifted up by.
             view.frame.origin.y = -(keyboardRect.height - tabBarHeight - navBarHeight - statusBarHeight)
+            print("showing")
         }else {
             //When the keyboard is dismissed, the height needs to be reset to this value.
             view.frame.origin.y = navBarHeight + statusBarHeight
@@ -321,19 +325,23 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     func updateComments() {
         let nav = self.navigationController!
         if hasImage == true {
-            NetworkAPI().uploadCommentImage(issueID: issueID, userID: myUser.getUserId(), commentImage: tempImg!)
+            NetworkAPI().uploadCommentImage(issueID: issueID, userID: myUser.getUserId(), commentImage: tempImg!) { stall in
+                self.loadIssue()
+            }
             hasImage = false
         }
         else {
             tempImg = UIImage()
             if commentTextField.hasText {
-                myIssue.addComment(comment: commentTextField.text!, image: "none", issueId: myIssue.getID(), userId: myUser.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage, nav: self.navigationController!)
+                myIssue.addComment(comment: commentTextField.text!, image: "none", issueId: myIssue.getID(), userId: 1, user_name: myIssue.myUserName, user_image: myIssue.myUserImage, nav: self.navigationController!) { stall in
+                     self.loadIssue()
+                }
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-            self.loadIssue()
-        })
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+//            self.loadIssue()
+//        })
         
     }
     func listenForNotifications() {
