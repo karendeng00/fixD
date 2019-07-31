@@ -16,6 +16,8 @@ class NewIssueFromCategoryViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    //segues to correct issue page depending on which button the user selects
+    //also sets issue type in the database
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ServiceNowSegue" {
             let viewController = segue.destination as? OITredoViewController
@@ -38,16 +40,5 @@ class NewIssueFromCategoryViewController: UIViewController {
             viewController?.myIssue = myIssue
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

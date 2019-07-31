@@ -38,6 +38,7 @@ class OITredoViewController: UIViewController, UITextViewDelegate, UINavigationC
         
         sensitiveInfo.text = "Enter any PHI or other sensitive information in this field."
         
+        //sets up UI features for the camera and gallery buttons
         for v in views {
             v.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])
             v.layer.masksToBounds = false
@@ -46,19 +47,23 @@ class OITredoViewController: UIViewController, UITextViewDelegate, UINavigationC
             v.layer.shadowOpacity = 0.22
         }
         
+        //gesture recognizer for gallery button
         let longGallery = UILongPressGestureRecognizer(target: self, action: #selector(longGal(_:)))
         longGallery.minimumPressDuration = 0
         galleryView.addGestureRecognizer(longGallery)
         
+        //gesture recognizer for camera button
         let longCamera = UILongPressGestureRecognizer(target: self, action: #selector(longCam(_:)))
         longCamera.minimumPressDuration = 0
         cameraView.addGestureRecognizer(longCamera)
         
+        //because urgency and impact only have three options each, the search functionality of the drop down menu is disabled
         urgencyDropDown.isSearchEnable = false
         impactDropDown.isSearchEnable = false
         
     }
     
+    //checks to make sure that all required fields are filled in and calls createAlert if not
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         let nav = self.navigationController!
         if urgencyDropDown.text != "Please select" && impactDropDown.text != "Please select" {
@@ -70,6 +75,7 @@ class OITredoViewController: UIViewController, UITextViewDelegate, UINavigationC
         return false
     }
     
+    //creates an alert if the user has left any required fields blank
     func createAlert(title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
@@ -95,6 +101,7 @@ class OITredoViewController: UIViewController, UITextViewDelegate, UINavigationC
         attachementPic.image = tempImg
     }
     
+    //delegates what happens if the user presses the camera button
     @objc func longCam(_ gestureRecognizer: UILongPressGestureRecognizer) {
         print("you've pressed me")
         if gestureRecognizer.state == .ended {
@@ -114,7 +121,7 @@ class OITredoViewController: UIViewController, UITextViewDelegate, UINavigationC
             cameraView.layer.shadowOffset = CGSize(width: -10, height: 10)
         }
     }
-    
+    //delegates what happens if the user presses the gallery button
     @objc func longGal(_ gestureRecognizer: UILongPressGestureRecognizer) {
         print("you've pressed me")
         if gestureRecognizer.state == .ended {

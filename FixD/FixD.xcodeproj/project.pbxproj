@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		224D684222E8CAFB009DBBF8 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 224D684122E8CAFB009DBBF8 /* schema.json */; };
 		22740CEC22CD052D0011835E /* IssueAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22740CEB22CD052D0011835E /* IssueAnnotation.swift */; };
 		22775BCE22CBC4C400130E12 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22775BCD22CBC4C400130E12 /* OAuthService.swift */; };
 		22775BD122CBC4E000130E12 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 22775BCF22CBC4E000130E12 /* README.md */; };
@@ -244,14 +243,14 @@
 			isa = PBXGroup;
 			children = (
 				FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */,
+				B428236D22E258CB00BD34EB /* NewIssueFromCategoryViewController.swift */,
+				FFE6EEA522C3D9DD00E2CBED /* OITredoViewController.swift */,
 				FFE35B1722C12E730087FC64 /* NewIssueFMDViewController.swift */,
 				FFE35B1922C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift */,
-				FFE35B2322C2AEB90087FC64 /* SubmissionViewController.swift */,
 				FFE6EEA322C3BE8C00E2CBED /* HRLredoViewController.swift */,
-				FFE6EEA522C3D9DD00E2CBED /* OITredoViewController.swift */,
 				FF95139622CA8EEA00B94CB2 /* NewIssuePTSViewController.swift */,
+				FFE35B2322C2AEB90087FC64 /* SubmissionViewController.swift */,
 				FF95139822CA98E600B94CB2 /* IssueVC.swift */,
-				B428236D22E258CB00BD34EB /* NewIssueFromCategoryViewController.swift */,
 			);
 			path = newissue;
 			sourceTree = "<group>";
@@ -349,7 +348,6 @@
 				B4085C1222A850A500A24525 /* LaunchScreen.storyboard in Resources */,
 				B4085C0F22A850A500A24525 /* Assets.xcassets in Resources */,
 				22775BD122CBC4E000130E12 /* README.md in Resources */,
-				22D496CC22E64F3400AFE99A /* schema.json in Resources */,
 				B461C14622E794BD009D75D3 /* Merriweather-Regular.ttf in Resources */,
 				B44EED4022D39D16004C1627 /* fixd.graphql in Resources */,
 				B461C14722E794BD009D75D3 /* OpenSans-Regular.ttf in Resources */,
