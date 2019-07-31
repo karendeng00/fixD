@@ -625,7 +625,7 @@ class NetworkAPI {
         
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
         data.append("Content-Disposition: form-data; name=\"comment[user_id]\"\r\n\r\n".data(using: .utf8)!)
-        data.append("12".data(using: .utf8)!)
+        data.append("\(userID)".data(using: .utf8)!)
         
         print(userID)
         

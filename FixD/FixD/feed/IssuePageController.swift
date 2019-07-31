@@ -325,7 +325,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     func updateComments() {
         let nav = self.navigationController!
         if hasImage == true {
-            NetworkAPI().uploadCommentImage(issueID: issueID, userID: 12, commentImage: tempImg!) { stall in
+            NetworkAPI().uploadCommentImage(issueID: issueID, userID: myUser.getUserId(), commentImage: tempImg!) { stall in
                 self.loadIssue()
             }
             hasImage = false
@@ -333,7 +333,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         else {
             tempImg = UIImage()
             if commentTextField.hasText {
-                myIssue.addComment(comment: commentTextField.text!, image: "none", issueId: myIssue.getID(), userId: 12, user_name: myIssue.myUserName, user_image: myIssue.myUserImage, nav: self.navigationController!) { stall in
+                myIssue.addComment(comment: commentTextField.text!, image: "none", issueId: myIssue.getID(), userId: myUser.getUserId(), user_name: myIssue.myUserName, user_image: myIssue.myUserImage, nav: self.navigationController!) { stall in
                      self.loadIssue()
                 }
             }
