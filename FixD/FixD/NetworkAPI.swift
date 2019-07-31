@@ -597,7 +597,7 @@ class NetworkAPI {
         let session = URLSession(configuration: config)
         
         // Set the URLRequest to POST and to the specified URL
-        var urlRequest = URLRequest(url: URL(string: "http://localhost:3000/comments")!)
+        var urlRequest = URLRequest(url: URL(string: "https://fixd-test.cloud.duke.edu/comments")!)
         urlRequest.httpMethod = "POST"
         
         print("printed request")
@@ -625,7 +625,7 @@ class NetworkAPI {
         
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
         data.append("Content-Disposition: form-data; name=\"comment[user_id]\"\r\n\r\n".data(using: .utf8)!)
-        data.append("1".data(using: .utf8)!)
+        data.append("12".data(using: .utf8)!)
         
         print(userID)
         
