@@ -10,11 +10,15 @@ import Foundation
 import UIKit
 import Apollo
 
-
+//Class that creates all network calls within the app. They're mostly queries and mutiations using graphql and apollo.
 class NetworkAPI {
     
+    //Instantiate user
     let myUser = UserAccount.shared
     
+    
+    //Sets up the user from the database. If one exists (with the corresponding netid), the user is loaded. Otherwise, a user is created
+    //in the database and loaded into the app.
     func setUpUser(nav: UINavigationController, completionHandler: @escaping (_ user: Bool) -> Void){
         let user = UserAccount.shared
          // Get the User info (comes back as a String array).
@@ -70,6 +74,7 @@ class NetworkAPI {
         }
     }
 
+    //This method loads the list of issues from the database. (ALL OF THEM)
     func getListOfIssues(nav: UINavigationController, completionHandler: @escaping (_ list: Array<IssueClass>, _ error: String?) -> Void) {
         var myIssueList: Array<IssueClass> = []
         Apollo().getClient().fetch(query: AllIssuesQuery()) { (result, error) in
@@ -146,6 +151,7 @@ class NetworkAPI {
         }
     }
     
+    //This method gets an issue from the database by its specific ID. 
     func getIssueById(nav: UINavigationController, id: Int, completionHandler: @escaping (_ issue: IssueClass, _ error: String?) -> Void) {
         Apollo().getClient().fetch(query: IssueByIdQuery(id: Int(id))) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
@@ -218,7 +224,7 @@ class NetworkAPI {
         }
     }
 
-    
+    //This method creates an issue and uploads it to the server.
     func buildIssue(issue: IssueClass, nav: UINavigationController) {
         Apollo().getClient().perform(mutation: CreateIssueMutation(description: issue.getDescription(), image: issue.getIssueImage(), location: issue.getLocation(), userId: myUser.getUserId() , title: issue.getTitle(), type: issue.getType(), likes: 0, favorites: 0, email: issue.getEmail(), phone: issue.getPhone(), alternatePhone: issue.getAltPhone(), group: "", urgency: issue.getUrgency(), sensitiveInfo: issue.getSensitiveInfo(), campus: issue.getCampus(), area: issue.getArea(), specificLocation: issue.getSpecificLocation(), roomNumber: issue.getRoom(), serviceAnimal: issue.getAnimal(), impact: issue.getImpact(), yourBuilding: issue.getBuildingFacilities(), yourFloor: issue.getFloorFacilities(), yourRoom: issue.getRoomFacilities(), requestType: issue.getRequestFor(), issueBuilding: issue.getBuildingService(), issueFloor: issue.getFloorService(), issueRoom: issue.getRoomService(), serviceType: issue.getServiceType(), fundCode: issue.getFundCode(), topic: "", name: issue.getName())) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
@@ -264,6 +270,7 @@ class NetworkAPI {
         }
     }
     
+    //Creates a comment and uploads it to the server.
     func createComment(comment:String, image:String, issueId:Int, userId:Int, nav: UINavigationController,  completionHandler: @escaping (Bool) -> ()){
         Apollo().getClient().perform(mutation: CreateCommentMutation(body: comment, image: image, userId: userId, issueId: issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
@@ -311,6 +318,7 @@ class NetworkAPI {
         }
     }
     
+    //This method creates a user and uploads it to the server.
     func createUser(nav: UINavigationController, name: String, netid: String, phone: String, picture: String, completionHandler: @escaping (_ id: Int, _ error: String?) -> Void){
         Apollo().getClient().perform(mutation: CreateUserMutation(name: name, netid: netid, phone: phone, picture: picture))  { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
@@ -362,6 +370,7 @@ class NetworkAPI {
         }
     }
 
+    //This method adds a like to an issue.
     func addLike(issueId: Int, nav: UINavigationController) {
         Apollo().getClient().perform(mutation: AddLikeToIssueMutation(id:issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
@@ -407,6 +416,7 @@ class NetworkAPI {
         }
     }
     
+    //This method deletes a like from an issue.
     func deleteLike(issueId: Int, nav: UINavigationController) {
         Apollo().getClient().perform(mutation: DeleteLikeFromIssueMutation(id:issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
@@ -452,6 +462,8 @@ class NetworkAPI {
         }
     }
     
+    
+    //This method adds a favorite to the issue.
     func addFavorite(issueId: Int, nav: UINavigationController) {
         Apollo().getClient().perform(mutation: AddFavoriteToIssueMutation(id: issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
@@ -497,6 +509,7 @@ class NetworkAPI {
         }
     }
     
+    //This method deletes a favorite from an issue.
     func deleteFavorite(issueId: Int, nav: UINavigationController) {
         Apollo().getClient().perform(mutation: DeleteFavoriteFromIssueMutation(id: issueId)) { (result, error) in
             if let err = error as? GraphQLHTTPResponseError {
@@ -542,6 +555,7 @@ class NetworkAPI {
         }
     }
     
+    //This method deletes an issue.
     func deleteIssue(nav: UINavigationController, issueId: Int) {
         Apollo().getClient().perform(mutation: DeleteIssueMutation(id: issueId)) {(result, error) in
             if let err = error as? GraphQLHTTPResponseError {
@@ -584,6 +598,7 @@ class NetworkAPI {
         }
     }
     
+    //This method (not using graphql and apollo) uploads an image as a comment to a specific issue.
     func uploadCommentImage(issueID: Int, userID: Int, commentImage: UIImage, completionHandler: @escaping (Bool) -> ()) {
         
         let image = commentImage
@@ -663,6 +678,7 @@ class NetworkAPI {
         }).resume()
     }
 
+    //This method adds the issue to the list of liked issues of a user.
     func addLikeToUser(userID: Int!, issueID: Int!, nav: UINavigationController) {
         Apollo().getClient().perform(mutation: AddLikeToUserMutation(userId: userID, issueId: issueID)) { result, error in
             if let err = error as? GraphQLHTTPResponseError {
@@ -705,6 +721,7 @@ class NetworkAPI {
         }
     }
     
+    //This method adds the issue to the list of favorited issues of a user.
     func addFavToUser(userID: Int!, issueID: Int!, nav: UINavigationController) {
         Apollo().getClient().perform(mutation: AddFavToUserMutation(userId: userID, issueId: issueID)){ results, error in
             if let err = error as? GraphQLHTTPResponseError {
@@ -747,6 +764,7 @@ class NetworkAPI {
         }
     }
     
+    //This method deletes the issue from the list of liked issues of a user.
     func deleteLikeFromUser(userID: Int!, issueID: Int!, nav: UINavigationController) {
         Apollo().getClient().perform(mutation: DeleteLikeFromUserMutation(userId: userID, issueId: issueID)){ results, error in
             if let err = error as? GraphQLHTTPResponseError {
@@ -789,6 +807,7 @@ class NetworkAPI {
         }
     }
     
+    //This method deletes the issue from the list of favorited issues of a user.
     func deleteFavFromUser(userID: Int!, issueID: Int!, nav: UINavigationController) {
         Apollo().getClient().perform(mutation: DeleteFavFromUserMutation(userId: userID, issueId: issueID)){ results, error in
             if let err = error as? GraphQLHTTPResponseError {
