@@ -8,6 +8,7 @@
 
 import UIKit
 
+//View Controller that corresponds to the Contact Us screen.
 class ContactUsViewController: UIViewController {
     
     override func viewDidLoad() {
@@ -15,6 +16,7 @@ class ContactUsViewController: UIViewController {
 
     }
     
+    //Code to allow app to call number
     @IBAction func makeCall(_ sender: UIButton) {
         if let phoneNum = sender.titleLabel?.text {
             if let url = URL(string: "tel://\(String(describing: phoneNum))"), UIApplication.shared.canOpenURL(url) {
