@@ -8,6 +8,7 @@
 
 import UIKit
 
+//This class is the login screen for the app. It only shows up iff the user is not logged or is authenticated. 
 class LoginScreenController: UIViewController {
 
     var oAuthService: OAuthService?
@@ -34,9 +35,9 @@ class LoginScreenController: UIViewController {
     }
     
     
+    //If the token is authenticated, then refresh the token and open the app. Else, open shib and login.  
     @IBAction func loginButton(_ sender: UIButton) {
         let nav = self.navigationController
-        
         oAuthService?.setClientName(oAuthClientName: "dukeissuereporting")
         if oAuthService!.isAuthenticated() {
             oAuthService?.refreshToken(navController: nav!) { success, statusCode in
