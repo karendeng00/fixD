@@ -9,6 +9,7 @@
 import UIKit
 import MessageUI
 
+//Class corresponding to the Invite Friends Page.
 class InviteFriendsViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     
@@ -19,6 +20,7 @@ class InviteFriendsViewController: UIViewController, MFMailComposeViewController
 
     }
     
+    //Send email button that opens up the Mail iOS cli
     @IBAction func sendButton(_ sender: Any) {
         let mailComposeViewController = configureMailController()
         if MFMailComposeViewController.canSendMail() {
@@ -33,6 +35,7 @@ class InviteFriendsViewController: UIViewController, MFMailComposeViewController
         super.didReceiveMemoryWarning()
     }
     
+    //Configures mail Controller from iOS CLi
     func configureMailController() -> MFMailComposeViewController {
         let mailComposer = MFMailComposeViewController()
         mailComposer.mailComposeDelegate = self
@@ -45,6 +48,7 @@ class InviteFriendsViewController: UIViewController, MFMailComposeViewController
         
     }
     
+    //Returns an error if mail could not be configured.
     func showMailError() {
         let sendMailError = UIAlertController(title: "Could not send email", message: "Please try again later.", preferredStyle: .alert)
         let dismiss = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -52,6 +56,7 @@ class InviteFriendsViewController: UIViewController, MFMailComposeViewController
         self.present(sendMailError, animated:true, completion:nil)
     }
     
+    //Closes the mail iOS Cli
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?){
         controller.dismiss(animated: true, completion: nil)
     }
