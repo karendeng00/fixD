@@ -8,10 +8,12 @@
 
 import UIKit
 
+//This class serves as a login authenticator. If the user is logged in, the app opens up. Else, the login screen opens up.
 class LoadScreenViewController: UIViewController {
 
     var oAuthService: OAuthService?
     
+    //If the user is authenticated, the feeedview controller shows up. Else, the user is prompted to login through OAuth and Shib.
     override func viewDidLoad() {
         super.viewDidLoad()
         oAuthService = OAuthService.shared
@@ -30,16 +32,4 @@ class LoadScreenViewController: UIViewController {
         }
 
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
