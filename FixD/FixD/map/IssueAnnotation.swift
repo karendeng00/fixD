@@ -11,6 +11,7 @@ import MapKit
 
 class IssueAnnotation: NSObject, MKAnnotation {
     
+    //This class contains values from an IssueClass so that the issue's data can be displayed when making the annotation.
     @objc dynamic var coordinate: CLLocationCoordinate2D
     
     var issueID: Int?
