@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Class that corresponds to the cells of the settings table
 class SettingsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var settingLabel: UILabel!
@@ -16,7 +17,7 @@ class SettingsTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
