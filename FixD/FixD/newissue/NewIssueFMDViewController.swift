@@ -46,10 +46,14 @@ class NewIssueFMDViewController: UIViewController {
         requestDropDown.text = "Please select"
         sameDropDown.text = "Please select"
         
+        //sets var dex to the index of the option selected from requestDropDown
+        //this will be used to determine what options populate the serviceListDropDown in the next view
         requestDropDown.didSelect{(selectedText , index ,id) in
             self.dex = index
         }
             
+        //sets var locationOption equal to the user's selection ("yes" or "no") in sameDropDown (this determines whether the user's location is the same as the issue's location)
+        //this will be used to autopopulate secondBuildingDropDown, secondFloorDropDown, and secondRoomDropDown in the next view if the user selects "yes" in sameDropDown
         sameDropDown.didSelect{(selectedText, index, id) in
             self.locationOption = selectedText
         }
@@ -58,6 +62,7 @@ class NewIssueFMDViewController: UIViewController {
         requestDropDown.isSearchEnable = false
     }
     
+    //checks to make sure that all required fields are filled in and calls createAlert if not
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if firstBuildingDropDown.text != "Please select" && firstFloorDropDown.text != "Please select" && firstRoomDropDown.text != "Please select" && requestDropDown.text != "Please select" && sameDropDown.text != "Please select" {
             myIssue.defineEAMParamsP1(your_building: firstBuildingDropDown.text!, your_floor: firstFloorDropDown.text!, your_room: firstRoomDropDown.text!, request_for: requestDropDown.text!)
@@ -67,6 +72,9 @@ class NewIssueFMDViewController: UIViewController {
         return false
     }
     
+    //if the user has selected "yes" in sameDropDown to signal that their location is the same as the issue's location, the selections the user has made for building, floor, and room are carried over to the next view and set as secondBuildingDropDown, secondFloorDropDown, and secondRoomDropDown, respectively
+    //the options that populate serviceListDropDown in the next view are set based on the user's selection in sameDropDown
+    //relevant issue fields are added to the Issue object
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FMDissue" {
             let viewController = segue.destination as? NewIssueFMDPage2ViewController
@@ -81,6 +89,7 @@ class NewIssueFMDViewController: UIViewController {
         }
     }
     
+    //creates an alert if the user has left any required fields blank
     func createAlert(title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
