@@ -11,6 +11,7 @@ import UIKit
 
 class CommentsClass {
     
+    //This class contains the data to represent a comment in our app
     var myBody:String = ""
     var myImage:String = ""
     var myUserID:Int = 0
