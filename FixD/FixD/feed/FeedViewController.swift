@@ -46,18 +46,19 @@ class FeedIssueCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        //Sets the image of the like and favorite button to be the right image depeding on if the user has already liked or not
         if (myIssue.getUpVoteState()){
             likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
         } else {
             likeButton.setImage(UIImage(named: "heart-1"), for: .normal)
         }
-        
         if (myIssue.getFavoritesState()){
             starButton.setImage(UIImage(named: "filled star"), for: .normal)
         }else {
             starButton.setImage(UIImage(named: "star"), for: .normal)
         }
         
+        //Customizes the views of each cell
         for v in views {
             v.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])
             v.layer.masksToBounds = false
@@ -66,18 +67,16 @@ class FeedIssueCell: UITableViewCell {
             v.layer.shadowOpacity = 0.22
         }
         
+        //Adds actions to when the like, favorite, and comment view are pressed
         let longLike = UILongPressGestureRecognizer(target: self, action: #selector(longL(_:)))
         longLike.minimumPressDuration = 0
         likeView.addGestureRecognizer(longLike)
-        
         let longFav = UILongPressGestureRecognizer(target: self, action: #selector(longF(_:)))
         longFav.minimumPressDuration = 0
         starView.addGestureRecognizer(longFav)
-
         let longCom = UILongPressGestureRecognizer(target: self, action: #selector(longC(_:)))
         longCom.minimumPressDuration = 0
         commentView.addGestureRecognizer(longCom)
-        
     }
     
     @objc func longC(_ gestureRecognizer: UILongPressGestureRecognizer) {
@@ -85,7 +84,6 @@ class FeedIssueCell: UITableViewCell {
             commentView.backgroundColor = white
             commentView.layer.shadowOffset = CGSize(width: -1, height: 1)
             NotificationCenter.default.post(name: NSNotification.Name("commentSegue"), object: nil)
-            
         }
         else {
             commentView.backgroundColor = granite
@@ -99,12 +97,12 @@ class FeedIssueCell: UITableViewCell {
             return true
     }
 
-    
+    //When the like button is pressed, the IssueClass is updated and the view is updated
     @objc func longL(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .ended {
             likeView.backgroundColor = white
             likeView.layer.shadowOffset = CGSize(width: -1, height: 1)
-            
+            //Uses NotificationCenter since to get the nav controller since the IssueClass needs that to work
             NotificationCenter.default.post(name: NSNotification.Name("CheckLikeIssue"), object: myIssue)
             if (myIssue.getUpVoteState()){
                 likeButton.setImage(UIImage(named: "filled heart"), for: .normal)
@@ -112,18 +110,18 @@ class FeedIssueCell: UITableViewCell {
                 likeButton.setImage(UIImage(named: "heart-1"), for: .normal)
             }
         }
-            
         else {
             likeView.backgroundColor = granite
             likeView.layer.shadowOffset = CGSize(width: -10, height: 10)
         }
     }
     
+    //When the favorite button is pressed, the IssueClass and the view is updated to represent that.
     @objc func longF(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .ended {
             starView.backgroundColor = white
             starView.layer.shadowOffset = CGSize(width: -1, height: 1)
-            
+            //Uses NotificationCenter to get the nav controller since the IssueClass needs that to work
             NotificationCenter.default.post(name: NSNotification.Name("CheckFavoriteIssue"), object: myIssue)
             if (myIssue.getFavoritesState()){
                 starButton.setImage(UIImage(named: "filled star"), for: .normal)
@@ -135,7 +133,6 @@ class FeedIssueCell: UITableViewCell {
             starView.backgroundColor = granite
             starView.layer.shadowOffset = CGSize(width: -10, height: 10)
         }
-        
     }
     
     
@@ -161,6 +158,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
     let myCellIndentifier = "IssueCell"
     var myIssueList:[IssueClass] = []
     
+    //Code to set the status bar to a light theme
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -180,6 +178,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         
         }
 
+        //Allows the this class to control the tableView's methods
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.refreshControl = UIRefreshControl()
@@ -215,13 +214,14 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
 
         setupNotificationListener()
         
-        
     }
     
+    //Reloads the feed
     @objc func reload(_ sender: Any) {
         self.tableView.reloadData()
     }
     
+    //Grabs the list of issues from the webserver
     func getIssueData() {
         let nav = self.navigationController!
         NetworkAPI().getListOfIssues(nav: nav) { issueData, error  in
@@ -230,12 +230,12 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         }
     }
     
-
     @objc func refresh(_ sender: Any) {
         getIssueData()
         self.refreshControl!.endRefreshing()
     }
     
+    //Uses NotificationCenter to add the IssueClass's checkLiked and checkFavorited method so that the cell can use these methods
     func setupNotificationListener() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(checkLikeIssue(notification:)), name: NSNotification.Name("CheckLikeIssue"), object: nil)
@@ -253,14 +253,15 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             issue.checkFavorited(id: issue.getID(), nav: self.navigationController!)
         }
     }
-
     
+    //When a cell is selected, it performs a segue to the IssuePage screen
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ShowIssuePage", sender: self)
     }
     
     @IBOutlet var feedTable: UITableView!
-    
+
+    //Before going to the IssuePage screen, sets the IssuePage issueID to be the selected cell's issueID. Also adds a handler to allow the IssuePage to refresh the feed
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowIssuePage" {
             let viewController = segue.destination as? IssuePageController
@@ -294,11 +295,10 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
             return myIssueList.count
         }
     }
-    
   
+    //Returns the heights of the cell as long as the seacrh finds an issue
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let obj = myIssueList.sorted(by: { $0.myLikes > $1.myLikes })[indexPath.row]
-        
         let all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL") && !UserDefaults.standard.bool(forKey: "liked") && !UserDefaults.standard.bool(forKey: "starred")
         let check = UserDefaults.standard.bool(forKey: "checkOIT") ||  UserDefaults.standard.bool(forKey: "checkParking") || UserDefaults.standard.bool(forKey: "checkFacilities") || UserDefaults.standard.bool(forKey: "checkHRL")
         let oit = UserDefaults.standard.bool(forKey: "checkOIT") && obj.getType() == ("SnIssue")
@@ -373,8 +373,7 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         }
     }
     
-   
-
+    //Sets up the issue cell, changes depending how the issues are to be sorted
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellIndentifier, for: indexPath) as! FeedIssueCell
         
@@ -439,19 +438,16 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         }
     }
     
-    
+    //Code for when a menu is opened
     func openMenu() {
         guard let menuVC = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuVC else {
             return
         }
-        
         //transition to new page
         menuVC.didTapMenuType = {
             menuType in
             self.transitionToNew(menuType)
-            
         }
-    
         menuVC.modalPresentationStyle = .overCurrentContext
         menuVC.transitioningDelegate = self
         present(menuVC, animated: true)
@@ -470,39 +466,39 @@ class FeedViewController: UITableViewController,  UIGestureRecognizerDelegate, U
         return transition
     }
     
+    //Not used yet
     @IBAction func addComment(_ sender: Any) {
         performSegue(withIdentifier: "comSegue", sender: self)
     }
-    
-    
+
     @IBOutlet weak var feedSearchBar: UISearchBar!
     var feedIssueList = Set<IssueClass>()
     var feedSearchIssues = [IssueClass]()
     var searching = false
 
+    //When the search is used, changes the feeds
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         feedSearchIssues = myIssueList.filter({( issue:IssueClass) -> Bool in
             return issue.getTitle().lowercased().contains(searchText.lowercased())
         })
         searching = true
         tableView.reloadData()
-        
         if searchText == "" {
             searching = false
             tableView.reloadData()
         }
-        
     }
     
+    //Empty the search bar when tapping it when it is not in use
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         feedSearchBar.text = ""
     }
     
+    //Reset the search bar and feed
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         feedSearchBar.text = "Search issue by title"
         searching = false
         tableView.reloadData()
         feedSearchBar.resignFirstResponder()
     }
-
 }
