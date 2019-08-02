@@ -126,12 +126,14 @@ class IssueClass: Equatable, Hashable {
         self.myType = type
     }
     
+    //Is called when a service now issue is placed, since these values are needed.
     func defineServiceNowParams(urgency:String, impact:String, sensitive_info:String) {
         self.myUrgency = urgency
         self.myImpact = impact
         self.mySensitiveInfo = sensitive_info
     }
     
+    //Called when an HRL requests is submitted to set parameters needed by HRL
     func defineHRLParams(campus:String, area:String, specific_location:String, room:String, animal:Bool) {
         self.myCampus = campus
         self.myArea = area
@@ -140,6 +142,7 @@ class IssueClass: Equatable, Hashable {
         self.myAnimal = animal
     }
     
+    //Is called when a facilites requests is submitted
     func defineEAMParamsP1(your_building:String, your_floor:String, your_room:String, request_for:String){
         self.myBuildingFacilities = your_building
         self.myFloorFacilities = your_floor
@@ -147,6 +150,7 @@ class IssueClass: Equatable, Hashable {
         self.myRequestFor = request_for
     }
     
+    //This is called for the second page
     func defineEAMParamsP2(service_building:String, service_floor:String, service_room:String, service_type:String, fund_code:String) {
         self.myBuildingService = service_building
         self.myFloorService = service_floor
@@ -168,6 +172,8 @@ class IssueClass: Equatable, Hashable {
         self.myTime = "\(String(time[0])):\(String(time[1]))"
     }
     
+    //When the like button is called, decreases or increases the like count, as well as removes from or adds to the user's list of liked issues
+    //Finally, it will update the webserver
     func checkLiked(id: Int, nav: UINavigationController){
         if liked{
             self.myLikes -= 1
@@ -191,6 +197,7 @@ class IssueClass: Equatable, Hashable {
         return favorited
     }
     
+    //When a star button is pressed, the method updates the favorite state, amount, and the user's favorite issue list. Then sends those updates to the webserver
     func checkFavorited(id: Int, nav: UINavigationController){
         if favorited {
             self.myFavorites -= 1
@@ -206,6 +213,7 @@ class IssueClass: Equatable, Hashable {
         favorited = !favorited
     }
     
+    //Add a comment to the class as well as adds it ot the webserver
     func addComment(comment:String, image: String, issueId:Int, userId:Int, user_name: String, user_image: String, nav: UINavigationController, completionHandler: @escaping (Bool) -> ()) {
         NetworkAPI().createComment(comment: comment, image: image, issueId: issueId, userId: userId, nav: nav) {
             stall in
