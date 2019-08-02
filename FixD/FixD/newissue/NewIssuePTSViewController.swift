@@ -28,6 +28,7 @@ class NewIssuePTSViewController: UIViewController {
         
     }
     
+    //checks to make sure that all required fields are filled in and calls createAlert if not
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         let nav = self.navigationController!
         if topicDropDown.text != "Please select" {
@@ -38,6 +39,7 @@ class NewIssuePTSViewController: UIViewController {
         return false
     }
     
+    //creates an alert if the user has left any required fields blank
     func createAlert(title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
