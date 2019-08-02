@@ -8,6 +8,7 @@
 
 import UIKit
 
+//This table cell is used to access the views and objecs in a textCommentCell
 class textCommentCell: UITableViewCell{
     
     @IBOutlet weak var commentLabel: UILabel!
@@ -74,16 +75,15 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
     //Handles Refresing the Likes and Favorites on the feed
     var likeButtonHandler:(() -> ())?
     var favButtonHandler:(() -> ())?
-    //var feedScrollHandler:(() -> ())?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //feedScrollHandler?()
-        
+        //This allows for the commentView and commentTextField to be controlled by this class
         commentTextField.delegate = self
         commentView.delegate = self
         commentView.dataSource = self
+        
         loadIssue()
         
         //Heights needed to adjust the screen for when the keyboard appears
@@ -94,7 +94,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         self.commentView.reloadData()
         //Code to set up and event listener
             listenForNotifications()
-
+        
+        //Code to customize the look of the views in the IssuePage Screen
         for v in views {
             v.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])
             v.layer.masksToBounds = false
@@ -109,6 +110,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         issueImage.layer.shadowOffset = CGSize(width: -1, height: 1)
         issueImage.layer.shadowOpacity = 0.2
         
+        //Methods to called the like, favorite, camera, gallery, and comment buttons are pressed
+        //Uses UILongPress's to notify of the taps
         let longLike = UILongPressGestureRecognizer(target: self, action: #selector(longL(_:)))
         longLike.minimumPressDuration = 0
         likeView.addGestureRecognizer(longLike)
@@ -134,6 +137,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         sendView.addGestureRecognizer(longSend)
     }
     
+    //Needed to move the screen when the keyboard appears.
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -152,6 +156,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         updateComments()
     }
     
+    //When the camera button is pressed, pulls up the camera as well as shows visual feed back to the press
     @objc func longCam(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .ended {
             cameraView.backgroundColor = white
@@ -172,7 +177,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    
+    //When the gallery button is pressed, pulls up the gallery
     @objc func longGal(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .ended {
             galleryView.backgroundColor = white
@@ -192,6 +197,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    //When the like button is pressed, tells the IssueClass to updates its like
+    //Also changes the like icon to represent the right state
     @objc func longL(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .ended {
             likeView.backgroundColor = white
@@ -208,6 +215,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    //When the favorite button is pressed, this method tells the IssueClass to updates it favorites
+    //Also changes the appearence of the favorite button
     @objc func longF(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .ended {
             favView.backgroundColor = white
@@ -224,6 +233,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    //Since changing the appearance of the like or favorite button is done very similarly, this method is made to prevent repeated code
     fileprivate func changeLikeOrFavoriteButton(button: UIButton!, state: Bool, imageOne: UIImage?, imageTwo: UIImage?) {
         if (state){
             likeAndFavoriteAmountLabel.text = "\(myIssue.getUpVotes()) likes, \(myIssue.getFavorites()) favorites"
@@ -234,6 +244,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    //When the comment is pressed, changes the view appearence
     @objc func longC(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .ended {
             comView.backgroundColor = white
@@ -251,7 +262,8 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
 //        let indexPath = NSIndexPath(item: self.comments.count-1, section: 0)
 //        self.commentView.scrollToRow(at: indexPath as IndexPath, at: UITableView.ScrollPosition.bottom, animated: false)
 //    }
-//
+
+    //Gets the issue from the issueID passed from the feed, map, or account page, then changes the page to fit the new data
     func loadIssue() {
         let nav = self.navigationController!
         NetworkAPI().getIssueById(nav: nav, id: issueID) { issue,error in
@@ -306,9 +318,10 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         view.endEditing(true)
     }
     
+    //when a keyboard is brought up or dismissed, this method is called to handle moving the screen
     @objc func keyboardWillChange(notification: Notification){
         print("yes!")
-        
+        //Gets the CGRect that represents the size of the keyboard
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
         }
@@ -322,6 +335,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    //When a new comment is submitted, this method adds it to the issue's list of comments, as well as places a new comment in the TableView
     func updateComments() {
         let nav = self.navigationController!
         if hasImage == true {
@@ -342,8 +356,9 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
 //        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
 //            self.loadIssue()
 //        })
-        
     }
+    
+    //Code to make the page start waiting for the keyboard to appear or dissappear
     func listenForNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -358,6 +373,7 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         return comments.count
     }
     
+    //Configures the comment cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath) as! textCommentCell
@@ -386,7 +402,5 @@ class IssuePageController: UIViewController, UITableViewDelegate, UITableViewDat
         updateComments()
         view.endEditing(true)
     }
-    
-    
     
 }
