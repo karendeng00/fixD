@@ -36,10 +36,12 @@ class HRLredoViewController: UIViewController {
         locationDropDown.text = "Please select"
         serviceAnimalDropDown.text = "Please select"
         
+        //because these dropdown menus have so few options, search functionality is disabled
         campusDropDown.isSearchEnable = false
         serviceAnimalDropDown.isSearchEnable = false
     }
     
+    //checks to make sure that all required fields are filled in and calls createAlert if not
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         let nav = self.navigationController!
         if campusDropDown.text != "Please select" && areaDropDown.text != "Please select" && locationDropDown.text != "Please select" && serviceAnimalDropDown.text != "Please select" {
@@ -50,6 +52,7 @@ class HRLredoViewController: UIViewController {
         return false
     }
     
+    //creates an alert if the user has left any required fields blank
     func createAlert(title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
