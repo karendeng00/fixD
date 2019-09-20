@@ -35,14 +35,14 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTapGesture()
-        //issueDescriptionText.text = "Type your description here."
+
         createAlert(title: "Is this an emergency?", message: "If this is an emergency, please call 911 or contact Duke Police.")
         
-        nameText.text = "Ann Bailey"
-        emailText.text = "email@duke.edu"
-        phoneText.text = "999-999-9999"
-        issueTitleText.text = "Computer broken"
-        issueDescriptionText.text = "One of the computers in the Link Classroom 5 has a broken screen. It is located in the third row from the front on the far right side of the room when you enter."
+        //Heights needed to adjust the screen for when the keyboard appears
+        tabBarHeight = tabBarController?.tabBar.bounds.size.height ?? 0
+        navBarHeight = navigationController?.navigationBar.bounds.size.height ?? 0
+        statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+
         
     }
     
@@ -61,7 +61,7 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
     }
 
     //creates an alert if the user has left any required fields blank
-    func createAlert(title:String, message:String) {
+   func createAlert(title:String, message:String) {
        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
            alert.dismiss(animated: true, completion: nil)

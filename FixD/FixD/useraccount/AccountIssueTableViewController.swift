@@ -8,18 +8,21 @@
 
 import UIKit
 
+//This class corresponds to the Issue Table View Controller within the User Account Page.
 class AccountIssueTableViewController: UITableViewController, UISearchBarDelegate {
 
     let myCellIndentifier = "IssueCell"
-    var myUserIssuesList:[IssueClass] = []
     var issuesReportedList:[IssueClass] = []
     var issuesStarredList:[IssueClass] = []
     var scopeList:[IssueClass] = []
+    var accountIssueList = Set<IssueClass>()
+    var accountSearchIssues:[IssueClass] = []
+    var searching = false
     var listFlag = true
     let myUser = UserAccount.shared
     
     @IBOutlet weak var issueSearchAndScope: UISearchBar!
-    
+
     var issuesList:[IssueClass] = []
     
     override func viewDidLoad() {
@@ -28,7 +31,6 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
         refreshControl!.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
         
         getIssueData()
-        //list = myUserIssuesList
         
         issueSearchAndScope.scopeButtonTitles = ["Issues I've Reported", "Issues I've Starred"]
         issueSearchAndScope.text = "Search issue by title"
@@ -39,6 +41,7 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
         
     }
 
+    //Method used to refresh the table view by pulling from the database.
     @objc func refresh(_ sender: Any) {
         getIssueData()
         self.refreshControl!.endRefreshing()
@@ -51,7 +54,9 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 210
     }
-
+    
+    //Used to identify if the user is searching (using the search) or not. The algorithm we used updates the list 
+    //by editing the issue list depending on the search item.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching {
             return accountSearchIssues.count
@@ -60,6 +65,8 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
         }
     }
 
+    //This method sets up the cells of the table. Again, notice that the cells change depending on if the user
+    //is searching or not.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell", for: indexPath) as! FeedIssueCell
         
@@ -71,10 +78,7 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
             cell.issueDescription.text = obj.getDescription()
             cell.issueLocation.text = obj.getLocation()
             cell.issueImage.image = UIImage(named: obj.getIssueImage())
-            //cell.issueUpvotes.text = String(obj.getUpVotes())
-            //cell.issueFavorites.text = String(obj.getFavorites())
             cell.userName.text = obj.myUserName
-    //        cell.userImage.image = UIImage(named: obj.myUserImage)
             cell.locationImage.image = UIImage(named:"locicon")
         } else {
             let obj = scopeList[indexPath.row]
@@ -84,10 +88,7 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
             cell.issueDescription.text = obj.getDescription()
             cell.issueLocation.text = obj.getLocation()
             cell.issueImage.image = UIImage(named: obj.getIssueImage())
-            //cell.issueUpvotes.text = String(obj.getUpVotes())
-            //cell.issueFavorites.text = String(obj.getFavorites())
             cell.userName.text = obj.myUserName
-            //        cell.userImage.image = UIImage(named: obj.myUserImage)
             cell.locationImage.image = UIImage(named:"locicon")
         }
         
@@ -98,6 +99,9 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
         performSegue(withIdentifier: "ShowIssuePageFromAccount", sender: (Any).self)
     }
     
+    //This prepare segue is used to open issues when clicked on. When an issue is clicked, the IssuePage Controller
+    //is opened with the information of that issue. Note that the issueID is passed on to the IssuePage Controller by reference, 
+    //and there, a network call is made using the issueId to obtain user info. This allows for fresh data to show, and not old data.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is IssuePageController {
             let viewController = segue.destination as? IssuePageController
@@ -108,9 +112,7 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
         }
     }
     
-    /**
-    * Code to delete the cell a table view cell
-    **/
+    //This method is used to delete a issue from a tableview cell in case the user wants to delete it.
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let nav = self.storyboard?.instantiateViewController(withIdentifier: "sbProfNav") as? UINavigationController
         let swipeAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
@@ -130,22 +132,26 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
     
     @IBOutlet var accountFeed: UITableView!
     
+    //This method is used to get the user data from the network. 
     func getIssueData() {
         let nav = self.storyboard?.instantiateViewController(withIdentifier: "sbProfNav") as? UINavigationController
+        resetLists()
+        print("1:\(scopeList.count)")
         NetworkAPI().getListOfIssues(nav: nav!) { issueData,error in
-            self.resetLists()
-            let issues:[IssueClass] = issueData
+            let issues = issueData
             for issue in issues {
-                if issue.getUserId() == self.myUser.getUserId() && self.listFlag == true {
-                    self.issuesReportedList.append(issue)
-                    if self.searching {
-                        self.accountSearchIssues = self.issuesReportedList
-                    } else {
-                        self.scopeList = self.issuesReportedList
+                if self.listFlag {
+                    if issue.getUserId() == self.myUser.getUserId() {
+                        self.issuesReportedList.append(issue)
+                        if self.searching {
+                            self.accountSearchIssues = self.issuesReportedList
+                        } else {
+                            self.scopeList = self.issuesReportedList
+                        }
                     }
                 }
                 else {
-                    if issue.getUserId() != self.myUser.getUserId() && self.listFlag == false {
+                    if(self.myUser.listOfFavedIssues.contains(issue.getID())){
                         self.issuesStarredList.append(issue)
                     }
                     if self.searching {
@@ -154,68 +160,62 @@ class AccountIssueTableViewController: UITableViewController, UISearchBarDelegat
                         self.scopeList = self.issuesStarredList
                     }
                 }
+                print("2:\(self.scopeList.count)")
+                self.tableView.reloadData()
             }
-            self.tableView.reloadData()
         }
     }
     
+    //This is the function used to activate the search bar as well as the dualbutton selector, to filter between issues reported and issues starred.
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         //filter
         searching = false
-        tableView.reloadData()
         issueSearchAndScope.text = "Search issue by title"
         switch issueSearchAndScope.selectedScopeButtonIndex {
-        case 0:
-            print("Issues I've Reported has been selected")
-            listFlag = true
-            self.getIssueData()
-            print(scopeList.count)
-        case 1:
-            print("Issues I've Starred has been selected.")
-            listFlag = false
-            self.getIssueData()
-            print(scopeList.count)
-        default:
-            break
+            case 0:
+                listFlag = true
+                self.getIssueData()
+            case 1:
+                listFlag = false
+                self.getIssueData()
+            default:
+                break
         }
     }
     
+    //This method resets all issue lists. 
     private func resetLists() {
-        self.issuesReportedList = Array()
-        self.issuesStarredList = Array()
-        self.issuesList = Array()
+        self.accountSearchIssues.removeAll()
+        self.issuesReportedList.removeAll()
+        self.issuesStarredList.removeAll()
+        self.issuesList.removeAll()
+        self.scopeList.removeAll()
     }
     
-    var accountIssueList = Set<IssueClass>()
-    var accountSearchIssues = [IssueClass]()
-    var searching = false
-    
+    //This is the code to search (using the search bar) within a list of issues. 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         accountSearchIssues = scopeList.filter({( issue:IssueClass) -> Bool in
             return issue.getTitle().lowercased().contains(searchText.lowercased())
         })
         searching = true
         tableView.reloadData()
-        for item in accountSearchIssues {
-            print(item.getTitle())
-        }
-        
         if searchText == "" {
             searching = false
             tableView.reloadData()
         }
-        
     }
     
+    //Code for if user began searching.
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         issueSearchAndScope.text = ""
     }
     
+    //Code for if user canceled the search.
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         issueSearchAndScope.text = "Search issue by title"
         searching = false
         tableView.reloadData()
         issueSearchAndScope.resignFirstResponder()
     }
-    
+
 }

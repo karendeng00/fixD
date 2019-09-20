@@ -103,12 +103,10 @@ class OITredoViewController: UIViewController, UITextViewDelegate, UINavigationC
     
     //delegates what happens if the user presses the camera button
     @objc func longCam(_ gestureRecognizer: UILongPressGestureRecognizer) {
-        print("you've pressed me")
         if gestureRecognizer.state == .ended {
             cameraView.backgroundColor = white
             cameraView.layer.shadowOffset = CGSize(width: -1, height: 1)
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
-                print("yep")
                 let imagePicker = UIImagePickerController()
                 imagePicker.delegate = self
                 imagePicker.sourceType = UIImagePickerController.SourceType.camera
@@ -121,9 +119,9 @@ class OITredoViewController: UIViewController, UITextViewDelegate, UINavigationC
             cameraView.layer.shadowOffset = CGSize(width: -10, height: 10)
         }
     }
+    
     //delegates what happens if the user presses the gallery button
     @objc func longGal(_ gestureRecognizer: UILongPressGestureRecognizer) {
-        print("you've pressed me")
         if gestureRecognizer.state == .ended {
             galleryView.backgroundColor = white
             galleryView.layer.shadowOffset = CGSize(width: -1, height: 1)

@@ -22,6 +22,7 @@ class MapFunctionsViewController: UIViewController {
     
     @IBOutlet weak var myMapView: MKMapView!
     
+    //The next two functions set the status bar to be white
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -31,15 +32,15 @@ class MapFunctionsViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        
-        
         super.viewDidLoad()
         
+        //Sets an action for when the refresh button is pressed
          NotificationCenter.default.addObserver(self, selector: #selector(reload(_:)), name: NSNotification.Name("CHECK"), object: nil)
         
-        
+        //Allows the map to be edited with annotations
         myMapView.delegate = self
         myMapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: NSStringFromClass(IssueAnnotation.self))
+        
         getIssueData()
         
         
@@ -61,11 +62,13 @@ class MapFunctionsViewController: UIViewController {
         self.openMenu()
     }
     
+    //reloads the map
     @objc func reload(_ sender: Any) {
         self.myMapView.removeAnnotations(self.myMapView.annotations)
         self.setUpIssuesOnMap()
     }
     
+    //function to open the menu
     func openMenu() {
         guard let menuVC = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuVC else {
             return
@@ -110,7 +113,6 @@ class MapFunctionsViewController: UIViewController {
     }
     
     //Sets up the current location
-    
     private func setUpCurrentLocation() {
         locationManager.delegate = self
         let managerStatus = CLLocationManager.authorizationStatus()
@@ -122,14 +124,15 @@ class MapFunctionsViewController: UIViewController {
         }
     }
     
+    //when the users allows location services, functions tell the CLLocationManager to start tracking changes.
     private func beginLocationUpdate(locationManager: CLLocationManager){
         myMapView.showsUserLocation = true
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
     }
     
+    //Function to zoom to users location
     private func zoomToRegion(with coordinate: CLLocationCoordinate2D) {
-        //Zoom to user location
         let viewRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
         myMapView.setRegion(viewRegion, animated: true)
     }
@@ -137,7 +140,7 @@ class MapFunctionsViewController: UIViewController {
     //Adding Location of issues to Map
     private func setUpIssuesOnMap() {
         for issue in myIssueList {
-            
+            //How we sort the pins by issue type
             let all = !UserDefaults.standard.bool(forKey: "checkOIT") && !UserDefaults.standard.bool(forKey: "checkParking") && !UserDefaults.standard.bool(forKey: "checkFacilities") && !UserDefaults.standard.bool(forKey: "checkHRL")
             let oit = UserDefaults.standard.bool(forKey: "checkOIT") && issue.getType() == ("SnIssue")
             let park = UserDefaults.standard.bool(forKey: "checkParking") && issue.getType() == ("PtIssue")
@@ -145,8 +148,9 @@ class MapFunctionsViewController: UIViewController {
             let hrl = UserDefaults.standard.bool(forKey: "checkHRL") && issue.getType() == ("HrlIssue")
             
              if (all || oit || park || fac ||  hrl) {
-                print(issue.getTitle())
                 let loc = issue.getLocation()
+                //Uses a GLGeocoder to translate an address from an IssueClass to make an IssueAnnotation
+                //Then addes the annotation to the MapKit
                 let geoCoder = CLGeocoder()
                 let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: 36.001522, longitude: -78.938207), radius: 500, identifier: "Durham")
                 geoCoder.geocodeAddressString(loc, in: region) { (placemarks, error) -> Void in
@@ -165,6 +169,7 @@ class MapFunctionsViewController: UIViewController {
         }
     }
     
+    //Method to resize image so that the annotation is not too big.
     func resizedImage(image: UIImage, for size: CGSize) -> UIImage? {
         let renderer = UIGraphicsImageRenderer(size: size)
         return renderer.image { (context) in
@@ -172,6 +177,7 @@ class MapFunctionsViewController: UIViewController {
         }
     }
     
+    //Sets the issueID for the IssuePage to be the one the user taps
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is IssuePageController {
             let viewController = segue.destination as? IssuePageController
@@ -231,18 +237,26 @@ extension MapFunctionsViewController: CLLocationManagerDelegate{
 
 extension MapFunctionsViewController: MKMapViewDelegate {
     
+    //Prepares an annotation (the pin used and the layout of the view) for when it is added to the map
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        //If the annotation is the unique user annotation, nothing happens.
         guard !annotation.isKind(of: MKUserLocation.self) else {
             return nil
         }
+        
         var annotationView: MKAnnotationView?
+        
+        //Checks to make sure that the annotation being worked on is an IssueAnnotation
         if let newAnnotation = annotation as? IssueAnnotation {
             annotationView = myMapView.dequeueReusableAnnotationView(withIdentifier: NSStringFromClass(IssueAnnotation.self), for: newAnnotation)
         }
+        
+        //Creates a MKMarkerAnnotationView and then customises its color as well as fills in the view with the information from the annotation.
         if let markerAnnotationView = annotationView as? MKMarkerAnnotationView{
             markerAnnotationView.animatesWhenAdded = true
             markerAnnotationView.canShowCallout = true
             setIssueColor(annotation: markerAnnotationView)
+            //Checks if there is an available image
             if let imagePath = (markerAnnotationView.annotation as! IssueAnnotation).imageName, imagePath != ""{
                 let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
                 let scaleFactor = UIScreen.main.scale
@@ -261,12 +275,14 @@ extension MapFunctionsViewController: MKMapViewDelegate {
         return annotationView
     }
     
+    //When the right button on an annotation view is pressed, it will perform this action, which is a segue in this case
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let annotation = view.annotation, annotation.isKind(of: IssueAnnotation.self) {
             performSegue(withIdentifier: "MapToIssuePage", sender: self)
         }
     }
     
+    //Code to check for the issue type and changing the color depending on it
     func setIssueColor(annotation: MKMarkerAnnotationView) {
         let issueType = (annotation.annotation as! IssueAnnotation).type
         if issueType == "SnIssue" {

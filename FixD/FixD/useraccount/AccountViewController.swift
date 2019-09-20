@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+//This is the class that corresponds to the User Account Page 
 class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIViewControllerTransitioningDelegate {
     
     @IBOutlet weak var myAccountPosition: UILabel!
@@ -27,6 +29,7 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
         navigationController?.navigationBar.barStyle = .black
     }
     
+    //Sets up the environment
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUser()
@@ -49,8 +52,9 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
         self.view.addGestureRecognizer(leftPanSwipe)
     }
     
+    //Sets up the user from the UserAccount object instantiated in the FeedViewController
     func setUpUser() {
-        myAccountImage.image = UIImage(named:myUser.userImage ?? "photo.jpg")
+        myAccountImage.image = UIImage(named: myUser.userImage)
         myAccountName.text = myUser.userName
         myAccountPosition.text = "Student"
     }
@@ -59,19 +63,18 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
         self.openMenu()
     }
     
+    //
     @objc func swipePanAction(sender: UIScreenEdgePanGestureRecognizer) {
-        
-        
         if sender.state == UIGestureRecognizer.State.ended {
             self.openMenu()
         }
     }
     
+    //Code to open the side menu
     func openMenu() {
         guard let menuVC = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuVC else {
             return
         }
-        
         //transition to new page
         menuVC.didTapMenuType = {
             menuType in
@@ -83,10 +86,9 @@ class AccountViewController: UIViewController,  UIGestureRecognizerDelegate, UIV
         present(menuVC, animated: true)
     }
     
+    //Code to use side menu.
     func transitionToNew(_ menuType: MenuType) {
-        
         topView?.removeFromSuperview()
-        
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "tab") as? UITabBarController else {
             return

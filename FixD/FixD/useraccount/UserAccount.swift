@@ -8,7 +8,11 @@
 
 import Foundation
 import UIKit
-// Note: THIS IS NOT THE SAME AS UserClass. This is the User that owns the account.
+
+//This class is a singleton object that initializes the User (the person using the app)
+//It fetches information from the web. If the user is recognized, it loads the user using the netid.
+//Otherwise, it creates a new user on the database.
+// Note: THIS IS NOT the same as the UserClass. This is the User that owns the account.
 // There exists only one version of this account.
 class UserAccount{
 
@@ -26,7 +30,7 @@ class UserAccount{
 
     private init(){}
     
-    //In the future, connect to the database
+    //Initializes the user account.
     func setUp(id: Int, duid:String, netid:String, name:String, phone: String, picture: String, myLikes: [Int], myFavorites: [Int]) {
         self.userId = id
         self.userDuid = duid
@@ -38,18 +42,22 @@ class UserAccount{
         self.listOfFavedIssues = myFavorites
     }
     
+    //Returns netID
     func getNetId() -> String {
         return userNetId
     }
     
+    //Returns userID from the database.
     func getUserId() -> Int {
         return userId
     }
     
+    //Returns username
     func getUserName() -> String {
         return userName
     }
     
+    //Returns userImage
     func getUserImage() -> String {
         return userImage
     }

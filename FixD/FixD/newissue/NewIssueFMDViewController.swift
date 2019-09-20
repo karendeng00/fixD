@@ -50,7 +50,7 @@ class NewIssueFMDViewController: UIViewController {
         requestDropDown.didSelect{(selectedText , index ,id) in
             self.dex = index
         }
-        
+            
         //sets var locationOption equal to the user's selection ("yes" or "no") in sameDropDown (this determines whether the user's location is the same as the issue's location)
         //this will be used to autopopulate secondBuildingDropDown, secondFloorDropDown, and secondRoomDropDown in the next view if the user selects "yes" in sameDropDown
         sameDropDown.didSelect{(selectedText, index, id) in

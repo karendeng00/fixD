@@ -11,15 +11,16 @@ import UIKit
 
 class CommentsClass {
     
+    //This class contains the data to represent a comment in our app
     var myBody:String = ""
-    var myImage:UIImage = UIImage()
+    var myImage:String = ""
     var myUserID:Int = 0
     var myIssueId: Int = 0
     var myUserName:String = ""
     var myUserImage:String = ""
 
     
-    init(body:String, image:UIImage, userId:Int, issueId:Int, name:String, user_image:String){
+    init(body:String, image:String, userId:Int, issueId:Int, name:String, user_image:String){
         self.myBody = body
         self.myImage = image
         self.myUserID = userId

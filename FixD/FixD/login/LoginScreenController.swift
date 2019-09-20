@@ -8,6 +8,7 @@
 
 import UIKit
 
+//This class is the login screen for the app. It only shows up iff the user is not logged or is authenticated. 
 class LoginScreenController: UIViewController {
 
     var oAuthService: OAuthService?
@@ -29,15 +30,14 @@ class LoginScreenController: UIViewController {
             DispatchQueue.main.async {
                 let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "tab") as? UITabBarController
                 self.present(tabVC!, animated: true, completion: nil)
-//                NetworkAPI().getUserDuid(nav: nav!) { duid,error in }
             }
         }
     }
     
     
+    //If the token is authenticated, then refresh the token and open the app. Else, open shib and login.  
     @IBAction func loginButton(_ sender: UIButton) {
         let nav = self.navigationController
-        
         oAuthService?.setClientName(oAuthClientName: "dukeissuereporting")
         if oAuthService!.isAuthenticated() {
             oAuthService?.refreshToken(navController: nav!) { success, statusCode in
@@ -56,9 +56,6 @@ class LoginScreenController: UIViewController {
                 if success {
                     print ("Login - success")
                     UserDefaults.standard.set(true, forKey: "LoggedIn")
-                    //self.navigationController?.dismiss(animated:true, completion: nil)
-                    //self.navigationController?.dismiss(animated: true, completion: nil)
-                    //self.performSegue(withIdentifier: "showMainFeed", sender: sender)
                     DispatchQueue.main.async {
                         let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "tab") as? UITabBarController
                         self.present(tabVC!, animated: false, completion: nil)
