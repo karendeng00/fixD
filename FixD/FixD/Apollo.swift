@@ -15,7 +15,8 @@ class Apollo {
     let local = "http://localhost:3000/graphql"
     
 //    func getClient() -> ApolloClient {
-//        let token = OAuthService.shared.getAccessToken() ?? ""
+    let token = OAuthService.shared.getAccessToken() ?? ""
+
 //        let configuration = URLSessionConfiguration.default
 //        configuration.httpAdditionalHeaders = ["Authorization": "Bearer \(token)", "Content-Type": "application/json"]
 //        let kongURL = "https://issue-reporting-backend.api-test.oit.duke.edu/graphql"
