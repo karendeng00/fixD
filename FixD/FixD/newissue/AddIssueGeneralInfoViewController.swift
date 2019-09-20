@@ -51,6 +51,7 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
         issueDescriptionText.text = "Type your description here."
     }
     
+    //adds relevant fields to the issue object associated with this view and carries it over to the next view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "IssueToSecondPage" {
             let viewController = segue.destination as? NewIssueFromCategoryViewController
@@ -59,6 +60,7 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
         }
     }
 
+    //creates an alert if the user has left any required fields blank
    func createAlert(title:String, message:String) {
        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
@@ -67,6 +69,7 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
        self.present(alert, animated: true, completion: nil)
    }
 
+    //checks to make sure that all required fields are filled in and calls createAlert if not
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if nameText.text != "" &&
             nameText.text != "" && emailText.text != "" && phoneText.text != "" && emailText.text != "" && phoneText.text != "" && issueTitleText.text != "" && issueDescriptionText.text != "Type Your Description Here" && issueDescriptionText.text != "" {
@@ -79,15 +82,14 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
 
 extension AddIssueGeneralInfoViewController: UITextFieldDelegate{
     
+    //allows the user to advance to the next textfield by pressing the return key on the keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         let nextTag = textField.tag + 1
         if let nextResponder = textField.superview?.viewWithTag(nextTag) {
             nextResponder.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
         }
-        
         return true
     }
     

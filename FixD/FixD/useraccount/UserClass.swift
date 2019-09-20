@@ -9,7 +9,8 @@
 import Foundation
 
 
-// Note: THIS IS NOT THE SAME AS UserAccount. This only loads user information to display
+//This class is the "User" object used to instantiate Issue objects.
+// Note: THIS IS NOT the same as UserAccount. This only loads user information to display
 // with Issues.
 class UserClass {
     
@@ -20,7 +21,7 @@ class UserClass {
     var userPhone:String = ""
     
     
-    //In the future, connect to the database
+    //Instantiate user with variables from the database.
     init(id:Int, name:String, netid:String, image:String, phone:String) {
         self.userId = id
         self.userName = name
@@ -29,6 +30,7 @@ class UserClass {
         self.userPhone = phone
     }
     
+    //Method used to get the user's netid for display.
     func getNetId() -> String {
         return userNetId
     }

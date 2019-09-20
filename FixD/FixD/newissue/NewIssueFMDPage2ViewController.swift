@@ -42,16 +42,19 @@ class NewIssueFMDPage2ViewController: UIViewController {
         roomSecondDropDown.text = "Please select"
         serviceListDropDown.text = "Please select"
         
+        //if the user indicated that their location and the issue location are the same in the former view, the respective text fields in this view are set
         if same {
             buildingSecondDropDown.text = buildingText
             floorSecondDropDown.text = floorText
             roomSecondDropDown.text = roomText
         }
         
+        //search functionality of serviceListDropDown is disabled because the user is unlikely to know the categories provided by FMD
         serviceListDropDown.isSearchEnable = false
         
     }
     
+    //checks to make sure that all required fields are filled in and calls createAlert if not
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         let nav = self.navigationController!
         if buildingSecondDropDown.text != "Please select" && floorSecondDropDown.text != "Please select" && roomSecondDropDown.text != "Please select" && serviceListDropDown.text != "Please select" {
@@ -63,6 +66,7 @@ class NewIssueFMDPage2ViewController: UIViewController {
         return false
     }
     
+    //creates an alert if the user has left any required fields blank
     func createAlert(title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in

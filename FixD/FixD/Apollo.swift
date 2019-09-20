@@ -22,4 +22,9 @@ class Apollo {
         let url = URL(string: kongURL)!
         return ApolloClient(networkTransport: HTTPNetworkTransport(url: url, configuration: configuration))
     }
+    
+//    func getClient() -> ApolloClient {
+//        return ApolloClient(url: URL(string: local)!)
+//    }
+
 }
