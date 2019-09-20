@@ -42,12 +42,7 @@ class AddIssueGeneralInfoViewController: UIViewController, UITextViewDelegate {
         tabBarHeight = tabBarController?.tabBar.bounds.size.height ?? 0
         navBarHeight = navigationController?.navigationBar.bounds.size.height ?? 0
         statusBarHeight = UIApplication.shared.statusBarFrame.size.height
-        
-        nameText.text = "Ann Bailey"
-        emailText.text = "email@duke.edu"
-        phoneText.text = "999-999-9999"
-        issueTitleText.text = "Computer broken"
-        issueDescriptionText.text = "One of the computers in the Link Classroom 5 has a broken screen. It is located in the third row from the front on the far right side of the room when you enter."
+
         
     }
     
