@@ -14,7 +14,6 @@
 		2299A35422B18E07000BD0F6 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299A35322B18E07000BD0F6 /* ContactUsViewController.swift */; };
 		22E8AF6E22AEA70100194036 /* IssuePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8AF6D22AEA70100194036 /* IssuePageController.swift */; };
 		4D0E1B019D6EBD8681595E60 /* Pods_FixD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AA4C96F8C6571126F23B8AC /* Pods_FixD.framework */; };
-		B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4085C0722A850A400A24525 /* AppDelegate.swift */; };
 		B4085C0D22A850A500A24525 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4085C0B22A850A500A24525 /* Main.storyboard */; };
 		B4085C0F22A850A500A24525 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4085C0E22A850A500A24525 /* Assets.xcassets */; };
 		B4085C1222A850A500A24525 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4085C1022A850A500A24525 /* LaunchScreen.storyboard */; };
@@ -40,8 +39,9 @@
 		B4ED85FC22D8D388002E6D79 /* CommentsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED85FB22D8D388002E6D79 /* CommentsClass.swift */; };
 		B4ED85FE22DF5EB0002E6D79 /* UserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED85FD22DF5EB0002E6D79 /* UserClass.swift */; };
 		B4ED860022E0CCDB002E6D79 /* Apollo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED85FF22E0CCDB002E6D79 /* Apollo.swift */; };
+		BED2BD712335587C00AE8780 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4085C0722A850A400A24525 /* AppDelegate.swift */; };
+		BED2BD722335587C00AE8780 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
 		F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3222AFFB4100DDFC62 /* MenuVC.swift */; };
-		F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51CCD3422B000D600DDFC62 /* SlideInTransition.swift */; };
 		FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E780B22B18481003A3717 /* AddIssueGeneralInfoViewController.swift */; };
 		FF95139722CA8EEA00B94CB2 /* NewIssuePTSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95139622CA8EEA00B94CB2 /* NewIssuePTSViewController.swift */; };
 		FF95139922CA98E600B94CB2 /* IssueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF95139822CA98E600B94CB2 /* IssueVC.swift */; };
@@ -316,7 +316,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = Duke;
 				TargetAttributes = {
 					B4085C0322A850A400A24525 = {
@@ -435,7 +435,7 @@
 				22740CEC22CD052D0011835E /* IssueAnnotation.swift in Sources */,
 				22E8AF6E22AEA70100194036 /* IssuePageController.swift in Sources */,
 				B4EC7FD122B16964001711BC /* LoginScreenController.swift in Sources */,
-				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
+				BED2BD712335587C00AE8780 /* AppDelegate.swift in Sources */,
 				F51CCD3322AFFB4100DDFC62 /* MenuVC.swift in Sources */,
 				B4B1DBF922AAE02A005EFFA9 /* ScreenPageViewController.swift in Sources */,
 				FFE6EEA422C3BE8C00E2CBED /* HRLredoViewController.swift in Sources */,
@@ -450,15 +450,13 @@
 				B4ED85FE22DF5EB0002E6D79 /* UserClass.swift in Sources */,
 				FFE6EEA622C3D9DD00E2CBED /* OITredoViewController.swift in Sources */,
 				B4086CE922A95A7400B48EFF /* IssueClass.swift in Sources */,
-				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
+				BED2BD722335587C00AE8780 /* SlideInTransition.swift in Sources */,
 				22775BD222CBC4E000130E12 /* ShibAuthViewController.swift in Sources */,
 				FFB2C5A222A968A300BC11ED /* (null) in Sources */,
-				F51CCD3522B000D600DDFC62 /* SlideInTransition.swift in Sources */,
 				FFB2C5A822A97BB100BC11ED /* (null) in Sources */,
 				FFE35B1A22C1375C0087FC64 /* NewIssueFMDPage2ViewController.swift in Sources */,
 				FFB2C5A622A9785500BC11ED /* (null) in Sources */,
 				B428236E22E258CB00BD34EB /* NewIssueFromCategoryViewController.swift in Sources */,
-				B4085C0822A850A400A24525 /* AppDelegate.swift in Sources */,
 				B4EC7FD722B16E69001711BC /* AccountIssueTableViewController.swift in Sources */,
 				FF1E780C22B18481003A3717 /* AddIssueGeneralInfoViewController.swift in Sources */,
 				B4EC7FCC22B16906001711BC /* SettingsTableViewController.swift in Sources */,
